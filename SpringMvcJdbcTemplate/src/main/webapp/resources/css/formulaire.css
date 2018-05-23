@@ -1,0 +1,64 @@
+
+form
+{
+	color: blue;
+	background-color: #729fcf;
+	
+	margin-top: 50px;
+	margin-bottom: 20px;
+	margin-left: 60px;
+}
+input
+{
+	
+	border-radius: 20px 20px 20px 20px;
+	text-align:center;
+	
+}
+.champ
+{
+	display: inline-block;
+	margin-right: 15px;
+  	padding: 3px 0px;
+  	width: 20px;
+	min-height: 1px;
+ 	tex-align:left;
+ 	border-radius:8px 8px 0px 0px;
+
+}
+label input[type="radio"]
+{
+	color:purple;
+}
+#monformulaire
+{
+	margin-top:50px;
+	margin-left: 60px;
+	width: 500px;
+	height:1024px;
+	border-radius:8px 8px 8px 8px; 
+	border:1px solid #ff0000;
+	box-shadow: 1px 5px 5px 5px rgba(129,129,129,0.9);
+}
+input[type="submit"], input[type="reset"]{
+	background-color: rgba(0,50,10,0.1);
+	width: 120px;
+	color: #0000ff;
+
+}
+
+input[type="submit"]:hover, input[type="reset"]:hover{
+	box-shadow: 2px 2px 3px red;
+
+}
+select
+{
+	color:#000000;	
+}
+option[value=""]
+{
+	color:#ff80ff;
+}
+a{
+	text-decoration: none;
+}
