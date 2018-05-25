@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>homeAdmin</title>
+<title>homeAdministrator</title>
 <meta charset="utf-8">
 
 <link rel="stylesheet"

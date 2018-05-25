@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Inscription admin</title>
+<title>connexion admin</title>
 <meta charset="utf-8">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/assets/css/bootstrap.css"
@@ -37,12 +37,12 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                     <h4 class="page-head-line"> connexion de l'admin</strong></h4>
+                     <h4 class="page-head-line"> connexion de l'administrateur</strong></h4>
                     <br />
                      <label>login</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" name="login"  />
                         <label>mot de passe  </label>
-                        <input type="password" class="form-control" />
+                        <input type="password" class="form-control" name="password"  />
                         <hr />
                         <a href="/homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;se connecter</a>&nbsp;
                 </div>
