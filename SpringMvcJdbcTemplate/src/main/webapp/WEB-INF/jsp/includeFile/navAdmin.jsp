@@ -1,23 +1,41 @@
-<div class="wrapper">
-					<nav>
-						<ul id="menu">
-							<li><a href="/administratorHome">Accuiel</a></li>
-							<li><a href="/addRole">Roles</a></li>
-							<li><a href="teachersList">EnseignantS</a></li>
-							<li><a href="guidVisit">Visite guidée</a></li>
-							<li><a href="aboutUs">A propos</a></li>
-							<li class="end"><a href="Contacts.html">Contacts</a></li>
-						</ul>
-					</nav>
-					<ul id="icon">
-						<li><a href="#"><img src="css/icon1.jpg" alt=""></a></li>
-						<li><a href="#"><img src="css/icon2.jpg" alt=""></a></li>
-						<li><a href="#"><img src="css/icon3.jpg" alt=""></a></li>
-					</ul>
-</div>
-				<div class="wrapper">
-					<h1><a href="index.html" id="logo">Uds request</a></h1>
-				</div>
-				<div id="slogan">
-					<span>Plateforme de traitement des requetes</span>
-				</div>
+ <header>
+            <div class="row colorHeader"> </div>
+       
+    </header>
+    <!-- HEADER END-->
+    <section class="menu-section">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="navbar-collapse collapse navbar-inverse navbar-fixed-top">
+                        <ul id="menu-top" class="nav navbar-nav navbar-right">
+                        <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/homeAdmin">
+                            Acceuil
+                            </a>
+                        </li>
+                         <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/createAcademiqueYear">
+                            créer une année academique
+                            </a>
+                        </li>
+                        <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/createTeacher">
+                            créer un enseignant
+                            </a>
+                        </li>
+                        <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/createEvent">
+                            créer un évènement
+                            </a>
+                        </li>
+                        <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/deconnexionAdministrator">
+                            se déconnecter
+                            </a>
+                        </li>
+                     
+                            
+                            </a>
+                        </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+    </section>

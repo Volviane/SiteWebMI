@@ -33,8 +33,8 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
-		System.out.println("c'est le home");
-		return "home";
+		System.out.println("c'est le home admin");
+		return "connectionAdministrator";
 	}
 
 	@RequestMapping(value = "/newContact", method = RequestMethod.GET)
