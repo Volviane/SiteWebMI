@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Inscription</title>
+<title>ajouter cycle</title>
 <meta charset="utf-8">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/assets/css/bootstrap.css"
@@ -24,9 +24,9 @@
 </head>
 
 <body id="page1">
+
 	<div class="body1">
-    <div class="navbar navbar-inverse set-radius-zero">
-        </div>
+    <%@include file="includeFile/navAdmin.jsp"%>
     <!-- LOGO HEADER END-->
    
     <!-- MENU SECTION END-->
@@ -37,53 +37,60 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                     <h4 class="page-head-line"> enregistrement admin</strong></h4>
+                     <h4 class="page-head-line">Ajouter une unité de valeur</strong></h4>
                     <br />
-                     <label>login</label>
-                        <input type="text" class="form-control" name="loginAdmin"  />
-                        <label>mot de passe  </label>
-                        <input type="password" class="form-control" name="passwordAdmin"  />
+                     <label>niveau</label>
+                    
+                    	 <select class="form-control">
+                     			<option> </option>
+                     	 </select>
+                     
+                     
+                     		<label>code de l'uv </label>
+                    		<div class="form-group">
+                     			
+                      			  <input type="text" class="form-control" name="courseCode" />
+                             </div>
+                             <label>nom de l'uv </label>
+                    		<div class="form-group">
+                     			
+                      			  <input type="text" class="form-control" name="courseName" />
+                             </div>
+                             <label>semestre </label>
+                    		<div class="form-group">
+                     			
+                      			  <input type="text" class="form-control" name="semester" />
+                             </div>
+                    
                         <hr />
-                        <a href="homeAdmin.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;créer admin</a>&nbsp;
+                        <a href="homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;enregistrer</a>&nbsp;
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>
                     <div class="alert alert-info">
-                        This is a free bootstrap admin template with basic pages you need to craft your project. 
-                        Use this template for free to use for personal and commercial use.
+                        l'administrateur, à l'aide de cette interface va pourvoir enregistrer les différentes unités de valeurs retrouvées au département de mathématiques-informatiques, ceci en fonction du niveau choisi.
                         <br />
-                         <strong> Some of its features are given below :</strong>
-                        <ul>
-                            <li>
-                                Responsive Design Framework Used
-                            </li>
-                            <li>
-                                Easy to use and customize
-                            </li>
-                            <li>
-                                Font awesome icons included
-                            </li>
-                            <li>
-                                Clean and light code used.
-                            </li>
-                        </ul>
                        
                     </div>
                     <div class="alert alert-success">
-                         <strong> Instructions To Use:</strong>
+                         <strong> Instructions:</strong>
                         <ul>
-                            <li>
-                               Lorem ipsum dolor sit amet ipsum dolor sit ame
+                             <li>
+                               entrer le niveau d'étude
                             </li>
                             <li>
-                                 Aamet ipsum dolor sit ame
+                               entrer le code de l'uv
                             </li>
                             <li>
-                               Lorem ipsum dolor sit amet ipsum dolor
+                               entrer le nom du l'uv
                             </li>
                             <li>
-                                 Cpsum dolor sit ame
+                               entrer le semestre
                             </li>
+                            <li>
+                                puis l'enregistrer
+                            </li>
+                         
                         </ul>
                        
                     </div>

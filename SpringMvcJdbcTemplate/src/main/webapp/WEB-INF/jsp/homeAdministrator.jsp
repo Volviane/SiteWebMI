@@ -105,13 +105,13 @@
 					<div>
 							<figure>
 								<a href="#"><img
-									src="${pageContext.request.contextPath}/resources/excss/page1_img1.jpg"
+									src="${pageContext.request.contextPath}/resources/images/page1_img1.jpg"
 									alt="" width="300px" height="200px"></a>
 							</figure>
 							<div class="space"></div>
 							<figure>
 								<a href="#"><img
-									src="${pageContext.request.contextPath}/resources/excss/images.png"
+									src="${pageContext.request.contextPath}/resources/images/images.png"
 									alt="" width="300px" height="200px"></a>
 							</figure>
 					</div>
@@ -119,7 +119,7 @@
 				<div class="col-md-6">
 					<hr />
 					<div class="Compose-Message">
-						<div class="panel panel-success">
+						<div class="panel panel-info">
 							<div class="panel-heading">contacter un utilisateur</div>
 							<div class="panel-body">
 
@@ -129,9 +129,9 @@
 									Message : </label>
 								<textarea rows="9" class="form-control"></textarea>
 								<hr />
-								<a href="#" class="btn btn-warning"><span
+								<a href="#" class="btn btn-primary"><span
 									class="glyphicon glyphicon-envelope"></span> envoyer Message </a>&nbsp;
-								<a href="#" class="btn btn-success"><span
+								<a href="#" class="btn btn-warning"><span
 									class="glyphicon glyphicon-tags"></span> enregistrer comme brouillon </a>
 							</div>
 							<div class="panel-footer text-muted">

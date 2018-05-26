@@ -8,7 +8,7 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse navbar-inverse navbar-fixed-top">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                        <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/homeAdmin">
+                        <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/homeAdministrator">
                             Acceuil
                             </a>
                         </li>

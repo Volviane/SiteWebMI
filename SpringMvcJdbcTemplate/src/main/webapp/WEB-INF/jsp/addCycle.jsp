@@ -45,6 +45,7 @@
                         <a href="homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;enregistrer</a>&nbsp;
                 </div>
                 <div class="col-md-6">
+                <div class="space"></div>
                     <div class="alert alert-info">
                         l'administrateur, à l'aide de cette interface va pourvoir enregistrer les différents cycles retrouvés au département de mathématiques-informatiques.
                         <br />

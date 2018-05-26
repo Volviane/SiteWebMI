@@ -47,42 +47,26 @@
                         <a href="/homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;se connecter</a>&nbsp;
                 </div>
                 <div class="col-md-6">
+                <div class="space"></div>
                     <div class="alert alert-info">
-                        This is a free bootstrap admin template with basic pages you need to craft your project. 
-                        Use this template for free to use for personal and commercial use.
+                        Seule l'administrateur du sytème devra se connecter dans cette espace, pour mettre à jour le système
                         <br />
-                         <strong> Some of its features are given below :</strong>
-                        <ul>
-                            <li>
-                                Responsive Design Framework Used
-                            </li>
-                            <li>
-                                Easy to use and customize
-                            </li>
-                            <li>
-                                Font awesome icons included
-                            </li>
-                            <li>
-                                Clean and light code used.
-                            </li>
-                        </ul>
+                         
                        
                     </div>
                     <div class="alert alert-success">
-                         <strong> Instructions To Use:</strong>
+                         <strong> Instructions:</strong>
                         <ul>
                             <li>
-                               Lorem ipsum dolor sit amet ipsum dolor sit ame
+                              Entrer son login
                             </li>
                             <li>
-                                 Aamet ipsum dolor sit ame
+                                 Puis entrer son mot de passe
                             </li>
                             <li>
-                               Lorem ipsum dolor sit amet ipsum dolor
+                               Enfin se connecter
                             </li>
-                            <li>
-                                 Cpsum dolor sit ame
-                            </li>
+                            
                         </ul>
                        
                     </div>

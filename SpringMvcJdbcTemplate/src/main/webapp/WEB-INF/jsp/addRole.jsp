@@ -37,6 +37,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
+                
                      <h4 class="page-head-line">Ajouter un role</strong></h4>
                     <br />
                      <label>role</label>
@@ -45,6 +46,7 @@
                         <a href="homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;enregistrer</a>&nbsp;
                 </div>
                 <div class="col-md-6">
+                <div class="space"></div>
                     <div class="alert alert-info">
                         l'administrateur, à l'aide de cette interface va pourvoir enregistrer les différents roles des acteurs du système
                         <br />
