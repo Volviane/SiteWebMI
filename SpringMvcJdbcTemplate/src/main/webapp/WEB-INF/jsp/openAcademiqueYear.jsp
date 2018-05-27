@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Inscription</title>
+<title>ouvrir une année académique</title>
 <meta charset="utf-8">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/assets/css/bootstrap.css"
@@ -24,9 +24,8 @@
 </head>
 
 <body id="page1">
-	<div class="body1">
-    <div class="navbar navbar-inverse set-radius-zero">
-        </div>
+<%@include file="includeFile/navAdmin.jsp"%>
+   
     <!-- LOGO HEADER END-->
    
     <!-- MENU SECTION END-->
@@ -37,35 +36,52 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                     <h4 class="page-head-line"> enregistrement admin</strong></h4>
+                     <h4 class="page-head-line">ouvrir une année académique</strong></h4>
                     <br />
-                     <label>login</label>
-                        <input type="text" class="form-control" name="loginAdmin"  />
-                        <label>mot de passe  </label>
-                        <input type="password" class="form-control" name="passwordAdmin"  />
+                    <label>année</label>
+                        <input type="text" class="form-control" name="teacherName"  />
+                    <label>niveau</label>
+                    
+                    	 <select class="form-control">
+                     			<option> </option>
+                     	 </select>
+                    <label>coordonnateur</label>
+                    
+                    	 <select class="form-control">
+                     			<option> </option>
+                     	 </select>
+                    <label>président du jury </label>
+                    
+                    	 <select class="form-control">
+                     			<option> </option>
+                     	 </select>
                         <hr />
-                        <a href="homeAdmin.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;créer admin</a>&nbsp;
+                        <a href="/homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;ouvrir</a>&nbsp;
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>
                     <div class="alert alert-info">
-                        vous pourrez vous enregistrer ici
+                 Vous allez pourvoir ici, ouvrir une année académique
                         <br />
-                         >
+                         
                        
                     </div>
                     <div class="alert alert-success">
-                         <strong> Instructions</strong>
+                         <strong> Instructions:</strong>
                         <ul>
-                            <li>
-                              entrer votre login
+                           <li>
+                              Entrer l'entrée académique
                             </li>
                             <li>
-                                Puis entrer votre mot de passe
+                              Entrer un niveau scolaire
                             </li>
                             <li>
-                               Enfin vous enregistrer
+                              choisir le coordonnateur du niveau scolaire
                             </li>
+                            <li>
+                               choisir le président de jury du niveau scolaire 
+                            </li>
+                            
                             
                         </ul>
                        

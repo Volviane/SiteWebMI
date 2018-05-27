@@ -40,9 +40,13 @@
                      <h4 class="page-head-line">Ajouter une option</strong></h4>
                     <br />
                      <label>option</label>
+                  
                     
-                    	 <select class="form-control">
-                     			<option> </option>
+                    	 <select class="form-control" name="">
+                    	   <c:forEach items="" var="i">
+                     			<option value="${i.optionName}"> <c:out value="${i.optionName}"></c:out> </option>
+                           </c:forEach>
+                     	
                      	 </select>
                      
                      
@@ -58,7 +62,7 @@
                 <div class="col-md-6">
                 <div class="space"></div>
                     <div class="alert alert-info">
-                        l'administrateur, à l'aide de cette interface va pourvoir enregistrer les différentes options retrouvées au département de mathématiques-informatiques.
+                   Vous allez pourvoir ici, enregistrer les différentes options retrouvées au département de mathématiques-informatiques.
                         <br />
                        
                     </div>

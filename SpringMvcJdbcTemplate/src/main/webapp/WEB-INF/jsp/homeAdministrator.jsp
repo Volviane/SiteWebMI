@@ -28,6 +28,14 @@
 <body id="homeAdmin">
 	<%@include file="includeFile/navAdmin.jsp"%>
 	<!-- MENU SECTION END-->
+	<div class="space"></div>
+	<form class="navbar-form pull-right">
+					<input type="text" style="width: 150px" class="input-small"
+						placeholder="Recherche">
+					<button type="submit" class="btn btn-primary">
+						<span class="glyphicon glyphicon-eye-open"></span> Chercher
+					</button>
+	</form>
 	<div class="content-wrapper">
 		<div class="container">
 			<div class="space"></div>
@@ -42,26 +50,26 @@
 			<div class="row">
 				<div class="col-md-3 col-sm-3 col-xs-6">
 					<div class="dashboard-div-wrapper bk-clr-one">
-						<a href="${pageContext.request.contextPath}/addCycle">
-							Ajouter un cycle </a>
+						<a href="${pageContext.request.contextPath}/openAcademiqueYear">
+							ouvrir une année </a>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-3 col-xs-6">
 					<div class="dashboard-div-wrapper bk-clr-two">
-						<a href="${pageContext.request.contextPath}/addLevel">
-							Ajouter un niveau </a>
+						<a href="${pageContext.request.contextPath}/createTeacher">
+							créer un enseignant </a>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-3 col-xs-6">
 					<div class="dashboard-div-wrapper bk-clr-three">
-						<a href="${pageContext.request.contextPath}/addOption">
-							Ajouter une option </a>
+						<a href="${pageContext.request.contextPath}/createEvent">
+							créer un évènement </a>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-3 col-xs-6">
 					<div class="dashboard-div-wrapper bk-clr-four">
-						<a href="${pageContext.request.contextPath}/addGrade">
-							Ajouter un grade </a>
+						<a href="${pageContext.request.contextPath}/closeEvent">
+							fermer un évènement </a>
 					</div>
 				</div>
 

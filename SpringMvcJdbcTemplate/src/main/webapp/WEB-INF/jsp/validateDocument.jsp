@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Inscription</title>
+<title>valider un document</title>
 <meta charset="utf-8">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/assets/css/bootstrap.css"
@@ -24,9 +24,9 @@
 </head>
 
 <body id="page1">
+
 	<div class="body1">
-    <div class="navbar navbar-inverse set-radius-zero">
-        </div>
+    <%@include file="includeFile/navAdmin.jsp"%>
     <!-- LOGO HEADER END-->
    
     <!-- MENU SECTION END-->
@@ -37,36 +37,34 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                     <h4 class="page-head-line"> enregistrement admin</strong></h4>
-                    <br />
-                     <label>login</label>
-                        <input type="text" class="form-control" name="loginAdmin"  />
-                        <label>mot de passe  </label>
-                        <input type="password" class="form-control" name="passwordAdmin"  />
-                        <hr />
-                        <a href="homeAdmin.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;créer admin</a>&nbsp;
+                     <h4 class="page-head-line">valider un document</strong></h4>
+                      <label class="radio"> <input type="radio" name="validate" value="validate"> validé </label>
+                     <c:forEach items="" var="i">
+                     	 <c:out value="${i.link.document}"></c:out>
+                     	  <label class="radio"> <input type="radio" name="validate" value="validate"> validé </label>
+                     	   <label class="radio"> <input type="radio" name="unValidate" value="unValidate"> non-validé </label>
+                     </c:forEach>
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>
                     <div class="alert alert-info">
-                        vous pourrez vous enregistrer ici
+                   Vous allez pourvoir ici, valider un document
                         <br />
-                         >
                        
                     </div>
                     <div class="alert alert-success">
-                         <strong> Instructions</strong>
+                         <strong> Instructions:</strong>
                         <ul>
                             <li>
-                              entrer votre login
+                               choisir un document non-validé
                             </li>
                             <li>
-                                Puis entrer votre mot de passe
+                              vérifier sa conformité
                             </li>
                             <li>
-                               Enfin vous enregistrer
+                                Le valider
                             </li>
-                            
+                         
                         </ul>
                        
                     </div>

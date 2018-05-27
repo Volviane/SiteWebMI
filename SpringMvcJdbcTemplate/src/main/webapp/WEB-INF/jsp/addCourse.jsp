@@ -68,7 +68,7 @@
                 <div class="col-md-6">
                 <div class="space"></div>
                     <div class="alert alert-info">
-                        l'administrateur, à l'aide de cette interface va pourvoir enregistrer les différentes unités de valeurs retrouvées au département de mathématiques-informatiques, ceci en fonction du niveau choisi.
+                       Vous allez pourvoir ici, enregistrer les différentes unités de valeurs retrouvées au département de mathématiques-informatiques, ceci en fonction du niveau choisi.
                         <br />
                        
                     </div>

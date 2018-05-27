@@ -58,7 +58,7 @@
                 <div class="col-md-6">
                 <div class="space"></div>
                     <div class="alert alert-info">
-                        l'administrateur, à l'aide de cette interface va pourvoir enregistrer les différentes options retrouvées au département de mathématiques-informatiques.
+                        Vous allez pourvoir ici, enregistrer les différentes options retrouvées au département de mathématiques-informatiques.
                         <br />
                        
                     </div>

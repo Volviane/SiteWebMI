@@ -48,7 +48,7 @@
                 <div class="col-md-6">
                 <div class="space"></div>
                     <div class="alert alert-info">
-                        l'administrateur, à l'aide de cette interface va pourvoir enregistrer les différents roles des acteurs du système
+                         Vous allez pourvoir ici, enregistrer les différents roles des acteurs du système
                         <br />
                        
                     </div>

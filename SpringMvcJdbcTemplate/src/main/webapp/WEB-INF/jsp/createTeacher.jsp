@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Inscription</title>
+<title>créer un enseignant</title>
 <meta charset="utf-8">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/assets/css/bootstrap.css"
@@ -24,9 +24,8 @@
 </head>
 
 <body id="page1">
-	<div class="body1">
-    <div class="navbar navbar-inverse set-radius-zero">
-        </div>
+<%@include file="includeFile/navAdmin.jsp"%>
+   
     <!-- LOGO HEADER END-->
    
     <!-- MENU SECTION END-->
@@ -37,34 +36,54 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                     <h4 class="page-head-line"> enregistrement admin</strong></h4>
+                     <h4 class="page-head-line">Créer un enseignant</strong></h4>
                     <br />
+                    <label>nom</label>
+                        <input type="text" class="form-control" name="teacherName"  />
+                     <label>email</label>
+                        <input type="text" class="form-control" name="teacherEmail"  />
                      <label>login</label>
-                        <input type="text" class="form-control" name="loginAdmin"  />
-                        <label>mot de passe  </label>
-                        <input type="password" class="form-control" name="passwordAdmin"  />
+                        <input type="text" class="form-control" name="teacherLogin"  />
+                     <label>mot de passe  </label>
+                        <input type="password" class="form-control" name="teacherPassword"  />
+                        <label>téléphone</label>
+                        <input type="text" class="form-control" name="teacherPhone"  />
+                        <label>date et lieu de naissance</label>
+                        <input type="text" class="form-control" name=""  />
                         <hr />
-                        <a href="homeAdmin.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;créer admin</a>&nbsp;
+                        <a href="/homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;enregistrer</a>&nbsp;
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>
                     <div class="alert alert-info">
-                        vous pourrez vous enregistrer ici
+                        Vous allez pourvoir ici, enregistrer un enseignant du departement de mathematiques-informatique
                         <br />
-                         >
+                         
                        
                     </div>
                     <div class="alert alert-success">
-                         <strong> Instructions</strong>
+                         <strong> Instructions:</strong>
                         <ul>
-                            <li>
-                              entrer votre login
+                           <li>
+                              Entrer son nom
                             </li>
                             <li>
-                                Puis entrer votre mot de passe
+                              Entrer son adresse mail valide
                             </li>
                             <li>
-                               Enfin vous enregistrer
+                              Entrer son login
+                            </li>
+                            <li>
+                                 Puis entrer son mot de passe
+                            </li>
+                            <li>
+                              Entrer son numéro de téléphone
+                            </li>
+                            <li>
+                              Entrer sa date et lieu de naissance
+                            </li>
+                            <li>
+                               Enfin l'enregistrer
                             </li>
                             
                         </ul>

@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Inscription</title>
+<title>créer un évènement</title>
 <meta charset="utf-8">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/assets/css/bootstrap.css"
@@ -24,9 +24,8 @@
 </head>
 
 <body id="page1">
-	<div class="body1">
-    <div class="navbar navbar-inverse set-radius-zero">
-        </div>
+<%@include file="includeFile/navAdmin.jsp"%>
+   
     <!-- LOGO HEADER END-->
    
     <!-- MENU SECTION END-->
@@ -37,34 +36,44 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                     <h4 class="page-head-line"> enregistrement admin</strong></h4>
+                     <h4 class="page-head-line">créer un évènement</strong></h4>
                     <br />
-                     <label>login</label>
-                        <input type="text" class="form-control" name="loginAdmin"  />
-                        <label>mot de passe  </label>
-                        <input type="password" class="form-control" name="passwordAdmin"  />
+                    <label>nom de l'évènement</label>
+                        <input type="text" class="form-control" name="teacherName"  />
+                     <label>debut de l'évènement</label>
+                        <input type="text" class="form-control" name="teacherName"  />
+                     <label>fin de l'évènement</label>
+                        <input type="text" class="form-control" name="teacherName"  />
+                    <label>description</label>
+                      <textarea rows="5" cols="5" class="form-control"></textarea>
                         <hr />
-                        <a href="homeAdmin.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;créer admin</a>&nbsp;
+                        <a href="/homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;créer</a>&nbsp;
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>
                     <div class="alert alert-info">
-                        vous pourrez vous enregistrer ici
+                       Vous allez pourvoir ici, créer un évènement
                         <br />
-                         >
+                         
                        
                     </div>
                     <div class="alert alert-success">
-                         <strong> Instructions</strong>
+                         <strong> Instructions:</strong>
                         <ul>
-                            <li>
-                              entrer votre login
+                           <li>
+                              Entrer le nom de l'évènement
                             </li>
                             <li>
-                                Puis entrer votre mot de passe
+                              Entrer la date de début de l'évènemnt 
                             </li>
                             <li>
-                               Enfin vous enregistrer
+                              Entrer la date de fin de l'évènement
+                            </li>
+                            <li>
+                              Entrer une description de l'évènement 
+                            </li>
+                            <li>
+                               Enfin créer l'évènement
                             </li>
                             
                         </ul>

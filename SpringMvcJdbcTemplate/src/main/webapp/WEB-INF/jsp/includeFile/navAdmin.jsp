@@ -12,16 +12,16 @@
                             Acceuil
                             </a>
                         </li>
-                         <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/createAcademiqueYear">
-                            créer une année academique
+                         <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/addCycle">
+                            ajouter un cycle
                             </a>
                         </li>
-                        <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/createTeacher">
-                            créer un enseignant
+                        <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/addLevel">
+                            ajouter un niveau
                             </a>
                         </li>
-                        <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/createEvent">
-                            créer un évènement
+                        <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/addOption">
+                            ajouter une option
                             </a>
                         </li>
                         <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/deconnexionAdministrator">
@@ -34,7 +34,8 @@
                         </li>
 
                         </ul>
-                    </div>
+
+			</div>
                 </div>
 
             </div>

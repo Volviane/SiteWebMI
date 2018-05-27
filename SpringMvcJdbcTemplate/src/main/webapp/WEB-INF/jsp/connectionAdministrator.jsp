@@ -44,7 +44,7 @@
                         <label>mot de passe  </label>
                         <input type="password" class="form-control" name="password"  />
                         <hr />
-                        <a href="/homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;se connecter</a>&nbsp;
+                        <a href="${pageContext.request.contextPath}/homeAdministrator" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;se connecter</a>&nbsp;
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>
