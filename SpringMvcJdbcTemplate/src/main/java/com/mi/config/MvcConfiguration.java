@@ -1,5 +1,9 @@
 package com.mi.config;
 
+import java.util.Properties;
+
+import javax.naming.NamingException;
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +13,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.JpaVendorAdapter;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -28,6 +38,7 @@ import com.mi.model.Article;
 
 @PropertySource(value={"classpath:application.properties"})
 @Configuration
+@EnableTransactionManagement
 @ComponentScan(basePackages="com.mi")
 @EnableWebMvc
 public class MvcConfiguration extends WebMvcConfigurerAdapter{
@@ -63,6 +74,56 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		dataSource.setPassword(env.getProperty("db.userPassword")); 	
 		return dataSource;
 	}
+	
+	@Bean
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws NamingException {
+		System.out.println("hummmmm");
+		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+		System.out.println("hummmmm1");
+		factoryBean.setDataSource(getDataSource());
+		System.out.println("hummmmm2");
+		factoryBean.setPackagesToScan(new String[] { "com.mi.model" });
+		System.out.println("hummmmm3");
+		factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
+		System.out.println("hummmmm4");
+		factoryBean.setJpaProperties(jpaProperties());
+		System.out.println("hummmmm5");
+	return factoryBean;
+	}
+	
+	
+	@Bean
+	public JpaVendorAdapter jpaVendorAdapter() {
+		HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
+		System.out.println("vendo");
+		return hibernateJpaVendorAdapter;
+	}
+
+	/*
+	 * Here you can specify any provider specific properties.
+	 */
+	private Properties jpaProperties() {
+		Properties properties = new Properties();
+		properties.put("hibernate.dialect", env.getRequiredProperty("hibernate.dialect"));
+		System.out.println("vendo1");
+		// properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
+		properties.put("hibernate.show_sql", env.getRequiredProperty("hibernate.show_sql"));
+		System.out.println("vendo2");
+		properties.put("hibernate.format_sql", env.getRequiredProperty("hibernate.format_sql"));
+		System.out.println("vendo3");
+		return properties;
+	}
+
+	@Bean
+	@Autowired
+	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
+		JpaTransactionManager txManager = new JpaTransactionManager();
+		System.out.println("tran0");
+		txManager.setEntityManagerFactory(emf);
+		System.out.println("tran1");
+		return txManager;
+	}
+
 	
 	@Bean
 	public ContactDAO getContactDAO() {

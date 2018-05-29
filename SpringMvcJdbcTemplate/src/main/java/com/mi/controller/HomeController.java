@@ -31,19 +31,19 @@ public class HomeController {
 	@Autowired
 	private ContactDAO contactDAO;
 
-	@RequestMapping(value = "/homeAdministrator", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
-		System.out.println("c'est le home admin");
-		return "homeAdministrator";
+		System.out.println("c'est le home principal");
+		return "home";
 	}
 
-	@RequestMapping(value = "/addCycle", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/addCycle", method = RequestMethod.GET)
 	public ModelAndView newContact(ModelAndView model) {
 		Contact newContact = new Contact();
 		model.addObject("contact", newContact);
 		model.setViewName("addCycle");
 		return model;
-	}
+	}*/
 
 	@RequestMapping(value = "/saveContact", method = RequestMethod.POST)
 	public ModelAndView saveContact(@ModelAttribute Contact contact) {

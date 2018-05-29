@@ -40,11 +40,18 @@
                 
                      <h4 class="page-head-line">Ajouter un role</strong></h4>
                     <br />
-                     <label>role</label>
+                    <form action="<c:url value='addRole'/>" method="post">
+                    <label>role</label>
+                        <input type="text" class="form-control" name="nameRole" />
+                        <hr />
+                        <input type="submit" value="enregistrer">
+                
+                    </form>
+                     <!-- <label>role</label>
                         <input type="text" class="form-control" name="nameRole" />
                         <hr />
                         <a href="homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;enregistrer</a>&nbsp;
-                </div>
+                --> </div>
                 <div class="col-md-6">
                 <div class="space"></div>
                     <div class="alert alert-info">

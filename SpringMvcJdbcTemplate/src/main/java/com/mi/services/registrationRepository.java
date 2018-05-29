@@ -1,4 +1,4 @@
-package com.mi.repositories;
+package com.mi.services;
 
 public interface registrationRepository {
 
