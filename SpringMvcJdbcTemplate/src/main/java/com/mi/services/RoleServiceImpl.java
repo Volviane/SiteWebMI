@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mi.dao.RoleDAO;
 import com.mi.model.Role;
+import com.mi.repositories.RoleRepository;
 
 @Service("roleService")
 @Transactional
@@ -15,6 +16,9 @@ public class RoleServiceImpl implements RoleService{
 
 @Autowired
 RoleDAO roleDao;
+
+//@Autowired
+RoleRepository roleRpository;
 
 	public Role findById(int id) {
 		// TODO Auto-generated method stub

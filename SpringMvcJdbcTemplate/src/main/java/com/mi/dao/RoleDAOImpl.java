@@ -24,7 +24,7 @@ public class RoleDAOImpl  extends AbstractDao<Integer, Role> implements RoleDAO{
 	@Override
 	public Role findByRoleName(String RoleName) {
 		// TODO Auto-generated method stub
-		return null;
+		return findByName(RoleName);
 	}
 
 	@Override
