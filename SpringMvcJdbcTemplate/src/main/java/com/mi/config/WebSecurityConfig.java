@@ -27,7 +27,7 @@ public class WebSecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
 		System.out.println("conf1");
 		http.csrf().disable();
 		http.authorizeRequests().antMatchers("/", "/addRole","/roleList","/index","/registrationAdministrator"
-				,"/homeAdministratorHome","/connectionAdministrator", "/addCycle", "/createEvent", "/addCourse", "/addLevel").permitAll()
+				,"/homeAdministrator","/connectionAdministrator", "/addCycle", "/createEvent", "/addCourse", "/addLevel").permitAll()
 		.anyRequest().authenticated().and().formLogin()
 		.loginPage("/login").permitAll().and().logout().permitAll();
 		System.out.println("conf2");

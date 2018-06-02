@@ -1,7 +1,6 @@
 package com.mi.controller;
 
-import java.io.IOException;
-import java.util.List;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -36,7 +35,7 @@ public class HomeController {
 		System.out.println("c'est le home principal");
 		return "home";
 	}
-
+	
 	/*@RequestMapping(value = "/addCycle", method = RequestMethod.GET)
 	public ModelAndView newContact(ModelAndView model) {
 		Contact newContact = new Contact();

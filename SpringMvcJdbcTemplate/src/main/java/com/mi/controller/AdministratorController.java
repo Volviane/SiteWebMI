@@ -59,7 +59,7 @@ import com.mi.services.UserDetailsServices;
 import org.springframework.ui.Model;
 
 @Controller
-public class AdministratorController implements UserDetailsService {
+public class AdministratorController/* implements UserDetailsService */{
 	public static final Logger logger = LoggerFactory.getLogger(AdministratorController.class);
 
 	@Autowired
@@ -128,12 +128,12 @@ public class AdministratorController implements UserDetailsService {
 	}
 
 	//Home administrator
-	@RequestMapping(value = "/homeAdministrator", method = RequestMethod.GET)
-	public String homeAdmin(Model model) {
-		System.out.println("home admin get");
+			@RequestMapping(value = "/homeAdministrator", method = RequestMethod.GET)
+			public String homeAdmin(Model model) {
+				System.out.println("home admin get");
 
-		return "homeAdministrator";
-	}
+				return "homeAdministrator";
+			}
 
 	//Add role get methode
 	@RequestMapping(value = "/addRole", method = RequestMethod.GET)
@@ -665,7 +665,7 @@ public class AdministratorController implements UserDetailsService {
 
 
 
-	@Override
+	//@Override
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 		System.out.println(login+" donne pardon");
