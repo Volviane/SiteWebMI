@@ -17,6 +17,9 @@ public class Option implements Serializable{
 	@Column(name = "NOM_OPTION")
 	private String optionName;
 	
+	@Column(name = "CYCLE")
+	private Integer idCycle;
+	
 	//@ManyToOne
 	//@JoinColumn(name="CYCLE_ID")
 	private Cycle cycle;
@@ -25,6 +28,14 @@ public class Option implements Serializable{
 	//@JoinTable( name = "OPTION_NIVEAU", joinColumns = @JoinColumn(name = "ID_OPTION", referencedColumnName = "ID_OPTION"), inverseJoinColumns = @JoinColumn(name = "ID_LEVEL", referencedColumnName = "ID_NIVEAU"))
 	private Set<Level> levels;
 	
+
+	public Integer getIdCycle() {
+		return idCycle;
+	}
+
+	public void setIdCycle(Integer idCycle) {
+		this.idCycle = idCycle;
+	}
 
 	/**
 	 * @return the levels

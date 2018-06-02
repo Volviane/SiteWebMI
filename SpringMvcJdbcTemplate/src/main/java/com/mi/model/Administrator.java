@@ -13,6 +13,9 @@ public class Administrator {
 	@Column(name="ID_ADMIN")
 	private Integer idAdmin;
 	
+	@Column(name="ROLE")
+	private Integer role;
+	
 	@Column(name="LOGIN",length=30, unique=true)
 	private String login;
 	@Column(name="PASSWORD")
@@ -119,6 +122,14 @@ public class Administrator {
 	 */
 	public void setIdAdmin(Integer idAdmin) {
 		this.idAdmin = idAdmin;
+	}
+
+	public Integer getRole() {
+		return role;
+	}
+
+	public void setRole(Integer role) {
+		this.role = role;
 	}
 
 	

@@ -20,7 +20,7 @@ public class Role implements Serializable{
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="ID_ROLE")
-	private Long idRole;
+	private Integer idRole;
 	
 	@Column(name="ROLE_NAME")
 	private String roleName;
@@ -31,10 +31,10 @@ public class Role implements Serializable{
 	public Role() {
 		// TODO Auto-generated constructor stub
 	}
-	public Long getIdRole() {
+	public Integer getIdRole() {
 		return idRole;
 	}
-	public void setIdRole(Long idRole) {
+	public void setIdRole(Integer idRole) {
 		this.idRole = idRole;
 	}
 	public String getRoleName() {

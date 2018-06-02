@@ -19,7 +19,7 @@ public class Level implements Serializable{
 	
 	//@ManyToOne(cascade=CascadeType.ALL)
 	//@JoinColumn(name="ID_OPTION")
-	private Option option;
+	private Integer option;
 	
 
 
@@ -86,11 +86,11 @@ public class Level implements Serializable{
 		this.levelName = levelName;
 	}
 
-	public Option getOption() {
+	public Integer getOption() {
 		return option;
 	}
 
-	public void setOption(Option option) {
+	public void setOption(Integer option) {
 		this.option = option;
 	}
 

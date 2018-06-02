@@ -24,7 +24,7 @@ public class Course implements Serializable {
 	
 	//@ManyToOne(optional=false)
 	//@JoinColumn(name="LEVEL_ID")
-	private Level level;
+	private Integer level;
 	
 	
 	public Course() {
@@ -112,7 +112,7 @@ public class Course implements Serializable {
 	/**
 	 * @return the level
 	 */
-	public Level getLevel() {
+	public Integer getLevel() {
 		return level;
 	}
 
@@ -120,7 +120,7 @@ public class Course implements Serializable {
 	/**
 	 * @param level the level to set
 	 */
-	public void setLevel(Level level) {
+	public void setLevel(Integer level) {
 		this.level = level;
 	}
 	

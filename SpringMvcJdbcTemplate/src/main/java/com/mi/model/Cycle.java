@@ -12,7 +12,7 @@ public class Cycle implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID_CYCLE")
-	private Integer idLevel;
+	private Integer idCycle;
 	
 	@Column(name="NOM_CYCLE")
 	private String cycleName;
@@ -47,21 +47,17 @@ public class Cycle implements Serializable{
 		this.cycleName = cycleName;
 	}
 
+	public Integer getIdCycle() {
+		return idCycle;
+	}
+
+	public void setIdCycle(Integer idCycle) {
+		this.idCycle = idCycle;
+	}
+
 	/**
 	 * @return the idLevel
-	 */
-	public Integer getIdLevel() {
-		return idLevel;
-	}
-
-	/**
-	 * @param idLevel the idLevel to set
-	 */
-	public void setIdLevel(Integer idLevel) {
-		this.idLevel = idLevel;
-	}
-
-	/**
+	
 	 * @return the cycleName
 	 */
 	public String getCycleName() {
