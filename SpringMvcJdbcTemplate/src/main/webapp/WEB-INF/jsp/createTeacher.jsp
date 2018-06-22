@@ -38,6 +38,7 @@
                 <div class="col-md-6">
                      <h4 class="page-head-line">Créer un enseignant</strong></h4>
                     <br />
+               <form action="<c:url value='createTeacher'/>" method="post">
                     <label>nom</label>
                         <input type="text" class="form-control" name="teacherName"  />
                      <label>email</label>
@@ -52,6 +53,7 @@
                         <input type="text" class="form-control" name=""  />
                         <hr />
                         <a href="/homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;enregistrer</a>&nbsp;
+               </form>
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>

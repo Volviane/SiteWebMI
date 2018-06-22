@@ -38,6 +38,7 @@
                 <div class="col-md-6">
                      <h4 class="page-head-line">ouvrir une année académique</strong></h4>
                     <br />
+                    <form action="<c:url value='openAcademicYear'/>" method="post">
                     <label>année</label>
                         <input type="text" class="form-control" name="teacherName"  />
                     <label>niveau</label>
@@ -57,6 +58,7 @@
                      	 </select>
                         <hr />
                         <a href="/homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;ouvrir</a>&nbsp;
+                </form>
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>

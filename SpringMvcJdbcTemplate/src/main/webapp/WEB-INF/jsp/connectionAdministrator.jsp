@@ -39,12 +39,14 @@
                 <div class="col-md-6">
                      <h4 class="page-head-line"> connexion de l'administrateur</strong></h4>
                     <br />
+                  <form action="<c:url value='connectionAdministrator'/>" method="post">
                      <label>login</label>
                         <input type="text" class="form-control" name="login"  />
                         <label>mot de passe  </label>
                         <input type="password" class="form-control" name="password"  />
                         <hr />
                         <a href="${pageContext.request.contextPath}/homeAdministrator" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;se connecter</a>&nbsp;
+               </form>
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>

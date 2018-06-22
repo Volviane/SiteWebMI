@@ -39,6 +39,7 @@
                 <div class="col-md-6">
                      <h4 class="page-head-line">Ajouter une unité de valeur</strong></h4>
                     <br />
+              <form action="<c:url value='addCourse'/>" method="post">
                      <label>niveau</label>
                     
                     	 <select class="form-control">
@@ -64,6 +65,7 @@
                     
                         <hr />
                         <a href="homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;enregistrer</a>&nbsp;
+                </form>
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>

@@ -38,12 +38,14 @@
                 <div class="col-md-6">
                      <h4 class="page-head-line">éditer un communiqué</strong></h4>
                     <br />
+              <form action="<c:url value='editNews'/>" method="post">
                     <label>titre du communiqué</label>
                         <input type="text" class="form-control" name="newsTitle"  />
                     <label>resumé du communiqué</label>
                       <textarea rows="5" cols="5" class="form-control"></textarea>
                         <hr />
                         <a href="/homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;enregistrer</a>&nbsp;
+               </form>
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>
