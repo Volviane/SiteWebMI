@@ -388,7 +388,7 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		return "addLevel";
 	}
-/*
+
 
 	@RequestMapping(value = "/addLevel", method = RequestMethod.POST)
 	public String levelPost(Model model, HttpServletRequest req)  {
@@ -399,7 +399,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		Level level = new Level();
 		Option option = optionService.findByOptionName(optionName);
 		level.setLevelName(optionName+levelName);
-		level.setOption(option.getIdOption());
+		level.setOption(option);
 		//levelRepository.deleteAll();
 		levelService.saveLevel(level);
 		System.out.println("done");
@@ -443,8 +443,8 @@ public class AdministratorController/* implements UserDetailsService */{
 		String levelName= req.getParameter("levelName");
 		Course course = new Course();
 		Level level = levelService.findByLevelName(levelName);
-		course.setLevel(level.getIdLevel());
-		course.setCourseName(courseName);
+		course.setLevel(level);
+		course.setCourseTitle(courseName);
 		course.setCourseCode(courseCode);
 		course.setSemester(semester);
 		courseService.saveCourse(course);
@@ -618,8 +618,8 @@ public class AdministratorController/* implements UserDetailsService */{
 		Level juryLevel = levelService.findByLevelName(juryLevelName);
 		 Jury jury = new Jury();
 		 jury.setAcademicYear(academicYear);
-		 jury.setJuryLevel(juryLevel.getIdLevel());
-		 jury.setJuryPresident(juryPresident.getIdTeacher());
+		 jury.setJuryLevel(juryLevel);
+		 //jury.setJuryPresident(juryPresident);
 		 
 		 juryService.saveJury(jury);
 		 req.setAttribute("jury", "jury cree avec succes");
@@ -665,7 +665,7 @@ public class AdministratorController/* implements UserDetailsService */{
 
 
 
-*/
+
 	//@Override
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {

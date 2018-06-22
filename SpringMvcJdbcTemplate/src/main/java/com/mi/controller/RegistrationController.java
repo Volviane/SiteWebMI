@@ -103,7 +103,7 @@ public class RegistrationController {
 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public String registrationPost(Model model, HttpServletRequest req) {
-		System.out.println("registration post");
+		/*System.out.println("registration post");
 
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "smtp.gmail.com");
@@ -218,7 +218,7 @@ public class RegistrationController {
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}
+		}*/
 
 		return "redirect:/registration";
 	}
@@ -264,7 +264,7 @@ public class RegistrationController {
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updateParameterPost2(Model model, HttpServletRequest req) {
-		System.out.println("update post");
+		/*System.out.println("update post");
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "smtp.gmail.com");
 		properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
@@ -373,7 +373,7 @@ public class RegistrationController {
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}
+		}*/
 
 		return "redirect:/registration";
 	}
