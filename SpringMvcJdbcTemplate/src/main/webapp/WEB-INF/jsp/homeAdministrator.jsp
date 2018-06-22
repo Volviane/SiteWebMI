@@ -50,8 +50,8 @@
 			<div class="row">
 				<div class="col-md-3 col-sm-3 col-xs-6">
 					<div class="dashboard-div-wrapper bk-clr-one">
-						<a href="${pageContext.request.contextPath}/openAcademiqueYear">
-							ouvrir une année </a>
+						<a href="${pageContext.request.contextPath}/openAcademicYear">
+							ouvrir une année </a> 
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-3 col-xs-6">

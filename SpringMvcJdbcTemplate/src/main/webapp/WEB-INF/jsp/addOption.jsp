@@ -39,6 +39,8 @@
                 <div class="col-md-6">
                      <h4 class="page-head-line">Ajouter une option</strong></h4>
                     <br />
+                  <form action="<c:url value='addOption'/>" method="post">
+                    
                      <label>cycle</label>
                     
                     	 <select class="form-control">
@@ -54,6 +56,7 @@
                     
                         <hr />
                         <a href="homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;enregistrer</a>&nbsp;
+                </form>
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>

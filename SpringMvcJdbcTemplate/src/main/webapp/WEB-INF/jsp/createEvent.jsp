@@ -38,6 +38,7 @@
                 <div class="col-md-6">
                      <h4 class="page-head-line">créer un évènement</strong></h4>
                     <br />
+                 <form action="<c:url value='createEvent'/>" method="post">
                     <label>nom de l'évènement</label>
                         <input type="text" class="form-control" name="teacherName"  />
                      <label>debut de l'évènement</label>
@@ -48,6 +49,7 @@
                       <textarea rows="5" cols="5" class="form-control"></textarea>
                         <hr />
                         <a href="/homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;créer</a>&nbsp;
+               </form>
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>

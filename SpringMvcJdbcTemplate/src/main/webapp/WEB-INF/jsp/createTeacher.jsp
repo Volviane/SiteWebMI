@@ -38,20 +38,22 @@
                 <div class="col-md-6">
                      <h4 class="page-head-line">Créer un enseignant</strong></h4>
                     <br />
+               <form action="<c:url value='createTeacher'/>" method="post">
                     <label>nom</label>
                         <input type="text" class="form-control" name="teacherName"  />
                      <label>email</label>
-                        <input type="text" class="form-control" name="teacherEmail"  />
+                        <input type="email" class="form-control" name="teacherEmail"  />
                      <label>login</label>
                         <input type="text" class="form-control" name="teacherLogin"  />
                      <label>mot de passe  </label>
                         <input type="password" class="form-control" name="teacherPassword"  />
                         <label>téléphone</label>
-                        <input type="text" class="form-control" name="teacherPhone"  />
+                        <input type="date" class="form-control" name="teacherPhone"  />
                         <label>date et lieu de naissance</label>
                         <input type="text" class="form-control" name=""  />
                         <hr />
                         <a href="/homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;enregistrer</a>&nbsp;
+               </form>
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>

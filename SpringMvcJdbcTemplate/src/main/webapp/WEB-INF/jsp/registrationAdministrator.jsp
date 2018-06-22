@@ -39,19 +39,21 @@
                 <div class="col-md-6">
                      <h4 class="page-head-line"> enregistrement admin</strong></h4>
                     <br />
+                 <form action="<c:url value='registrationAdministrator'/>" method="post">
                      <label>login</label>
                         <input type="text" class="form-control" name="loginAdmin"  />
                         <label>mot de passe  </label>
                         <input type="password" class="form-control" name="passwordAdmin"  />
                         <hr />
                         <a href="homeAdmin.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;créer admin</a>&nbsp;
+              </form>
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>
                     <div class="alert alert-info">
                         vous pourrez vous enregistrer ici
                         <br />
-                         >
+                         
                        
                     </div>
                     <div class="alert alert-success">
