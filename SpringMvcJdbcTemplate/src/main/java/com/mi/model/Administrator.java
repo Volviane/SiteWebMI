@@ -1,31 +1,35 @@
 package com.mi.model;
 
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
 
-
 @Entity
-@Table(name="ADMINISTRATOR")
-public class Administrator {
+@Table(name = "ADMIN")
+public class Administrator implements Serializable {
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_ADMIN")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_ADMIN")
 	private Integer idAdmin;
-	
-	@Column(name="ROLE")
-	private Integer role;
-	
-	@Column(name="LOGIN",length=30, unique=true)
+
+	@Column(name = "LOGIN", length = 30, unique = true)
 	private String login;
-	@Column(name="PASSWORD")
+	
+	@Column(name = "PASSWORD")
 	private String password;
-	@Column(name="PASSWORDSEC")
+	
+	@Column(name = "PASSWORDSEC")
 	private String passwordSec;
 
-	/*@ManyToMany(mappedBy="admins")
+	@OneToMany(mappedBy="admin",fetch = FetchType.LAZY)
+	private Set<Communique> communiques = new HashSet<Communique>();
+
+	@ManyToMany(mappedBy = "admins")
 	private Set<Role> roles;
-	*/
+	
 	/**
 	 * @return the passwordSec
 	 */
@@ -34,7 +38,8 @@ public class Administrator {
 	}
 
 	/**
-	 * @param passwordSec the passwordSec to set
+	 * @param passwordSec
+	 *            the passwordSec to set
 	 */
 	public void setPasswordSec(String passwordSec) {
 		this.passwordSec = passwordSec;
@@ -43,18 +48,17 @@ public class Administrator {
 	/**
 	 * @return the roles
 	 */
-	/*public Set<Role> getRoles() {
+	public Set<Role> getRoles() {
 		return roles;
 	}
 
-	*//**
-	 * @param roles the roles to set
-	 *//*
+	/**
+	 * @param roles
+	 *            the roles to set
+	 */
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-*/
-	
 
 
 	public Administrator() {
@@ -69,7 +73,8 @@ public class Administrator {
 	}
 
 	/**
-	 * @param idAdmin the idAdmin to set
+	 * @param idAdmin
+	 *            the idAdmin to set
 	 */
 	public void setIdAdmin(int idAdmin) {
 		this.idAdmin = idAdmin;
@@ -83,7 +88,8 @@ public class Administrator {
 	}
 
 	/**
-	 * @param login the login to set
+	 * @param login
+	 *            the login to set
 	 */
 	public void setLogin(String login) {
 		this.login = login;
@@ -97,7 +103,8 @@ public class Administrator {
 	}
 
 	/**
-	 * @param password the password to set
+	 * @param password
+	 *            the password to set
 	 */
 	public void setPassword(String password) {
 		this.password = password;
@@ -109,30 +116,35 @@ public class Administrator {
 	 * @param passwordSec
 	 * @param roles
 	 */
-	public Administrator(String login, String password, String passwordSec) {
+	public Administrator(String login, String password, String passwordSec, Set<Role> roles) {
 		super();
 		this.login = login;
 		this.password = password;
 		this.passwordSec = passwordSec;
-		//this.roles = roles;
+		this.roles = roles;
 	}
 
 	/**
-	 * @param idAdmin the idAdmin to set
+	 * @param idAdmin
+	 *            the idAdmin to set
 	 */
 	public void setIdAdmin(Integer idAdmin) {
 		this.idAdmin = idAdmin;
 	}
 
-	public Integer getRole() {
-		return role;
+	/**
+	 * @return the communiques
+	 */
+	public Set<Communique> getCommuniques() {
+		return communiques;
 	}
 
-	public void setRole(Integer role) {
-		this.role = role;
+	/**
+	 * @param communiques
+	 *            the communiques to set
+	 */
+	public void setCommuniques(Set<Communique> communiques) {
+		this.communiques = communiques;
 	}
 
-	
-
-	
 }

@@ -1,9 +1,12 @@
 package com.mi.model;
+
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "OPTIONS")
@@ -17,25 +20,12 @@ public class Option implements Serializable{
 	@Column(name = "NOM_OPTION")
 	private String optionName;
 	
-	@Column(name = "CYCLE")
-	private Integer idCycle;
-	
-	//@ManyToOne
-	//@JoinColumn(name="CYCLE_ID")
+	@ManyToOne
 	private Cycle cycle;
 
 	@OneToMany(mappedBy="option")
-	//@JoinTable( name = "OPTION_NIVEAU", joinColumns = @JoinColumn(name = "ID_OPTION", referencedColumnName = "ID_OPTION"), inverseJoinColumns = @JoinColumn(name = "ID_LEVEL", referencedColumnName = "ID_NIVEAU"))
-	private Set<Level> levels;
+	private Set<Level> levels = new HashSet<Level>();
 	
-
-	public Integer getIdCycle() {
-		return idCycle;
-	}
-
-	public void setIdCycle(Integer idCycle) {
-		this.idCycle = idCycle;
-	}
 
 	/**
 	 * @return the levels
@@ -94,13 +84,18 @@ public class Option implements Serializable{
 		this.optionName = optionName;
 	}
 
+	/**
+	 * @return the cycle
+	 */
 	public Cycle getCycle() {
 		return cycle;
 	}
 
+	/**
+	 * @param cycle the cycle to set
+	 */
 	public void setCycle(Cycle cycle) {
 		this.cycle = cycle;
 	}
-	
 
 }

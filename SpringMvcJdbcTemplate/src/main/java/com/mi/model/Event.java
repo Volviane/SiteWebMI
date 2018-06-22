@@ -9,10 +9,11 @@ import javax.persistence.*;
 @Entity
 @Table(name="EVENEMENTS")
 public class Event implements Serializable{
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="EVENEMENT_ID")
-	private Integer idEvent;
+	@Column(name="ID_EVENEMENT")
+	private Long idEvent;
 	
 	@Column(name="TITRE_EVENEMENT")
 	private String eventTitle;
@@ -20,16 +21,18 @@ public class Event implements Serializable{
 	@Column(name="DESCRIPTION_EVENEMENT")
 	private String eventDescription;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="DATE_DEBUT_EVENEMENT")
 	private Date eventBeginDate;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="DATE_FIN_EVENEMENT")
 	private Date eventEndDate;
 	
-	/*//@ManyToMany
-	@JoinTable(name="INSCRIPTIONS_EVENEMENTS")
-	private Set<InternetSufer> subscribers;
-*/
+	/*@ManyToMany
+	@JoinTable(name="INSCRIPTIONS_EVENEMENTS")*/
+	//private Set<InternetSufer> subscribers;
+
 	public Event() {
 		// TODO Auto-generated constructor stub
 	}
@@ -53,7 +56,7 @@ public class Event implements Serializable{
 	/**
 	 * @return the idEvent
 	 */
-	public Integer getIdEvent() {
+	public Long getIdEvent() {
 		return idEvent;
 	}
 
@@ -61,7 +64,7 @@ public class Event implements Serializable{
 	/**
 	 * @param idEvent the idEvent to set
 	 */
-	public void setIdEvent(Integer idEvent) {
+	public void setIdEvent(Long idEvent) {
 		this.idEvent = idEvent;
 	}
 
@@ -132,8 +135,8 @@ public class Event implements Serializable{
 
 	/**
 	 * @return the subscribers
-	 */
-	/*public Set<InternetSufer> getSubscribers() {
+	 *//*
+	public Set<InternetSufer> getSubscribers() {
 		return subscribers;
 	}
 

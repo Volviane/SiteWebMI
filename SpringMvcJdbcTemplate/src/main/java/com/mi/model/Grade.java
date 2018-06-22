@@ -16,8 +16,8 @@ public class Grade {
 	@Column(name="NOM_GRADE")
 	private String gradeName;
 	
-	//@OneToMany
-	//private Set<Teacher> teachers;
+	@OneToMany
+	private Set<Teacher> teachers;
 	
 	public Grade() {
 		// TODO Auto-generated constructor stub
@@ -62,15 +62,15 @@ public class Grade {
 	/**
 	 * @return the teachers
 	 */
-	/*public Set<Teacher> getTeachers() {
+	public Set<Teacher> getTeachers() {
 		return teachers;
 	}
 
-	*//**
+	/**
 	 * @param teachers the teachers to set
-	 *//*
+	 */
 	public void setTeachers(Set<Teacher> teachers) {
 		this.teachers = teachers;
 	}
-	*/
+	
 }

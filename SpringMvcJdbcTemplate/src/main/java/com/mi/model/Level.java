@@ -1,6 +1,7 @@
 package com.mi.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -17,19 +18,16 @@ public class Level implements Serializable{
 	@Column(name="NOM_NIVEAU")
 	private String levelName;
 	
-	//@ManyToOne(cascade=CascadeType.ALL)
-	//@JoinColumn(name="ID_OPTION")
-	private Integer option;
+	@ManyToOne //Plusieurs niveaux appartiennent à une option
+	@JoinColumn(name="ID_OPTION")
+	private Option option;
 	
-
-
+	@OneToMany(mappedBy="level")
+	//@JoinColumn(name="ID_NIVEAU")
+	private Set<Course> courses= new HashSet<Course>();
 	
-	//@ManyToMany(mappedBy="levels")
-	//private Set<Option> options;
-	
-	//@OneToMany(mappedBy="level")
-	//private Set<Course> courses;
-	
+	@OneToMany(mappedBy="juryLevel")
+	private Set<Jury> juries = new HashSet<Jury>();
 	
 	
 	/**
@@ -63,16 +61,10 @@ public class Level implements Serializable{
 	/**
 	 * @return the options
 	 */
-	/*public Set<Option> getOptions() {
-		return options;
+	public Option getOption() {
+		return option;
 	}
 
-	*//**
-	 * @param options the options to set
-	 *//*
-	public void setOptions(Set<Option> options) {
-		this.options = options;
-	}*/
 
 	public Level() {
 		// TODO Auto-generated constructor stub
@@ -86,22 +78,25 @@ public class Level implements Serializable{
 		this.levelName = levelName;
 	}
 
-	public Integer getOption() {
-		return option;
-	}
-
-	public void setOption(Integer option) {
-		this.option = option;
-	}
-
-	/*public Set<Course> getCourses() {
+	/**
+	 * @return the courses
+	 */
+	public Set<Course> getCourses() {
 		return courses;
 	}
 
+	/**
+	 * @param courses the courses to set
+	 */
 	public void setCourses(Set<Course> courses) {
 		this.courses = courses;
-	}*/
-	
-	
+	}
+
+	/**
+	 * @param option the option to set
+	 */
+	public void setOption(Option option) {
+		this.option = option;
+	}
 	
 }

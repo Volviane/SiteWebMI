@@ -2,10 +2,11 @@ package com.mi.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
-//import javax.validation.constraints.Email;
+
 
 @MappedSuperclass
 public abstract class InternetSufer implements Serializable{
@@ -17,7 +18,6 @@ public abstract class InternetSufer implements Serializable{
 	protected String firstName;
 	
 	@Column(name="EMAIL")
-	//@Email
 	protected String emailAdress;
 	
 	@Column(name="LOGIN", unique=true, length=50)
@@ -38,28 +38,15 @@ public abstract class InternetSufer implements Serializable{
 	
 	@Column(name="LIEU_NAISSANCE")
 	protected String birthPlace;
-	
-	@Column(name="PASSWORDSEC")
-	protected String passwordSec;
 
-	/*@ManyToMany(mappedBy="subscribers")
-	protected Set<Event> events;*/
-	
-	
-	
+//	@ManyToMany(mappedBy="subscribers")
+	//protected Set<Event> events = new HashSet<Event>();
+
 	/**
 	 * @return the lastName
 	 */
 	public String getLastName() {
 		return lastName;
-	}
-
-	public String getPasswordSec() {
-		return passwordSec;
-	}
-
-	public void setPasswordSec(String passwordSec) {
-		this.passwordSec = passwordSec;
 	}
 
 	/**
@@ -192,7 +179,7 @@ public abstract class InternetSufer implements Serializable{
 	 * @param birthDate
 	 * @param birthPlace
 	 */
-	public InternetSufer(String lastName, String firstName,  String emailAdress, String login, String password,
+	public InternetSufer(String lastName, String firstName,String emailAdress, String login, String password,
 			String phoneNumber, String sexe, Date birthDate, String birthPlace) {
 		super();
 		this.lastName = lastName;

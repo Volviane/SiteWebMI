@@ -1,48 +1,60 @@
 package com.mi.model;
 
-public class Student extends User{
-	private String studentLevel;
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="STUDENTS")
+public class Student extends InternetSufer implements Serializable{
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ID_STUDENT")
+	private Long idStudent;
+	
+	private Option studentOption;
+	private Level studentLevel;
+	private Cycle studentCycle;
+	
+//	@OneToMany(mappedBy="author")
+//	private List<Article> documents;
+	
 
 	
 	public Student() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
 
 	
-	public Student(int inscriptionCode, String userLastName, String userFirstName, String universityName,
-			String userEmail, String option, String userFunction, String userPassword, String laboratoire,
-			String sexe) {
-		super(inscriptionCode, userLastName, userFirstName, universityName, userEmail, option, userFunction, userPassword,
-				laboratoire, sexe);
-		// TODO Auto-generated constructor stub
-	}
+	
 
 
-
-	public Student(String studentLevel) {
+	public Student(Level studentLevel) {
 		this.studentLevel = studentLevel;
 	}
 
 
-	public String getStudentLevel() {
+	public Level getStudentLevel() {
 		return studentLevel;
 	}
 
 
-	public void setStudentLevel(String studentLevel) {
+	public void setStudentLevel(Level studentLevel) {
 		this.studentLevel = studentLevel;
 	}
 
 
-	@Override
-	public String toString() {
-		return "Niveau d'�tude:=" + studentLevel + "\n Nom:"
-				+ userLastName + "\n Pr�nom:" + userFirstName + "\n Universit�:" + universityName
-				+ "\n Sp�cialit�=" + option + "\n Qualit�:" + userFunction
-				+ "\n userPassword=" + userPassword + "\n Laboratoire: "+laboratoire+"\n Sexe: "+sexe;
-	}
+	
 	
 	
 	

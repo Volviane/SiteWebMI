@@ -1,7 +1,6 @@
 package com.mi.model;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -12,22 +11,23 @@ public class Jury implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="JURY_ID")
-	private Integer idJury;
+	@Column(name="ID_JURY")
+	private Long idJury;
 	
 	@Column(name="ANNEE_ACADEMIQUE")
 	private String academicYear;
 	
-	@Column(name="PRESIDENT_JURY")
-	private Integer juryPresident;
+	@ManyToOne					// Plusieurs Juris peuvent avoir le même président
+	@JoinColumn(name="PRESIDENT_JURY")
+	private Teacher juryPresident;
 	
-	//@ManyToOne
-	//@JoinColumn(name="NIVEAU_ID")
-	private Integer juryLevel;
+	@ManyToOne					// Plusieurs juris concernent le même niveau
+	@JoinColumn(name="ID_NIVEAU")
+	private Level juryLevel;
 	
-	//@ManyToMany
-	//@JoinTable(name="MEMBRES_JURY")
-	//private List<Teacher> members;
+	@ManyToMany					//Un jury est constitué de plusieurs enseignants et un enseignant peut appartenir à plusieurs juris
+	@JoinTable(name="MEMBRES_JURY")
+	private Set<Teacher> members;
 	
 	public Jury() {
 		// TODO Auto-generated constructor stub
@@ -38,7 +38,7 @@ public class Jury implements Serializable {
 	 * @param juryPresident
 	 * @param juryLevel
 	 */
-	public Jury(String academicYear, Integer juryPresident, Integer juryLevel) {
+	public Jury(String academicYear, Teacher juryPresident, Level juryLevel) {
 		super();
 		this.academicYear = academicYear;
 		this.juryPresident = juryPresident;
@@ -48,14 +48,14 @@ public class Jury implements Serializable {
 	/**
 	 * @return the idJury
 	 */
-	public Integer getIdJury() {
+	public Long getIdJury() {
 		return idJury;
 	}
 
 	/**
 	 * @param idJury the idJury to set
 	 */
-	public void setIdJury(Integer idJury) {
+	public void setIdJury(Long idJury) {
 		this.idJury = idJury;
 	}
 
@@ -76,34 +76,43 @@ public class Jury implements Serializable {
 	/**
 	 * @return the juryPresident
 	 */
-	public int getJuryPresident() {
+	public Teacher getJuryPresident() {
 		return juryPresident;
 	}
 
 	/**
 	 * @param juryPresident the juryPresident to set
 	 */
-	public void setJuryPresident(Integer juryPresident) {
+	public void setJuryPresident(Teacher juryPresident) {
 		this.juryPresident = juryPresident;
 	}
 
 	/**
 	 * @return the juryLevel
 	 */
-	public int getJuryLevel() {
+	public Level getJuryLevel() {
 		return juryLevel;
 	}
 
 	/**
 	 * @param juryLevel the juryLevel to set
 	 */
-	public void setJuryLevel(Integer juryLevel) {
+	public void setJuryLevel(Level juryLevel) {
 		this.juryLevel = juryLevel;
 	}
 
 	/**
 	 * @return the members
 	 */
-	
+	public Set<Teacher> getMembers() {
+		return members;
+	}
+
+	/**
+	 * @param members the members to set
+	 */
+	public void setMembers(Set<Teacher> members) {
+		this.members = members;
+	}
 	
 }

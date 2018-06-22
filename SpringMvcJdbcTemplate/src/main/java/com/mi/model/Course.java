@@ -7,24 +7,24 @@ import javax.persistence.*;
 @Entity
 @Table(name="UVs")
 public class Course implements Serializable {
-
+	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID_UV")
-	private Integer idUV;
-	
-	@Column(name="INTITULE_UV")
-	private String courseName;
+	private int idUV;
 	
 	@Column(name="CODE_UV")
 	private String courseCode;
 	
+	@Column(name="INTITULE_UV", length=30)
+	private String courseTitle;
+	
 	@Column(name="SEMESTRE_UV")
 	private String semester;
 	
-	//@ManyToOne(optional=false)
-	//@JoinColumn(name="LEVEL_ID")
-	private Integer level;
+	@ManyToOne
+	private Level level;
 	
 	
 	public Course() {
@@ -32,39 +32,63 @@ public class Course implements Serializable {
 	}
 
 
+	
+
 	/**
-	 * @param gradeName
 	 * @param courseCode
+	 * @param courseTitle
 	 * @param semester
+	 * @param level
 	 */
-	public Course(String courseName, String courseCode, String semester) {
+	public Course(String courseCode, String courseTitle, String semester, Level level) {
 		super();
-		this.courseName = courseName;
 		this.courseCode = courseCode;
+		this.courseTitle = courseTitle;
 		this.semester = semester;
+		this.level = level;
 	}
+
+
 
 
 	/**
 	 * @return the idUV
 	 */
-	public Integer getIdUV() {
+	public int getIdUV() {
 		return idUV;
 	}
+
+
 
 
 	/**
 	 * @param idUV the idUV to set
 	 */
-	public void setIdUV(Integer idUV) {
+	public void setIdUV(int idUV) {
 		this.idUV = idUV;
 	}
 
 
+
+
 	/**
-	 * @return the gradeName
+	 * @return the courseTitle
 	 */
-	
+	public String getCourseTitle() {
+		return courseTitle;
+	}
+
+
+
+
+	/**
+	 * @param courseTitle the courseTitle to set
+	 */
+	public void setCourseTitle(String courseTitle) {
+		this.courseTitle = courseTitle;
+	}
+
+
 
 
 	/**
@@ -72,16 +96,6 @@ public class Course implements Serializable {
 	 */
 	public String getCourseCode() {
 		return courseCode;
-	}
-
-
-	public String getCourseName() {
-		return courseName;
-	}
-
-
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
 	}
 
 
@@ -112,7 +126,7 @@ public class Course implements Serializable {
 	/**
 	 * @return the level
 	 */
-	public Integer getLevel() {
+	public Level getLevel() {
 		return level;
 	}
 
@@ -120,7 +134,7 @@ public class Course implements Serializable {
 	/**
 	 * @param level the level to set
 	 */
-	public void setLevel(Integer level) {
+	public void setLevel(Level level) {
 		this.level = level;
 	}
 	
