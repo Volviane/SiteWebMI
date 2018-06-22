@@ -20,7 +20,7 @@ public class TeacherDAOImpl implements TeacherDAO {
 	}
 	@Override
 	public int saveOrUpdate(Teacher teacher) {
-		int ret=-1;
+		/*int ret=-1;
 		System.out.println("1");
 		if (teacher.getInscriptionCode() > 0) {
 			String sql = "UPDATE teacher SET TeacherLastName=?,TeacherFirstName=?,UniversityName=?,TeacherEmail=?,"
@@ -54,7 +54,8 @@ public class TeacherDAOImpl implements TeacherDAO {
 			}finally {
 				return ret;
 			}
-		}
+		}*/
+		return 1;
 
 	}
 
@@ -66,7 +67,7 @@ public class TeacherDAOImpl implements TeacherDAO {
 
 	@Override
 	public Teacher get(int inscriptionCode) {
-		String sql = "SELECT * FROM teacher WHERE TeacherCode=" + inscriptionCode;
+		/*String sql = "SELECT * FROM teacher WHERE TeacherCode=" + inscriptionCode;
 		return jdbcTemplate.query(sql, new ResultSetExtractor<Teacher>() {
 
 			@Override
@@ -89,12 +90,13 @@ public class TeacherDAOImpl implements TeacherDAO {
 				return null;
 			}
 
-		});
+		});*/
+		return null;
 	}
 
 	@Override
 	public Teacher getByMail(String email) {
-		String sql = "SELECT * FROM teacher WHERE TeacherEmail=" + email;
+		/*String sql = "SELECT * FROM teacher WHERE TeacherEmail=" + email;
 		return jdbcTemplate.query(sql, new ResultSetExtractor<Teacher>() {
 
 			@Override
@@ -117,7 +119,8 @@ public class TeacherDAOImpl implements TeacherDAO {
 				return null;
 			}
 
-		});
+		});*/
+		return null;
 	}
 
 	@Override
