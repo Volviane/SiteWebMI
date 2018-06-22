@@ -44,7 +44,9 @@
                      <label>cycle</label>
                     
                     	 <select class="form-control">
-                     			<option> </option>
+                     			<c:forEach items="${cycles}" var="i">
+                     				<option value="${i.cycleName }"><c:out value="${i.cycleName }"></c:out></option>
+                     			</c:forEach>
                      	 </select>
                      
                      

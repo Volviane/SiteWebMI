@@ -44,7 +44,7 @@
                      <label>cycle</label>
                         <input type="text" class="form-control" name="cycleName" />
                         <hr />
-                        <a href="homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;enregistrer</a>&nbsp;
+                       <input type="submit" value="Envoyer">
                </form>
                 </div>
                 <div class="col-md-6">

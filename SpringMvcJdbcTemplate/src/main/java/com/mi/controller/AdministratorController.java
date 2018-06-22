@@ -44,6 +44,7 @@ import com.mi.model.Level;
 import com.mi.model.Option;
 import com.mi.model.Role;
 import com.mi.model.Teachers;
+import com.mi.repositories.CycleRepository;
 import com.mi.services.AdministratorService;
 import com.mi.services.CourseService;
 import com.mi.services.CycleService;
@@ -62,6 +63,9 @@ import org.springframework.ui.Model;
 public class AdministratorController/* implements UserDetailsService */{
 	public static final Logger logger = LoggerFactory.getLogger(AdministratorController.class);
 
+	@Autowired
+	CycleRepository cycleReppository;
+	
 	@Autowired
 	RoleService roleService;
 
@@ -298,7 +302,8 @@ public class AdministratorController/* implements UserDetailsService */{
 		Cycle cycle = new Cycle();
 		cycle.setCycleName(cycleName);
 		//cycleRepository.deleteAll();
-		cycleService.saveCycle(cycle);
+		//cycleService.saveCycle(cycle);
+		cycleReppository.save(cycle);
 		req.setAttribute("success", "succesfully to create cylcle:: " + cycleName);
 		System.out.println("done");
 		return "addCycle";
@@ -342,7 +347,12 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addOption", method = RequestMethod.GET)
 	public String optionGet(Model model,HttpServletRequest req) {
 		System.out.println("addOption get");
-
+		
+		List<Cycle> cycles = cycleReppository.findAll();
+		for (Cycle cycle : cycles) {
+			System.out.println(cycle.getCycleName());
+		}
+		model.addAttribute("cycles", cycles);
 		return "addOption";
 	}
 
