@@ -42,13 +42,13 @@
                     <label>nom</label>
                         <input type="text" class="form-control" name="teacherName"  />
                      <label>email</label>
-                        <input type="text" class="form-control" name="teacherEmail"  />
+                        <input type="email" class="form-control" name="teacherEmail"  />
                      <label>login</label>
                         <input type="text" class="form-control" name="teacherLogin"  />
                      <label>mot de passe  </label>
                         <input type="password" class="form-control" name="teacherPassword"  />
                         <label>téléphone</label>
-                        <input type="text" class="form-control" name="teacherPhone"  />
+                        <input type="date" class="form-control" name="teacherPhone"  />
                         <label>date et lieu de naissance</label>
                         <input type="text" class="form-control" name=""  />
                         <hr />
