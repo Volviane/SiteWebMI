@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -41,6 +42,7 @@ import com.mi.model.Article;
 @EnableTransactionManagement
 @ComponentScan(basePackages="com.mi")
 @EnableWebMvc
+@EnableJpaRepositories("com.mi.repositories")
 public class MvcConfiguration extends WebMvcConfigurerAdapter{
 
 	@Autowired
@@ -77,6 +79,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws NamingException {
+		
 		System.out.println("hummmmm");
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		System.out.println("hummmmm1");
@@ -99,6 +102,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		return hibernateJpaVendorAdapter;
 	}
 
+	 
 	/*
 	 * Here you can specify any provider specific properties.
 	 */
@@ -106,7 +110,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		Properties properties = new Properties();
 		properties.put("hibernate.dialect", env.getRequiredProperty("hibernate.dialect"));
 		System.out.println("vendo1");
-		// properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
+		properties.put("hibernate.hbm2ddl.auto", env.getRequiredProperty("hibernate.hbm2ddl.auto"));
 		properties.put("hibernate.show_sql", env.getRequiredProperty("hibernate.show_sql"));
 		System.out.println("vendo2");
 		properties.put("hibernate.format_sql", env.getRequiredProperty("hibernate.format_sql"));

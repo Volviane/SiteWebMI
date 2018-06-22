@@ -7,6 +7,6 @@ import com.mi.model.Role;
 
 public interface RoleRepository extends JpaRepository<Role, String> {
 	
-	public Role findByNameRole(String nameRole);
+	public Role findByRoleName(String nameRole);
 
 }

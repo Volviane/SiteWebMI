@@ -207,7 +207,8 @@ public class AdministratorController/* implements UserDetailsService */{
 		administrator.setLogin(login);
 		administrator.setPassword(bCryptPasswordEncoder.encode(password));
 		administrator.setPasswordSec(cryptographe(password));
-		administrator.setRole(role.getIdRole());
+		//Modification de setRole(idRole) en setRole(role)
+		administrator.getRoles().add(role);
 		//administratorRepository.deleteAll();
 		administratorService.saveAdministrator(administrator);
 
@@ -356,7 +357,7 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		Option option = new Option();
 		option.setOptionName(optionName);
-		option.setIdCycle(cycle.getIdCycle());
+		option.setCycle(cycle);
 		optionService.saveOption(option);
 		System.out.println("done");
 		req.setAttribute("option", "succesfully to create option :: "+ optionName);
@@ -387,7 +388,7 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		return "addLevel";
 	}
-
+/*
 
 	@RequestMapping(value = "/addLevel", method = RequestMethod.POST)
 	public String levelPost(Model model, HttpServletRequest req)  {
@@ -664,7 +665,7 @@ public class AdministratorController/* implements UserDetailsService */{
 
 
 
-
+*/
 	//@Override
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
@@ -678,12 +679,12 @@ public class AdministratorController/* implements UserDetailsService */{
 			/*for (Role role : administratorRepository.findByLoginAdmin(login).getRoles()){
 							grantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
 						}*/
-
+/*
 			userDetail=new org.springframework.security.core.userdetails.User(administratorService.findByLoginAdmin(login).getLogin(), 
 					administratorService.findByLoginAdmin(login).getPassword(), grantedAuthorities);
 
 
-		}/*else if(teachersRepository.findByLogin(login)!=null) {
+	}else if(teachersRepository.findByLogin(login)!=null) {
 
 						System.out.println(teachersRepository.findByLogin(login)+"toototot");
 						Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
@@ -711,6 +712,8 @@ public class AdministratorController/* implements UserDetailsService */{
 		return userDetail;
 
 	}
+		return userDetail;
 
-
+	
+		}
 }
