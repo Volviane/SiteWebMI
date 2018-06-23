@@ -40,10 +40,18 @@
                     <br />
                <form action="<c:url value='createTeacher'/>" method="post">
                     <label>nom</label>
-                        <input type="text" class="form-control" name="teacherName"  />
+                        <input type="text" class="form-control" name="firstName"  />
+                     <label>prénom</label>
+                        <input type="text" class="form-control" name="lastName"  />
                      <label>email</label>
-                        <input type="email" class="form-control" name="teacherEmail"  />
-                     <label>login</label>
+                        <input type="email" class="form-control" name="emailAdress"  />
+                     <label>grade</label>
+                        <select class="form-control">
+                     			<c:forEach items="${grade}" var="i">
+                     				<option value="${i.gradeName }"><c:out value="${i.gradeName }"></c:out></option>
+                     			</c:forEach>
+                       </select>
+                      <label>login</label>
                         <input type="text" class="form-control" name="teacherLogin"  />
                      <label>mot de passe  </label>
                         <input type="password" class="form-control" name="teacherPassword"  />

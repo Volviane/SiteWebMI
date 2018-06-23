@@ -37,58 +37,28 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                     <h4 class="page-head-line">Ajouter une unité de valeur</strong></h4>
+                     <h4 class="page-head-line">Ajouter un grade</strong></h4>
                     <br />
-              <form action="<c:url value='addCourse'/>" method="post">
-                     <label>niveau</label>
+              <form action="<c:url value='addCycle'/>" method="post">
                     
-                    	 <select class="form-control">
-                     			<c:forEach items="${level}" var="i">
-                     				<option value="${i.levelName }"><c:out value="${i.levelName }"></c:out></option>
-                     			</c:forEach>
-                     	 </select>
-                     
-                     		<label>code de l'uv </label>
-                    		<div class="form-group">
-                     			
-                      			  <input type="text" class="form-control" name="courseCode" />
-                             </div>
-                             <label>nom de l'uv </label>
-                    		<div class="form-group">
-                     			
-                      			  <input type="text" class="form-control" name="courseName" />
-                             </div>
-                             <label>semestre </label>
-                    		<div class="form-group">
-                     			
-                      			  <input type="text" class="form-control" name="semester" />
-                             </div>
-                    
+                     <label>nom du grade</label>
+                        <input type="text" class="form-control" name="gradeName" />
                         <hr />
-                  <input type="submit" value="Enregistrer" class="btn btn-info">
-                </form>
+                      <input type="submit" value="Enregistrer" class="btn btn-info">
+               </form>
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>
                     <div class="alert alert-info">
-                       Vous allez pourvoir ici, enregistrer les différentes unités de valeurs retrouvées au département de mathématiques-informatiques, ceci en fonction du niveau choisi.
+                        Vous allez pourvoir ici, enregistrer les différents grades d'un enseignant
                         <br />
                        
                     </div>
                     <div class="alert alert-success">
                          <strong> Instructions:</strong>
                         <ul>
-                             <li>
-                               entrer le niveau d'étude
-                            </li>
                             <li>
-                               entrer le code de l'uv
-                            </li>
-                            <li>
-                               entrer le nom du l'uv
-                            </li>
-                            <li>
-                               entrer le semestre
+                               entrer le nom du grade
                             </li>
                             <li>
                                 puis l'enregistrer

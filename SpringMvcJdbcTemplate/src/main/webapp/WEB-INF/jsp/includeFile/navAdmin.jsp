@@ -27,6 +27,14 @@
                             ajouter un niveau
                             </a>
                         </li>
+                        <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/addCourse">
+                            ajouter un cours
+                            </a>
+                        </li>
+                        <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/addGrade">
+                            ajouter un grade
+                            </a>
+                        </li>
                         </li>
                         <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/deconnexionAdministrator">
                             se déconnecter
