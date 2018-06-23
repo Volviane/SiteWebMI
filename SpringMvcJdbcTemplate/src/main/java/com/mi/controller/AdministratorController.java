@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -274,12 +275,22 @@ public class AdministratorController/* implements UserDetailsService */{
 					UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(users, null,
 							users.getAuthorities());
 					SecurityContextHolder.getContext().setAuthentication(authToken);
-					System.out.println("Humm tu as reussi a me mettre en session tu es forte ma petite " + SecurityContextHolder.getContext().getAuthentication().getName());
+					
+					 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-					model.addAttribute("succes", "You have been login successfully."
-							+SecurityContextHolder.getContext().getAuthentication().getName());
-					req.setAttribute("succes", "You have been login successfully."
-							+SecurityContextHolder.getContext().getAuthentication().getName());
+				        if (!(auth instanceof AnonymousAuthenticationToken)) {
+				        	System.out.println("Humm tu as reussi a me mettre en session tu es forte ma petite " + SecurityContextHolder.getContext().getAuthentication().getName());
+
+							model.addAttribute("succes", "You have been login successfully."
+									+SecurityContextHolder.getContext().getAuthentication().getName());
+							req.setAttribute("succes", "You have been login successfully."
+									+SecurityContextHolder.getContext().getAuthentication().getName());
+				            return "homeAdministrator";
+				        }
+				        return "connectionAdministrator";
+					
+					
+					
 				} else {
 					logger.error("Administrator with password {} not found.", passwordAdmin);
 					model.addAttribute("error", "Password not found.");
@@ -298,22 +309,28 @@ public class AdministratorController/* implements UserDetailsService */{
 		}
 
 		//return "redirect:/administratorHome";
-		return "homeAdministrator";
+		return "connectionAdministrator";
 	}
 // retrieve user in session
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/retrieve", method = RequestMethod.GET)
-	public Object retrieve(String error, String logout, Authentication authenticationg, Principal principal,
+	public void retrieve(String error, String logout, Authentication authenticationg, Principal principal,
 			HttpServletRequest request) {
-		String userDetails = SecurityContextHolder.getContext().getAuthentication().getName();
-		System.out.println("je suis en session Saphir " + userDetails);
+		System.out.println("revettttttttttttttttttttttttttttttttttttt");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		//String userDetails = SecurityContextHolder.getContext().getAuthentication().getName();
+		if(SecurityContextHolder.getContext().getAuthentication()==null){
+			System.out.println(auth);
+		}else{
+		System.out.println("je suis en session Saphir " + SecurityContextHolder.getContext().getAuthentication().getName());
+		}
 		/*
 		 * if (userDetails instanceof UserDetails) { return ((UserDetails)
 		 * userDetails).getUsername(); }
 		 */
 
-		return userDetails;
+	//	return userDetails;
 
 	}
 
@@ -716,7 +733,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		UserDetails userDetail=null;
 		//Member user = memberRepository.findByPseudonym(pseudonym);
 		Administrator ad = administratorRepository.findByLogin(login);
-		System.out.println(ad.getRoles()+"tu es nulll???");
+		System.out.println(ad.getLogin()+"tu es nulll???");
 		if(administratorRepository.findByLogin(login)!=null) {
 		
 			System.out.println(administratorRepository.findByLogin(login)+"toototot");
@@ -724,10 +741,10 @@ public class AdministratorController/* implements UserDetailsService */{
 			
 			Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 			System.out.println("huoooo");
-			/*for (Role role : administratorRepository.findByLogin(login).getRoles()){
+			for (Role role : administratorRepository.findByLogin(login).getRoles()){
 							grantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
-							System.out.println("huoooo2222222222222222222");
-						}*/
+							System.out.println("huoooo2222222222222222222"+ role);
+						}
 			System.out.println("huoooo333333333333333333");
 
 			userDetail=new org.springframework.security.core.userdetails.User(administratorRepository.findByLogin(login).getLogin(), 

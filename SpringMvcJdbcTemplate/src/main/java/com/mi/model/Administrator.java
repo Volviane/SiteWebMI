@@ -27,7 +27,7 @@ public class Administrator implements Serializable {
 	@OneToMany(mappedBy="admin",fetch = FetchType.LAZY)
 	private Set<Communique> communiques = new HashSet<Communique>();
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="ROLE_ADMIN")
 	private Set<Role> roles=new HashSet<Role>();
 	
