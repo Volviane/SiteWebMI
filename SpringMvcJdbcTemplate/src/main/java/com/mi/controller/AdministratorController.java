@@ -717,6 +717,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		//Member user = memberRepository.findByPseudonym(pseudonym);
 		if(administratorRepository.findByLogin(login)!=null) {
 			System.out.println(administratorRepository.findByLogin(login)+"toototot");
+			System.out.println(administratorRepository.findByLogin(login).getRoles());
 			Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 			System.out.println("huoooo");
 			/*for (Role role : administratorRepository.findByLogin(login).getRoles()){
