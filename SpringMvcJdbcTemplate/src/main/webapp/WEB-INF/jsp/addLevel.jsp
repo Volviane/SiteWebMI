@@ -37,20 +37,18 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                     <h4 class="page-head-line">Ajouter une option</strong></h4>
+                     <h4 class="page-head-line">Ajouter un niveau</strong></h4>
                     <br />
                    <form action="<c:url value='addLevel'/>" method="post">
              
                      <label>option</label>
                   
                     
-                    	 <select class="form-control" name="">
-                    	   <c:forEach items="" var="i">
-                     			<option value="${i.optionName}"> <c:out value="${i.optionName}"></c:out> </option>
-                           </c:forEach>
-                     	
+                    	 <select class="form-control">
+                     			<c:forEach items="${cycles}" var="i">
+                     				<option value="${i.cycleName }"><c:out value="${i.cycleName }"></c:out></option>
+                     			</c:forEach>
                      	 </select>
-                     
                      
                      		<label>niveau</label>
                     		<div class="form-group">
