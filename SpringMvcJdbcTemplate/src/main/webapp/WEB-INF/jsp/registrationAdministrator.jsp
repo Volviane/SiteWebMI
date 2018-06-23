@@ -45,7 +45,7 @@
                         <label>mot de passe  </label>
                         <input type="password" class="form-control" name="passwordAdmin"  />
                         <hr />
-                        <a href="homeAdmin.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;créer admin</a>&nbsp;
+                        <input type="submit" value="creer admin"><span class="glyphicon glyphicon-user">
               </form>
                 </div>
                 <div class="col-md-6">

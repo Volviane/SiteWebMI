@@ -52,7 +52,7 @@
                       <label>role</label>
                         <input type="text" class="form-control" name="nameRole" />
                         <hr />
-                        <a href="homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;enregistrer</a>&nbsp;
+                         <input type="submit" value="enregistrer"><span class="glyphicon glyphicon-user"></span>
                 </form>
                  </div>
                 <div class="col-md-6">
