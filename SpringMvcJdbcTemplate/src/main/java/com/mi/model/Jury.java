@@ -18,7 +18,7 @@ public class Jury implements Serializable {
 	private String academicYear;
 	
 	@ManyToOne					// Plusieurs Juris peuvent avoir le même président
-	@JoinColumn(name="PRESIDENT_JURY")
+	//@JoinColumn(name="PRESIDENT_JURY")
 	private Teacher juryPresident;
 	
 	@ManyToOne					// Plusieurs juris concernent le même niveau

@@ -1,30 +1,60 @@
 package com.mi.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Table(name="DOCUMENT")
-public class Document {
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)//choix de la stratégie d'héritage une table pour la hierarchie
+@DiscriminatorColumn(name="TYPE_DOCUMENT",discriminatorType=DiscriminatorType.STRING)//Définit une colone discriminatoire dans la table pour différence les types des entités
+@DiscriminatorValue("DOCUMENT")
+public class Document implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="DOCUMENT_ID")
 	private Long idDocument;
 	
+	@Column(name="TITRE_DOCUMENT")
 	private String documentTitle;
+	
+	@Column(name="RESUME_DOCUMENT")
 	private String documentAbstract;
+	
 	@Transient
 	private List<String> keywords = new ArrayList<String>();
-	private String documentType;
+	
+	@Column(name="EMPLACEMENT_DOCUMENT")
 	private String locationFile;
 
+	//@CreatedBy
+	//private User author;
+	
+	//@CreatedDate
+	@Temporal(TemporalType.DATE)
+	private Date createDate;
+	
+	
 	public Document() {
 		// TODO Auto-generated constructor stub
 	}
@@ -42,7 +72,6 @@ public class Document {
 		this.documentTitle = documentTitle;
 		this.documentAbstract = documentAbstract;
 		this.keywords = keywords;
-		this.documentType = documentType;
 		this.locationFile = locationFile;
 	}
 
@@ -102,19 +131,6 @@ public class Document {
 		this.keywords = keywords;
 	}
 
-	/**
-	 * @return the documentType
-	 */
-	public String getDocumentType() {
-		return documentType;
-	}
-
-	/**
-	 * @param documentType the documentType to set
-	 */
-	public void setDocumentType(String documentType) {
-		this.documentType = documentType;
-	}
 
 	/**
 	 * @return the locationFile

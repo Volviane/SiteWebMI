@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="ENSEIGNANT")
+@Table(name="ENSEIGNANTS")
 public class Teacher extends InternetSufer implements Serializable{
 	
 	@Id
@@ -21,7 +21,7 @@ public class Teacher extends InternetSufer implements Serializable{
 	private CV cv;
 	
 	@ManyToOne
-	@JoinColumn(name="teachers")
+	@JoinColumn(name="GRADE_ID")
 	private Grade grade;
 	
 	@ManyToMany(mappedBy="members")
@@ -47,7 +47,7 @@ public class Teacher extends InternetSufer implements Serializable{
 	 * @param birthPlace
 	 * @param cv
 	 * @param grade
-	 */
+	 */	
 	public Teacher(String lastName, String firstName, String emailAdress, String login, String password,
 			String phoneNumber, String sexe, Date birthDate, String birthPlace, CV cv, Grade grade) {
 		super(lastName, firstName, emailAdress, login, password, phoneNumber, sexe, birthDate, birthPlace);
