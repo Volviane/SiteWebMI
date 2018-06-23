@@ -12,6 +12,10 @@
                             Acceuil
                             </a>
                         </li>
+                        <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/addRole">
+                            ajouter un role
+                            </a>
+                        </li>
                          <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/addCycle">
                             ajouter un cycle
                             </a>

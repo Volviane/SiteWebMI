@@ -48,11 +48,11 @@
                      <label>mot de passe  </label>
                         <input type="password" class="form-control" name="teacherPassword"  />
                         <label>téléphone</label>
-                        <input type="date" class="form-control" name="teacherPhone"  />
+                        <input type="text" class="form-control" name="teacherPhone"  />
                         <label>date et lieu de naissance</label>
-                        <input type="text" class="form-control" name=""  />
+                        <input type="date" class="form-control" name=""  />
                         <hr />
-                        <a href="/homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;enregistrer</a>&nbsp;
+					<input type="submit" value="créer" class="btn btn-info">
                </form>
                 </div>
                 <div class="col-md-6">

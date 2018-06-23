@@ -52,7 +52,7 @@
                       <label>role</label>
                         <input type="text" class="form-control" name="nameRole" />
                         <hr />
-                         <input type="submit" value="enregistrer"><span class="glyphicon glyphicon-user"></span>
+                      <input type="submit" value="Enregistrer" class="btn btn-info">
                 </form>
                  </div>
                 <div class="col-md-6">
