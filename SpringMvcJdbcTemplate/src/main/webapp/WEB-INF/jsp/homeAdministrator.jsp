@@ -68,8 +68,8 @@
 				</div>
 				<div class="col-md-3 col-sm-3 col-xs-6">
 					<div class="dashboard-div-wrapper bk-clr-four">
-						<a href="${pageContext.request.contextPath}/closeEvent">
-							fermer un évènement </a>
+						<a href="${pageContext.request.contextPath}/postResult">
+							Publier un résultat  </a>
 					</div>
 				</div>
 

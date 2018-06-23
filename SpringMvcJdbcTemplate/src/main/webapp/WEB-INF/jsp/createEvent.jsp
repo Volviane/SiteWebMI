@@ -40,13 +40,13 @@
                     <br />
                  <form action="<c:url value='createEvent'/>" method="post">
                     <label>nom de l'évènement</label>
-                        <input type="text" class="form-control" name="teacherName"  />
+                        <input type="text" class="form-control" name="eventTitle"  />
                      <label>debut de l'évènement</label>
-                        <input type="date" class="form-control" name="teacherName"  />
+                        <input type="date" class="form-control" name="eventBeginDate"  />
                      <label>fin de l'évènement</label>
-                        <input type="date" class="form-control" name="teacherName"  />
+                        <input type="date" class="form-control" name="eventEndDate"  />
                     <label>description</label>
-                      <textarea rows="5" cols="5" class="form-control"></textarea>
+                      <textarea rows="5" cols="5" class="form-control" name="eventDescription"></textarea>
                         <hr />
 				 <input type="submit" value="créer" class="btn btn-info">
                </form>

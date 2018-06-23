@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>ajouter cycle</title>
+<title>publier resultat</title>
 <meta charset="utf-8">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/assets/css/bootstrap.css"
@@ -37,31 +37,45 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                     <h4 class="page-head-line">Ajouter un niveau</strong></h4>
+                     <h4 class="page-head-line">publier un résultat</strong></h4>
                     <br />
-                   <form action="<c:url value='addLevel'/>" method="post">
-             
-                     <label>option</label>
-                    	 <select class="form-control" name="optionName">
+              <form action="<c:url value='addCourse'/>" method="post">
+                     <label>cycle</label>
+                    
+                    	 <select class="form-control" name="cycleName">
+                     			<c:forEach items="${cycles}" var="i">
+                     				<option value="${i.cycleName }"><c:out value="${i.cycleName }"></c:out></option>
+                     			</c:forEach>
+                     	 </select>
+                      <label>option</label>
+                         <select class="form-control" name="optionName">
                      			<c:forEach items="${options}" var="i">
                      				<option value="${i.optionName }"><c:out value="${i.optionName }"></c:out></option>
                      			</c:forEach>
                      	 </select>
+                     <label>niveau</label>
+                    
+                    	 <select class="form-control" name="levelName">
+                     			<c:forEach items="${level}" var="i">
+                     				<option value="${i.levelName }"><c:out value="${i.levelName }"></c:out></option>
+                     			</c:forEach>
+                     	 </select>
                      
-                     		<label>nom du niveau</label>
+                     		<label>fichier </label>
                     		<div class="form-group">
                      			
-                      			  <input type="text" class="form-control" name="levelName" />
+                      			  <input type="text" class="form-control" name="fileResult" />
                              </div>
+                            
                     
                         <hr />
-                   <input type="submit" value="Enregistrer" class="btn btn-info">     
-                 </form>
+                  <input type="submit" value="Enregistrer" class="btn btn-info">
+                </form>
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>
                     <div class="alert alert-info">
-                   Vous allez pourvoir ici, enregistrer les différentes options retrouvées au département de mathématiques-informatiques.
+                       Vous allez pourvoir ici, enregistrer les resultats des examens
                         <br />
                        
                     </div>
@@ -69,14 +83,15 @@
                          <strong> Instructions:</strong>
                         <ul>
                             <li>
-                               choisir une option
+                               entrer le cycle
                             </li>
                             <li>
-                               entrer un niveau correspondant à l'option choisie
+                               entrer l'option
                             </li>
-                            <li>
-                                puis l'enregistrer
+                             <li>
+                               entrer le niveau d'étude
                             </li>
+                          
                          
                         </ul>
                        
