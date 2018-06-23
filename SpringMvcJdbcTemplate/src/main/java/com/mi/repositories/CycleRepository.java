@@ -6,6 +6,6 @@ import com.mi.model.Cycle;
 
 
 public interface CycleRepository extends JpaRepository<Cycle, String>{
-	public Cycle findByCycleName(String cycleRole);
+	public Cycle findByCycleName(String cycleName);
 
 }

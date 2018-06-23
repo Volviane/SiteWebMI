@@ -50,8 +50,13 @@ import com.mi.model.Option;
 import com.mi.model.Role;
 import com.mi.model.Teachers;
 import com.mi.repositories.AdministratorRepository;
+import com.mi.repositories.CourseRepository;
 import com.mi.repositories.CycleRepository;
+import com.mi.repositories.GradeRepository;
+import com.mi.repositories.LevelRepository;
+import com.mi.repositories.OptionRepository;
 import com.mi.repositories.RoleRepository;
+import com.mi.repositories.TeachersRepository;
 import com.mi.services.AdministratorService;
 import com.mi.services.CourseService;
 import com.mi.services.CycleService;
@@ -71,13 +76,28 @@ public class AdministratorController/* implements UserDetailsService */{
 	public static final Logger logger = LoggerFactory.getLogger(AdministratorController.class);
 
 	@Autowired
-	CycleRepository cycleReppository;
+	CycleRepository cycleRepository;
+	
+	@Autowired
+	LevelRepository levelRepository;
+	
+	@Autowired
+	CourseRepository courseRepository;
 	
 	@Autowired
 	RoleRepository roleRepository;
 	
 	@Autowired
+	GradeRepository gradeRepository;
+	
+	@Autowired
+	TeachersRepository teachersRepository;
+	
+	@Autowired
 	AdministratorRepository administratorRepository;
+	
+	@Autowired
+	OptionRepository optionRepository;
 	
 	@Autowired
 	RoleService roleService;
@@ -313,7 +333,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	}
 // retrieve user in session
 	
-	@SuppressWarnings("unchecked")
+
 	@RequestMapping(value = "/retrieve", method = RequestMethod.GET)
 	public void retrieve(String error, String logout, Authentication authenticationg, Principal principal,
 			HttpServletRequest request) {
@@ -353,7 +373,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		cycle.setCycleName(cycleName);
 		//cycleRepository.deleteAll();
 		//cycleService.saveCycle(cycle);
-		cycleReppository.save(cycle);
+		cycleRepository.save(cycle);
 		req.setAttribute("success", "succesfully to create cylcle:: " + cycleName);
 		System.out.println("done");
 		return "addCycle";
@@ -381,9 +401,9 @@ public class AdministratorController/* implements UserDetailsService */{
 		System.out.println("cycleListOption");
 		String cycleName= req.getParameter("cycleName");
 		
-		Cycle cycle =cycleService.findByCycleName(cycleName);
+		Cycle cycle =cycleRepository.findByCycleName(cycleName);
 
-		List<Option> listOfOption=optionService.findAllOptionsByCycle(cycle.getIdCycle());
+		Set<Option> listOfOption=cycle.getOptions();;
 					if (listOfOption.isEmpty()) {
 						model.addAttribute("error", error);
 					}
@@ -398,7 +418,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	public String optionGet(Model model,HttpServletRequest req) {
 		System.out.println("addOption get");
 		
-		List<Cycle> cycles = cycleReppository.findAll();
+		List<Cycle> cycles = cycleRepository.findAll();
 		for (Cycle cycle : cycles) {
 			System.out.println(cycle.getCycleName());
 		}
@@ -413,12 +433,12 @@ public class AdministratorController/* implements UserDetailsService */{
 		String optionName= req.getParameter("optionName");
 		String cycleName= req.getParameter("cycleName");
 
-		Cycle cycle = cycleService.findByCycleName(cycleName);
+		Cycle cycle = cycleRepository.findByCycleName(cycleName);
 
 		Option option = new Option();
 		option.setOptionName(optionName);
 		option.setCycle(cycle);
-		optionService.saveOption(option);
+		optionRepository.save(option);
 		System.out.println("done");
 		req.setAttribute("option", "succesfully to create option :: "+ optionName);
 
@@ -430,7 +450,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	public String optionList(Model model,HttpServletRequest req) {
 		System.out.println("optionList");
 
-		List<Option> listOfOption = optionService.findAllOptions();
+		List<Option> listOfOption = optionRepository.findAll();
 		List<String> finalList = new ArrayList<String>();
 		if (listOfOption.isEmpty()) {
 			model.addAttribute("error", error);
@@ -445,6 +465,11 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addLevel", method = RequestMethod.GET)
 	public String levelGet(Model model,HttpServletRequest req) {
 		System.out.println("add level  get");
+		List<Option> options = optionRepository.findAll();
+		for (Option option : options) {
+			System.out.println(option.getOptionName());
+		}
+		model.addAttribute("options", options);
 
 		return "addLevel";
 	}
@@ -457,12 +482,13 @@ public class AdministratorController/* implements UserDetailsService */{
 		String levelName= req.getParameter("levelName");
 		String optionName= req.getParameter("optionName");
 		Level level = new Level();
-		Option option = optionService.findByOptionName(optionName);
+		Option option = optionRepository.findByOptionName(optionName);
 		level.setLevelName(optionName+levelName);
 		level.setOption(option);
 		//levelRepository.deleteAll();
-		levelService.saveLevel(level);
+		levelRepository.save(level);
 		System.out.println("done");
+		model.addAttribute("levels", level);
 		req.setAttribute("success", "succesfully to create level:: " +levelName);
 		return "addLevel";
 	}
@@ -472,13 +498,13 @@ public class AdministratorController/* implements UserDetailsService */{
 	public String levelList(Model model,HttpServletRequest req) {
 		System.out.println("levelList");
 
-		List<Level> listOfLevel = levelService.findAllLevels();
+		List<Level> listOfLevel = levelRepository.findAll();
 		List<String> finalList = new ArrayList<String>();
 
 		if (listOfLevel.isEmpty()) {
 			model.addAttribute("error", error);
 		}
-		model.addAttribute("level", finalList);
+		model.addAttribute("levels", finalList);
 		req.setAttribute("level", finalList);
 		return "levelList";
 	}
@@ -488,6 +514,15 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addCourse", method = RequestMethod.GET)
 	public String coursesGet(Model model,HttpServletRequest req) {
 		System.out.println("addCourse get");
+		
+		List<Level> listOfLevel = levelRepository.findAll();
+		List<String> finalList = new ArrayList<String>();
+
+		if (listOfLevel.isEmpty()) {
+			model.addAttribute("error", error);
+		}
+		model.addAttribute("levels", finalList);
+		req.setAttribute("level", finalList);
 
 		return "addCourse";
 	}
@@ -502,12 +537,12 @@ public class AdministratorController/* implements UserDetailsService */{
 		String semester= req.getParameter("semester");
 		String levelName= req.getParameter("levelName");
 		Course course = new Course();
-		Level level = levelService.findByLevelName(levelName);
+		Level level = levelRepository.findByLevelName(levelName);
 		course.setLevel(level);
 		course.setCourseTitle(courseName);
 		course.setCourseCode(courseCode);
 		course.setSemester(semester);
-		courseService.saveCourse(course);
+		courseRepository.save(course);
 		System.out.println("~~~~done~~~~");
 		req.setAttribute("success", "succesfully to create course :: " + courseName);
 
@@ -535,8 +570,8 @@ public class AdministratorController/* implements UserDetailsService */{
 	public String courseListLevel(Model model, HttpServletRequest req) {
 		System.out.println("courseListLevel");
 		String levelName= req.getParameter("levelName");
-		Level level =levelService.findByLevelName(levelName);
-		List<Course> listOfCourse= courseService.findAllCourseByLevel(level.getIdLevel());
+		Level level =levelRepository.findByLevelName(levelName);
+		Set<Course> listOfCourse= level.getCourses();
 					if (listOfCourse.isEmpty()) {
 						model.addAttribute("error", error);
 					}
@@ -564,7 +599,7 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		grade.setGradeName(gradeName);
 
-		gradeService.saveGrade(grade);
+		gradeRepository.save(grade);
 		System.out.println("~~~~done~~~");
 		req.setAttribute("success", "succesfully to create grade:: " +gradeName);
 
@@ -575,6 +610,16 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/createTeacher" }, method = RequestMethod.GET)
 	public String createTeacherGet(Model model,HttpServletRequest req) {
 		System.out.println("createTeacher GET");
+		
+		List<Grade> listOfGrade = gradeRepository.findAll();
+
+		if (listOfGrade.isEmpty()) {
+
+			model.addAttribute("error", error);
+		}
+
+		model.addAttribute("grades", listOfGrade);
+		req.setAttribute("course", listOfGrade);
 
 		return "createTeacher";
 	}
@@ -605,7 +650,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		String firstName= req.getParameter("firstName");
 		String emailAdress= req.getParameter("emailAdress");
 		String gradeName= req.getParameter("gradeName");
-		Grade grade = gradeService.findByGradeName(gradeName);
+		Grade grade = gradeRepository.findByGradeName(gradeName);
 		String login = "login"+firstName;
 		String password = emailAdress+"pass";
 		String subject1 = "Registration Information";
@@ -629,7 +674,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		message.setText(content1);
 		message.setSentDate(new Date());
 		
-		teachersService.saveTeachers(teacher);
+		teachersRepository.save(teacher);
 		Transport transport = session.getTransport("smtp");
 		transport.connect(host, from, pass);
 		System.out.println("connect");
@@ -645,7 +690,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	public String teacherList(Model model, HttpServletRequest req) {
 		System.out.println("teacherList");
 		
-		List<Teachers> listOfTeacher =teachersService.findAllTeachers();
+		List<Teachers> listOfTeacher =teachersRepository.findAll();
 		
 		if (listOfTeacher.isEmpty()) {
 			model.addAttribute("error", error);
@@ -663,7 +708,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	public String openAcademicYearGet(Model model,HttpServletRequest req) {
 		System.out.println("openAcademicYear GET");
 
-		return "openAcademiqueYear";
+		return "openAcademicYear";
 	}
 	
 	@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.POST)
@@ -675,7 +720,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		String juryLevelName= req.getParameter("juryLevelName");
 		
 		Teachers juryPresident = teachersService.findByTeachersName(juryPresidentName);
-		Level juryLevel = levelService.findByLevelName(juryLevelName);
+		Level juryLevel = levelRepository.findByLevelName(juryLevelName);
 		 Jury jury = new Jury();
 		 jury.setAcademicYear(academicYear);
 		 jury.setJuryLevel(juryLevel);

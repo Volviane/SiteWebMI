@@ -15,7 +15,7 @@ public class Option implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_OPTION")
-	private Integer idOption;
+	private Long idOption;
 
 	@Column(name = "NOM_OPTION")
 	private String optionName;
@@ -57,7 +57,7 @@ public class Option implements Serializable{
 	/**
 	 * @return the idOption
 	 */
-	public Integer getIdOption() {
+	public Long getIdOption() {
 		return idOption;
 	}
 
@@ -65,7 +65,7 @@ public class Option implements Serializable{
 	 * @param idOption
 	 *            the idOption to set
 	 */
-	public void setIdOption(Integer idOption) {
+	public void setIdOption(Long idOption) {
 		this.idOption = idOption;
 	}
 
