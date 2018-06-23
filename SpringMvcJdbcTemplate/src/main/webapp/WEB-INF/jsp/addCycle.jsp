@@ -41,10 +41,10 @@
                     <br />
               <form action="<c:url value='addCycle'/>" method="post">
                     
-                     <label>cycle</label>
+                     <label>nom du cycle</label>
                         <input type="text" class="form-control" name="cycleName" />
                         <hr />
-                       <input type="submit" value="Envoyer">
+                      <input type="submit" value="Enregistrer" class="btn btn-info">
                </form>
                 </div>
                 <div class="col-md-6">
@@ -58,7 +58,7 @@
                          <strong> Instructions:</strong>
                         <ul>
                             <li>
-                               entrer de nom du cyle
+                               entrer le nom du cyle
                             </li>
                             <li>
                                 puis l'enregistrer

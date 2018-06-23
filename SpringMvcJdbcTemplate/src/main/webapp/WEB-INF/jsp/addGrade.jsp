@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>ajouter un role</title>
+<title>ajouter cycle</title>
 <meta charset="utf-8">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/assets/css/bootstrap.css"
@@ -37,28 +37,20 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                
-                     <h4 class="page-head-line">Ajouter un role</strong></h4>
+                     <h4 class="page-head-line">Ajouter un grade</strong></h4>
                     <br />
-                  <!--  <form action="<c:url value='addRole'/>" method="post">
-                    <label>role</label>
-                        <input type="text" class="form-control" name="nameRole" />
-                        <hr />
-                        <input type="submit" value="enregistrer">
-                
-                    </form> -->
-                <form action="<c:url value='addRole'/>" method="post">
+              <form action="<c:url value='addCycle'/>" method="post">
                     
-                      <label>role</label>
-                        <input type="text" class="form-control" name="nameRole" />
+                     <label>nom du grade</label>
+                        <input type="text" class="form-control" name="gradeName" />
                         <hr />
                       <input type="submit" value="Enregistrer" class="btn btn-info">
-                </form>
-                 </div>
+               </form>
+                </div>
                 <div class="col-md-6">
                 <div class="space"></div>
                     <div class="alert alert-info">
-                         Vous allez pourvoir ici, enregistrer les différents roles des acteurs du système
+                        Vous allez pourvoir ici, enregistrer les différents grades d'un enseignant
                         <br />
                        
                     </div>
@@ -66,7 +58,7 @@
                          <strong> Instructions:</strong>
                         <ul>
                             <li>
-                               entrer de nom du role
+                               entrer le nom du grade
                             </li>
                             <li>
                                 puis l'enregistrer

@@ -42,13 +42,13 @@
                     <label>nom de l'évènement</label>
                         <input type="text" class="form-control" name="teacherName"  />
                      <label>debut de l'évènement</label>
-                        <input type="text" class="form-control" name="teacherName"  />
+                        <input type="date" class="form-control" name="teacherName"  />
                      <label>fin de l'évènement</label>
-                        <input type="text" class="form-control" name="teacherName"  />
+                        <input type="date" class="form-control" name="teacherName"  />
                     <label>description</label>
                       <textarea rows="5" cols="5" class="form-control"></textarea>
                         <hr />
-                        <a href="/homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;créer</a>&nbsp;
+				 <input type="submit" value="créer" class="btn btn-info">
                </form>
                 </div>
                 <div class="col-md-6">

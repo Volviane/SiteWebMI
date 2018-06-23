@@ -43,9 +43,10 @@
                      <label>niveau</label>
                     
                     	 <select class="form-control">
-                     			<option> </option>
+                     			<c:forEach items="${level}" var="i">
+                     				<option value="${i.levelName }"><c:out value="${i.levelName }"></c:out></option>
+                     			</c:forEach>
                      	 </select>
-                     
                      
                      		<label>code de l'uv </label>
                     		<div class="form-group">
@@ -64,7 +65,7 @@
                              </div>
                     
                         <hr />
-                        <a href="homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;enregistrer</a>&nbsp;
+                  <input type="submit" value="Enregistrer" class="btn btn-info">
                 </form>
                 </div>
                 <div class="col-md-6">
