@@ -25,8 +25,7 @@ public class Role implements Serializable{
 	@Column(name="ROLE_NAME")
 	private String roleName;
 	
-	@ManyToMany
-	@JoinTable(name="ROLE_ADMIN")
+	@ManyToMany(mappedBy = "roles")
 	private Set<Administrator> admins = new HashSet<Administrator>();
 	
 	public Role() {

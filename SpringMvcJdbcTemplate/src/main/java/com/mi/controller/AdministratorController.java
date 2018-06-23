@@ -225,7 +225,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		administrator.setLogin(login);
 		administrator.setPassword(bCryptPasswordEncoder.encode(password));
 		administrator.setPasswordSec(cryptographe(password));
-		administrator.setRoles(rolelist);
+	//	administrator.setRoles(rolelist);
 		//Modification de setRole(idRole) en setRole(role)
 		administrator.getRoles().add(role);
 		//administratorRepository.deleteAll();
@@ -715,9 +715,13 @@ public class AdministratorController/* implements UserDetailsService */{
 		System.out.println(login+" donne pardon");
 		UserDetails userDetail=null;
 		//Member user = memberRepository.findByPseudonym(pseudonym);
+		Administrator ad = administratorRepository.findByLogin(login);
+		System.out.println(ad.getRoles()+"tu es nulll???");
 		if(administratorRepository.findByLogin(login)!=null) {
+		
 			System.out.println(administratorRepository.findByLogin(login)+"toototot");
-			System.out.println(administratorRepository.findByLogin(login).getRoles());
+			
+			
 			Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 			System.out.println("huoooo");
 			/*for (Role role : administratorRepository.findByLogin(login).getRoles()){
