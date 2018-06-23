@@ -57,8 +57,8 @@
                      			<option> </option>
                      	 </select>
                         <hr />
-                        <a href="/homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;ouvrir</a>&nbsp;
-                </form>
+                  <input type="submit" value="ouvrir" class="btn btn-info">
+                 </form>
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>

@@ -1,5 +1,6 @@
 package com.mi.controller;
 
+import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,7 +23,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -35,6 +38,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mi.model.Administrator;
+import com.mi.model.Communique;
 import com.mi.model.Course;
 import com.mi.model.Cycle;
 import com.mi.model.Event;
@@ -44,7 +48,9 @@ import com.mi.model.Level;
 import com.mi.model.Option;
 import com.mi.model.Role;
 import com.mi.model.Teachers;
+import com.mi.repositories.AdministratorRepository;
 import com.mi.repositories.CycleRepository;
+import com.mi.repositories.RoleRepository;
 import com.mi.services.AdministratorService;
 import com.mi.services.CourseService;
 import com.mi.services.CycleService;
@@ -65,6 +71,12 @@ public class AdministratorController/* implements UserDetailsService */{
 
 	@Autowired
 	CycleRepository cycleReppository;
+	
+	@Autowired
+	RoleRepository roleRepository;
+	
+	@Autowired
+	AdministratorRepository administratorRepository;
 	
 	@Autowired
 	RoleService roleService;
@@ -98,8 +110,9 @@ public class AdministratorController/* implements UserDetailsService */{
 
 
 
-	/*@Autowired
+/*	@Autowired
 	UserDetailsServices use;*/
+	
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -155,11 +168,11 @@ public class AdministratorController/* implements UserDetailsService */{
 		String roleName= req.getParameter("nameRole");
 		Role roles = new Role();
 		if (roleName.equalsIgnoreCase("ROLE_STUDENTS")) {
-			roles.setRoleName(roleName);
+			roleRepository.save(roles);
 			//role.setUsers(new HashSet<>(studentRepository.findAll()));
 			//roleRepository.save(role);
 		} else if (roleName.equalsIgnoreCase("ROLE_TEACHERS")) {
-			roles.setRoleName(roleName);
+			roleRepository.save(roles);
 			//role.setAdmin(new HashSet<>(teachersRepository.findAll()));
 			//roleRepository.save(role);
 
@@ -167,7 +180,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			//role.setName(roleName);
 			roles.setRoleName(roleName);
 			//roles.setAdmins(new HashSet<>(administratorRepository.findAll()));
-			roleService.saveRole(roles);
+			roleRepository.save(roles);
 			System.out.println("done");
 		}
 		model.addAttribute("roles",roles);
@@ -205,16 +218,18 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		String login= req.getParameter("loginAdmin");
 		String password= req.getParameter("passwordAdmin");
-		Role role = roleService.findByRoleName("ROLE_ADMIN");
-
+		Role role = roleRepository.findByRoleName("ROLE_ADMIN");
+		Set<Role> rolelist=new HashSet<Role>();
+		rolelist.add(role);
 		Administrator administrator= new Administrator();
 		administrator.setLogin(login);
 		administrator.setPassword(bCryptPasswordEncoder.encode(password));
 		administrator.setPasswordSec(cryptographe(password));
+	//	administrator.setRoles(rolelist);
 		//Modification de setRole(idRole) en setRole(role)
 		administrator.getRoles().add(role);
 		//administratorRepository.deleteAll();
-		administratorService.saveAdministrator(administrator);
+		administratorRepository.save(administrator);
 
 		model.addAttribute("succes", "succesfully to create administrator wiht parameter :: " + login + " and " + password);
 		req.setAttribute("succes", "succesfully to create administrator wiht parameter :: " + login + " and " + password);
@@ -245,18 +260,21 @@ public class AdministratorController/* implements UserDetailsService */{
 		System.out.println(passwordAdmin);
 		// recherche du membre dans la base de donnees
 		try {
+			System.out.println("c'est le try");
 			Administrator administrator = new Administrator();
-			administrator = administratorService.findByLoginAdmin(loginAdmin);
+			administrator = administratorRepository.findByLogin(loginAdmin);
+			System.out.println(administrator);
 			if (administrator != null) {
 				String pass = cryptographe(passwordAdmin);
 				System.out.println(pass);
 				if (pass.equals(administrator.getPasswordSec())) {
-
+					System.out.println("deuxieme if c'est moi");
 					UserDetails users = loadUserByUsername(loginAdmin);
-					System.out.println("Humm tu as reussi a me mettre en session tu es forte ma petite " + users);
+					//System.out.println("Humm tu as reussi a me mettre en session tu es forte ma petite 11111111111" + users);
 					UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(users, null,
 							users.getAuthorities());
 					SecurityContextHolder.getContext().setAuthentication(authToken);
+					System.out.println("Humm tu as reussi a me mettre en session tu es forte ma petite " + SecurityContextHolder.getContext().getAuthentication().getName());
 
 					model.addAttribute("succes", "You have been login successfully."
 							+SecurityContextHolder.getContext().getAuthentication().getName());
@@ -282,7 +300,22 @@ public class AdministratorController/* implements UserDetailsService */{
 		//return "redirect:/administratorHome";
 		return "homeAdministrator";
 	}
+// retrieve user in session
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/retrieve", method = RequestMethod.GET)
+	public Object retrieve(String error, String logout, Authentication authenticationg, Principal principal,
+			HttpServletRequest request) {
+		String userDetails = SecurityContextHolder.getContext().getAuthentication().getName();
+		System.out.println("je suis en session Saphir " + userDetails);
+		/*
+		 * if (userDetails instanceof UserDetails) { return ((UserDetails)
+		 * userDetails).getUsername(); }
+		 */
 
+		return userDetails;
+
+	}
 
 	// ajouter les cycles
 
@@ -682,19 +715,27 @@ public class AdministratorController/* implements UserDetailsService */{
 		System.out.println(login+" donne pardon");
 		UserDetails userDetail=null;
 		//Member user = memberRepository.findByPseudonym(pseudonym);
-		if(administratorService.findByLoginAdmin(login)!=null) {
-			System.out.println(administratorService.findByLoginAdmin(login)+"toototot");
+		Administrator ad = administratorRepository.findByLogin(login);
+		System.out.println(ad.getRoles()+"tu es nulll???");
+		if(administratorRepository.findByLogin(login)!=null) {
+		
+			System.out.println(administratorRepository.findByLogin(login)+"toototot");
+			
+			
 			Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-
-			/*for (Role role : administratorRepository.findByLoginAdmin(login).getRoles()){
+			System.out.println("huoooo");
+			/*for (Role role : administratorRepository.findByLogin(login).getRoles()){
 							grantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+							System.out.println("huoooo2222222222222222222");
 						}*/
-/*
-			userDetail=new org.springframework.security.core.userdetails.User(administratorService.findByLoginAdmin(login).getLogin(), 
-					administratorService.findByLoginAdmin(login).getPassword(), grantedAuthorities);
+			System.out.println("huoooo333333333333333333");
+
+			userDetail=new org.springframework.security.core.userdetails.User(administratorRepository.findByLogin(login).getLogin(), 
+					administratorRepository.findByLogin(login).getPassword(), grantedAuthorities);
+			System.out.println("huoooo444444444444444444444");
 
 
-	}else if(teachersRepository.findByLogin(login)!=null) {
+			/*}else if(teachersRepository.findByLogin(login)!=null) {
 
 						System.out.println(teachersRepository.findByLogin(login)+"toototot");
 						Set<GrantedAuthority> grantedAuthorities = new HashSet<>();

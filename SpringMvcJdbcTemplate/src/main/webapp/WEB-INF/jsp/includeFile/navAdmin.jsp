@@ -12,17 +12,21 @@
                             Acceuil
                             </a>
                         </li>
-                         <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/addCycle">
-                            ajouter un cycle
+                        <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/addRole">
+                            ajouter un role
                             </a>
                         </li>
-                        <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/addLevel">
-                            ajouter un niveau
+                         <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/addCycle">
+                            ajouter un cycle
                             </a>
                         </li>
                         <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/addOption">
                             ajouter une option
                             </a>
+                         <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/addLevel">
+                            ajouter un niveau
+                            </a>
+                        </li>
                         </li>
                         <li><a class="menu-top-active"  href="${pageContext.request.contextPath}/deconnexionAdministrator">
                             se déconnecter

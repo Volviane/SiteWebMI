@@ -50,14 +50,14 @@
                      	 </select>
                      
                      
-                     		<label>niveau</label>
+                     		<label>nom de l'option</label>
                     		<div class="form-group">
                      			
                       			  <input type="text" class="form-control" name="optionName" />
                              </div>
                     
                         <hr />
-                        <a href="homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;enregistrer</a>&nbsp;
+                        <input type="submit" value="Enregistrer" class="btn btn-info">
                 </form>
                 </div>
                 <div class="col-md-6">

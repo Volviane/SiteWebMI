@@ -18,9 +18,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @Configuration
-//@EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled=true)
-public class WebSecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
+/*@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled=true)*/
+public class WebSecurityConfig /*extends WebSecurityConfigurerAdapter */{
 	
 	
 	protected void configure(HttpSecurity http) throws Exception {
@@ -34,7 +34,6 @@ public class WebSecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
 	}
 
 	//@Autowired
-
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		System.out.println("conf3");
 		auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
@@ -59,8 +58,8 @@ public class WebSecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
 	public org.springframework.security.core.userdetails.UserDetailsService userDetailsService() {
 		System.out.println("conf8");
 		return super.userDetailsService();
-	}*/
-	
+	}
+	*/
 
 
     

@@ -44,7 +44,7 @@
                      <label>cycle</label>
                         <input type="text" class="form-control" name="cycleName" />
                         <hr />
-                       <input type="submit" value="Envoyer">
+                      <input type="submit" value="Enregistrer" class="btn btn-info">
                </form>
                 </div>
                 <div class="col-md-6">
