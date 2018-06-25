@@ -20,7 +20,7 @@ public class Option implements Serializable{
 	@Column(name = "NOM_OPTION")
 	private String optionName;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Cycle cycle;
 
 	@OneToMany(mappedBy="option")

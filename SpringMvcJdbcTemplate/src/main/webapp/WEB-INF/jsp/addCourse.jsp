@@ -42,9 +42,9 @@
               <form action="<c:url value='addCourse'/>" method="post">
                      <label>niveau</label>
                     
-                    	 <select class="form-control">
-                     			<c:forEach items="${level}" var="i">
-                     				<option value="${i.levelName }"><c:out value="${i.levelName }"></c:out></option>
+                    	 <select class="form-control" name="levelName">
+                     			<c:forEach items="${levels}" var="i">
+                     				<option value="${i.levelName }" ><c:out value="${i.levelName }"></c:out></option>
                      			</c:forEach>
                      	 </select>
                      

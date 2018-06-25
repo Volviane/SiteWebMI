@@ -48,9 +48,9 @@ public class Teacher extends InternetSufer implements Serializable{
 	 * @param cv
 	 * @param grade
 	 */
-	public Teacher(String lastName, String firstName, String emailAdress, String login, String password,
+	public Teacher(String lastName, String firstName, String emailAdress, String login, String password,String passwordSec,
 			String phoneNumber, String sexe, Date birthDate, String birthPlace, CV cv, Grade grade) {
-		super(lastName, firstName, emailAdress, login, password, phoneNumber, sexe, birthDate, birthPlace);
+		super(lastName, firstName, emailAdress, login, password, passwordSec, phoneNumber, sexe, birthDate, birthPlace);
 		this.cv = cv;
 		this.grade = grade;
 	}

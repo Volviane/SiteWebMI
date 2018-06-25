@@ -16,15 +16,15 @@ public class Teachers extends InternetSufer implements Serializable{
 	@Column(name="ENSEIGNANT_ID")
 	private Integer idTeacher;
 	
-	/*@Embedded
-	private CV cv;*/
+	@Embedded
+	private CV cv;
 	
-	//@ManyToOne
-	//@JoinColumn(name="teachers")
+	/*@ManyToOne
+	@JoinColumn(name="teachers")*/
 	private Integer grade;
 	
-	/*@ManyToMany(mappedBy="members")
-	private Set<Jury> jury;*/
+	//@ManyToMany(mappedBy="members")
+	//private Set<Jury> jury;
 	
 	public Teachers() {
 		super();
@@ -44,9 +44,9 @@ public class Teachers extends InternetSufer implements Serializable{
 	 * @param cv
 	 * @param grade
 	 */
-	public Teachers(String lastName, String firstName,  String emailAdress, String login, String password,
+	public Teachers(String lastName, String firstName,  String emailAdress, String login, String password,String passwordSec,
 			String phoneNumber, String sexe, Date birthDate, String birthPlace,  Integer grade) {
-		super(lastName, firstName, emailAdress, login, password, phoneNumber, sexe, birthDate, birthPlace);
+		super(lastName, firstName, emailAdress, login, password,passwordSec, phoneNumber, sexe, birthDate, birthPlace);
 		
 		this.grade = grade;
 	}

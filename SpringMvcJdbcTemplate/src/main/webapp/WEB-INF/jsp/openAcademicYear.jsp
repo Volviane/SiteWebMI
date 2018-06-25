@@ -40,21 +40,25 @@
                     <br />
                     <form action="<c:url value='openAcademicYear'/>" method="post">
                     <label>année</label>
-                        <input type="text" class="form-control" name="teacherName"  />
+                        <input type="text" class="form-control" name="academicYear"  />
                     <label>niveau</label>
                     
-                    	 <select class="form-control">
-                     			<option> </option>
+                    	 <select class="form-control" name="juryLevelName">
+                     			<c:forEach items="${levels}" var="i">
+                     				<option value="${i.levelName }" ><c:out value="${i.levelName }"></c:out></option>
+                     			</c:forEach>
                      	 </select>
                     <label>coordonnateur</label>
                     
-                    	 <select class="form-control">
+                    	 <select class="form-control" name="cordo">
                      			<option> </option>
                      	 </select>
                     <label>président du jury </label>
                     
-                    	 <select class="form-control">
-                     			<option> </option>
+                    	 <select class="form-control" name="juryPresidentName">
+                     			<c:forEach items="${teachers}" var="i">
+                     				<option value="${i.lastName }" ><c:out value="${i.lastName }"></c:out></option>
+                     			</c:forEach>
                      	 </select>
                         <hr />
                   <input type="submit" value="ouvrir" class="btn btn-info">

@@ -39,7 +39,7 @@
                 <div class="col-md-6">
                      <h4 class="page-head-line">Ajouter un grade</strong></h4>
                     <br />
-              <form action="<c:url value='addCycle'/>" method="post">
+              <form action="<c:url value='addGrade'/>" method="post">
                     
                      <label>nom du grade</label>
                         <input type="text" class="form-control" name="gradeName" />

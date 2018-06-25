@@ -41,10 +41,13 @@
               <form action="<c:url value='editNews'/>" method="post">
                     <label>titre du communiqué</label>
                         <input type="text" class="form-control" name="newsTitle"  />
+
+                          <label>date de publication</label>
+                        <input type="date" class="form-control" name="publicationDate"  />
                     <label>resumé du communiqué</label>
-                      <textarea rows="5" cols="5" class="form-control"></textarea>
+                      <textarea rows="5" cols="5" class="form-control" name="newsContent"></textarea>
                         <hr />
-                        <a href="/homeAdministrator.jsp" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;enregistrer</a>&nbsp;
+                        <input type="submit" value="Publier">
                </form>
                 </div>
                 <div class="col-md-6">
