@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>ajouter cycle</title>
+<title>connexion admin</title>
 <meta charset="utf-8">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/assets/css/bootstrap.css"
@@ -23,10 +23,10 @@
 	type="text/css" media="all">
 </head>
 
-<body id="page1">
-
+<body id="connection">
 	<div class="body1">
-    <%@include file="includeFile/navAdmin.jsp"%>
+    <div class="navbar navbar-inverse set-radius-zero">
+        </div>
     <!-- LOGO HEADER END-->
    
     <!-- MENU SECTION END-->
@@ -37,33 +37,38 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                     <h4 class="page-head-line">Ajouter un grade</strong></h4>
+                     <h4 class="page-head-line"> connexion de l'administrateur</strong></h4>
                     <br />
-              <form action="<c:url value='addGrade'/>" method="post">
-                    
-                     <label>nom du grade</label>
-                        <input type="text" class="form-control" name="gradeName" />
+                  <form action="<c:url value='connectionAdministrator'/>" method="post">
+                     <label>login</label>
+                        <input type="text" class="form-control" name="login"  />
+                        <label>mot de passe  </label>
+                        <input type="password" class="form-control" name="password"  />
                         <hr />
-                      <input type="submit" value="Enregistrer" class="btn btn-info">
+                         <input type="submit" value="connecter"><span class="glyphicon glyphicon-user">
                </form>
                 </div>
                 <div class="col-md-6">
                 <div class="space"></div>
                     <div class="alert alert-info">
-                        Vous allez pourvoir ici, enregistrer les différents grades d'un enseignant
+                        Seule l'administrateur du sytème devra se connecter dans cette espace, pour mettre à jour le système
                         <br />
+                         
                        
                     </div>
                     <div class="alert alert-success">
                          <strong> Instructions:</strong>
                         <ul>
                             <li>
-                               entrer le nom du grade
+                              Entrer son login
                             </li>
                             <li>
-                                puis l'enregistrer
+                                 Puis entrer son mot de passe
                             </li>
-                         
+                            <li>
+                               Enfin se connecter
+                            </li>
+                            
                         </ul>
                        
                     </div>

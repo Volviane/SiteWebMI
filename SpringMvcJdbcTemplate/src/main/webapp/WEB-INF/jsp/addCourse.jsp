@@ -43,7 +43,7 @@
                      <label>niveau</label>
                     
                     	 <select class="form-control" name="levelName">
-                     			<c:forEach items="${level}" var="i">
+                     			<c:forEach items="${levels}" var="i">
                      				<option value="${i.levelName }"><c:out value="${i.levelName }"></c:out></option>
                      			</c:forEach>
                      	 </select>
