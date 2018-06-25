@@ -18,8 +18,7 @@ public class Level implements Serializable{
 	@Column(name="NOM_NIVEAU")
 	private String levelName;
 	
-	@Column(name="DESCRIPTION_NIVEAU")
-	private String levelDescription;
+
 	
 	@ManyToOne //Plusieurs niveaux appartiennent à une option
 	@JoinColumn(name="ID_OPTION")
@@ -104,16 +103,11 @@ public class Level implements Serializable{
 	/**
 	 * @return the levelDescription
 	 */
-	public String getLevelDescription() {
-		return levelDescription;
-	}
-
+	
 	/**
 	 * @param levelDescription the levelDescription to set
 	 */
-	public void setLevelDescription(String levelDescription) {
-		this.levelDescription = levelDescription;
-	}
+
 
 	/**
 	 * @return the juries

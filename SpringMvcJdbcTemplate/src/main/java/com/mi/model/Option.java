@@ -21,8 +21,8 @@ public class Option implements Serializable{
 	private String optionName;
 	
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@Column(name="DESCRIPTION_OPTION")
+	//@ManyToOne(fetch = FetchType.EAGER)
+	//@Column(name="DESCRIPTION_OPTION")
 	private String optionDescription;
 	
 	@ManyToOne
