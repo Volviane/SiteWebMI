@@ -17,7 +17,7 @@ public class Result implements Serializable {
 	private String academicYear;
 	@Column(name="TITRE")
 	private String resultTitle;
-	@Column(name="NOM FICHIER")
+	@Column(name="NOM_FICHIER")
 	private String resultFileName;
 	
 	@ManyToOne
@@ -26,7 +26,7 @@ public class Result implements Serializable {
 	
 	
 	public Result() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 

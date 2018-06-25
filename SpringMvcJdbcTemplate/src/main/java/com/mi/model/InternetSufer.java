@@ -10,7 +10,9 @@ import javax.persistence.*;
 
 @MappedSuperclass
 public abstract class InternetSufer implements Serializable{
-		
+	
+
+	
 	@Column(name="NOM")
 	protected String lastName;
 	
@@ -25,6 +27,9 @@ public abstract class InternetSufer implements Serializable{
 	
 	@Column(name="PASSWORD")
 	protected String password;
+	
+	@Column(name="PASSWORDSEC")
+	protected String passwordSec;
 	
 	@Column(name="TELEPHONE")
 	protected String phoneNumber;
@@ -42,11 +47,21 @@ public abstract class InternetSufer implements Serializable{
 //	@ManyToMany(mappedBy="subscribers")
 	//protected Set<Event> events = new HashSet<Event>();
 
+	
+	
 	/**
 	 * @return the lastName
 	 */
 	public String getLastName() {
 		return lastName;
+	}
+
+	public String getPasswordSec() {
+		return passwordSec;
+	}
+
+	public void setPasswordSec(String passwordSec) {
+		this.passwordSec = passwordSec;
 	}
 
 	/**
@@ -179,19 +194,7 @@ public abstract class InternetSufer implements Serializable{
 	 * @param birthDate
 	 * @param birthPlace
 	 */
-	public InternetSufer(String lastName, String firstName,String emailAdress, String login, String password,
-			String phoneNumber, String sexe, Date birthDate, String birthPlace) {
-		super();
-		this.lastName = lastName;
-		this.firstName = firstName;
-		this.emailAdress = emailAdress;
-		this.login = login;
-		this.password = password;
-		this.phoneNumber = phoneNumber;
-		this.sexe = sexe;
-		this.birthDate = birthDate;
-		this.birthPlace = birthPlace;
-	}
+	
 
 	/**
 	 * 
@@ -199,6 +202,21 @@ public abstract class InternetSufer implements Serializable{
 	public InternetSufer() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public InternetSufer(String lastName, String firstName, String emailAdress, String login, String password,
+			String passwordSec, String phoneNumber, String sexe, Date birthDate, String birthPlace) {
+		super();
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.emailAdress = emailAdress;
+		this.login = login;
+		this.password = password;
+		this.passwordSec = passwordSec;
+		this.phoneNumber = phoneNumber;
+		this.sexe = sexe;
+		this.birthDate = birthDate;
+		this.birthPlace = birthPlace;
 	}
 	
 	

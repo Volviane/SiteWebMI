@@ -46,9 +46,9 @@
                      <label>email</label>
                         <input type="email" class="form-control" name="emailAdress"  />
                      <label>grade</label>
-                        <select class="form-control">
-                     			<c:forEach items="${grade}" var="i">
-                     				<option value="${i.gradeName }"><c:out value="${i.gradeName }"></c:out></option>
+                        <select class="form-control" name="gradeName">
+                     			<c:forEach items="${grades}" var="i">
+                     				<option value="${i.gradeName }" ><c:out value="${i.gradeName }"></c:out></option>
                      			</c:forEach>
                        </select>
                       <label>login</label>

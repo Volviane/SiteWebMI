@@ -46,7 +46,11 @@
                      <label>fin de l'évènement</label>
                         <input type="date" class="form-control" name="eventEndDate"  />
                     <label>description</label>
+
                       <textarea rows="5" cols="5" class="form-control" name="eventDescription"></textarea>
+
+                      <textarea rows="5" cols="5" class="form-control" name ="eventDescription"></textarea>
+
                         <hr />
 				 <input type="submit" value="créer" class="btn btn-info">
                </form>

@@ -134,7 +134,7 @@ System.out.println("1++++++++");
 		emailAdress.add("miguelfoko@gmail.com");
 		emailAdress.add("saphir@gmail.com");
 		String articleName=userId+"_"+userLastName+"_"+userFirstName+"_"+option+".pdf";
-		Article article=new Article(0, title, abstractArticle, SAVE_DIR+"/"+option+"/"+ articleName, keywords, userId);
+		Article article = null;/*=new Article(0, title, abstractArticle, SAVE_DIR+"/"+option+"/"+ articleName, keywords, userId);*/
 		String content1 = "Article soumis avec succes, ci dessous, les informations le concernant  \n"
 				+ article  ;
 		try {

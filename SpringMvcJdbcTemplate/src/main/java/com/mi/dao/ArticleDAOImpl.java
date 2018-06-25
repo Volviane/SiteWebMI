@@ -15,7 +15,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 	public ArticleDAOImpl(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-	@Override
+	/*@Override
 	public int saveOrUpdate(Article article) {
 		int ret=-1;
 		System.out.println("1");
@@ -48,6 +48,30 @@ public class ArticleDAOImpl implements ArticleDAO {
 				return ret;
 			}
 		}
+	}
+
+	@Override
+	public void delete(int articleId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Article get(int articleId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Article> list() {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
+
+	@Override
+	public int saveOrUpdate(Article article) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override

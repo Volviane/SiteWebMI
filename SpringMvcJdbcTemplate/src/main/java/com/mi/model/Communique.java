@@ -19,7 +19,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="COMMUNIQUE")
+@Table(name="COMMUNIQUES")
 public class Communique implements Serializable{
 	
 	@Id
@@ -44,7 +44,7 @@ public class Communique implements Serializable{
 	private Administrator admin;
 
 	public Communique() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
