@@ -20,6 +20,12 @@ public class Course implements Serializable {
 	@Column(name="INTITULE_UV", length=30)
 	private String courseTitle;
 	
+	@Column(name="NOMBRE_CREDITS")
+	private int creditNumber;
+	
+	@Column(name="DESCRIPTION_UV")
+	private String courseDescription;
+	
 	@Column(name="SEMESTRE_UV")
 	private String semester;
 	
@@ -136,6 +142,46 @@ public class Course implements Serializable {
 	 */
 	public void setLevel(Level level) {
 		this.level = level;
+	}
+
+
+
+
+	/**
+	 * @return the creditNumber
+	 */
+	public int getCreditNumber() {
+		return creditNumber;
+	}
+
+
+
+
+	/**
+	 * @param creditNumber the creditNumber to set
+	 */
+	public void setCreditNumber(int creditNumber) {
+		this.creditNumber = creditNumber;
+	}
+
+
+
+
+	/**
+	 * @return the courseDescription
+	 */
+	public String getCourseDescription() {
+		return courseDescription;
+	}
+
+
+
+
+	/**
+	 * @param courseDescription the courseDescription to set
+	 */
+	public void setCourseDescription(String courseDescription) {
+		this.courseDescription = courseDescription;
 	}
 	
 }

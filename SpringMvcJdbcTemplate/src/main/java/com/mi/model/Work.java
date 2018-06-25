@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="TRAVAUX")
-@DiscriminatorValue("TRAVAUX")
+//@Entity
+//@Table(name="TRAVAUX")
+//@DiscriminatorValue("TRAVAUX")
 public class Work extends Document implements Serializable {
 	
 	/*@Id

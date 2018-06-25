@@ -16,7 +16,7 @@ public class Grade {
 	@Column(name="NOM_GRADE")
 	private String gradeName;
 	
-	@OneToMany
+	@OneToMany(mappedBy="grade")
 	private Set<Teacher> teachers;
 	
 	public Grade() {

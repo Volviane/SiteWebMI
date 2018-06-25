@@ -19,7 +19,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="COMMUNIQUE")
+@Table(name="COMMUNIQUES")
 public class Communique implements Serializable{
 	
 	@Id

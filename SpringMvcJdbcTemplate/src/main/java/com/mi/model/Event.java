@@ -2,6 +2,7 @@ package com.mi.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -29,9 +30,17 @@ public class Event implements Serializable{
 	@Column(name="DATE_FIN_EVENEMENT")
 	private Date eventEndDate;
 	
-	/*@ManyToMany
-	@JoinTable(name="INSCRIPTIONS_EVENEMENTS")*/
-	//private Set<InternetSufer> subscribers;
+	@Temporal(TemporalType.TIME)
+	@Column(name="DATE_DEBUT_INSCRIPTION")
+	private Date inscriptionBeginDate;
+	
+	@Temporal(TemporalType.TIME)
+	@Column(name="DATE_FIN_INSCRIPTION")
+	private Date inscriptionEndDate;
+	
+	
+	@OneToMany(mappedBy="event")
+	private Set<Participation> participations = new HashSet<Participation>();
 
 	public Event() {
 		// TODO Auto-generated constructor stub
@@ -134,18 +143,50 @@ public class Event implements Serializable{
 
 
 	/**
-	 * @return the subscribers
-	 *//*
-	public Set<InternetSufer> getSubscribers() {
-		return subscribers;
+	 * @return the inscriptionBeginDate
+	 */
+	public Date getInscriptionBeginDate() {
+		return inscriptionBeginDate;
 	}
 
 
-	*//**
-	 * @param subscribers the subscribers to set
-	 *//*
-	public void setSubscribers(Set<InternetSufer> subscribers) {
-		this.subscribers = subscribers;
-	}*/
-	
+	/**
+	 * @param inscriptionBeginDate the inscriptionBeginDate to set
+	 */
+	public void setInscriptionBeginDate(Date inscriptionBeginDate) {
+		this.inscriptionBeginDate = inscriptionBeginDate;
+	}
+
+
+	/**
+	 * @return the inscriptionEndDate
+	 */
+	public Date getInscriptionEndDate() {
+		return inscriptionEndDate;
+	}
+
+
+	/**
+	 * @param inscriptionEndDate the inscriptionEndDate to set
+	 */
+	public void setInscriptionEndDate(Date inscriptionEndDate) {
+		this.inscriptionEndDate = inscriptionEndDate;
+	}
+
+
+	/**
+	 * @return the participations
+	 */
+	public Set<Participation> getParticipations() {
+		return participations;
+	}
+
+
+	/**
+	 * @param participations the participations to set
+	 */
+	public void setParticipations(Set<Participation> participations) {
+		this.participations = participations;
+	}
+
 }

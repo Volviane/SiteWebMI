@@ -10,11 +10,14 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,10 +27,10 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 
 @Entity
-@Table(name="DOCUMENT")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)//choix de la stratégie d'héritage une table pour la hierarchie
-@DiscriminatorColumn(name="TYPE_DOCUMENT",discriminatorType=DiscriminatorType.STRING)//Définit une colone discriminatoire dans la table pour différence les types des entités
-@DiscriminatorValue("DOCUMENT")
+@Table(name="DOCUMENTS")
+//@Inheritance(strategy=InheritanceType.SINGLE_TABLE)//choix de la stratégie d'héritage une table pour la hierarchie
+//@DiscriminatorColumn(name="TYPE_DOCUMENT",discriminatorType=DiscriminatorType.STRING)//Définit une colone discriminatoire dans la table pour différence les types des entités
+//@DiscriminatorValue("DOCUMENT")
 public class Document implements Serializable {
 	
 	@Id
@@ -41,16 +44,19 @@ public class Document implements Serializable {
 	@Column(name="RESUME_DOCUMENT")
 	private String documentAbstract;
 	
-	@Transient
-	private List<String> keywords = new ArrayList<String>();
+	@Column(name="DESCRIPTION_DOCUMENT")
+	private String documentDescription;
 	
-	@Column(name="EMPLACEMENT_DOCUMENT")
-	private String locationFile;
+	@Column(name="TYPE_DOCUMENT")
+	private String documentType;
+	
+	@Column(name="NOM_DOCUMENT")
+	private String documentName;
 
-	//@CreatedBy
-	//private User author;
+	@OneToOne(optional=false, fetch=FetchType.LAZY)
+	@JoinColumn(name="TEACHER_ID", unique=true)
+	private Teacher author;
 	
-	//@CreatedDate
 	@Temporal(TemporalType.DATE)
 	private Date createDate;
 	
@@ -59,21 +65,7 @@ public class Document implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @param documentTitle
-	 * @param documentAbstract
-	 * @param keywords
-	 * @param documentType
-	 * @param locationFile
-	 */
-	public Document(String documentTitle, String documentAbstract, List<String> keywords, String documentType,
-			String locationFile) {
-		super();
-		this.documentTitle = documentTitle;
-		this.documentAbstract = documentAbstract;
-		this.keywords = keywords;
-		this.locationFile = locationFile;
-	}
+	
 
 	/**
 	 * @return the idDocument
@@ -117,34 +109,4 @@ public class Document implements Serializable {
 		this.documentAbstract = documentAbstract;
 	}
 
-	/**
-	 * @return the keywords
-	 */
-	public List<String> getKeywords() {
-		return keywords;
 	}
-
-	/**
-	 * @param keywords the keywords to set
-	 */
-	public void setKeywords(List<String> keywords) {
-		this.keywords = keywords;
-	}
-
-
-	/**
-	 * @return the locationFile
-	 */
-	public String getLocationFile() {
-		return locationFile;
-	}
-
-	/**
-	 * @param locationFile the locationFile to set
-	 */
-	public void setLocationFile(String locationFile) {
-		this.locationFile = locationFile;
-	}
-
-	
-}
