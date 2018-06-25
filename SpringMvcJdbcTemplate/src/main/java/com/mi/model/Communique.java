@@ -44,7 +44,7 @@ public class Communique implements Serializable{
 	private Administrator admin;
 
 	public Communique() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**

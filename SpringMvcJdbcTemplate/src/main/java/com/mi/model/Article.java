@@ -42,7 +42,7 @@ public class Article implements Serializable{
 	 */
 	public Article() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 

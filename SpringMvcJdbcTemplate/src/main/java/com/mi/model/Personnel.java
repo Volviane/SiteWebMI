@@ -40,7 +40,7 @@ public class Personnel implements Serializable {
 	protected String sexe;
 
 	public Personnel() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**

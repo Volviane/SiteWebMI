@@ -20,7 +20,7 @@ public class Grade {
 	private Set<Teacher> teachers;
 	
 	public Grade() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**

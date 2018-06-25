@@ -43,7 +43,7 @@ public class Event implements Serializable{
 	private Set<Participation> participations = new HashSet<Participation>();
 
 	public Event() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 

@@ -45,7 +45,7 @@ public class Teacher extends InternetSufer implements Serializable{
 	
 	public Teacher() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**

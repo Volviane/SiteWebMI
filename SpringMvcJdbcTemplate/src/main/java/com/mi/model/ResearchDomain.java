@@ -26,7 +26,7 @@ public class ResearchDomain implements Serializable {
 	private String domainDescription;
 	
 	public ResearchDomain() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**

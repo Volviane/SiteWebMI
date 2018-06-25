@@ -41,7 +41,7 @@ public class Cycle implements Serializable{
 	}
 
 	public Cycle() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**

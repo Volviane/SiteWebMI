@@ -34,7 +34,7 @@ public class Course implements Serializable {
 	
 	
 	public Course() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 

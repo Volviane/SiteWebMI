@@ -35,7 +35,7 @@ public class Participation implements Serializable {
 	private Article studentArticle;
 	
 	public Participation() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**

@@ -30,7 +30,7 @@ public class Jury implements Serializable {
 	private Set<Teacher> members;
 	
 	public Jury() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**

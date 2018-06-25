@@ -62,7 +62,7 @@ public class Document implements Serializable {
 	
 	
 	public Document() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	

@@ -50,7 +50,7 @@ public class Dissertation implements Serializable {
 	private Student candidate;
 	
 	public Dissertation() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
