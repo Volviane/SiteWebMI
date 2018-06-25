@@ -20,7 +20,12 @@ public class Option implements Serializable{
 	@Column(name = "NOM_OPTION")
 	private String optionName;
 	
+
 	@ManyToOne(fetch = FetchType.EAGER)
+	@Column(name="DESCRIPTION_OPTION")
+	private String optionDescription;
+	
+	@ManyToOne
 	private Cycle cycle;
 
 	@OneToMany(mappedBy="option")
@@ -43,7 +48,7 @@ public class Option implements Serializable{
 
 	
 	public Option() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
@@ -96,6 +101,20 @@ public class Option implements Serializable{
 	 */
 	public void setCycle(Cycle cycle) {
 		this.cycle = cycle;
+	}
+
+	/**
+	 * @return the optionDescription
+	 */
+	public String getOptionDescription() {
+		return optionDescription;
+	}
+
+	/**
+	 * @param optionDescription the optionDescription to set
+	 */
+	public void setOptionDescription(String optionDescription) {
+		this.optionDescription = optionDescription;
 	}
 
 }

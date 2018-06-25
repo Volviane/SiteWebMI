@@ -1,106 +1,141 @@
 package com.mi.model;
 
-public class Article {
-	private int articleId;
-	private String articleTitle;
-	private String articleAbstract;
-	private String articleName;
-	private String articleKeywords;
-	private int userId;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity(name="Article")
+@Table(name="ARTICLES")
+public class Article implements Serializable{
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ID_ARTICLE")
+	private int idArticle;
+	
+	@Column(name="TITRE_ARTICLE")
+	private String articleTitle;
+	
+	@Column(name="RESUME_ARTICLE")
+	private String articleAbstract;
+	
+	@Column(name="NOM_ARTICLE")
+	private String articleName;
+
+	@ManyToOne
+	private Student author;
+	
+	@OneToOne(mappedBy="studentArticle")
+	private Participation participation;
+	
+	
+	/**
+	 * 
+	 */
 	public Article() {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	
-
-	
-
-
-
-	public Article(int articleId, String articleTitle, String articleAbstract, String articleName,
-			String articleKeywords, int userId) {
-		super();
-		this.articleId = articleId;
-		this.articleTitle = articleTitle;
-		this.articleAbstract = articleAbstract;
-		this.articleName = articleName;
-		this.articleKeywords = articleKeywords;
-		this.userId = userId;
+		
 	}
 
 
 
-	public int getUserId() {
-		return userId;
+	/**
+	 * @return the idArticle
+	 */
+	public int getIdArticle() {
+		return idArticle;
 	}
 
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+
+	/**
+	 * @param idArticle the idArticle to set
+	 */
+	public void setIdArticle(int idArticle) {
+		this.idArticle = idArticle;
 	}
 
 
 
-
-	public int getArticleId() {
-		return articleId;
-	}
-
-	public void setArticleId(int articleId) {
-		this.articleId = articleId;
-	}
-
+	/**
+	 * @return the articleTitle
+	 */
 	public String getArticleTitle() {
 		return articleTitle;
 	}
 
+
+
+	/**
+	 * @param articleTitle the articleTitle to set
+	 */
 	public void setArticleTitle(String articleTitle) {
 		this.articleTitle = articleTitle;
 	}
 
+
+
+	/**
+	 * @return the articleAbstract
+	 */
 	public String getArticleAbstract() {
 		return articleAbstract;
 	}
 
+
+
+	/**
+	 * @param articleAbstract the articleAbstract to set
+	 */
 	public void setArticleAbstract(String articleAbstract) {
 		this.articleAbstract = articleAbstract;
 	}
 
+
+
+	/**
+	 * @return the articleName
+	 */
 	public String getArticleName() {
 		return articleName;
 	}
 
+
+
+	/**
+	 * @param articleName the articleName to set
+	 */
 	public void setArticleName(String articleName) {
 		this.articleName = articleName;
 	}
 
 
 
-	public String getArticleKeywords() {
-		return articleKeywords;
+	/**
+	 * @return the author
+	 */
+	public Student getAuthor() {
+		return author;
 	}
 
 
 
-	public void setArticleKeywords(String articleKeywords) {
-		this.articleKeywords = articleKeywords;
+	/**
+	 * @param author the author to set
+	 */
+	public void setAuthor(Student author) {
+		this.author = author;
 	}
-
-
-
-	@Override
-	public String toString() {
-		return "Id de l'Article:" + articleId + "\n Titre de l'article:" + articleTitle + "\n"
-				+ " R�sum�="+ articleAbstract + "\n Code =" + articleName + "\n"
-						+ " Mots cl�s:" + articleKeywords+"\n Utilisateur: "+userId;
-	}
-
 	
-	
-	
-	
+		
 	
 	
 	

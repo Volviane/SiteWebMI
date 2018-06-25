@@ -9,3 +9,4 @@ public interface CycleRepository extends JpaRepository<Cycle, String>{
 	public Cycle findByCycleName(String cycleName);
 
 }
+

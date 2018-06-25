@@ -7,8 +7,8 @@ import java.util.Set;
 import javax.persistence.*;
 //import javax.validation.constraints.Email;
 
-@Entity
-@Table(name="ENSEIGNANT")
+//@Entity
+//@Table(name="ENSEIGNANT")
 public class Teachers extends InternetSufer implements Serializable{
 	
 	@Id

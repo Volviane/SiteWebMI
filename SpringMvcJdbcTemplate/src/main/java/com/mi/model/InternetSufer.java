@@ -10,7 +10,9 @@ import javax.persistence.*;
 
 @MappedSuperclass
 public abstract class InternetSufer implements Serializable{
-		
+	
+
+	
 	@Column(name="NOM")
 	protected String lastName;
 	

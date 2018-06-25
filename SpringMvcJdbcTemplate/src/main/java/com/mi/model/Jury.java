@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@Table(name="JURY")
+@Table(name="JURYS")
 public class Jury implements Serializable {
 	
 	@Id
@@ -30,7 +30,7 @@ public class Jury implements Serializable {
 	private Set<Teacher> members;
 	
 	public Jury() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**

@@ -18,12 +18,14 @@ public class Level implements Serializable{
 	@Column(name="NOM_NIVEAU")
 	private String levelName;
 	
+	@Column(name="DESCRIPTION_NIVEAU")
+	private String levelDescription;
+	
 	@ManyToOne //Plusieurs niveaux appartiennent à une option
 	@JoinColumn(name="ID_OPTION")
 	private Option option;
 	
 	@OneToMany(mappedBy="level")
-	//@JoinColumn(name="ID_NIVEAU")
 	private Set<Course> courses= new HashSet<Course>();
 	
 	@OneToMany(mappedBy="juryLevel")
@@ -67,7 +69,7 @@ public class Level implements Serializable{
 
 
 	public Level() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
@@ -97,6 +99,34 @@ public class Level implements Serializable{
 	 */
 	public void setOption(Option option) {
 		this.option = option;
+	}
+
+	/**
+	 * @return the levelDescription
+	 */
+	public String getLevelDescription() {
+		return levelDescription;
+	}
+
+	/**
+	 * @param levelDescription the levelDescription to set
+	 */
+	public void setLevelDescription(String levelDescription) {
+		this.levelDescription = levelDescription;
+	}
+
+	/**
+	 * @return the juries
+	 */
+	public Set<Jury> getJuries() {
+		return juries;
+	}
+
+	/**
+	 * @param juries the juries to set
+	 */
+	public void setJuries(Set<Jury> juries) {
+		this.juries = juries;
 	}
 	
 }

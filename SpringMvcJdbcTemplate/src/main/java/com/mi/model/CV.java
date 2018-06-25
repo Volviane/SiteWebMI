@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Embeddable
 public class CV implements Serializable {
 
+	@Column(name="DOMAINE_COMPETENCE")
 	private String competenceDomain;
 	
 	public CV() {
