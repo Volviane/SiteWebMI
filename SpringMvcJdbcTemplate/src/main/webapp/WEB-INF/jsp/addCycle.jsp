@@ -75,6 +75,6 @@
     <!-- CONTENT-WRAPPER SECTION END-->
   <%@include file="includeFile/footerAdmin.jsp"%>
    
-    <script src="assets/js/bootstrap.js"></script>
+ 	<script type="text/javascript"src="${pageContext.request.contextPath}/resources/css/js/jquery-3.3.1"></script>
 </body>
 </html>
