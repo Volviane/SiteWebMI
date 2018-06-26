@@ -30,12 +30,12 @@
             </li>
             <li><a href="#item2" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Listing </a>
               <ul id="item2" class="collapse list-unstyled ">
-                <li><a href="${pageContext.request.contextPath}/addRole">Liste des roles</a></li>
-                <li><a href="${pageContext.request.contextPath}/addCycle">Liste des cycles</a></li>
-                <li><a href="${pageContext.request.contextPath}/addOption">Liste des options</a></li>
-                <li><a href="${pageContext.request.contextPath}/addLevel">Liste des niveaus </a></li>
-                <li><a href="${pageContext.request.contextPath}/addCourse">Liste des cours </a></li>
-                <li><a href="${pageContext.request.contextPath}/addGrade">Liste des grades </a></li>
+                <li><a href="${pageContext.request.contextPath}/roleList">Liste des roles</a></li>
+                <li><a href="${pageContext.request.contextPath}/cycleList">Liste des cycles</a></li>
+                <li><a href="${pageContext.request.contextPath}/optionList">Liste des options</a></li>
+                <li><a href="${pageContext.request.contextPath}/levelList">Liste des niveaux </a></li>
+                <li><a href="${pageContext.request.contextPath}/coursesList">Liste des cours </a></li>
+                <li><a href="${pageContext.request.contextPath}/gradeList">Liste des grades </a></li>
               </ul>
             </li>
             <li><a href="#item3" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Mise à jour </a>

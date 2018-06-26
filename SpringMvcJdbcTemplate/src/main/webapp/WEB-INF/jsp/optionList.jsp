@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ajouter un role</title>
+    <title>lister options</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -42,19 +42,21 @@
      <%@include file="includeFile/navAdmin.jsp"%>
       <!-- Counts Section -->
       <section class="dashboard-counts padding">
-         <h4 class="page-head-line">Ajouter un role</strong></h4>
+         <h4 class="page-head-line">Liste des options</strong></h4>
       </section>
       <!-- Header Section-->
       <section class="dashboard-header padding">
          <div class="row">
-                <div class="col-md-6">
-		             <form action="<c:url value='addRole'/>" method="post">
-                    
-                      <label>role</label>
-                        <input type="text" class="form-control" name="nameRole" />
-                        <hr />
-                      <input type="submit" value="Enregistrer" class="btn btn-info">
-                </form>
+                <div class="col-md-6 table-responsive">
+		             <table class="table table-bordered table-striped table-condensed">
+		             	<c:forEach items="${options}" var="i">
+		             	  <tr class="active">
+							<td><c:out value="${i}"></c:out></td>
+							<td><c:out value="${i.optionName }"></c:out></td>
+						   </tr>
+						 </c:forEach>
+		             </table>
+
                 </div>
            </div>
       </section>
