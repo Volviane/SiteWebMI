@@ -328,9 +328,10 @@ public class AdministratorController/* implements UserDetailsService */{
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		//String userDetails = SecurityContextHolder.getContext().getAuthentication().getName();
 		if(SecurityContextHolder.getContext().getAuthentication()==null){
+			System.out.println("suis le if");
 			System.out.println(auth);
 		}else{
-		System.out.println("je suis en session Saphir " + SecurityContextHolder.getContext().getAuthentication().getName());
+		System.out.println("je suis en session Saphir et mon nom est  " + SecurityContextHolder.getContext().getAuthentication().getName());
 		}
 		/*
 		 * if (userDetails instanceof UserDetails) { return ((UserDetails)
@@ -830,6 +831,8 @@ public class AdministratorController/* implements UserDetailsService */{
 		String communiqueTitle= req.getParameter("newsTitle");
 		String communiqueContent= req.getParameter("newsContent");
 		String publicationDate= req.getParameter("publicationDate");
+		String adminSession= SecurityContextHolder.getContext().getAuthentication().getName();
+		Administrator admin = administratorRepository.findByLogin(adminSession);
 		
 		System.out.println(communiqueTitle);
 		System.out.println(communiqueContent);
@@ -843,6 +846,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		communique.setCommuniqueTitle(communiqueTitle);
 		communique.setCommuniqueContent(communiqueContent);
 		communique.setPublicationDate(publicateDate);
+		communique.setAdmin(admin);
 		
 		 
 		 communiqueRepository.save(communique);
@@ -925,9 +929,10 @@ public class AdministratorController/* implements UserDetailsService */{
 		
 			//String userDetails = SecurityContextHolder.getContext().getAuthentication().getName();
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			if (auth != null) {
+			if (auth == null) {
+				System.out.println("deconnectez moi "+SecurityContextHolder.getContext().getAuthentication().getName());
 				new SecurityContextLogoutHandler().logout(request, response, auth);
-				
+				System.out.println("je ne suis plus connecte "+SecurityContextHolder.getContext().getAuthentication().getName());
 				
 			}
 			return "connectionAdministrator";
