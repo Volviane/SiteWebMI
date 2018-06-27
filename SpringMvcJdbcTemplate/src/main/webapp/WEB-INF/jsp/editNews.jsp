@@ -1,9 +1,18 @@
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="com.mi.model.User"%>
+<%@ page import="com.mi.model.Student"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>éditer un communiqué</title>
+    <title>Ã©diter un communiquÃ©</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -26,6 +35,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/css/assets/css/img/favicon.ico">
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/style.blue.css" id="theme-stylesheet">
+    
      <!-- CSS-->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styleAdmin.css" type="text/css" media="all">
     
@@ -42,19 +53,19 @@
      <%@include file="includeFile/navAdmin.jsp"%>
       <!-- Counts Section -->
       <section class="dashboard-counts padding">
-         <h4 class="page-head-line">éditer un communiqué</strong></h4>
+         <h4 class="page-head-line">Ã©diter un communiquÃ©</strong></h4>
       </section>
       <!-- Header Section-->
       <section class="dashboard-header padding">
          <div class="row">
                 <div class="col-md-6">
 		              <form action="<c:url value='editNews'/>" method="post">
-                    <label>titre du communiqué</label>
+                    <label>titre du communiquÃ©</label>
                         <input type="text" class="form-control" name="newsTitle"  />
 
                           <label>date de publication</label>
                         <input type="date" class="form-control" name="publicationDate"  />
-                    <label>resumé du communiqué</label>
+                    <label>resumÃ© du communiquÃ©</label>
                       <textarea rows="5" cols="5" class="form-control" name="newsContent"></textarea>
                         <hr />
                         <input type="submit" value="Publier">

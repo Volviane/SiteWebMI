@@ -26,6 +26,7 @@
                 <li><a href="${pageContext.request.contextPath}/createTeacher">Nouveau enseignant </a></li>
                 <li><a href="${pageContext.request.contextPath}/editNews">Nouveau communiqué </a></li>
                 <li><a href="${pageContext.request.contextPath}/createEvent">Nouvel évènement </a></li>
+                <li><a href="${pageContext.request.contextPath}/createJury">Nouveau jury </a></li>
               </ul>
             </li>
             <li><a href="#item2" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Listing </a>
@@ -34,8 +35,9 @@
                 <li><a href="${pageContext.request.contextPath}/cycleList">Liste des cycles</a></li>
                 <li><a href="${pageContext.request.contextPath}/optionList">Liste des options</a></li>
                 <li><a href="${pageContext.request.contextPath}/levelList">Liste des niveaux </a></li>
-                <li><a href="${pageContext.request.contextPath}/coursesList">Liste des cours </a></li>
+                <li><a href="${pageContext.request.contextPath}/courseList">Liste des cours </a></li>
                 <li><a href="${pageContext.request.contextPath}/gradeList">Liste des grades </a></li>
+                 <li><a href="${pageContext.request.contextPath}/teacherList">Liste des enseignants </a></li>
               </ul>
             </li>
             <li><a href="#item3" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Mise à jour </a>

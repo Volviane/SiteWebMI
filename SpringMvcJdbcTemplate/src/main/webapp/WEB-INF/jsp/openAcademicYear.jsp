@@ -1,9 +1,18 @@
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="com.mi.model.User"%>
+<%@ page import="com.mi.model.Student"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ouvrir une année académique</title>
+    <title>ouvrir une annÃ©e acadÃ©mique</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -26,6 +35,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/css/assets/css/img/favicon.ico">
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/style.blue.css" id="theme-stylesheet">
+    
      <!-- CSS-->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styleAdmin.css" type="text/css" media="all">
     
@@ -42,34 +53,15 @@
      <%@include file="includeFile/navAdmin.jsp"%>
       <!-- Counts Section -->
       <section class="dashboard-counts padding">
-          <h4 class="page-head-line">ouvrir une année académique</strong></h4>
+          <h4 class="page-head-line">ouvrir une annÃ©e acadÃ©mique</strong></h4>
       </section>
       <!-- Header Section-->
       <section class="dashboard-header padding">
          <div class="row">
               <div class="col-md-6">
 		       <form action="<c:url value='openAcademicYear'/>" method="post">
-                    <label>année</label>
+                    <label>annÃ©e</label>
                         <input type="text" class="form-control" name="academicYear"  />
-                    <label>niveau</label>
-                    
-                    	 <select class="form-control" name="juryLevelName">
-                     			<c:forEach items="${levels}" var="i">
-                     				<option value="${i.levelName }" ><c:out value="${i.levelName }"></c:out></option>
-                     			</c:forEach>
-                     	 </select>
-                    <label>coordonnateur</label>
-                    
-                    	 <select class="form-control" name="cordo">
-                     			<option> </option>
-                     	 </select>
-                    <label>président du jury </label>
-                    
-                    	 <select class="form-control" name="juryPresidentName">
-                     			<c:forEach items="${teachers}" var="i">
-                     				<option value="${i.lastName }" ><c:out value="${i.lastName }"></c:out></option>
-                     			</c:forEach>
-                     	 </select>
                         <hr />
                   <input type="submit" value="ouvrir" class="btn btn-info">
                  </form>

@@ -12,7 +12,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Créer un enseignant</title>
+    <title>CONNEXION ADMIN</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -35,8 +35,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/css/assets/css/img/favicon.ico">
-     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/style.blue.css" id="theme-stylesheet">
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/style.blue.css" id="theme-stylesheet">
      <!-- CSS-->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styleAdmin.css" type="text/css" media="all">
     
@@ -45,41 +44,29 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
   <body>
-    <!-- Side Navbar -->
-    <%@include file="includeFile/sideBarAdmin.jsp"%>
-    
-    <div class="page">
-      <!-- navbar-->
-     <%@include file="includeFile/navAdmin.jsp"%>
-      <!-- Counts Section -->
-      <section class="dashboard-counts padding">
-          <h4 class="page-head-line">Créer un enseignant</strong></h4>
-      </section>
-      <!-- Header Section-->
-      <section class="dashboard-header padding">
-         <div class="row">
-                <div class="col-md-6">
-		             <form action="<c:url value='createTeacher'/>" method="post">
-                    <label>nom</label>
-                        <input type="text" class="form-control" name="firstName"  />
-                     <label>prénom</label>
-                        <input type="text" class="form-control" name="lastName"  />
-                     <label>email</label>
-                        <input type="email" class="form-control" name="emailAdress"  />
-                     <label>grade</label>
-                        <select class="form-control" name="gradeName">
-                     			<c:forEach items="${grades}" var="i">
-                     				<option value="${i.gradeName }" ><c:out value="${i.gradeName }"></c:out></option>
-                     			</c:forEach>
-                       </select>
-                        <hr />
-					<input type="submit" value="créer" class="btn btn-info">
-               </form>
-                </div>
-           </div>
-      </section>
-      
-    	<%@include file="includeFile/footerAdmin.jsp"%>
+      <div class="page login-page">
+      <div class="container">
+        <div class="form-outer text-center d-flex align-items-center">
+          <div class="form-inner">
+            <div class="logo text-uppercase"><strong class="text-primary">CONNEXION ADMIN</strong></div>
+             <form action="<c:url value='connectionAdministrator'/>" method="post" class="text-left form-validate">
+              <div class="form-group-material">
+                <input id="login-username" type="text"  name="login" required data-msg="veuillez entrer votre login" class="input-material">
+                <label for="login-username" class="label-material">login</label>
+              </div>
+              <div class="form-group-material">
+                <input id="login-password" type="password"  name="password"  required data-msg="veuillez entrer votre mot de passe" class="input-material">
+                <label for="login-password" class="label-material">Password</label>
+              </div>
+              <div class="form-group text-center">
+                <input type="submit" value="se connecter" class="btn btn-info">
+                <!-- This should be submit button but I replaced it with <a> for demo purposes-->
+              </div>
+            </form>
+            <a href="#" class="forgot-pass">Mot de passe oublié?</a><small>pas encore de compte </small><a href="${pageContext.request.contextPath}/registrationAdministrator" class="signup">créer compte</a>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- JavaScript files-->
     <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery/jquery.min.js"></script>

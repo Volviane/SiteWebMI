@@ -170,7 +170,7 @@ section header {
 * ==========================================================
 */
 nav.navbar {
-  background: #393836;
+  background:#2f71a6;
   padding: .8rem 0;
   /* Navbar Brand --------- */
   /*  Dropdowns ------------ */
@@ -297,7 +297,7 @@ nav.navbar a.menu-btn {
   width: 40px;
   height: 40px;
   line-height: 40px;
-  background: #292929;
+  background: #2F718B;
   color: #fff;
   text-align: center;
   padding: 0 !important;
@@ -348,7 +348,7 @@ nav.navbar a.menu-btn:hover {
   height: 100%;
   width: 200px;
   text-align: left;
-  background: #393836;
+  background: #2f71a6;
   color: #fff;
   z-index: 999;
   overflow-y: auto;
@@ -446,7 +446,7 @@ nav.navbar a.menu-btn:hover {
 }
 
 .side-navbar .sidenav-header {
-  background: #292929;
+  background: #2F718B;
   padding: 14px;
   margin-bottom: 10px;
 }
@@ -1129,13 +1129,13 @@ footer.main-footer {
   position: absolute;
   width: 100%;
   bottom: 0;
-  background: #222;
+  background:#2F718B;
   padding: 10px 0;
 }
 
 footer.main-footer p {
   font-size: 0.7em;
-  color: #777;
+  color: #fff;
   margin: 0;
 }
 
