@@ -14,8 +14,9 @@ public class Jury implements Serializable {
 	@Column(name="ID_JURY")
 	private Long idJury;
 	
-	@Column(name="ANNEE_ACADEMIQUE")
-	private String academicYear;
+	@ManyToOne				
+	@JoinColumn(name="ANNEE_ACADEMIQUE")
+	private AcademicYear academicYear;
 	
 	@ManyToOne					// Plusieurs Juris peuvent avoir le même président
 	@JoinColumn(name="PRESIDENT_JURY")
@@ -38,7 +39,7 @@ public class Jury implements Serializable {
 	 * @param juryPresident
 	 * @param juryLevel
 	 */
-	public Jury(String academicYear, Teacher juryPresident, Level juryLevel) {
+	public Jury(AcademicYear academicYear, Teacher juryPresident, Level juryLevel) {
 		super();
 		this.academicYear = academicYear;
 		this.juryPresident = juryPresident;
@@ -62,14 +63,14 @@ public class Jury implements Serializable {
 	/**
 	 * @return the academicYear
 	 */
-	public String getAcademicYear() {
+	public AcademicYear getAcademicYear() {
 		return academicYear;
 	}
 
 	/**
 	 * @param academicYear the academicYear to set
 	 */
-	public void setAcademicYear(String academicYear) {
+	public void setAcademicYear(AcademicYear academicYear) {
 		this.academicYear = academicYear;
 	}
 

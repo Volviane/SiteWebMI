@@ -33,8 +33,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -45,6 +43,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mi.model.AcademicYear;
 import com.mi.model.Administrator;
 import com.mi.model.Communique;
 import com.mi.model.Course;
@@ -57,6 +56,7 @@ import com.mi.model.Option;
 import com.mi.model.Role;
 import com.mi.model.Teacher;
 import com.mi.model.Teachers;
+import com.mi.repositories.AcademicYearRepository;
 import com.mi.repositories.AdministratorRepository;
 import com.mi.repositories.CommuniqueRepository;
 import com.mi.repositories.CourseRepository;
@@ -91,6 +91,10 @@ public class AdministratorController/* implements UserDetailsService */{
 	@Autowired
 	CycleRepository cycleRepository;
 
+	@Autowired
+	AcademicYearRepository academicYearRepository;
+
+	
 	@Autowired
 	LevelRepository levelRepository;
 
@@ -195,11 +199,18 @@ public class AdministratorController/* implements UserDetailsService */{
 			//role.setName(roleName);
 			roles.setRoleName(roleName);
 			//roles.setAdmins(new HashSet<>(administratorRepository.findAll()));
-			roleRepository.save(roles);
-			System.out.println("done");
+			try {
+				roleRepository.save(roles);
+				System.out.println("done");
+				model.addAttribute("roles", roles);
+				req.setAttribute("role", roles);
+			} catch (Exception e) {
+				model.addAttribute("error", "echec d'enregistrement");
+				// TODO: handle exception
+			}
+			
 		}
-		model.addAttribute("roles", roles);
-		req.setAttribute("role", roles);
+		
 		return "addRole";
 	}
 	//Liste role method
@@ -244,11 +255,19 @@ public class AdministratorController/* implements UserDetailsService */{
 		//Modification de setRole(idRole) en setRole(role)
 		administrator.getRoles().add(role);
 		//administratorRepository.deleteAll();
-		administratorRepository.save(administrator);
+		
+		try {
+			administratorRepository.save(administrator);
+			System.out.println("done");
+			model.addAttribute("administrators", "succesfully to create administrator wiht parameter :: " + login + " and " + password);
+			req.setAttribute("administrators", "succesfully to create administrator wiht parameter :: " + login + " and " + password);
 
-		model.addAttribute("succes", "succesfully to create administrator wiht parameter :: " + login + " and " + password);
-		req.setAttribute("succes", "succesfully to create administrator wiht parameter :: " + login + " and " + password);
+		} catch (Exception e) {
+			model.addAttribute("error", "echec d'enregistrement");
+			// TODO: handle exception
+		}
 
+		
 		return "registrationAdministrator";
 	}
 
@@ -375,10 +394,16 @@ public class AdministratorController/* implements UserDetailsService */{
 		cycle.setCycleName(cycleName);
 		//cycleRepository.deleteAll();
 		//cycleService.saveCycle(cycle);
-		cycleRepository.save(cycle);
-		model.addAttribute("success", "succesfully to create cylcle:: " + cycleName);
-		req.setAttribute("success", "succesfully to create cylcle:: " + cycleName);
-		System.out.println("done");
+		try {
+			cycleRepository.save(cycle);
+			model.addAttribute("cycles", "succesfully to create cylcle:: " + cycleName);
+			req.setAttribute("cycles", "succesfully to create cylcle:: " + cycleName);
+			System.out.println("done");
+		} catch (Exception e) {
+			model.addAttribute("error", "echec d'enregistrement ");
+			// TODO: handle exception
+		}
+		
 		return "addCycle";
 	}
 
@@ -390,7 +415,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		List<Cycle> listOfCycle = cycleRepository.findAll();
 
 		if (listOfCycle.isEmpty()) {
-			model.addAttribute("error", error);
+			model.addAttribute("error", "liste vide");
 			req.setAttribute("error", error);
 		}
 		model.addAttribute("cycles", listOfCycle);
@@ -408,7 +433,7 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		Set<Option> listOfOption=cycle.getOptions();;
 		if (listOfOption.isEmpty()) {
-			model.addAttribute("error", error);
+			model.addAttribute("error", "liste vide");
 		}
 		model.addAttribute("cycleOption", listOfOption);
 		req.setAttribute("cycleOption", listOfOption);
@@ -446,11 +471,18 @@ public class AdministratorController/* implements UserDetailsService */{
 		Option option = new Option();
 		option.setOptionName(optionName);
 		option.setCycle(cycle);
-		optionRepository.save(option);
-		System.out.println("done");
-		model.addAttribute("option", "succesfully to create option :: "+ optionName);
-		req.setAttribute("option", "succesfully to create option :: "+ optionName);
+		try {
+			optionRepository.save(option);
+			System.out.println("done");
+			model.addAttribute("options", "succesfully to create option :: "+ optionName);
+			req.setAttribute("options", "succesfully to create option :: "+ optionName);
 
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("error", "echec d'eregistrement ");
+		}
+		
 		return "addOption";
 	}
 
@@ -462,7 +494,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		List<Option> listOfOption = optionRepository.findAll();
 		List<String> finalList = new ArrayList<String>();
 		if (listOfOption.isEmpty()) {
-			model.addAttribute("error", error);
+			model.addAttribute("error", "liste vide");
 		}
 		model.addAttribute("options", listOfOption);
 		req.setAttribute("options",finalList);
@@ -502,10 +534,17 @@ public class AdministratorController/* implements UserDetailsService */{
 		level.setLevelName(optionName+levelName);
 		level.setOption(option);
 		//levelRepository.deleteAll();
-		levelRepository.save(level);
-		System.out.println("done");
-		model.addAttribute("levels", level);
-		req.setAttribute("success", "succesfully to create level:: " +levelName);
+		try {
+			levelRepository.save(level);
+			System.out.println("done");
+			model.addAttribute("levels", "succesfully to create level:: " +levelName);
+			req.setAttribute("success", "succesfully to create level:: " +levelName);
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("error", "echec d'enregistremnt");
+			
+		}
+		
 		return "addLevel";
 	}
 
@@ -518,7 +557,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		List<String> finalList = new ArrayList<String>();
 
 		if (listOfLevel.isEmpty()) {
-			model.addAttribute("error", error);
+			model.addAttribute("error", "liste vide");
 		}
 		model.addAttribute("levels", listOfLevel);
 		req.setAttribute("levels", listOfLevel);
@@ -559,10 +598,16 @@ public class AdministratorController/* implements UserDetailsService */{
 		course.setCourseTitle(courseName);
 		course.setCourseCode(courseCode);
 		course.setSemester(semester);
-		courseRepository.save(course);
-		System.out.println("~~~~done~~~~");
-		model.addAttribute("success", "succesfully to create course :: " + courseName);
-		req.setAttribute("success", "succesfully to create course :: " + courseName);
+		try {
+			courseRepository.save(course);
+			System.out.println("~~~~done~~~~");
+			model.addAttribute("courses", "succesfully to create course :: " + courseName);
+			req.setAttribute("courses", "succesfully to create course :: " + courseName);
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("error", "echec d'enregistrement");
+		}
+		
 
 		return "addCourse";
 	}
@@ -591,10 +636,10 @@ public class AdministratorController/* implements UserDetailsService */{
 		Level level =levelRepository.findByLevelName(levelName);
 		Set<Course> listOfCourse= level.getCourses();
 		if (listOfCourse.isEmpty()) {
-			model.addAttribute("error", error);
+			model.addAttribute("error", "liste vide");
 		}
-		model.addAttribute("cycleOption", listOfCourse);
-		req.setAttribute("cycleOption", listOfCourse);
+		model.addAttribute("cycleOptions", listOfCourse);
+		req.setAttribute("cycleOptions", listOfCourse);
 
 		return "coursesList";
 	}
@@ -616,11 +661,19 @@ public class AdministratorController/* implements UserDetailsService */{
 		Grade grade =new Grade();
 
 		grade.setGradeName(gradeName);
+		
+		try {
+			gradeRepository.save(grade);
+			System.out.println("~~~~done~~~");
+			model.addAttribute("grades", "succesfully to create grade:: " +gradeName);
+			req.setAttribute("grades", "succesfully to create grade:: " +gradeName);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("error", "echec d'enregistrement");
+		}
 
-		gradeRepository.save(grade);
-		System.out.println("~~~~done~~~");
-		model.addAttribute("success", "succesfully to create grade:: " +gradeName);
-		req.setAttribute("success", "succesfully to create grade:: " +gradeName);
+		
 
 		return "addGrade";
 	}
@@ -635,7 +688,7 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		if (listOfGrade.isEmpty()) {
 
-			model.addAttribute("error", error);
+			model.addAttribute("error", "liste vide");
 		}
 
 		model.addAttribute("grades", listOfGrade);
@@ -654,7 +707,7 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		if (listOfGrade.isEmpty()) {
 
-			model.addAttribute("error", error);
+			model.addAttribute("error", "liste vide");
 		}
 
 		model.addAttribute("grades", listOfGrade);
@@ -714,16 +767,22 @@ public class AdministratorController/* implements UserDetailsService */{
 		msg.setSubject(subject1);
 		msg.setText(content1);
 		msg.setSentDate(new Date());
+try {
+	teachersRepository.save(teacher);
+	Transport transport = session.getTransport("smtp");
+	transport.connect("smtp.gmail.com", "saphirmfogo@gmail.com", "best1234");
+	transport.sendMessage(msg, msg.getAllRecipients());
+	transport.close();
+	System.out.println("Sent message successfully....");
+	model.addAttribute("teachers", "succesfully to create teacher wiht parameter :: " + login + " and " + password);
+	req.setAttribute("teacherSucces", "succesfully to create teacher wiht parameter :: " + login + " and " + password);
 
-		teachersRepository.save(teacher);
-		Transport transport = session.getTransport("smtp");
-		transport.connect("smtp.gmail.com", "saphirmfogo@gmail.com", "best1234");
-		transport.sendMessage(msg, msg.getAllRecipients());
-		transport.close();
-		System.out.println("Sent message successfully....");
-		model.addAttribute("teacherSucces", "succesfully to create teacher wiht parameter :: " + login + " and " + password);
-		req.setAttribute("teacherSucces", "succesfully to create teacher wiht parameter :: " + login + " and " + password);
-
+} catch (Exception e) {
+	// TODO: handle exception
+	model.addAttribute("error", "echec d'enregistrment");
+	
+}
+		
 		return "createTeacher";
 	}
 	@RequestMapping(value = { "/teacherList" }, method = RequestMethod.GET)
@@ -733,7 +792,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		List<Teacher> listOfTeacher =teachersRepository.findAll();
 
 		if (listOfTeacher.isEmpty()) {
-			model.addAttribute("error", error);
+			model.addAttribute("error", "liste vide");
 		}
 		model.addAttribute("teachers", listOfTeacher);
 		req.setAttribute("teacher", listOfTeacher);
@@ -743,7 +802,7 @@ public class AdministratorController/* implements UserDetailsService */{
 
 
 
-	//enregisrtre des jurys pour l'ouverture d'une annee academique 
+	/*//enregisrtre des jurys pour l'ouverture d'une annee academique 
 	@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.GET)
 	public String openAcademicYearGet(Model model,HttpServletRequest req) {
 		System.out.println("openAcademicYear GET");
@@ -759,9 +818,9 @@ public class AdministratorController/* implements UserDetailsService */{
 		model.addAttribute("teachers", listOfTeacher);
 
 		return "openAcademicYear";
-	}
+	}*/
 
-	@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.POST)
+	/*@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.POST)
 	public String openAcademicYearPost(Model model, HttpServletRequest req) {
 		System.out.println("openAcademicYear Post");
 
@@ -783,29 +842,29 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		return "openAcademicYear";
 	}
-
+*/
 
 
 	//autre version de l'ouverture de l'annee academique
 
-	/*	@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.GET)
+		@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.GET)
 	public String openAcademicYearGet(Model model,HttpServletRequest req) {
 		System.out.println("openAcademicYear GET");
 
 
 		return "openAcademicYear";
-	}
 
+		}
 
-/*	@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.POST)
 	public String openAcademicYearPost(Model model,HttpServletRequest req) {
 		System.out.println("openAcademicYear Post");
 		String academicYear= req.getParameter("academicYear");
 
-		AcademicYear academiqueYears = new AcademicYear();
+		AcademicYear academicYears = new AcademicYear();
 
 		academicYears.setAcademicYear(academicYear);
-		academicYearRepository.save(academicYears)
+		academicYearRepository.save(academicYears);
 
 		return "openAcademicYear";
 	}
@@ -836,18 +895,25 @@ public class AdministratorController/* implements UserDetailsService */{
 		String juryLevelName= req.getParameter("juryLevelName");
 
 		Teacher juryPresident = teachersRepository.findByLastName(juryPresidentName);
+		AcademicYear academicYears = academicYearRepository.findByAcademicYear(academicYear);
 		Level juryLevel = levelRepository.findByLevelName(juryLevelName);
 		 Jury jury = new Jury();
-		 jury.setAcademicYear(academicYear);
+		 jury.setAcademicYear(academicYears);
 		 jury.setJuryLevel(juryLevel);
 		 jury.setJuryPresident(juryPresident);
-
-		 juryRepository.save(jury);
-		 req.setAttribute("jury", "jury cree avec succes");
+		 try {
+			 juryRepository.save(jury);
+			 model.addAttribute("jurys", "jury cree avec succes");
+			 req.setAttribute("jury", "jury cree avec succes");
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("error", "echec d'enregistrement");
+		}
+		
 
 
 		return "createJury";
-	}*/
+	}
 
 	//editer un communique
 	@RequestMapping(value = { "/editNews" }, method = RequestMethod.GET)
@@ -882,11 +948,16 @@ public class AdministratorController/* implements UserDetailsService */{
 		communique.setPublicationDate(publicateDate);
 		communique.setAdmin(admin);
 
+try {
+	communiqueRepository.save(communique);
+	req.setAttribute("communique", "communiquee cree avec succes");
+	model.addAttribute("communiques", "communiquee cree avec succes");
 
-		communiqueRepository.save(communique);
-		req.setAttribute("communique", "communiquee cree avec succes");
-		model.addAttribute("communique", "communiquee cree avec succes");
-
+} catch (Exception e) {
+	// TODO: handle exception
+	model.addAttribute("error", "echec d'enregistrement");
+}
+		
 		return "editNews";
 	}
 
@@ -897,7 +968,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		List<Communique> listOfCommunique = communiqueRepository.findAll();
 
 		if (listOfCommunique.isEmpty() ) {
-			model.addAttribute("error", error);
+			model.addAttribute("error", "liste vide");
 		}
 		model.addAttribute("communiques", listOfCommunique);
 
@@ -934,9 +1005,15 @@ public class AdministratorController/* implements UserDetailsService */{
 		event.setEventEndDate(eventEndDate);
 		event.setEventDescription(eventDescription);
 		event.setEventTitle(eventTitle);
-
-		eventRepository.save(event);
-		req.setAttribute("event", "Evenement cree avec succes");
+		try {
+			eventRepository.save(event);
+			model.addAttribute("events", "Evenement cree avec succes");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("error", "echec d'enregistrement");
+		}
+		
 
 		return "createEvent";
 	}
