@@ -28,6 +28,9 @@ public class Role implements Serializable{
 	@ManyToMany(mappedBy = "roles")
 	private Set<Administrator> admins = new HashSet<Administrator>();
 	
+	@ManyToMany(mappedBy = "roles")
+	private Set<Teacher> teacher = new HashSet<Teacher>();
+	
 	public Role() {
 		// TODO Auto-generated constructor stub
 	}
@@ -72,6 +75,14 @@ public class Role implements Serializable{
 	 */
 	public void setAdmins(Set<Administrator> admins) {
 		this.admins = admins;
+	}
+
+	public Set<Teacher> getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Set<Teacher> teacher) {
+		this.teacher = teacher;
 	}
 	
 }

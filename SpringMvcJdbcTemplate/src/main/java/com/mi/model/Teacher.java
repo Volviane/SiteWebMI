@@ -43,6 +43,11 @@ public class Teacher extends InternetSufer implements Serializable{
 	@OneToMany(mappedBy="juryPresident")
 	private Set<Jury> presidedJury = new HashSet<Jury>();
 	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name="ROLE_TEACHERS")
+	private Set<Role> roles=new HashSet<Role>();
+	
+	
 	public Teacher() {
 		super();
 		
@@ -193,6 +198,14 @@ public class Teacher extends InternetSufer implements Serializable{
 	 */
 	public void setJury(Set<Jury> jury) {
 		this.jury = jury;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 	
 	

@@ -8,8 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import com.mi.model.Article;
 import com.mi.model.Dissertation;
 import com.mi.model.Document;
+import com.mi.model.Teacher;
 
-public interface DocumentRepository extends JpaRepository<Document, Long> {
+public interface DocumentRepository extends JpaRepository<Document, String> {
 	/*
 	@Query("select document from Document document")
 	List<Document> findAllDocument();
@@ -19,4 +20,11 @@ public interface DocumentRepository extends JpaRepository<Document, Long> {
 	
 	//@Query("select document from Dissertation dissertation")
 	//List<Dissertation> findAllDissertation();
-*/}
+*/
+	
+	public Document findByDocumentTitle(String documentTitle);
+	public Document findByDocumentType(String documentType);
+	public Document findByDocumentAuthor(String author);
+	public Document findByDocumentName(String documentName);
+	
+}
