@@ -49,6 +49,23 @@ public class Dissertation implements Serializable {
 	@JoinColumn(name="CANDIDAT", unique=true)
 	private Student candidate;
 	
+	@Column(name="STATUT_MEMOIRE")
+	private String status = "NON TRAITE";
+	
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public Dissertation() {
 		
 	}

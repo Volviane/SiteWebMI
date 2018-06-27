@@ -1,10 +1,9 @@
-  <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    &copy; 2018 MI | site web
-                </div>
-
+    <footer class="main-footer menu">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6">
+              <p>Maths-info &copy; 2018</p>
             </div>
+          </div>
         </div>
-    </footer>
+      </footer>

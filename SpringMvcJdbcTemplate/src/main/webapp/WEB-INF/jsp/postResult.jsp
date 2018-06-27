@@ -9,37 +9,57 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
-<head>
-<title>publier resultat</title>
-<meta charset="utf-8">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/assets/css/bootstrap.css"
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>publier un résultat</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/vendor/bootstrap/css/bootstrap.css"
 	type="text/css" media="all">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/styleAdmin.css"
-	type="text/css" media="all">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/style.css"
-	type="text/css" media="all">
-</head>
-
-<body id="page1">
-
-	<div class="body1">
-    <%@include file="includeFile/navAdmin.jsp"%>
-    <!-- LOGO HEADER END-->
-   
-    <!-- MENU SECTION END-->
-    <div class="content-wrapper">
-        <div class="container">
-            <div class="row">
-
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                     <h4 class="page-head-line">publier un résultat</strong></h4>
-                    <br />
-              <form action="<c:url value='addCourse'/>" method="post">
+	<!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/fontastic.css">
+    <!-- Google fonts - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <!-- jQuery Circle-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/grasp_mobile_progress_circle-1.0.0.min.css">
+    <!-- Custom Scrollbar-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/css/assets/css/img/favicon.ico">
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/style.blue.css" id="theme-stylesheet">
+    
+     <!-- CSS-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styleAdmin.css" type="text/css" media="all">
+    
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+  </head>
+  <body>
+    <!-- Side Navbar -->
+    <%@include file="includeFile/sideBarAdmin.jsp"%>
+    
+    <div class="page">
+      <!-- navbar-->
+     <%@include file="includeFile/navAdmin.jsp"%>
+      <!-- Counts Section -->
+      <section class="dashboard-counts padding">
+          <h4 class="page-head-line">publier un résultat</strong></h4>
+      </section>
+      <!-- Header Section-->
+      <section class="dashboard-header padding">
+         <div class="row">
+              <div class="col-md-6">
+		       <form action="<c:url value='addCourse'/>" method="post">
                      <label>cycle</label>
                     
                     	 <select class="form-control" name="cycleName">
@@ -72,38 +92,22 @@
                   <input type="submit" value="Enregistrer" class="btn btn-info">
                 </form>
                 </div>
-                <div class="col-md-6">
-                <div class="space"></div>
-                    <div class="alert alert-info">
-                       Vous allez pourvoir ici, enregistrer les resultats des examens
-                        <br />
-                       
-                    </div>
-                    <div class="alert alert-success">
-                         <strong> Instructions:</strong>
-                        <ul>
-                            <li>
-                               entrer le cycle
-                            </li>
-                            <li>
-                               entrer l'option
-                            </li>
-                             <li>
-                               entrer le niveau d'étude
-                            </li>
-                          
-                         
-                        </ul>
-                       
-                    </div>
-                </div>
-
-            </div>
-        </div>
+           </div>
+      </section>
+      
+    	<%@include file="includeFile/footerAdmin.jsp"%>
     </div>
-    <!-- CONTENT-WRAPPER SECTION END-->
-  <%@include file="includeFile/footerAdmin.jsp"%>
-   
-    <script src="assets/js/bootstrap.js"></script>
-</body>
+    <!-- JavaScript files-->
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/chart.js/Chart.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/charts-home.js"></script>
+    <!-- Main File-->
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/front.js"></script>
+  </body>
 </html>
