@@ -55,14 +55,14 @@
                 <label for="login-username" class="label-material">login</label>
               </div>
               		 <c:if test="${errorLogin!=null}">
-							<h6 class="text-error"> <font color="red">${error}</font></h1>
+							<h6 class="text-error"> <font color="red">${errorLogin}</font></h1>
 					 </c:if>
               <div class="form-group-material">
                 <input id="login-password" type="password"  name="password"  required data-msg="veuillez entrer votre mot de passe" class="input-material">
                 <label for="login-password" class="label-material">Password</label>
               </div>
                        <c:if test="${errorPassword!=null}">
-							<h6 class="text-error"> <font color="red">${error}</font></h1>
+							<h6 class="text-error"> <font color="red">${errorPassword}</font></h1>
 					   </c:if>
               <div class="form-group text-center">
                 <input type="submit" value="se connecter" class="btn btn-info">
