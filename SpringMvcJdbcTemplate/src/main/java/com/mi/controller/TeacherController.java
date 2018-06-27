@@ -209,16 +209,16 @@ public class TeacherController {
 	}
 
 	//modifier les parametres de connexion get method
-	@RequestMapping(value = { "/updateParameter" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/updateParameters" }, method = RequestMethod.GET)
 	public String updateParameterGet(Model model,HttpServletRequest req) {
 		System.out.println("modifier les parametre de connexion get");
-		return "updateParameter";
+		return "updateParameters";
 	}
 
-	@RequestMapping(value = { "/updateParameter" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/updateParameters" }, method = RequestMethod.POST)
 	@Transactional
 	public String updateParameterPost(Model model, HttpServletRequest req) throws ParseException {
-		System.out.println("updateParameter Post");
+		System.out.println("updateParameters Post");
 
 		String login= req.getParameter("login");
 		String password= req.getParameter("password");
@@ -235,7 +235,7 @@ public class TeacherController {
 
 		model.addAttribute("teacher", "sucess ");
 
-		return "updateParameter";
+		return "updateParameters";
 	}
 
 	//ajouter un document

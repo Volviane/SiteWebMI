@@ -24,7 +24,7 @@ public interface DocumentRepository extends JpaRepository<Document, String> {
 	
 	public Document findByDocumentTitle(String documentTitle);
 	public Document findByDocumentType(String documentType);
-	public Document findByDocumentAuthor(String author);
+	public Document findByAuthor(String author);
 	public Document findByDocumentName(String documentName);
 	
 }

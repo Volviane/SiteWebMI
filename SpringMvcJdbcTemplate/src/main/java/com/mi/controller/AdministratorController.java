@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,6 +33,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.authentication.*;
+import org.springframework.security.core.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -80,6 +85,8 @@ import org.springframework.ui.Model;
 @Controller
 public class AdministratorController/* implements UserDetailsService */{
 	public static final Logger logger = LoggerFactory.getLogger(AdministratorController.class);
+	
+	 private static AuthenticationManager am;
 
 	@Autowired
 	CycleRepository cycleRepository;
@@ -279,14 +286,20 @@ public class AdministratorController/* implements UserDetailsService */{
 					System.out.println("deuxieme if c'est moi");
 					UserDetails users = loadUserByUsername(loginAdmin);
 					//System.out.println("Humm tu as reussi a me mettre en session tu es forte ma petite 11111111111" + users);
-					UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(users, null,
+					Authentication authToken = new UsernamePasswordAuthenticationToken(users, null,
 							users.getAuthorities());
+					//SecurityContextHolder.getContext().setAuthentication(authToken);
 					SecurityContextHolder.getContext().setAuthentication(authToken);
+					//SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+					
+					/*Authentication request = new UsernamePasswordAuthenticationToken(users,users.getAuthorities());
+			        Authentication result = am.authenticate(request);
+			        SecurityContextHolder.getContext().setAuthentication(result);*/
 					Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 					if (!(auth instanceof AnonymousAuthenticationToken)) {
-						System.out.println("Humm tu as reussi a me mettre en session tu es forte ma petite " + SecurityContextHolder.getContext().getAuthentication().getName());
+						System.out.println(users.getAuthorities()+" Humm tu as reussi a me mettre en session tu es forte ma petite " + SecurityContextHolder.getContext().getAuthentication().getName());
 
 						model.addAttribute("succes", "You have been login successfully."
 								+SecurityContextHolder.getContext().getAuthentication().getName());
@@ -314,6 +327,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			model.addAttribute("error", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
 			req.setAttribute("error", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
 		}
+		System.out.println("ma petite laisse tomber c'est pas a ton niveau ma fille" );
 
 		//return "redirect:/administratorHome";
 		return "connectionAdministrator";
@@ -331,7 +345,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			System.out.println("suis le if");
 			System.out.println(auth);
 		}else{
-			System.out.println("je suis en session Saphir et mon nom est  " + SecurityContextHolder.getContext().getAuthentication().getName());
+			System.out.println("je suis en session Saphir et mon nom est  " + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		}
 		/*
 		 * if (userDetails instanceof UserDetails) { return ((UserDetails)
@@ -379,8 +393,8 @@ public class AdministratorController/* implements UserDetailsService */{
 			model.addAttribute("error", error);
 			req.setAttribute("error", error);
 		}
-		model.addAttribute("cycle", listOfCycle);
-		req.setAttribute("cycle", listOfCycle);
+		model.addAttribute("cycles", listOfCycle);
+		req.setAttribute("cycles", listOfCycle);
 		return "cycleList";
 	}
 
@@ -506,8 +520,8 @@ public class AdministratorController/* implements UserDetailsService */{
 		if (listOfLevel.isEmpty()) {
 			model.addAttribute("error", error);
 		}
-		model.addAttribute("levels", finalList);
-		req.setAttribute("level", finalList);
+		model.addAttribute("levels", listOfLevel);
+		req.setAttribute("levels", listOfLevel);
 		return "levelList";
 	}
 
@@ -567,7 +581,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		model.addAttribute("courses", listOfCourse);
 		req.setAttribute("course", listOfCourse);
 
-		return "coursesList";
+		return "courseList";
 	}
 	//list des uv sachant le niveau
 	@RequestMapping(value = { "/courseListLevel" }, method = RequestMethod.GET)
@@ -609,6 +623,26 @@ public class AdministratorController/* implements UserDetailsService */{
 		req.setAttribute("success", "succesfully to create grade:: " +gradeName);
 
 		return "addGrade";
+	}
+	
+	@RequestMapping(value = { "/gradeList" }, method = RequestMethod.GET)
+	public String listGradePost(Model model, HttpServletRequest req) {
+		System.out.println("addGrade POST");
+
+		System.out.println("coursesList");
+
+		List<Grade> listOfGrade = gradeRepository.findAll();
+
+		if (listOfGrade.isEmpty()) {
+
+			model.addAttribute("error", error);
+		}
+
+		model.addAttribute("grades", listOfGrade);
+		req.setAttribute("grades", listOfGrade);
+
+
+		return "gradeList";
 	}
 
 	//enregisrtre un ensegnant
