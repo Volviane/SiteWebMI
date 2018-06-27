@@ -332,19 +332,19 @@ public class AdministratorController/* implements UserDetailsService */{
 
 				} else {
 					logger.error("Administrator with password {} not found.", passwordAdmin);
-					model.addAttribute("error", "Password not found.");
-					req.setAttribute("error", "Password not found.");
+					model.addAttribute("errorPassword", "Password not found.");
+					req.setAttribute("errorPassword", "Password not found.");
 				}
 			} else {
 				logger.error("Administrator with password {} not found.", loginAdmin);
-				model.addAttribute("error", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
-				req.setAttribute("error", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
+				model.addAttribute("errorLogin", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
+				req.setAttribute("errorLogin", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
 
 			}
 		} catch (Exception ex) {
 			logger.error("Administrator with pseudonym {} not found.", loginAdmin);
-			model.addAttribute("error", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
-			req.setAttribute("error", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
+			model.addAttribute("errorLogin", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
+			req.setAttribute("errorLogin", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
 		}
 		System.out.println("ma petite laisse tomber c'est pas a ton niveau ma fille" );
 
