@@ -154,7 +154,7 @@
                 <!-- Languages dropdown    -->
                 
                 <!-- Log out-->
-                <li class="nav-item"><a href="${pageContext.request.contextPath}/deconnexionAdministrator" class="nav-link logout"> <span class="d-none d-sm-inline-block">deconnexion</span><i class="fa fa-sign-out"></i></a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/logout" class="nav-link logout"> <span class="d-none d-sm-inline-block">deconnexion</span><i class="fa fa-sign-out"></i></a></li>
               </ul>
             </div>
           </div>

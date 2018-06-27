@@ -12,7 +12,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Créer un enseignant</title>
+    <title>créer u jury</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -53,28 +53,37 @@
      <%@include file="includeFile/navAdmin.jsp"%>
       <!-- Counts Section -->
       <section class="dashboard-counts padding">
-          <h4 class="page-head-line">Créer un enseignant</strong></h4>
+          <h4 class="page-head-line">créer un jury</strong></h4>
       </section>
       <!-- Header Section-->
       <section class="dashboard-header padding">
          <div class="row">
-                <div class="col-md-6">
-		             <form action="<c:url value='createTeacher'/>" method="post">
-                    <label>nom</label>
-                        <input type="text" class="form-control" name="firstName"  />
-                     <label>prénom</label>
-                        <input type="text" class="form-control" name="lastName"  />
-                     <label>email</label>
-                        <input type="email" class="form-control" name="emailAdress"  />
-                     <label>grade</label>
-                        <select class="form-control" name="gradeName">
-                     			<c:forEach items="${grades}" var="i">
-                     				<option value="${i.gradeName }" ><c:out value="${i.gradeName }"></c:out></option>
+              <div class="col-md-6">
+		       <form action="<c:url value='createJury'/>" method="post">
+                    <label>année</label>
+                        <input type="text" class="form-control" name="academicYear"  />
+                    <label>niveau</label>
+                    
+                    	 <select class="form-control" name="juryLevelName">
+                     			<c:forEach items="${levels}" var="i">
+                     				<option value="${i.levelName }" ><c:out value="${i.levelName }"></c:out></option>
                      			</c:forEach>
-                       </select>
+                     	 </select>
+<!--                     <label>coordonnateur</label> -->
+                    
+<!--                     	 <select class="form-control" name="cordo"> -->
+                     			<option> </option>
+<!--                      	 </select> -->
+                    <label>président du jury </label>
+                    
+                    	 <select class="form-control" name="juryPresidentName">
+                     			<c:forEach items="${teachers}" var="i">
+                     				<option value="${i.lastName }" ><c:out value="${i.lastName }"></c:out></option>
+                     			</c:forEach>
+                     	 </select>
                         <hr />
-					<input type="submit" value="créer" class="btn btn-info">
-               </form>
+                  <input type="submit" value="ouvrir" class="btn btn-info">
+                 </form>
                 </div>
            </div>
       </section>

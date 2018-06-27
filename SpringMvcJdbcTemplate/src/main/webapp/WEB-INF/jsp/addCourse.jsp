@@ -1,3 +1,12 @@
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="com.mi.model.User"%>
+<%@ page import="com.mi.model.Student"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -26,6 +35,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/css/assets/css/img/favicon.ico">
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/style.blue.css" id="theme-stylesheet">
+    
      <!-- CSS-->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styleAdmin.css" type="text/css" media="all">
     
@@ -41,11 +52,11 @@
       <!-- navbar-->
      <%@include file="includeFile/navAdmin.jsp"%>
       <!-- Counts Section -->
-      <section class="dashboard-counts section-padding">
-         <h4 class="page-head-line">Ajouter une unité de valeur</strong></h4>
+      <section class="dashboard-counts padding">
+         <h4 class="page-head-line">Ajouter une unitÃ© de valeur</strong></h4>
       </section>
       <!-- Header Section-->
-      <section class="dashboard-header section-padding">
+      <section class="dashboard-header padding">
        <div class="row">
              <div class="col-md-6">
                  <form action="<c:url value='addCourse'/>" method="post">
@@ -74,7 +85,13 @@
                              <label>semestre </label>
                     		<div class="form-group">
                      			
-                      			  <input type="text" class="form-control" name="semester" />
+                      			  <select class="form-control" name="semester">
+
+                     				<option value="sem1">Semestre 1</option>
+
+                     				<option value="sem2" >Semestre 2</option>
+                     	          </select>
+                     
                              </div>
                     
                         <hr />
