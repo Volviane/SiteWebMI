@@ -69,6 +69,9 @@
                 </div>
            </div>
       </section>
+      <c:if test="${roles!=null}">
+			<h1 class="list2"> <font color="red">${operationResult }</font></h1>
+			</c:if>
       
     	<%@include file="includeFile/footerAdmin.jsp"%>
     </div>

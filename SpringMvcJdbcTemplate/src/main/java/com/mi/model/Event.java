@@ -41,7 +41,7 @@ public class Event implements Serializable{
 	@Column(name="STATUT_PUBLICATION")
 	private boolean isPublish = false;
 	
-	@Column(name="STATUT_PUBLICATION")
+	@Column(name="STATUT_EVENT")
 	private String eventStatus;
 	
 	@OneToMany(mappedBy="event")
