@@ -40,11 +40,19 @@ public class Communique implements Serializable{
 	@Column(name="DATE_PUBLICATION")
 	private Date publicationDate;
 	
+	@Column(name="STATUT_PUBLICATION")
+	private boolean isPublish = false;
+	
 	@ManyToOne
 	private Administrator admin;
 
 	public Communique() {
 		
+	}
+	
+	public void publish(){
+		isPublish = true;
+		publicationDate = new Date();
 	}
 
 	/**
@@ -143,6 +151,20 @@ public class Communique implements Serializable{
 	 */
 	public void setAdmin(Administrator admin) {
 		this.admin = admin;
+	}
+
+	/**
+	 * @return the isPublish
+	 */
+	public boolean isPublish() {
+		return isPublish;
+	}
+
+	/**
+	 * @param isPublish the isPublish to set
+	 */
+	public void setPublish(boolean isPublish) {
+		this.isPublish = isPublish;
 	}
 	
 }
