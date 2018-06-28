@@ -87,9 +87,9 @@
                      			
                       			  <select class="form-control" name="semester">
 
-                     				<option value="sem1">Semestre 1</option>
+                     				<option value="1">Semestre 1</option>
 
-                     				<option value="sem2" >Semestre 2</option>
+                     				<option value="2" >Semestre 2</option>
                      	          </select>
                      
                              </div>
