@@ -12,7 +12,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>lister enseignants</title>
+    <title>Liste des enseignants</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -60,9 +60,9 @@
          <div class="row">
                 <div class="col-md-6 table-responsive">
 		             <table class="table table-bordered table-striped table-condensed">
-		             	<c:forEach items="${options}" var="i">
+		             	<c:forEach items="${options}" var="i" varStatus="pos">
 		             	  <tr class="active">
-							<td></td>
+							<td><c:out value="${pos.count}"></c:out></td>
 							<td><c:out value="${i.optionName }"></c:out></td>
 						   </tr>
 						 </c:forEach>
@@ -72,7 +72,7 @@
                 </div>
            </div>
       </section>
-      
+       
     	<%@include file="includeFile/footerAdmin.jsp"%>
     </div>
     <!-- JavaScript files-->

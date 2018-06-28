@@ -73,12 +73,19 @@
                      		<label>nom de l'option</label>
                     		<div class="form-group">
                      			
-                      			  <input type="text" class="form-control" name="optionName" />
+                      			  <input type="text" class="form-control" name="optionName" required />
                              </div>
                     
                         <hr />
                         <input type="submit" value="Enregistrer" class="btn btn-info">
+                          <c:if test="${error!=null}">
+						<h6 class=""> <font color="red">le cycle n'a pas enregistré</font></h1>
+			       </c:if>
+			        <c:if test="${error==null}">
+						<h6 class=""> <font color="red">le cycle a été bien enregistré</font></h1>
+			       </c:if>
                 </form>
+
                 </div>
            </div>
       </section>
