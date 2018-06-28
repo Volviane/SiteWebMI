@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,6 +33,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.authentication.*;
+import org.springframework.security.core.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -40,6 +43,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mi.model.AcademicYear;
 import com.mi.model.Administrator;
 import com.mi.model.Communique;
 import com.mi.model.Course;
@@ -52,6 +56,7 @@ import com.mi.model.Option;
 import com.mi.model.Role;
 import com.mi.model.Teacher;
 import com.mi.model.Teachers;
+import com.mi.repositories.AcademicYearRepository;
 import com.mi.repositories.AdministratorRepository;
 import com.mi.repositories.CommuniqueRepository;
 import com.mi.repositories.CourseRepository;
@@ -80,47 +85,53 @@ import org.springframework.ui.Model;
 @Controller
 public class AdministratorController/* implements UserDetailsService */{
 	public static final Logger logger = LoggerFactory.getLogger(AdministratorController.class);
+	
+	 private static AuthenticationManager am;
 
 	@Autowired
 	CycleRepository cycleRepository;
+
+	@Autowired
+	AcademicYearRepository academicYearRepository;
+
 	
 	@Autowired
 	LevelRepository levelRepository;
-	
+
 	@Autowired
 	CourseRepository courseRepository;
-	
+
 	@Autowired
 	RoleRepository roleRepository;
-	
+
 	@Autowired
 	GradeRepository gradeRepository;
-	
+
 	@Autowired
 	TeachersRepository teachersRepository;
-	
+
 	@Autowired
 	CommuniqueRepository communiqueRepository;
-	
+
 	@Autowired 
 	JuryRepository juryRepository;
-	
-	
+
+
 	@Autowired 
 	EventRepository eventRepository;
-	
-	
+
+
 	@Autowired
 	AdministratorRepository administratorRepository;
-	
+
 	@Autowired
 	OptionRepository optionRepository;
-	
 
 
-/*	@Autowired
+
+	/*	@Autowired
 	UserDetailsServices use;*/
-	
+
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -153,12 +164,12 @@ public class AdministratorController/* implements UserDetailsService */{
 	}
 
 	//Home administrator
-			@RequestMapping(value = "/homeAdministrator", method = RequestMethod.GET)
-			public String homeAdmin(Model model) {
-				System.out.println("home admin get");
+	@RequestMapping(value = "/homeAdministrator", method = RequestMethod.GET)
+	public String homeAdmin(Model model) {
+		System.out.println("home admin get");
 
-				return "homeAdministrator";
-			}
+		return "homeAdministrator";
+	}
 
 	//Add role get methode
 	@RequestMapping(value = "/addRole", method = RequestMethod.GET)
@@ -188,11 +199,18 @@ public class AdministratorController/* implements UserDetailsService */{
 			//role.setName(roleName);
 			roles.setRoleName(roleName);
 			//roles.setAdmins(new HashSet<>(administratorRepository.findAll()));
-			roleRepository.save(roles);
-			System.out.println("done");
+			try {
+				roleRepository.save(roles);
+				System.out.println("done");
+				model.addAttribute("roles", roles);
+				req.setAttribute("role", roles);
+			} catch (Exception e) {
+				model.addAttribute("error", "echec d'enregistrement");
+				// TODO: handle exception
+			}
+			
 		}
-		model.addAttribute("roles", roles);
-		req.setAttribute("role", roles);
+		
 		return "addRole";
 	}
 	//Liste role method
@@ -233,15 +251,23 @@ public class AdministratorController/* implements UserDetailsService */{
 		administrator.setLogin(login);
 		administrator.setPassword(bCryptPasswordEncoder.encode(password));
 		administrator.setPasswordSec(cryptographe(password));
-	//	administrator.setRoles(rolelist);
+		//	administrator.setRoles(rolelist);
 		//Modification de setRole(idRole) en setRole(role)
 		administrator.getRoles().add(role);
 		//administratorRepository.deleteAll();
-		administratorRepository.save(administrator);
+		
+		try {
+			administratorRepository.save(administrator);
+			System.out.println("done");
+			model.addAttribute("administrators", "succesfully to create administrator wiht parameter :: " + login + " and " + password);
+			req.setAttribute("administrators", "succesfully to create administrator wiht parameter :: " + login + " and " + password);
 
-		model.addAttribute("succes", "succesfully to create administrator wiht parameter :: " + login + " and " + password);
-		req.setAttribute("succes", "succesfully to create administrator wiht parameter :: " + login + " and " + password);
+		} catch (Exception e) {
+			model.addAttribute("error", "echec d'enregistrement");
+			// TODO: handle exception
+		}
 
+		
 		return "registrationAdministrator";
 	}
 
@@ -279,47 +305,54 @@ public class AdministratorController/* implements UserDetailsService */{
 					System.out.println("deuxieme if c'est moi");
 					UserDetails users = loadUserByUsername(loginAdmin);
 					//System.out.println("Humm tu as reussi a me mettre en session tu es forte ma petite 11111111111" + users);
-					UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(users, null,
+					Authentication authToken = new UsernamePasswordAuthenticationToken(users, null,
 							users.getAuthorities());
+					//SecurityContextHolder.getContext().setAuthentication(authToken);
 					SecurityContextHolder.getContext().setAuthentication(authToken);
-					
-					 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+					//SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-				        if (!(auth instanceof AnonymousAuthenticationToken)) {
-				        	System.out.println("Humm tu as reussi a me mettre en session tu es forte ma petite " + SecurityContextHolder.getContext().getAuthentication().getName());
+					
+					/*Authentication request = new UsernamePasswordAuthenticationToken(users,users.getAuthorities());
+			        Authentication result = am.authenticate(request);
+			        SecurityContextHolder.getContext().setAuthentication(result);*/
+					Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-							model.addAttribute("succes", "You have been login successfully."
-									+SecurityContextHolder.getContext().getAuthentication().getName());
-							req.setAttribute("succes", "You have been login successfully."
-									+SecurityContextHolder.getContext().getAuthentication().getName());
-				            return "homeAdministrator";
-				        }
-				        return "connectionAdministrator";
-					
-					
-					
+					if (!(auth instanceof AnonymousAuthenticationToken)) {
+						System.out.println(users.getAuthorities()+" Humm tu as reussi a me mettre en session tu es forte ma petite " + SecurityContextHolder.getContext().getAuthentication().getName());
+
+						model.addAttribute("succes", "You have been login successfully."
+								+SecurityContextHolder.getContext().getAuthentication().getName());
+						req.setAttribute("succes", "You have been login successfully."
+								+SecurityContextHolder.getContext().getAuthentication().getName());
+						return "homeAdministrator";
+					}
+					return "connectionAdministrator";
+
+
+
 				} else {
 					logger.error("Administrator with password {} not found.", passwordAdmin);
-					model.addAttribute("error", "Password not found.");
-					req.setAttribute("error", "Password not found.");
+					model.addAttribute("errorPassword", "Password not found.");
+					req.setAttribute("errorPassword", "Password not found.");
 				}
 			} else {
 				logger.error("Administrator with password {} not found.", loginAdmin);
-				model.addAttribute("error", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
-				req.setAttribute("error", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
+				model.addAttribute("errorLogin", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
+				req.setAttribute("errorLogin", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
 
 			}
 		} catch (Exception ex) {
 			logger.error("Administrator with pseudonym {} not found.", loginAdmin);
-			model.addAttribute("error", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
-			req.setAttribute("error", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
+			model.addAttribute("errorLogin", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
+			req.setAttribute("errorLogin", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
 		}
+		System.out.println("ma petite laisse tomber c'est pas a ton niveau ma fille" );
 
 		//return "redirect:/administratorHome";
 		return "connectionAdministrator";
 	}
-// retrieve user in session
-	
+	// retrieve user in session
+
 
 	@RequestMapping(value = "/retrieve", method = RequestMethod.GET)
 	public void retrieve(String error, String logout, Authentication authenticationg, Principal principal,
@@ -331,14 +364,14 @@ public class AdministratorController/* implements UserDetailsService */{
 			System.out.println("suis le if");
 			System.out.println(auth);
 		}else{
-		System.out.println("je suis en session Saphir et mon nom est  " + SecurityContextHolder.getContext().getAuthentication().getName());
+			System.out.println("je suis en session Saphir et mon nom est  " + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		}
 		/*
 		 * if (userDetails instanceof UserDetails) { return ((UserDetails)
 		 * userDetails).getUsername(); }
 		 */
 
-	//	return userDetails;
+		//	return userDetails;
 
 	}
 
@@ -361,10 +394,16 @@ public class AdministratorController/* implements UserDetailsService */{
 		cycle.setCycleName(cycleName);
 		//cycleRepository.deleteAll();
 		//cycleService.saveCycle(cycle);
-		cycleRepository.save(cycle);
-		model.addAttribute("success", "succesfully to create cylcle:: " + cycleName);
-		req.setAttribute("success", "succesfully to create cylcle:: " + cycleName);
-		System.out.println("done");
+		try {
+			cycleRepository.save(cycle);
+			model.addAttribute("cycles", "succesfully to create cylcle:: " + cycleName);
+			req.setAttribute("cycles", "succesfully to create cylcle:: " + cycleName);
+			System.out.println("done");
+		} catch (Exception e) {
+			model.addAttribute("error", "echec d'enregistrement ");
+			// TODO: handle exception
+		}
+		
 		return "addCycle";
 	}
 
@@ -376,11 +415,11 @@ public class AdministratorController/* implements UserDetailsService */{
 		List<Cycle> listOfCycle = cycleRepository.findAll();
 
 		if (listOfCycle.isEmpty()) {
-			model.addAttribute("error", error);
+			model.addAttribute("error", "liste vide");
 			req.setAttribute("error", error);
 		}
-		model.addAttribute("cycle", listOfCycle);
-		req.setAttribute("cycle", listOfCycle);
+		model.addAttribute("cycles", listOfCycle);
+		req.setAttribute("cycles", listOfCycle);
 		return "cycleList";
 	}
 
@@ -389,15 +428,15 @@ public class AdministratorController/* implements UserDetailsService */{
 	public String cycleListLevel(Model model, HttpServletRequest req) {
 		System.out.println("cycleListOption");
 		String cycleName= req.getParameter("cycleName");
-		
+
 		Cycle cycle =cycleRepository.findByCycleName(cycleName);
 
 		Set<Option> listOfOption=cycle.getOptions();;
-					if (listOfOption.isEmpty()) {
-						model.addAttribute("error", error);
-					}
-					model.addAttribute("cycleOption", listOfOption);
-					 req.setAttribute("cycleOption", listOfOption);
+		if (listOfOption.isEmpty()) {
+			model.addAttribute("error", "liste vide");
+		}
+		model.addAttribute("cycleOption", listOfOption);
+		req.setAttribute("cycleOption", listOfOption);
 		return "cycleListOption";
 	}
 
@@ -406,7 +445,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addOption", method = RequestMethod.GET)
 	public String optionGet(Model model,HttpServletRequest req) {
 		System.out.println("addOption get");
-		
+
 		List<Cycle> cycles = cycleRepository.findAll();
 		for (Cycle cycle : cycles) {
 			System.out.println(cycle.getCycleName());
@@ -421,7 +460,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		System.out.println("add Option post");
 		String optionName= req.getParameter("optionName");
 		String cycleName= req.getParameter("cycleName");
-		
+
 		System.out.println("~~~~~~~~~~~~~~~~");
 		System.out.println(cycleName);
 		System.out.println("~~~~~~~~~~~~~~~~");
@@ -432,11 +471,18 @@ public class AdministratorController/* implements UserDetailsService */{
 		Option option = new Option();
 		option.setOptionName(optionName);
 		option.setCycle(cycle);
-		optionRepository.save(option);
-		System.out.println("done");
-		model.addAttribute("option", "succesfully to create option :: "+ optionName);
-		req.setAttribute("option", "succesfully to create option :: "+ optionName);
+		try {
+			optionRepository.save(option);
+			System.out.println("done");
+			model.addAttribute("options", "succesfully to create option :: "+ optionName);
+			req.setAttribute("options", "succesfully to create option :: "+ optionName);
 
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("error", "echec d'eregistrement ");
+		}
+		
 		return "addOption";
 	}
 
@@ -448,7 +494,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		List<Option> listOfOption = optionRepository.findAll();
 		List<String> finalList = new ArrayList<String>();
 		if (listOfOption.isEmpty()) {
-			model.addAttribute("error", error);
+			model.addAttribute("error", "liste vide");
 		}
 		model.addAttribute("options", listOfOption);
 		req.setAttribute("options",finalList);
@@ -476,22 +522,29 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		String levelName= req.getParameter("levelName");
 		String optionName= req.getParameter("optionName");
-		
+
 		System.out.println("~~~~~~~~~~~~~~~~");
 		System.out.println(levelName);
 		System.out.println("~~~~~~~~~~~~~~~~");
 		System.out.println(optionName);
-		
+
 		Level level = new Level();
 		Option option = optionRepository.findByOptionName(optionName);
 		System.out.println(option);
 		level.setLevelName(optionName+levelName);
 		level.setOption(option);
 		//levelRepository.deleteAll();
-		levelRepository.save(level);
-		System.out.println("done");
-		model.addAttribute("levels", level);
-		req.setAttribute("success", "succesfully to create level:: " +levelName);
+		try {
+			levelRepository.save(level);
+			System.out.println("done");
+			model.addAttribute("levels", "succesfully to create level:: " +levelName);
+			req.setAttribute("success", "succesfully to create level:: " +levelName);
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("error", "echec d'enregistremnt");
+			
+		}
+		
 		return "addLevel";
 	}
 
@@ -504,10 +557,10 @@ public class AdministratorController/* implements UserDetailsService */{
 		List<String> finalList = new ArrayList<String>();
 
 		if (listOfLevel.isEmpty()) {
-			model.addAttribute("error", error);
+			model.addAttribute("error", "liste vide");
 		}
-		model.addAttribute("levels", finalList);
-		req.setAttribute("level", finalList);
+		model.addAttribute("levels", listOfLevel);
+		req.setAttribute("levels", listOfLevel);
 		return "levelList";
 	}
 
@@ -516,7 +569,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addCourse", method = RequestMethod.GET)
 	public String coursesGet(Model model,HttpServletRequest req) {
 		System.out.println("addCourse get");
-		
+
 		List<Level> listOfLevel = levelRepository.findAll();
 		List<String> finalList = new ArrayList<String>();
 
@@ -545,10 +598,16 @@ public class AdministratorController/* implements UserDetailsService */{
 		course.setCourseTitle(courseName);
 		course.setCourseCode(courseCode);
 		course.setSemester(semester);
-		courseRepository.save(course);
-		System.out.println("~~~~done~~~~");
-		model.addAttribute("success", "succesfully to create course :: " + courseName);
-		req.setAttribute("success", "succesfully to create course :: " + courseName);
+		try {
+			courseRepository.save(course);
+			System.out.println("~~~~done~~~~");
+			model.addAttribute("courses", "succesfully to create course :: " + courseName);
+			req.setAttribute("courses", "succesfully to create course :: " + courseName);
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("error", "echec d'enregistrement");
+		}
+		
 
 		return "addCourse";
 	}
@@ -567,7 +626,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		model.addAttribute("courses", listOfCourse);
 		req.setAttribute("course", listOfCourse);
 
-		return "coursesList";
+		return "courseList";
 	}
 	//list des uv sachant le niveau
 	@RequestMapping(value = { "/courseListLevel" }, method = RequestMethod.GET)
@@ -576,12 +635,12 @@ public class AdministratorController/* implements UserDetailsService */{
 		String levelName= req.getParameter("levelName");
 		Level level =levelRepository.findByLevelName(levelName);
 		Set<Course> listOfCourse= level.getCourses();
-					if (listOfCourse.isEmpty()) {
-						model.addAttribute("error", error);
-					}
-					model.addAttribute("cycleOption", listOfCourse);
-					 req.setAttribute("cycleOption", listOfCourse);
-		 
+		if (listOfCourse.isEmpty()) {
+			model.addAttribute("error", "liste vide");
+		}
+		model.addAttribute("cycleOptions", listOfCourse);
+		req.setAttribute("cycleOptions", listOfCourse);
+
 		return "coursesList";
 	}
 
@@ -602,25 +661,53 @@ public class AdministratorController/* implements UserDetailsService */{
 		Grade grade =new Grade();
 
 		grade.setGradeName(gradeName);
+		
+		try {
+			gradeRepository.save(grade);
+			System.out.println("~~~~done~~~");
+			model.addAttribute("grades", "succesfully to create grade:: " +gradeName);
+			req.setAttribute("grades", "succesfully to create grade:: " +gradeName);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("error", "echec d'enregistrement");
+		}
 
-		gradeRepository.save(grade);
-		System.out.println("~~~~done~~~");
-		model.addAttribute("success", "succesfully to create grade:: " +gradeName);
-		req.setAttribute("success", "succesfully to create grade:: " +gradeName);
+		
 
 		return "addGrade";
+	}
+	
+	@RequestMapping(value = { "/gradeList" }, method = RequestMethod.GET)
+	public String listGradePost(Model model, HttpServletRequest req) {
+		System.out.println("addGrade POST");
+
+		System.out.println("coursesList");
+
+		List<Grade> listOfGrade = gradeRepository.findAll();
+
+		if (listOfGrade.isEmpty()) {
+
+			model.addAttribute("error", "liste vide");
+		}
+
+		model.addAttribute("grades", listOfGrade);
+		req.setAttribute("grades", listOfGrade);
+
+
+		return "gradeList";
 	}
 
 	//enregisrtre un ensegnant
 	@RequestMapping(value = { "/createTeacher" }, method = RequestMethod.GET)
 	public String createTeacherGet(Model model,HttpServletRequest req) {
 		System.out.println("createTeacher GET");
-		
+
 		List<Grade> listOfGrade = gradeRepository.findAll();
 
 		if (listOfGrade.isEmpty()) {
 
-			model.addAttribute("error", error);
+			model.addAttribute("error", "liste vide");
 		}
 
 		model.addAttribute("grades", listOfGrade);
@@ -632,7 +719,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@Transactional
 	public String createTeacherPost(Model model, HttpServletRequest req) throws AddressException, MessagingException {
 		System.out.println("createTeacher post");
-		
+
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "smtp.gmail.com");
 		properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
@@ -646,8 +733,8 @@ public class AdministratorController/* implements UserDetailsService */{
 		properties.put("mail.smtp.writetimeout", "5000");
 		Session session = Session.getInstance(properties, null);
 
-	
-		
+
+
 		String lastName= req.getParameter("lastName");
 		String firstName= req.getParameter("firstName");
 		String emailAdress= req.getParameter("emailAdress");
@@ -668,11 +755,11 @@ public class AdministratorController/* implements UserDetailsService */{
 		teacher.setPasswordSec(cryptographe(passwordSec));
 		String content1 = "Compte créé avec succès, vos informations se présentent comme suit:  \n"
 				+teacher.getLastName() + " \n"
-						+ teacher.getLogin() +"\n"
-								+ decryptographe(teacher.getPasswordSec())+"\n"
-										+ "...\n"
-										+ "Pour vous connecter a votre espace personnel cliquez ici :\n"
-										+ "http://localhost:8080/SpringMvcJdbcTemplate/connectionTeachers";
+				+ teacher.getLogin() +"\n"
+				+ decryptographe(teacher.getPasswordSec())+"\n"
+				+ "...\n"
+				+ "Pour vous connecter a votre espace personnel cliquez ici :\n"
+				+ "http://localhost:8080/SpringMvcJdbcTemplate/connectionTeachers";
 		// String form="saphirmfogo@gmail.com";V
 		MimeMessage msg = new MimeMessage(session);
 		/// msg.setFrom(new InternetAddress(form));
@@ -680,40 +767,46 @@ public class AdministratorController/* implements UserDetailsService */{
 		msg.setSubject(subject1);
 		msg.setText(content1);
 		msg.setSentDate(new Date());
-		
-		teachersRepository.save(teacher);
-		Transport transport = session.getTransport("smtp");
-		transport.connect("smtp.gmail.com", "saphirmfogo@gmail.com", "best1234");
-		transport.sendMessage(msg, msg.getAllRecipients());
-		transport.close();
-		System.out.println("Sent message successfully....");
-		model.addAttribute("teacherSucces", "succesfully to create teacher wiht parameter :: " + login + " and " + password);
-		 req.setAttribute("teacherSucces", "succesfully to create teacher wiht parameter :: " + login + " and " + password);
+try {
+	teachersRepository.save(teacher);
+	Transport transport = session.getTransport("smtp");
+	transport.connect("smtp.gmail.com", "saphirmfogo@gmail.com", "best1234");
+	transport.sendMessage(msg, msg.getAllRecipients());
+	transport.close();
+	System.out.println("Sent message successfully....");
+	model.addAttribute("teachers", "succesfully to create teacher wiht parameter :: " + login + " and " + password);
+	req.setAttribute("teacherSucces", "succesfully to create teacher wiht parameter :: " + login + " and " + password);
 
+} catch (Exception e) {
+	// TODO: handle exception
+	model.addAttribute("error", "echec d'enregistrment");
+	
+}
+		
 		return "createTeacher";
 	}
 	@RequestMapping(value = { "/teacherList" }, method = RequestMethod.GET)
 	public String teacherList(Model model, HttpServletRequest req) {
 		System.out.println("teacherList");
-		
+
 		List<Teacher> listOfTeacher =teachersRepository.findAll();
-		
+
 		if (listOfTeacher.isEmpty()) {
-			model.addAttribute("error", error);
+			model.addAttribute("error", "liste vide");
 		}
 		model.addAttribute("teachers", listOfTeacher);
-		 req.setAttribute("teacher", listOfTeacher);
+		req.setAttribute("teacher", listOfTeacher);
 
 		return "teacherList";
 	}
 
 
 
-	//enregisrtre des jurys pour l'ouverture d'une annee academique 
+	/*//enregisrtre des jurys pour l'ouverture d'une annee academique 
 	@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.GET)
 	public String openAcademicYearGet(Model model,HttpServletRequest req) {
 		System.out.println("openAcademicYear GET");
-		
+
 
 		List<Level> listOfLevel = levelRepository.findAll();
 		List<Teacher> listOfTeacher = teachersRepository.findAll();
@@ -723,63 +816,63 @@ public class AdministratorController/* implements UserDetailsService */{
 		}
 		model.addAttribute("levels", listOfLevel);
 		model.addAttribute("teachers", listOfTeacher);
-	
+
 		return "openAcademicYear";
-	}
-	
-	@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.POST)
+	}*/
+
+	/*@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.POST)
 	public String openAcademicYearPost(Model model, HttpServletRequest req) {
 		System.out.println("openAcademicYear Post");
-		
+
 		String academicYear= req.getParameter("academicYear");
 		String juryPresidentName= req.getParameter("juryPresidentName");
 		String juryLevelName= req.getParameter("juryLevelName");
-		
+
 		Teacher juryPresident = teachersRepository.findByLastName(juryPresidentName);
 		Level juryLevel = levelRepository.findByLevelName(juryLevelName);
-		 Jury jury = new Jury();
-		 jury.setAcademicYear(academicYear);
-		 jury.setJuryLevel(juryLevel);
-		 jury.setJuryPresident(juryPresident);
-		 
-		 juryRepository.save(jury);
-		 req.setAttribute("jury", "jury cree avec succes");
-		 model.addAttribute("jury", "jury cree avec succes");
-		
+		Jury jury = new Jury();
+		jury.setAcademicYear(academicYear);
+		jury.setJuryLevel(juryLevel);
+		jury.setJuryPresident(juryPresident);
+
+		juryRepository.save(jury);
+		req.setAttribute("jury", "jury cree avec succes");
+		model.addAttribute("jury", "jury cree avec succes");
+
 
 		return "openAcademicYear";
 	}
-	
+*/
 
-	
+
 	//autre version de l'ouverture de l'annee academique
-	
-/*	@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.GET)
+
+		@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.GET)
 	public String openAcademicYearGet(Model model,HttpServletRequest req) {
 		System.out.println("openAcademicYear GET");
-		
-	
+
+
 		return "openAcademicYear";
-	}
-	
-		
-/*	@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.POST)
+
+		}
+
+	@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.POST)
 	public String openAcademicYearPost(Model model,HttpServletRequest req) {
 		System.out.println("openAcademicYear Post");
 		String academicYear= req.getParameter("academicYear");
-		
-		AcademicYear academiqueYears = new AcademicYear();
-		
+
+		AcademicYear academicYears = new AcademicYear();
+
 		academicYears.setAcademicYear(academicYear);
-		academicYearRepository.save(academicYears)
-	
+		academicYearRepository.save(academicYears);
+
 		return "openAcademicYear";
 	}
-		
+
 		@RequestMapping(value = { "/createJury" }, method = RequestMethod.GET)
 	public String createJuryYearGet(Model model,HttpServletRequest req) {
 		System.out.println("createJury GET");
-		
+
 			List<Level> listOfLevel = levelRepository.findAll();
 		List<Teacher> listOfTeacher = teachersRepository.findAll();
 
@@ -788,33 +881,40 @@ public class AdministratorController/* implements UserDetailsService */{
 		}
 		model.addAttribute("levels", listOfLevel);
 		model.addAttribute("teachers", listOfTeacher);
-	
+
 		return "createJury";
 	}
-		
-		
+
+
 		@RequestMapping(value = { "/createJury" }, method = RequestMethod.POST)
 	public String createJuryPost(Model model, HttpServletRequest req) {
 		System.out.println("createJury Post");
-		
+
 		String academicYear= req.getParameter("academicYear");
 		String juryPresidentName= req.getParameter("juryPresidentName");
 		String juryLevelName= req.getParameter("juryLevelName");
-		
+
 		Teacher juryPresident = teachersRepository.findByLastName(juryPresidentName);
+		AcademicYear academicYears = academicYearRepository.findByAcademicYear(academicYear);
 		Level juryLevel = levelRepository.findByLevelName(juryLevelName);
 		 Jury jury = new Jury();
-		 jury.setAcademicYear(academicYear);
+		 jury.setAcademicYear(academicYears);
 		 jury.setJuryLevel(juryLevel);
 		 jury.setJuryPresident(juryPresident);
-		 
-		 juryRepository.save(jury);
-		 req.setAttribute("jury", "jury cree avec succes");
+		 try {
+			 juryRepository.save(jury);
+			 model.addAttribute("jurys", "jury cree avec succes");
+			 req.setAttribute("jury", "jury cree avec succes");
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("error", "echec d'enregistrement");
+		}
 		
 
+
 		return "createJury";
-	}*/
-	
+	}
+
 	//editer un communique
 	@RequestMapping(value = { "/editNews" }, method = RequestMethod.GET)
 	public String createCommuniqueGet(Model model,HttpServletRequest req) {
@@ -822,55 +922,60 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		return "editNews";
 	}
-	
+
 	@RequestMapping(value = { "/editNews" }, method = RequestMethod.POST)
 	@Transactional
 	public String createCommuniquePost(Model model, HttpServletRequest req) throws ParseException {
 		System.out.println("editNews Post");
-		
+
 		String communiqueTitle= req.getParameter("newsTitle");
 		String communiqueContent= req.getParameter("newsContent");
 		String publicationDate= req.getParameter("publicationDate");
 		String adminSession= SecurityContextHolder.getContext().getAuthentication().getName();
 		Administrator admin = administratorRepository.findByLogin(adminSession);
-		
+
 		System.out.println(communiqueTitle);
 		System.out.println(communiqueContent);
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 		Date publicateDate = sdf.parse(publicationDate);
-	
 
-		 Communique communique = new Communique();
-		 
+
+		Communique communique = new Communique();
+
 		communique.setCommuniqueTitle(communiqueTitle);
 		communique.setCommuniqueContent(communiqueContent);
 		communique.setPublicationDate(publicateDate);
 		communique.setAdmin(admin);
-		
-		 
-		 communiqueRepository.save(communique);
-		 req.setAttribute("communique", "communiquee cree avec succes");
-		 model.addAttribute("communique", "communiquee cree avec succes");
 
+try {
+	communiqueRepository.save(communique);
+	req.setAttribute("communique", "communiquee cree avec succes");
+	model.addAttribute("communiques", "communiquee cree avec succes");
+
+} catch (Exception e) {
+	// TODO: handle exception
+	model.addAttribute("error", "echec d'enregistrement");
+}
+		
 		return "editNews";
 	}
-	
+
 	@RequestMapping(value = { "/listNews" }, method = RequestMethod.GET)
 	public String listCommuniqueGet(Model model,HttpServletRequest req) {
 		System.out.println("listNews GET");
-		
+
 		List<Communique> listOfCommunique = communiqueRepository.findAll();
-		
+
 		if (listOfCommunique.isEmpty() ) {
-			model.addAttribute("error", error);
+			model.addAttribute("error", "liste vide");
 		}
 		model.addAttribute("communiques", listOfCommunique);
-		
+
 		return "listNews";
 	}
-	
-	
+
+
 
 	//creation d'un evennement
 	@RequestMapping(value = { "/createEvent" }, method = RequestMethod.GET)
@@ -879,67 +984,73 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		return "createEvent";
 	}
-	
+
 	@RequestMapping(value = { "/createEvent" }, method = RequestMethod.POST)
 	@Transactional
 	public String createEventPost(Model model, HttpServletRequest req) throws ParseException {
 		System.out.println("createEvent Post");
-		
+
 		String eventTitle= req.getParameter("eventTitle");
 		String eventDescription= req.getParameter("eventDescription");
 		String eventBeginDateName= req.getParameter("eventBeginDate");
 		String eventEndDateName= req.getParameter("eventEndDate");
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 		Date eventBeginDate = sdf.parse(eventBeginDateName);
 		Date eventEndDate = sdf.parse(eventEndDateName);
 
-		 Event event = new Event();
-		 
-		 event.setEventBeginDate(eventBeginDate);
-		 event.setEventEndDate(eventEndDate);
-		 event.setEventDescription(eventDescription);
-		 event.setEventTitle(eventTitle);
-		 
-		 eventRepository.save(event);
-		 req.setAttribute("event", "Evenement cree avec succes");
+		Event event = new Event();
+
+		event.setEventBeginDate(eventBeginDate);
+		event.setEventEndDate(eventEndDate);
+		event.setEventDescription(eventDescription);
+		event.setEventTitle(eventTitle);
+		try {
+			eventRepository.save(event);
+			model.addAttribute("events", "Evenement cree avec succes");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("error", "echec d'enregistrement");
+		}
+		
 
 		return "createEvent";
 	}
-	
+
 	@RequestMapping(value = { "/listEvent" }, method = RequestMethod.GET)
 	public String listEventGet(Model model,HttpServletRequest req) {
 		System.out.println("createCommunique GET");
-		
+
 		List<Event> listOfEvent = eventRepository.findAll();
-		
+
 		if (listOfEvent.isEmpty() ) {
 			model.addAttribute("error", "error : liste vide");
 		}
 		model.addAttribute("events", listOfEvent);
-		
+
 		return "listEvent";
 	}
-	
-	
+
+
 	// se deconnecter
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutPost(HttpServletRequest request, HttpServletResponse response) {
-		
-			//String userDetails = SecurityContextHolder.getContext().getAuthentication().getName();
-			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			if (auth == null) {
-				System.out.println("deconnectez moi "+SecurityContextHolder.getContext().getAuthentication().getName());
-				new SecurityContextLogoutHandler().logout(request, response, auth);
-				System.out.println("je ne suis plus connecte "+SecurityContextHolder.getContext().getAuthentication().getName());
-				
-			}
-			return "connectionAdministrator";
+
+		//String userDetails = SecurityContextHolder.getContext().getAuthentication().getName();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth == null) {
+			System.out.println("deconnectez moi "+SecurityContextHolder.getContext().getAuthentication().getName());
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+			System.out.println("je ne suis plus connecte "+SecurityContextHolder.getContext().getAuthentication().getName());
+
 		}
-	
-	
-	
+		return "connectionAdministrator";
+	}
+
+
+
 
 
 
@@ -953,16 +1064,16 @@ public class AdministratorController/* implements UserDetailsService */{
 		Administrator ad = administratorRepository.findByLogin(login);
 		System.out.println(ad.getLogin()+"tu es nulll???");
 		if(administratorRepository.findByLogin(login)!=null) {
-		
+
 			System.out.println(administratorRepository.findByLogin(login)+"toototot");
-			
-			
+
+
 			Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 			System.out.println("huoooo");
 			for (Role role : administratorRepository.findByLogin(login).getRoles()){
-							grantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
-							System.out.println("huoooo2222222222222222222"+ role);
-						}
+				grantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+				System.out.println("huoooo2222222222222222222"+ role);
+			}
 			System.out.println("huoooo333333333333333333");
 
 			userDetail=new org.springframework.security.core.userdetails.User(administratorRepository.findByLogin(login).getLogin(), 
@@ -995,11 +1106,11 @@ public class AdministratorController/* implements UserDetailsService */{
 								studentRepository.findByLogin(login).getPassword(), grantedAuthorities);
 
 					}*/
+			return userDetail;
+
+		}
 		return userDetail;
+
 
 	}
-		return userDetail;
-
-	
-		}
 }

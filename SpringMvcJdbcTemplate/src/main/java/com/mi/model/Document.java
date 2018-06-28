@@ -109,4 +109,66 @@ public class Document implements Serializable {
 		this.documentAbstract = documentAbstract;
 	}
 
+
+
+	public String getDocumentDescription() {
+		return documentDescription;
+	}
+
+
+
+	public void setDocumentDescription(String documentDescription) {
+		this.documentDescription = documentDescription;
+	}
+
+
+
+	public String getDocumentType() {
+		return documentType;
+	}
+
+
+
+	public void setDocumentType(String documentType) {
+		this.documentType = documentType;
+	}
+
+
+
+	public String getDocumentName() {
+		return documentName;
+	}
+
+
+
+	public void setDocumentName(String documentName) {
+		this.documentName = documentName;
+	}
+
+
+
+	public Teacher getAuthor() {
+		return author;
+	}
+
+
+
+	public void setAuthor(Teacher author) {
+		this.author = author;
+	}
+
+
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	
+	
+
 	}
