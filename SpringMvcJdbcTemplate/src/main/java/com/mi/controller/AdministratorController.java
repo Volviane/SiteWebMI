@@ -10,38 +10,35 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.authentication.*;
-import org.springframework.security.core.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.mi.model.AcademicYear;
 import com.mi.model.Administrator;
@@ -53,9 +50,9 @@ import com.mi.model.Grade;
 import com.mi.model.Jury;
 import com.mi.model.Level;
 import com.mi.model.Option;
+import com.mi.model.ResearchDomain;
 import com.mi.model.Role;
 import com.mi.model.Teacher;
-import com.mi.model.Teachers;
 import com.mi.repositories.AcademicYearRepository;
 import com.mi.repositories.AdministratorRepository;
 import com.mi.repositories.CommuniqueRepository;
@@ -66,28 +63,18 @@ import com.mi.repositories.GradeRepository;
 import com.mi.repositories.JuryRepository;
 import com.mi.repositories.LevelRepository;
 import com.mi.repositories.OptionRepository;
+import com.mi.repositories.ResearchDomainRepository;
 import com.mi.repositories.RoleRepository;
 import com.mi.repositories.TeachersRepository;
-import com.mi.services.AdministratorService;
-import com.mi.services.CourseService;
-import com.mi.services.CycleService;
-import com.mi.services.EventService;
-import com.mi.services.GradeService;
-import com.mi.services.JuryService;
-import com.mi.services.LevelService;
-import com.mi.services.OptionService;
-import com.mi.services.RoleService;
-import com.mi.services.TeachersService;
-import com.mi.services.UserDetailsServices;
-
-import org.springframework.ui.Model;
 
 @Controller
+@SessionAttributes("Administrator") 
 public class AdministratorController/* implements UserDetailsService */{
 	public static final Logger logger = LoggerFactory.getLogger(AdministratorController.class);
 	
-	 private static AuthenticationManager am;
-
+	@Autowired
+	ResearchDomainRepository researchDomainRepository;
+	
 	@Autowired
 	CycleRepository cycleRepository;
 
@@ -242,8 +229,8 @@ public class AdministratorController/* implements UserDetailsService */{
 	public String create(Model model,HttpServletRequest req) {
 		System.out.println("inscription d'un admin");
 
-		String login= req.getParameter("loginAdmin");
-		String password= req.getParameter("passwordAdmin");
+		String login= req.getParameter("login");
+		String password= req.getParameter("password");
 		Role role = roleRepository.findByRoleName("ROLE_ADMIN");
 		Set<Role> rolelist=new HashSet<Role>();
 		rolelist.add(role);
@@ -303,6 +290,84 @@ public class AdministratorController/* implements UserDetailsService */{
 				System.out.println(pass);
 				if (pass.equals(administrator.getPasswordSec())) {
 					System.out.println("deuxieme if c'est moi");
+					
+
+					HttpSession session = req.getSession();
+					session.setAttribute( "administrator", administrator );
+					
+					Administrator administratorName = (Administrator) session.getAttribute( "administrator" );
+					
+					System.out.println("je suis en session avec http et mon nom est : " + administratorName.getLogin());
+					
+					model.addAttribute("Administrators", "You have been login successfully." + administratorName.getLogin());
+						//req.setAttribute("succes", "You have been login successfully. " +administratorName);
+						
+						return "homeAdministrator";
+					
+					//return "connectionAdministrator";
+
+
+
+				} else {
+					logger.error("Administrator with password {} not found.", passwordAdmin);
+					model.addAttribute("errorPassword", "Password not found.");
+					req.setAttribute("errorPassword", "Password not found.");
+				}
+			} else {
+				logger.error("Administrator with password {} not found.", loginAdmin);
+				model.addAttribute("errorLogin", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
+				req.setAttribute("errorLogin", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
+
+			}
+		} catch (Exception ex) {
+			logger.error("Administrator with pseudonym {} not found.", loginAdmin);
+			model.addAttribute("errorLogin", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
+			req.setAttribute("errorLogin", "login not found, adminstrator"+ loginAdmin + "doesn't exist");
+		}
+		System.out.println("ma petite laisse tomber c'est pas a ton niveau ma fille" );
+
+		//return "redirect:/administratorHome";
+		return "connectionAdministrator";
+	}
+	
+	@RequestMapping(value = "/retrieve", method = RequestMethod.GET)
+	public void retrieve(String error, String logout, Authentication authenticationg, Principal principal,
+			HttpServletRequest request) {
+		System.out.println("revettttttttttttttttttttttttttttttttttttt");
+		HttpSession session = request.getSession();
+		Administrator administratorName =  (Administrator) session.getAttribute( "administrator" );
+		
+		System.out.println("je suis en session avec http et mon nom est : " + administratorName.getLogin());
+		
+
+	}
+	
+	
+	//Version de connexion avec spring security
+	
+	/*@RequestMapping(value = { "/connectionAdministrator" }, method = RequestMethod.POST)
+	public String login(Model model,@ModelAttribute("loginAdmin") Administrator admin, HttpServletRequest req) {
+		System.out.println("connexion  d'un admin");
+
+		String loginAdmin = req.getParameter("login");
+		String passwordAdmin = req.getParameter("password");
+		System.out.println("-------------------------------");
+		System.out.println(loginAdmin);
+		System.out.println("-------------------------------");
+
+		System.out.println("-------------------------------");
+		System.out.println(passwordAdmin);
+		// recherche du membre dans la base de donnees
+		try {
+			System.out.println("c'est le try");
+			Administrator administrator = new Administrator();
+			administrator = administratorRepository.findByLogin(loginAdmin);
+			System.out.println(administrator);
+			if (administrator != null) {
+				String pass = cryptographe(passwordAdmin);
+				System.out.println(pass);
+				if (pass.equals(administrator.getPasswordSec())) {
+					System.out.println("deuxieme if c'est moi");
 					UserDetails users = loadUserByUsername(loginAdmin);
 					//System.out.println("Humm tu as reussi a me mettre en session tu es forte ma petite 11111111111" + users);
 					Authentication authToken = new UsernamePasswordAuthenticationToken(users, null,
@@ -312,15 +377,15 @@ public class AdministratorController/* implements UserDetailsService */{
 					//SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 					
-					/*Authentication request = new UsernamePasswordAuthenticationToken(users,users.getAuthorities());
+					Authentication request = new UsernamePasswordAuthenticationToken(users,users.getAuthorities());
 			        Authentication result = am.authenticate(request);
-			        SecurityContextHolder.getContext().setAuthentication(result);*/
+			        SecurityContextHolder.getContext().setAuthentication(result);
 					Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 					if (!(auth instanceof AnonymousAuthenticationToken)) {
 						System.out.println(users.getAuthorities()+" Humm tu as reussi a me mettre en session tu es forte ma petite " + SecurityContextHolder.getContext().getAuthentication().getName());
 
-						model.addAttribute("succes", "You have been login successfully."
+						model.addAttribute("Administrators", "You have been login successfully."
 								+SecurityContextHolder.getContext().getAuthentication().getName());
 						req.setAttribute("succes", "You have been login successfully."
 								+SecurityContextHolder.getContext().getAuthentication().getName());
@@ -351,9 +416,10 @@ public class AdministratorController/* implements UserDetailsService */{
 		//return "redirect:/administratorHome";
 		return "connectionAdministrator";
 	}
-	// retrieve user in session
-
-
+	*/
+	
+	
+	/*// retrieve user in session
 	@RequestMapping(value = "/retrieve", method = RequestMethod.GET)
 	public void retrieve(String error, String logout, Authentication authenticationg, Principal principal,
 			HttpServletRequest request) {
@@ -366,14 +432,16 @@ public class AdministratorController/* implements UserDetailsService */{
 		}else{
 			System.out.println("je suis en session Saphir et mon nom est  " + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		}
-		/*
+		
 		 * if (userDetails instanceof UserDetails) { return ((UserDetails)
 		 * userDetails).getUsername(); }
-		 */
+		 
 
 		//	return userDetails;
 
 	}
+	
+	*/
 
 	// ajouter les cycles
 
@@ -554,7 +622,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		System.out.println("levelList");
 
 		List<Level> listOfLevel = levelRepository.findAll();
-		List<String> finalList = new ArrayList<String>();
+		//List<String> finalList = new ArrayList<String>();
 
 		if (listOfLevel.isEmpty()) {
 			model.addAttribute("error", "liste vide");
@@ -931,8 +999,10 @@ try {
 		String communiqueTitle= req.getParameter("newsTitle");
 		String communiqueContent= req.getParameter("newsContent");
 		String publicationDate= req.getParameter("publicationDate");
-		String adminSession= SecurityContextHolder.getContext().getAuthentication().getName();
-		Administrator admin = administratorRepository.findByLogin(adminSession);
+		/*String adminSession= SecurityContextHolder.getContext().getAuthentication().getName();
+		Administrator admin = administratorRepository.findByLogin(adminSession);*/
+		HttpSession session = req.getSession();
+		Administrator administratorName =  (Administrator) session.getAttribute( "administrator" );
 
 		System.out.println(communiqueTitle);
 		System.out.println(communiqueContent);
@@ -946,7 +1016,7 @@ try {
 		communique.setCommuniqueTitle(communiqueTitle);
 		communique.setCommuniqueContent(communiqueContent);
 		communique.setPublicationDate(publicateDate);
-		communique.setAdmin(admin);
+		communique.setAdmin(administratorName);
 
 try {
 	communiqueRepository.save(communique);
@@ -1031,86 +1101,77 @@ try {
 
 		return "listEvent";
 	}
+	
+	// ajouter les dommaine de competence
+	
+		@RequestMapping(value = { "/addResearchDomain" }, method = RequestMethod.GET)
+		public String addReseachDomainGet(Model model,HttpServletRequest req) {
+			System.out.println("addReseachDomain GET");
+			
+			List<Option> listOfOption = optionRepository.findAll();
+
+			if (listOfOption.isEmpty() ) {
+				model.addAttribute("error", "error : liste vide");
+			}
+			model.addAttribute("options", listOfOption);
+
+			return "addResearchDomain";
+		}
+
+		@RequestMapping(value = { "/addResearchDomain" }, method = RequestMethod.POST)
+		@Transactional
+		public String addReseachDomainPost(Model model, HttpServletRequest req) throws ParseException {
+			System.out.println("addReseachDomain Post");
+
+			String optionName= req.getParameter("optionName");
+			String domainLabel= req.getParameter("domainLabel");
+			String domainDescription= req.getParameter("domainDescription");
+			
+			Option option = optionRepository.findOne(optionName);
+			
+
+			ResearchDomain researchDomain = new ResearchDomain();
+
+			researchDomain.setDomainDescription(domainDescription);
+			researchDomain.setDomainLabel(domainLabel);
+			
+			try {
+				researchDomainRepository.save(researchDomain);
+				model.addAttribute("researchDomains", "Domaine de recherche  cree avec succes");
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				model.addAttribute("error", "echec d'enregistrement");
+			}
+			
+
+			return "addResearchDomain";
+		}
+		
+		@RequestMapping(value = { "/listResearchDomain" }, method = RequestMethod.GET)
+		public String listResearchDomainGet(Model model,HttpServletRequest req) {
+			System.out.println("createCommunique GET");
+
+			List<ResearchDomain> listOfResearchDomain = researchDomainRepository.findAll();
+
+			if (listOfResearchDomain.isEmpty() ) {
+				model.addAttribute("error", "error : liste vide");
+			}
+			model.addAttribute("researchDomains", listOfResearchDomain);
+
+			return "listResearchDomain";
+		}
 
 
 	// se deconnecter
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logoutPost(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "/logoutAdministrator", method = RequestMethod.GET)
+	public String logoutPost(HttpServletRequest request, HttpServletResponse response, Model model) {
 
-		//String userDetails = SecurityContextHolder.getContext().getAuthentication().getName();
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth == null) {
-			System.out.println("deconnectez moi "+SecurityContextHolder.getContext().getAuthentication().getName());
-			new SecurityContextLogoutHandler().logout(request, response, auth);
-			System.out.println("je ne suis plus connecte "+SecurityContextHolder.getContext().getAuthentication().getName());
+		  HttpSession session = request.getSession();
+		  session.invalidate();
+		// session.setAttribute( "administrator", null );
+		  model.addAttribute("sessionOut", "la session a ete supprimme");
 
-		}
 		return "connectionAdministrator";
-	}
-
-
-
-
-
-
-
-	//@Override
-	@Transactional(readOnly = true)
-	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-		System.out.println(login+" donne pardon");
-		UserDetails userDetail=null;
-		//Member user = memberRepository.findByPseudonym(pseudonym);
-		Administrator ad = administratorRepository.findByLogin(login);
-		System.out.println(ad.getLogin()+"tu es nulll???");
-		if(administratorRepository.findByLogin(login)!=null) {
-
-			System.out.println(administratorRepository.findByLogin(login)+"toototot");
-
-
-			Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-			System.out.println("huoooo");
-			for (Role role : administratorRepository.findByLogin(login).getRoles()){
-				grantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
-				System.out.println("huoooo2222222222222222222"+ role);
-			}
-			System.out.println("huoooo333333333333333333");
-
-			userDetail=new org.springframework.security.core.userdetails.User(administratorRepository.findByLogin(login).getLogin(), 
-					administratorRepository.findByLogin(login).getPassword(), grantedAuthorities);
-			System.out.println("huoooo444444444444444444444");
-
-
-			/*}else if(teachersRepository.findByLogin(login)!=null) {
-
-						System.out.println(teachersRepository.findByLogin(login)+"toototot");
-						Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-
-						for (Role role : teachersRepository.findByLogin(login).getRole()){
-							grantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
-						}
-
-						userDetail=new org.springframework.security.core.userdetails.User(teachersRepository.findByLogin(login).getLogin(), 
-								teachersRepository.findByLogin(login).getPassword(), grantedAuthorities);
-
-					}else if(studentRepository.findByLogin(login)!=null) {
-
-						System.out.println(studentRepository.findByLogin(login)+"toototot");
-						Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-
-						for (Role role : studentRepository.findByLogin(login).getRole()){
-							grantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
-						}
-
-						userDetail=new org.springframework.security.core.userdetails.User(studentRepository.findByLogin(login).getLogin(), 
-								studentRepository.findByLogin(login).getPassword(), grantedAuthorities);
-
-					}*/
-			return userDetail;
-
-		}
-		return userDetail;
-
-
 	}
 }

@@ -1,6 +1,7 @@
 package com.mi.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ public class Jury implements Serializable {
 	@Column(name="ID_JURY")
 	private Long idJury;
 	
-	@ManyToOne				
+	@ManyToOne
 	@JoinColumn(name="ANNEE_ACADEMIQUE")
 	private AcademicYear academicYear;
 	
@@ -28,7 +29,7 @@ public class Jury implements Serializable {
 	
 	@ManyToMany					//Un jury est constitué de plusieurs enseignants et un enseignant peut appartenir à plusieurs juris
 	@JoinTable(name="MEMBRES_JURY")
-	private Set<Teacher> members;
+	private Set<Teacher> members = new HashSet<Teacher>();
 	
 	public Jury() {
 		

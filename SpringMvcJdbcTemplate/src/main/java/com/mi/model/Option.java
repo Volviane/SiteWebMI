@@ -21,8 +21,7 @@ public class Option implements Serializable{
 	private String optionName;
 	
 
-	//@ManyToOne(fetch = FetchType.EAGER)
-	//@Column(name="DESCRIPTION_OPTION")
+	@Column(name="DESCRIPTION_OPTION")
 	private String optionDescription;
 	
 	@ManyToOne
@@ -30,6 +29,10 @@ public class Option implements Serializable{
 
 	@OneToMany(mappedBy="option")
 	private Set<Level> levels = new HashSet<Level>();
+	
+
+	@OneToMany(mappedBy="option")
+	private Set<ResearchDomain> researchDomain = new HashSet<ResearchDomain>();
 	
 
 	/**
@@ -115,6 +118,20 @@ public class Option implements Serializable{
 	 */
 	public void setOptionDescription(String optionDescription) {
 		this.optionDescription = optionDescription;
+	}
+
+	/**
+	 * @return the researchDomain
+	 */
+	public Set<ResearchDomain> getResearchDomain() {
+		return researchDomain;
+	}
+
+	/**
+	 * @param researchDomain the researchDomain to set
+	 */
+	public void setResearchDomain(Set<ResearchDomain> researchDomain) {
+		this.researchDomain = researchDomain;
 	}
 
 }
