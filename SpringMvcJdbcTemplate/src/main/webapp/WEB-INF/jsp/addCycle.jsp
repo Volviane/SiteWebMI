@@ -62,7 +62,7 @@
               	<form action="<c:url value='addCycle'/>" method="post">
                     
                      <label>nom du cycle</label>
-                        <input type="text" class="form-control" name="cycleName" />
+                        <input type="text" class="form-control" name="cycleName" required data-msg="veuillez entrer le nom du cycle" class="input-material" />
                         <hr />
                       <input type="submit" value="Enregistrer" class="btn btn-info">
                </form>
