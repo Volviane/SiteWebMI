@@ -34,6 +34,10 @@ public class Teacher extends InternetSufer implements Serializable{
 	private CV cv;
 	
 	@ManyToOne
+	@JoinColumn(name="DOMAINE_RECHERCHE")
+	private ResearchDomain researchDomain;
+	
+	@ManyToOne
 	@JoinColumn(name="GRADE_ID")
 	private Grade grade;
 	
@@ -193,6 +197,20 @@ public class Teacher extends InternetSufer implements Serializable{
 	 */
 	public void setJury(Set<Jury> jury) {
 		this.jury = jury;
+	}
+
+	/**
+	 * @return the researchDomain
+	 */
+	public ResearchDomain getResearchDomain() {
+		return researchDomain;
+	}
+
+	/**
+	 * @param researchDomain the researchDomain to set
+	 */
+	public void setResearchDomain(ResearchDomain researchDomain) {
+		this.researchDomain = researchDomain;
 	}
 	
 	
