@@ -1168,7 +1168,8 @@ try {
 	public String logoutPost(HttpServletRequest request, HttpServletResponse response, Model model) {
 
 		  HttpSession session = request.getSession();
-		  session.setAttribute( "administrator", null );
+		  session.invalidate();
+		// session.setAttribute( "administrator", null );
 		  model.addAttribute("sessionOut", "la session a ete supprimme");
 
 		return "connectionAdministrator";
