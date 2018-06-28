@@ -63,7 +63,7 @@
 		              <form action="<c:url value='addGrade'/>" method="post">
 		                    
 		                     <label>nom du grade</label>
-		                        <input type="text" class="form-control" name="gradeName" />
+		                        <input type="text" class="form-control" name="gradeName" required />
 		                        <hr />
 		                      <input type="submit" value="Enregistrer" class="btn btn-info">
 		               </form>

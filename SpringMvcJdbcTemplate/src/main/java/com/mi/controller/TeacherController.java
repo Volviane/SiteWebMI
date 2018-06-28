@@ -5,12 +5,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,12 +34,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mi.model.Teacher;
 import com.mi.model.Administrator;
 import com.mi.model.Communique;
 import com.mi.model.Document;
+import com.mi.model.ResearchDomain;
 import com.mi.model.Role;
 import com.mi.repositories.CommuniqueRepository;
 import com.mi.repositories.CourseRepository;
@@ -46,10 +51,12 @@ import com.mi.repositories.GradeRepository;
 import com.mi.repositories.JuryRepository;
 import com.mi.repositories.LevelRepository;
 import com.mi.repositories.OptionRepository;
+import com.mi.repositories.ResearchDomainRepository;
 import com.mi.repositories.RoleRepository;
 import com.mi.repositories.TeachersRepository;
 
 @Controller
+@SessionAttributes("Teacher")
 @MultipartConfig(fileSizeThreshold=1024*1024*2,maxFileSize=1024*1024*10,maxRequestSize=1024*1024*50)
 public class TeacherController {
 
@@ -88,6 +95,9 @@ public class TeacherController {
 
 	@Autowired
 	OptionRepository optionRepository;
+
+	@Autowired
+	ResearchDomainRepository researchDomainRepository;
 
 
 
@@ -166,26 +176,16 @@ public class TeacherController {
 				System.out.println(pass);
 				if (pass.equals(teacher.getPasswordSec())) {
 					System.out.println("deuxieme if c'est moi");
-					UserDetails users = loadUserByUsername(login);
-					//System.out.println("Humm tu as reussi a me mettre en session tu es forte ma petite 11111111111" + users);
-					UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(users, null,
-							users.getAuthorities());
-					SecurityContextHolder.getContext().setAuthentication(authToken);
-
-					Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-					if (!(auth instanceof AnonymousAuthenticationToken)) {
-						System.out.println("Humm tu as reussi a me mettre en session tu es forte ma petite " + SecurityContextHolder.getContext().getAuthentication().getName());
-
-						model.addAttribute("succes", "You have been login successfully."
-								+SecurityContextHolder.getContext().getAuthentication().getName());
-						req.setAttribute("succes", "You have been login successfully."
-								+SecurityContextHolder.getContext().getAuthentication().getName());
-						return "homeTeacher";
-					}
-					return "loginTeacher";
-
-
+					
+					HttpSession session = req.getSession();
+					session.setAttribute( "teacher", teacher );
+					
+					Teacher teacherName = (Teacher) session.getAttribute( "teacher" );
+					
+					System.out.println("je suis en session avec http et mon nom est : " + teacherName.getLogin());
+					
+					model.addAttribute("teachers", "You have been login successfully." + teacherName.getLogin());
+					return "homeTeacher";
 
 				} else {
 					logger.error("Teacher with password {} not found.", password);
@@ -222,8 +222,10 @@ public class TeacherController {
 
 		String login= req.getParameter("login");
 		String password= req.getParameter("password");
-		String teacherSession= SecurityContextHolder.getContext().getAuthentication().getName();
-		Teacher teacher = teachersRepository.findByLogin(teacherSession);
+		
+		
+		HttpSession session = req.getSession();
+		Teacher teacher =  (Teacher) session.getAttribute( "teacher" );
 
 		System.out.println(login);
 		System.out.println(password);
@@ -233,7 +235,7 @@ public class TeacherController {
 		teacher.setPassword(password);
 		teachersRepository.save(teacher);
 
-		model.addAttribute("teacher", "sucess ");
+		model.addAttribute("teachers", "sucess ");
 
 		return "updateParameters";
 	}
@@ -248,33 +250,149 @@ public class TeacherController {
 	@RequestMapping(value = { "/addDocument" }, method = RequestMethod.POST)
 	@Transactional
 	public String addDocumentPost(Model model, HttpServletRequest req,@RequestParam("file") MultipartFile file) throws ParseException {
-		
+
 		String documentTitle= req.getParameter("documentTitle");
-		String documentAbstract= req.getParameter("documentAbstract");
+		String documentDescription= req.getParameter("documentDescription");
 		String documentType= req.getParameter("documentType");
 		String documentName= req.getParameter("documentName");
-		String createDate= req.getParameter("createDate");
+		//	String createDate= req.getParameter("createDate");
+
+		Calendar calendarCourante = Calendar.getInstance();
+		//int createYear = calendarCourante.get(Calendar.YEAR);
+		int createMonth = calendarCourante.get(Calendar.DATE);
+		String createYear= createMonth+"";
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		Date createDate = sdf.parse(createYear);
 		
-		String authorSession= SecurityContextHolder.getContext().getAuthentication().getName();
-		Teacher author = teachersRepository.findByLogin(authorSession);
-		
-		int ret=upload(file,documentName,authorSession);
+		HttpSession session = req.getSession();
+		Teacher author =  (Teacher) session.getAttribute( "teacher" );
+
+
+		int ret=upload(file,documentName,author.getFirstName());
 		Document document= new Document();
-		
+
 		if(ret==1){
-			document.setDocumentAbstract(documentAbstract);
+			document.setDocumentDescription(documentDescription);
 			document.setDocumentTitle(documentTitle);
+			document.setDocumentType(documentType);
+			document.setCreateDate(createDate);
 			document.setAuthor(author);
-		
+
 			documentRepository.save(document);
-			model.addAttribute("document", "document ajoute avec sucess");
-			
-			return "addDocumentSucess";
+			model.addAttribute("documents", "document ajoute avec sucess");
+
+			return "addDocument";
 		}else{
-			model.addAttribute("document", "erreur d'ajout du document");
+			model.addAttribute("error", "erreur d'ajout du document");
 			return "addDocument";
 		}
 	}
+
+	//modifier un document
+
+	//ajouter un document
+	@RequestMapping(value = { "/updateDocument" }, method = RequestMethod.GET)
+	public String updateDocumentGet(Model model,HttpServletRequest req) {
+		System.out.println("updateDocument get");
+		return "updateDocument";
+	}
+
+
+	@RequestMapping(value = { "/updateDocument" }, method = RequestMethod.POST)
+	@Transactional
+	public String updateDocumentPost(Model model, HttpServletRequest req,@RequestParam("file") MultipartFile file) throws ParseException {
+
+		String documentTitle= req.getParameter("documentTitle");
+		String documentDescription= req.getParameter("documentDescription");
+		String documentType= req.getParameter("documentType");
+		String documentName= req.getParameter("documentName");
+		//	String createDate= req.getParameter("createDate");
+
+		Calendar calendarCourante = Calendar.getInstance();
+		//int createYear = calendarCourante.get(Calendar.YEAR);
+		int createMonth = calendarCourante.get(Calendar.DATE);
+		String createYear= createMonth+"";
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		Date createDate = sdf.parse(createYear);
+
+
+		HttpSession session = req.getSession();
+		Teacher author =  (Teacher) session.getAttribute( "teacher" );
+
+
+		int ret=upload(file,documentName,author.getFirstName());
+		Document document= new Document();
+
+		if(ret==1){
+			document.setDocumentDescription(documentDescription);
+			document.setDocumentTitle(documentTitle);
+			document.setDocumentType(documentType);
+			document.setCreateDate(createDate);
+			document.setAuthor(author);
+
+			documentRepository.save(document);
+			model.addAttribute("documents", "document ajoute avec sucess");
+
+			return "updateDocument";
+		}else{
+			model.addAttribute("error", "erreur d'ajout du document");
+			return "updateDocument";
+		}
+	}
+
+	// editer le profil
+
+	@RequestMapping(value = { "/editProfil" }, method = RequestMethod.GET)
+	public String editProfilGet(Model model,HttpServletRequest req) {
+		System.out.println("editProfil get");
+		return "editProfil";
+	}
+
+	@RequestMapping(value = { "/editProfil" }, method = RequestMethod.POST)
+	@Transactional
+	public String editProfilPost(Model model, HttpServletRequest req,@RequestParam("file") MultipartFile file) throws ParseException {
+
+		String domainLabel= req.getParameter("domainLabel");
+		String phoneNumber= req.getParameter("phoneNumber");
+		String birth= req.getParameter("birthDate");
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		Date birthDate = sdf.parse(birth);
+
+		HttpSession session = req.getSession();
+		Teacher authors =  (Teacher) session.getAttribute( "teacher" );
+		
+		Teacher teacher = teachersRepository.findByLogin(authors.getLogin());
+
+		ResearchDomain researchDomain=researchDomainRepository.findByDomainLabel(domainLabel);
+
+		if(teacher==null){
+			model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
+			
+		}else{
+			teacher.setBirthDate(birthDate);
+			teacher.setPhoneNumber(phoneNumber);
+			teacher.setResearchDomain(researchDomain);
+			model.addAttribute("teachers", "document ajoute avec sucess");
+		
+		}
+		return "editProfil";
+	}
+	
+	// se deconnecter
+		@RequestMapping(value = "/logoutTeacher", method = RequestMethod.GET)
+		public String logoutPost(HttpServletRequest request, HttpServletResponse response, Model model) {
+
+			  HttpSession session = request.getSession();
+			  session.setAttribute( "teacher", null );
+			  model.addAttribute("teachers", "la session a ete supprimme");
+
+			return "connectionAdministrator";
+		}
+
+
 
 
 
@@ -284,6 +402,7 @@ public class TeacherController {
 
 
 	//upload methode
+	@SuppressWarnings("finally")
 	int upload(MultipartFile file,String name,String option){
 		int ret=0;
 		try {

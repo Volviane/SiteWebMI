@@ -61,14 +61,14 @@
                 <div class="col-md-6">
 		              <form action="<c:url value='editNews'/>" method="post">
                     <label>titre du communiqué</label>
-                        <input type="text" class="form-control" name="newsTitle"  />
+                        <input type="text" class="form-control" name="newsTitle" required  />
 
                           <label>date de publication</label>
                         <input type="date" class="form-control" name="publicationDate"  />
                     <label>resumé du communiqué</label>
-                      <textarea rows="5" cols="5" class="form-control" name="newsContent"></textarea>
+                      <textarea rows="5" cols="5" class="form-control" name="newsContent" required></textarea>
                         <hr />
-                        <input type="submit" value="Publier">
+                       <input type="submit" value="créer" class="btn btn-info">
                </form>
                 </div>
            </div>

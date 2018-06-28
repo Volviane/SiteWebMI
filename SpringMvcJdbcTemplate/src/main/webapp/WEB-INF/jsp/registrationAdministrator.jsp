@@ -51,14 +51,14 @@
             <div class="logo text-uppercase"><strong class="text-primary">CREATION ADMIN</strong></div>
              <form action="<c:url value='registrationAdministrator'/>" method="post" class="text-left form-validate">
               <div class="form-group-material">
-                <input id="login-username" type="text"  name="login" required data-msg="veuillez un login" class="input-material">
+                <input id="login-username" type="text"  name="loginAdmin" required data-msg="veuillez un login" class="input-material">
                 <label for="login-username" class="label-material">login</label>
               </div>
               		 <c:if test="${errorLogin!=null}">
 							<h6 class="text-error"> <font color="red">${error}</font></h1>
 					 </c:if>
               <div class="form-group-material">
-                <input id="login-password" type="password"  name="password"  required data-msg="veuillez entrer un mot de passe" class="input-material">
+                <input id="login-password" type="password"  name="passwordAdmin"  required data-msg="veuillez entrer un mot de passe" class="input-material">
                 <label for="login-password" class="label-material">Password</label>
               </div>
                        <c:if test="${errorPassword!=null}">

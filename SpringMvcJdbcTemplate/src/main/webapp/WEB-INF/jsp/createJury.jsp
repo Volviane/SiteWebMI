@@ -61,10 +61,10 @@
               <div class="col-md-6">
 		       <form action="<c:url value='createJury'/>" method="post">
                     <label>année</label>
-                        <input type="text" class="form-control" name="academicYear"  />
+                        <input type="text" class="form-control" name="academicYear" required  />
                     <label>niveau</label>
                     
-                    	 <select class="form-control" name="juryLevelName">
+                    	 <select class="form-control" name="juryLevelName" required>
                      			<c:forEach items="${levels}" var="i">
                      				<option value="${i.levelName }" ><c:out value="${i.levelName }"></c:out></option>
                      			</c:forEach>
@@ -76,7 +76,7 @@
 <!--                      	 </select> -->
                     <label>président du jury </label>
                     
-                    	 <select class="form-control" name="juryPresidentName">
+                    	 <select class="form-control" name="juryPresidentName" required>
                      			<c:forEach items="${teachers}" var="i">
                      				<option value="${i.lastName }" ><c:out value="${i.lastName }"></c:out></option>
                      			</c:forEach>

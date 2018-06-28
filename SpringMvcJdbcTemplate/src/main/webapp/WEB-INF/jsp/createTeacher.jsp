@@ -36,7 +36,7 @@
     <!-- Favicon-->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/css/assets/css/img/favicon.ico">
      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/style.blue.css" id="theme-stylesheet">
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/assets/plugins/validationengine/css/validationEngine.jquery.css" />
      <!-- CSS-->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styleAdmin.css" type="text/css" media="all">
     
@@ -61,13 +61,13 @@
                 <div class="col-md-6">
 		             <form action="<c:url value='createTeacher'/>" method="post">
                     <label>nom</label>
-                        <input type="text" class="form-control" name="firstName"  />
+                        <input type="text" class="validate[required] form-control" name="firstName"  required />
                      <label>prénom</label>
-                        <input type="text" class="form-control" name="lastName"  />
+                        <input type="text" class=" validate[required] form-control" name="lastName"  required />
                      <label>email</label>
-                        <input type="email" class="form-control" name="emailAdress"  />
+                        <input type="email" class="validate[required,custom[email]] form-control" name="emailAdress"  />
                      <label>grade</label>
-                        <select class="form-control" name="gradeName">
+                        <select class="form-control validate[required]" name="gradeName">
                      			<c:forEach items="${grades}" var="i">
                      				<option value="${i.gradeName }" ><c:out value="${i.gradeName }"></c:out></option>
                      			</c:forEach>
@@ -93,5 +93,20 @@
     <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/charts-home.js"></script>
     <!-- Main File-->
     <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/front.js"></script>
+     <!--Validate -->
+    <script src="${pageContext.request.contextPath}/resources/css/assets/assets/plugins/jquery-2.0.3.min.js"></script>
+     <script src="${pageContext.request.contextPath}/resources/css/assets/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <!-- END GLOBAL SCRIPTS -->
+
+    <!-- PAGE LEVEL SCRIPTS -->
+
+     <script src="${pageContext.request.contextPath}/resources/css/assets/assets/plugins/validationengine/js/jquery.validationEngine.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/assets/plugins/validationengine/js/languages/jquery.validationEngine-en.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/assets/js/validationInit.js"></script>
+    <script>
+        $(function () { formValidation(); });
+        </script>
   </body>
 </html>

@@ -62,7 +62,7 @@
 		             <form action="<c:url value='addRole'/>" method="post">
                     
                       <label>role</label>
-                        <input type="text" class="form-control" name="nameRole" />
+                        <input type="text" class="form-control" name="nameRole" required />
                         <hr />
                       <input type="submit" value="Enregistrer" class="btn btn-info">
                 </form>
