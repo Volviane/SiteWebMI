@@ -1164,11 +1164,12 @@ try {
 
 
 	// se deconnecter
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logoutPost(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "/logoutAdministrator", method = RequestMethod.GET)
+	public String logoutPost(HttpServletRequest request, HttpServletResponse response, Model model) {
 
 		  HttpSession session = request.getSession();
 		  session.setAttribute( "administrator", null );
+		  model.addAttribute("sessionOut", "la session a ete supprimme");
 
 		return "connectionAdministrator";
 	}

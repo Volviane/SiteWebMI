@@ -12,6 +12,7 @@ import java.util.Set;
 
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -355,25 +356,41 @@ public class TeacherController {
 
 		String domainLabel= req.getParameter("domainLabel");
 		String phoneNumber= req.getParameter("phoneNumber");
-		String birthDate= req.getParameter("birthDate");
+		String birth= req.getParameter("birthDate");
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		Date birthDate = sdf.parse(birth);
 
 		HttpSession session = req.getSession();
 		Teacher authors =  (Teacher) session.getAttribute( "teacher" );
 		
-		Teacher author = teachersRepository.findByLogin(authors.getLogin());
+		Teacher teacher = teachersRepository.findByLogin(authors.getLogin());
 
 		ResearchDomain researchDomain=researchDomainRepository.findByDomainLabel(domainLabel);
 
-		if(researchDomain==null){
-
-			model.addAttribute("documents", "document ajoute avec sucess");
-
-			return "editProfil";
+		if(teacher==null){
+			model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
+			
 		}else{
-			model.addAttribute("error", "erreur d'ajout du document");
-			return "editProfil";
+			teacher.setBirthDate(birthDate);
+			teacher.setPhoneNumber(phoneNumber);
+			teacher.setResearchDomain(researchDomain);
+			model.addAttribute("teachers", "document ajoute avec sucess");
+		
 		}
+		return "editProfil";
 	}
+	
+	// se deconnecter
+		@RequestMapping(value = "/logoutTeacher", method = RequestMethod.GET)
+		public String logoutPost(HttpServletRequest request, HttpServletResponse response, Model model) {
+
+			  HttpSession session = request.getSession();
+			  session.setAttribute( "teacher", null );
+			  model.addAttribute("teachers", "la session a ete supprimme");
+
+			return "connectionAdministrator";
+		}
 
 
 
