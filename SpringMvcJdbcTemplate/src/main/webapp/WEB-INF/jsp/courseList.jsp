@@ -7,6 +7,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<c:if test="${administrator.login==null}">
+			<c:redirect  url="connectionAdministrator"></c:redirect>
+	     </c:if>
 <!DOCTYPE html>
 <html>
   <head>
@@ -60,10 +63,10 @@
          <div class="row">
                 <div class="col-md-6 table-responsive">
 		             <table class="table table-bordered table-striped table-condensed">
-		             	<c:forEach items="${options}" var="i" varStatus="pos">
+		             	<c:forEach items="${courses}" var="i" varStatus="pos">
 		             	  <tr class="active">
 							<td><c:out value="${pos.count}"></c:out></td>
-							<td><c:out value="${i.optionName }"></c:out></td>
+							<td><c:out value="${i.courseTitle }"></c:out></td>
 						   </tr>
 						 </c:forEach>
 
