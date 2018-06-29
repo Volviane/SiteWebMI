@@ -123,6 +123,8 @@ public class AdministratorController/* implements UserDetailsService */{
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	private String error = "error message";
+	private String errorLoging = "error message";
+	private String errorPasswor = "error message";
 
 	/*chiffrement de mot de passe*/
 	public static String cryptographe(String name) {
@@ -154,6 +156,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/homeAdministrator", method = RequestMethod.GET)
 	public String homeAdmin(Model model) {
 		System.out.println("home admin get");
+		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 
 		return "homeAdministrator";
 	}
@@ -162,6 +165,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addRole", method = RequestMethod.GET)
 	public String roleGet(Model model) {
 		System.out.println("addrole get");
+		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 
 		return "addRole";
 	}
@@ -174,13 +178,25 @@ public class AdministratorController/* implements UserDetailsService */{
 		String roleName= req.getParameter("nameRole");
 		Role roles = new Role();
 		if (roleName.equalsIgnoreCase("ROLE_STUDENTS")) {
-			roleRepository.save(roles);
-			//role.setUsers(new HashSet<>(studentRepository.findAll()));
-			//roleRepository.save(role);
+			try {
+				roleRepository.save(roles);
+				System.out.println("done");
+				model.addAttribute("roles", roles);
+				req.setAttribute("role", roles);
+			} catch (Exception e) {
+				model.addAttribute("error", "echec d'enregistrement");
+				// TODO: handle exception
+			}
 		} else if (roleName.equalsIgnoreCase("ROLE_TEACHERS")) {
-			roleRepository.save(roles);
-			//role.setAdmin(new HashSet<>(teachersRepository.findAll()));
-			//roleRepository.save(role);
+			try {
+				roleRepository.save(roles);
+				System.out.println("done");
+				model.addAttribute("roles", roles);
+				req.setAttribute("role", roles);
+			} catch (Exception e) {
+				model.addAttribute("error", "echec d'enregistrement");
+				// TODO: handle exception
+			}
 
 		} else if (roleName.equalsIgnoreCase("ROLE_ADMIN")) {
 			//role.setName(roleName);
@@ -263,6 +279,8 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/connectionAdministrator" }, method = RequestMethod.GET)
 	public String loginForm(Model model,HttpServletRequest req) {
 		System.out.println("connexion  d'un admin");
+		model.addAttribute("errorLogin", "erreur d'ajout du document; veuillez vous connecter d'abord");
+		model.addAttribute("errorPassword", "erreur d'ajout du document; veuillez vous connecter d'abord");
 
 		return "connectionAdministrator";
 	}
@@ -449,6 +467,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addCycle", method = RequestMethod.GET)
 	public String cycleGet(Model model,HttpServletRequest req) {
 		System.out.println("add cycle  get");
+		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 
 		return "addCycle";
 	}
@@ -513,7 +532,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addOption", method = RequestMethod.GET)
 	public String optionGet(Model model,HttpServletRequest req) {
 		System.out.println("addOption get");
-
+		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 		List<Cycle> cycles = cycleRepository.findAll();
 		for (Cycle cycle : cycles) {
 			System.out.println(cycle.getCycleName());
@@ -574,6 +593,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addLevel", method = RequestMethod.GET)
 	public String levelGet(Model model,HttpServletRequest req) {
 		System.out.println("add level  get");
+		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 		List<Option> options = optionRepository.findAll();
 		for (Option option : options) {
 			System.out.println(option.getOptionName());
@@ -637,6 +657,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addCourse", method = RequestMethod.GET)
 	public String coursesGet(Model model,HttpServletRequest req) {
 		System.out.println("addCourse get");
+		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 
 		List<Level> listOfLevel = levelRepository.findAll();
 		List<String> finalList = new ArrayList<String>();
@@ -716,6 +737,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/addGrade" }, method = RequestMethod.GET)
 	public String gradeGet(Model model) {
 		System.out.println("addGrade GET");
+		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 
 		return "addGrade";
 	}
@@ -770,6 +792,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/createTeacher" }, method = RequestMethod.GET)
 	public String createTeacherGet(Model model,HttpServletRequest req) {
 		System.out.println("createTeacher GET");
+		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 
 		List<Grade> listOfGrade = gradeRepository.findAll();
 
@@ -918,6 +941,7 @@ try {
 		@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.GET)
 	public String openAcademicYearGet(Model model,HttpServletRequest req) {
 		System.out.println("openAcademicYear GET");
+		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 
 
 		return "openAcademicYear";
@@ -940,6 +964,7 @@ try {
 		@RequestMapping(value = { "/createJury" }, method = RequestMethod.GET)
 	public String createJuryYearGet(Model model,HttpServletRequest req) {
 		System.out.println("createJury GET");
+		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 
 			List<Level> listOfLevel = levelRepository.findAll();
 		List<Teacher> listOfTeacher = teachersRepository.findAll();
@@ -987,6 +1012,7 @@ try {
 	@RequestMapping(value = { "/editNews" }, method = RequestMethod.GET)
 	public String createCommuniqueGet(Model model,HttpServletRequest req) {
 		System.out.println("editNews GET");
+		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 
 		return "editNews";
 	}
@@ -1034,6 +1060,7 @@ try {
 	@RequestMapping(value = { "/listNews" }, method = RequestMethod.GET)
 	public String listCommuniqueGet(Model model,HttpServletRequest req) {
 		System.out.println("listNews GET");
+		
 
 		List<Communique> listOfCommunique = communiqueRepository.findAll();
 
@@ -1051,6 +1078,7 @@ try {
 	@RequestMapping(value = { "/createEvent" }, method = RequestMethod.GET)
 	public String createEventGet(Model model,HttpServletRequest req) {
 		System.out.println("createEvent GET");
+		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 
 		return "createEvent";
 	}
@@ -1107,6 +1135,7 @@ try {
 		@RequestMapping(value = { "/addResearchDomain" }, method = RequestMethod.GET)
 		public String addReseachDomainGet(Model model,HttpServletRequest req) {
 			System.out.println("addReseachDomain GET");
+			model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 			
 			List<Option> listOfOption = optionRepository.findAll();
 
@@ -1119,7 +1148,7 @@ try {
 		}
 
 		@RequestMapping(value = { "/addResearchDomain" }, method = RequestMethod.POST)
-		@Transactional
+		//@Transactional
 		public String addReseachDomainPost(Model model, HttpServletRequest req) throws ParseException {
 			System.out.println("addReseachDomain Post");
 
@@ -1127,14 +1156,14 @@ try {
 			String domainLabel= req.getParameter("domainLabel");
 			String domainDescription= req.getParameter("domainDescription");
 			
-			Option option = optionRepository.findOne(optionName);
+			Option option = optionRepository.findByOptionName(optionName);
 			
 
 			ResearchDomain researchDomain = new ResearchDomain();
 
 			researchDomain.setDomainDescription(domainDescription);
 			researchDomain.setDomainLabel(domainLabel);
-			
+			researchDomain.setOption(option);
 			try {
 				researchDomainRepository.save(researchDomain);
 				model.addAttribute("researchDomains", "Domaine de recherche  cree avec succes");

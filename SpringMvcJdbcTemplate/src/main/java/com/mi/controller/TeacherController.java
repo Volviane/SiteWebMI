@@ -3,6 +3,7 @@ package com.mi.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,10 +11,12 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +44,8 @@ import com.mi.model.Teacher;
 import com.mi.model.Administrator;
 import com.mi.model.Communique;
 import com.mi.model.Document;
+import com.mi.model.Grade;
+import com.mi.model.Jury;
 import com.mi.model.ResearchDomain;
 import com.mi.model.Role;
 import com.mi.repositories.CommuniqueRepository;
@@ -61,8 +66,10 @@ import com.mi.repositories.TeachersRepository;
 public class TeacherController {
 
 	public static final Logger logger = LoggerFactory.getLogger(TeacherController.class);
-	private static final String SAVE_DIR="SiteWebMI/Documents";
+	private static final String SAVE_DIR=/*"C:"+File.separator+"Users"+File.separator+"MFOGO"+File.separator+"Documents"+File.separator+"Master1"+File.separator+"Semestre2"
+			+ ""+File.separator+"Projet"+File.separator+"workspace"+File.separator+*/"SiteWebMI"+File.separator+"SpringMvcJdbcTemplate"+File.separator+"Documents";
 
+	//C:\Program Files\Apache Software Foundation\Tomcat 7.0\webapps
 
 	@Autowired
 	DocumentRepository documentRepository;
@@ -139,6 +146,7 @@ public class TeacherController {
 	@RequestMapping(value = "/homeTeacher", method = RequestMethod.GET)
 	public String homeTeacher(Model model) {
 		System.out.println("home enseignant get");
+		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 
 		return "homeTeacher";
 	}
@@ -149,6 +157,7 @@ public class TeacherController {
 	@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.GET)
 	public String loginForm(Model model,HttpServletRequest req) {
 		System.out.println("connexion  d'un enseignant get");
+		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 
 		return "loginTeacher";
 	}
@@ -189,19 +198,19 @@ public class TeacherController {
 
 				} else {
 					logger.error("Teacher with password {} not found.", password);
-					model.addAttribute("error", "Password not found.");
-					req.setAttribute("error", "Password not found.");
+					model.addAttribute("errorPassword", "Password not found.");
+					req.setAttribute("errorPassword", "Password not found.");
 				}
 			} else {
 				logger.error("Teacher with password {} not found.", login);
-				model.addAttribute("error", "login not found, teacher"+ login + "doesn't exist");
-				req.setAttribute("error", "login not found, teacher"+ login + "doesn't exist");
+				model.addAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
+				req.setAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
 
 			}
 		} catch (Exception ex) {
 			logger.error("Teacher with pseudonym {} not found.", login);
-			model.addAttribute("error", "login not found, teacher"+ login + "doesn't exist");
-			req.setAttribute("error", "login not found, teacher"+ login + "doesn't exist");
+			model.addAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
+			req.setAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
 		}
 
 		//return "redirect:/TeacherHome";
@@ -212,6 +221,7 @@ public class TeacherController {
 	@RequestMapping(value = { "/updateParameters" }, method = RequestMethod.GET)
 	public String updateParameterGet(Model model,HttpServletRequest req) {
 		System.out.println("modifier les parametre de connexion get");
+		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 		return "updateParameters";
 	}
 
@@ -244,54 +254,74 @@ public class TeacherController {
 	@RequestMapping(value = { "/addDocument" }, method = RequestMethod.GET)
 	public String addDocumentGet(Model model,HttpServletRequest req) {
 		System.out.println("addDocument get");
+		
+		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
+		
 		return "addDocument";
 	}
 
 	@RequestMapping(value = { "/addDocument" }, method = RequestMethod.POST)
 	@Transactional
-	public String addDocumentPost(Model model, HttpServletRequest req,@RequestParam("file") MultipartFile file) throws ParseException {
+	public String addDocumentPost(Model model, HttpServletRequest req,@RequestParam("files") MultipartFile file) throws ParseException, IOException, ServletException {
 
 		String documentTitle= req.getParameter("documentTitle");
 		String documentDescription= req.getParameter("documentDescription");
 		String documentType= req.getParameter("documentType");
-		String documentName= req.getParameter("documentName");
+		//String documentName= req.getParameter("documentName");
 		//	String createDate= req.getParameter("createDate");
+		
 
 		Calendar calendarCourante = Calendar.getInstance();
 		//int createYear = calendarCourante.get(Calendar.YEAR);
-		int createMonth = calendarCourante.get(Calendar.DATE);
+		int createMonth = calendarCourante.get(Calendar.YEAR);
 		String createYear= createMonth+"";
-
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-		Date createDate = sdf.parse(createYear);
+	
+		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		//Date createDate = sdf.parse(createYear);
 		
-		HttpSession session = req.getSession();
-		Teacher author =  (Teacher) session.getAttribute( "teacher" );
+		try {
+			HttpSession session = req.getSession();
+			Teacher author =  (Teacher) session.getAttribute( "teacher" );
+			
+			String documentName= documentTitle+"_"+createYear+".pdf";
+			System.out.println(author.getFirstName());
+			byte[] bytes = file.getBytes();
+			File dir = new File(SAVE_DIR);
+			if (!dir.exists())
+				dir.mkdirs();
+			
+			BufferedOutputStream stream = new BufferedOutputStream(
+					new FileOutputStream(SAVE_DIR + File.separator + documentName));
+			stream.write(bytes);
+			stream.close();
+		
+			String documentNames=SAVE_DIR + File.separator + documentName;
+			Document document= new Document();
 
+				document.setDocumentDescription(documentDescription);
+				document.setDocumentTitle(documentTitle);
+				document.setDocumentType(documentType);
+				document.setDocumentName(documentNames);
+			//	document.setCreateDate(createDate);
+				document.setAuthor(author);
 
-		int ret=upload(file,documentName,author.getFirstName());
-		Document document= new Document();
+				documentRepository.save(document);
+				model.addAttribute("documents", "document ajoute avec sucess");
 
-		if(ret==1){
-			document.setDocumentDescription(documentDescription);
-			document.setDocumentTitle(documentTitle);
-			document.setDocumentType(documentType);
-			document.setCreateDate(createDate);
-			document.setAuthor(author);
-
-			documentRepository.save(document);
-			model.addAttribute("documents", "document ajoute avec sucess");
-
-			return "addDocument";
-		}else{
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
 			model.addAttribute("error", "erreur d'ajout du document");
-			return "addDocument";
+			
 		}
+		
+		return "addDocument";
+			/*
+		*/
 	}
 
 	//modifier un document
-
-	//ajouter un document
 	@RequestMapping(value = { "/updateDocument" }, method = RequestMethod.GET)
 	public String updateDocumentGet(Model model,HttpServletRequest req) {
 		System.out.println("updateDocument get");
@@ -320,12 +350,13 @@ public class TeacherController {
 
 		HttpSession session = req.getSession();
 		Teacher author =  (Teacher) session.getAttribute( "teacher" );
+		
+		System.out.println(author.getFirstName());
 
-
-		int ret=upload(file,documentName,author.getFirstName());
+		String ret=upload(file,documentName,author.getFirstName());
 		Document document= new Document();
 
-		if(ret==1){
+		if(ret!=null){
 			document.setDocumentDescription(documentDescription);
 			document.setDocumentTitle(documentTitle);
 			document.setDocumentType(documentType);
@@ -347,6 +378,7 @@ public class TeacherController {
 	@RequestMapping(value = { "/editProfil" }, method = RequestMethod.GET)
 	public String editProfilGet(Model model,HttpServletRequest req) {
 		System.out.println("editProfil get");
+		model.addAttribute("error", "erreur d'ajout du document");
 		return "editProfil";
 	}
 
@@ -375,7 +407,8 @@ public class TeacherController {
 			teacher.setBirthDate(birthDate);
 			teacher.setPhoneNumber(phoneNumber);
 			teacher.setResearchDomain(researchDomain);
-			model.addAttribute("teachers", "document ajoute avec sucess");
+			teachersRepository.save(teacher);
+			model.addAttribute("teachers", "profil edite avec succes");
 		
 		}
 		return "editProfil";
@@ -392,6 +425,25 @@ public class TeacherController {
 			return "connectionAdministrator";
 		}
 
+		// information pour afficher la page personnelle
+		@RequestMapping(value = "/InformationTeacher", method = RequestMethod.GET)
+		public String InformationTeacherGet(HttpServletRequest request, HttpServletResponse response, Model model) {
+			System.out.println("InformationTeacher get");
+			model.addAttribute("error", "erreur d'ajout du document");
+			
+			String name = request.getParameter("teacherName");
+			
+			Teacher teach = teachersRepository.findByLastName(name);
+			ResearchDomain recher= teach.getResearchDomain();
+			Grade grade =teach.getGrade();
+			Set<Jury> jury = teach.getJury();
+			model.addAttribute("teahers", teach);
+			model.addAttribute("researchDomains", recher);
+			model.addAttribute("grades", grade);
+			model.addAttribute("jurys", jury);
+			
+			return "InformationTeacher";
+		}
 
 
 
@@ -403,31 +455,32 @@ public class TeacherController {
 
 	//upload methode
 	@SuppressWarnings("finally")
-	int upload(MultipartFile file,String name,String option){
-		int ret=0;
+	String upload(MultipartFile file,String name,String option){
+		String ret=null;
 		try {
 			byte[] bytes = file.getBytes();
 
 			// Creating the directory to store file
 			String rootPath = System.getProperty("catalina.home");
-			File dir = new File(rootPath + File.separator + SAVE_DIR+"/"+option);
+			//			File dir = new File(rootPath + File.separator + SAVE_DIR+File.separator+option);
+			File dir = new File(SAVE_DIR);
 			if (!dir.exists())
 				dir.mkdirs();
-
 			// Create the file on server
-			File serverFile = new File(dir.getAbsolutePath()
-					+ File.separator + name);
+			File serverFile = new File(dir.getAbsolutePath());
 			BufferedOutputStream stream = new BufferedOutputStream(
 					new FileOutputStream(serverFile));
 			stream.write(bytes);
 			stream.close();
-			ret=1;
+			ret=serverFile.getAbsolutePath();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			return ret;
 		}
 	}
+	
 
 	//userDetails method
 	//@Override
