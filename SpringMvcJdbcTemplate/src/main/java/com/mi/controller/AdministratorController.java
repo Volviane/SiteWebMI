@@ -176,6 +176,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		System.out.println("addrole post");
 
 		String roleName= req.getParameter("nameRole");
+		String error="initialisation";
 		Role roles = new Role();
 		if (roleName.equalsIgnoreCase("ROLE_STUDENTS")) {
 			try {

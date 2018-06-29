@@ -7,6 +7,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<c:if test="${administrator.login==null}">
+			<c:redirect  url="connectionAdministrator"></c:redirect>
+	     </c:if>
 <!DOCTYPE html>
 <html>
   <head>
@@ -79,10 +82,10 @@
                         <hr />
                         <input type="submit" value="Enregistrer" class="btn btn-info">
                           <c:if test="${error!=null}">
-						<h6 class=""> <font color="red">le cycle n'a pas enregistré</font></h1>
+						<h6 class=""> <font color="red">l'option n'a pas enregistré</font></h1>
 			       </c:if>
 			        <c:if test="${error==null}">
-						<h6 class=""> <font color="red">le cycle a été bien enregistré</font></h1>
+						<h6 class=""> <font color="red">l'option a été bien enregistré</font></h1>
 			       </c:if>
                 </form>
 
