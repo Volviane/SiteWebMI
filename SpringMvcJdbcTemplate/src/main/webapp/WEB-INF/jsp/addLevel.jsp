@@ -71,7 +71,7 @@
                      		<label>nom du niveau</label>
                     		<div class="form-group">
                      			
-                      			  <input type="text" class="form-control" name="levelName" />
+                      			  <input type="text" class="form-control" name="levelName" required />
                              </div>
                     
                         <hr />

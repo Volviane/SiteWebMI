@@ -60,10 +60,10 @@
          <div class="row">
                 <div class="col-md-6 table-responsive">
 		             <table class="table table-bordered table-striped table-condensed">
-		             	<c:forEach items="${options}" var="i">
-		             	  <tr class="active">
-							<td></td>
-							<td><c:out value="${i.optionName }"></c:out></td>
+		             	<c:forEach items="${options}" var="i" varStatus="pos">
+		             	  <tr class="info">
+							<td ><c:out value="${pos.count}"></c:out></td>
+							<td ><c:out value="${i.optionName }"></c:out></td>
 						   </tr>
 						 </c:forEach>
 
@@ -72,12 +72,7 @@
                 </div>
            </div>
       </section>
-       <c:if test="${error=null}">
-			<h1 class=""> <font color="red">le cycle a été bien enregistré</font></h1>
-       </c:if>
-       <c:if test="${error!=null}">
-			<h1 class=""> <font color="red">le cycle n'a pas enregistré</font></h1>
-       </c:if>
+       
     	<%@include file="includeFile/footerAdmin.jsp"%>
     </div>
     <!-- JavaScript files-->

@@ -75,12 +75,12 @@
                      		<label>code de l'uv </label>
                     		<div class="form-group">
                      			
-                      			  <input type="text" class="form-control" name="courseCode" />
+                      			  <input type="text" class="form-control" name="courseCode" required />
                              </div>
                              <label>nom de l'uv </label>
                     		<div class="form-group">
                      			
-                      			  <input type="text" class="form-control" name="courseName" />
+                      			  <input type="text" class="form-control" name="courseName" required />
                              </div>
                              <label>semestre </label>
                     		<div class="form-group">
