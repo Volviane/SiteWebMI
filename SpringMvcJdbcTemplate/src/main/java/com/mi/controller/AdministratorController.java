@@ -156,7 +156,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/homeAdministrator", method = RequestMethod.GET)
 	public String homeAdmin(Model model) {
 		System.out.println("home admin get");
-		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
+		model.addAttribute("error", "");
 
 		return "homeAdministrator";
 	}
@@ -165,8 +165,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addRole", method = RequestMethod.GET)
 	public String roleGet(Model model) {
 		System.out.println("addrole get");
-		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
-
+		model.addAttribute("error", "");
 		return "addRole";
 	}
 
@@ -176,10 +175,11 @@ public class AdministratorController/* implements UserDetailsService */{
 		System.out.println("addrole post");
 
 		String roleName= req.getParameter("nameRole");
-		String error="initialisation";
+	
 		Role roles = new Role();
 		if (roleName.equalsIgnoreCase("ROLE_STUDENTS")) {
 			try {
+				roles.setRoleName(roleName);
 				roleRepository.save(roles);
 				System.out.println("done");
 				model.addAttribute("roles", roles);
@@ -190,6 +190,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			}
 		} else if (roleName.equalsIgnoreCase("ROLE_TEACHERS")) {
 			try {
+				roles.setRoleName(roleName);
 				roleRepository.save(roles);
 				System.out.println("done");
 				model.addAttribute("roles", roles);
@@ -239,6 +240,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/registrationAdministrator" }, method = RequestMethod.GET)
 	public String createForm(Model model,HttpServletRequest req) {
 		System.out.println("inscription d'un admin");
+		model.addAttribute("error", "");
 		return "registrationAdministrator";
 	}
 	//create administrator post method
@@ -280,8 +282,8 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/connectionAdministrator" }, method = RequestMethod.GET)
 	public String loginForm(Model model,HttpServletRequest req) {
 		System.out.println("connexion  d'un admin");
-		model.addAttribute("errorLogin", "erreur d'ajout du document; veuillez vous connecter d'abord");
-		model.addAttribute("errorPassword", "erreur d'ajout du document; veuillez vous connecter d'abord");
+		model.addAttribute("errorLogin", "");
+		model.addAttribute("errorPassword", "");
 
 		return "connectionAdministrator";
 	}
@@ -468,8 +470,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addCycle", method = RequestMethod.GET)
 	public String cycleGet(Model model,HttpServletRequest req) {
 		System.out.println("add cycle  get");
-		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
-
+		model.addAttribute("error", "");
 		return "addCycle";
 	}
 
@@ -533,7 +534,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addOption", method = RequestMethod.GET)
 	public String optionGet(Model model,HttpServletRequest req) {
 		System.out.println("addOption get");
-		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
+		model.addAttribute("error", "");
 		List<Cycle> cycles = cycleRepository.findAll();
 		for (Cycle cycle : cycles) {
 			System.out.println(cycle.getCycleName());
@@ -594,7 +595,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addLevel", method = RequestMethod.GET)
 	public String levelGet(Model model,HttpServletRequest req) {
 		System.out.println("add level  get");
-		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
+		model.addAttribute("error", "");
 		List<Option> options = optionRepository.findAll();
 		for (Option option : options) {
 			System.out.println(option.getOptionName());
@@ -658,8 +659,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addCourse", method = RequestMethod.GET)
 	public String coursesGet(Model model,HttpServletRequest req) {
 		System.out.println("addCourse get");
-		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
-
+		model.addAttribute("error", "");
 		List<Level> listOfLevel = levelRepository.findAll();
 		List<String> finalList = new ArrayList<String>();
 
@@ -738,8 +738,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/addGrade" }, method = RequestMethod.GET)
 	public String gradeGet(Model model) {
 		System.out.println("addGrade GET");
-		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
-
+		model.addAttribute("error", "");
 		return "addGrade";
 	}
 
@@ -793,8 +792,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/createTeacher" }, method = RequestMethod.GET)
 	public String createTeacherGet(Model model,HttpServletRequest req) {
 		System.out.println("createTeacher GET");
-		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
-
+		model.addAttribute("error", "");
 		List<Grade> listOfGrade = gradeRepository.findAll();
 
 		if (listOfGrade.isEmpty()) {
@@ -942,8 +940,7 @@ try {
 		@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.GET)
 	public String openAcademicYearGet(Model model,HttpServletRequest req) {
 		System.out.println("openAcademicYear GET");
-		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
-
+		model.addAttribute("error", "");
 
 		return "openAcademicYear";
 
@@ -965,8 +962,7 @@ try {
 		@RequestMapping(value = { "/createJury" }, method = RequestMethod.GET)
 	public String createJuryYearGet(Model model,HttpServletRequest req) {
 		System.out.println("createJury GET");
-		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
-
+		model.addAttribute("error", "");
 			List<Level> listOfLevel = levelRepository.findAll();
 		List<Teacher> listOfTeacher = teachersRepository.findAll();
 
@@ -1013,8 +1009,7 @@ try {
 	@RequestMapping(value = { "/editNews" }, method = RequestMethod.GET)
 	public String createCommuniqueGet(Model model,HttpServletRequest req) {
 		System.out.println("editNews GET");
-		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
-
+		model.addAttribute("error", "");
 		return "editNews";
 	}
 
@@ -1079,8 +1074,7 @@ try {
 	@RequestMapping(value = { "/createEvent" }, method = RequestMethod.GET)
 	public String createEventGet(Model model,HttpServletRequest req) {
 		System.out.println("createEvent GET");
-		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
-
+		model.addAttribute("error", "");
 		return "createEvent";
 	}
 
@@ -1136,8 +1130,7 @@ try {
 		@RequestMapping(value = { "/addResearchDomain" }, method = RequestMethod.GET)
 		public String addReseachDomainGet(Model model,HttpServletRequest req) {
 			System.out.println("addReseachDomain GET");
-			model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
-			
+			model.addAttribute("error", "");	
 			List<Option> listOfOption = optionRepository.findAll();
 
 			if (listOfOption.isEmpty() ) {
@@ -1153,7 +1146,7 @@ try {
 		public String addReseachDomainPost(Model model, HttpServletRequest req) throws ParseException {
 			System.out.println("addReseachDomain Post");
 
-			String optionName= req.getParameter("optionName");
+			String optionName= req.getParameter("cycleName");
 			String domainLabel= req.getParameter("domainLabel");
 			String domainDescription= req.getParameter("domainDescription");
 			

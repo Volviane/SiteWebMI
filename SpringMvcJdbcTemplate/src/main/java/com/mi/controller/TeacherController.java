@@ -146,7 +146,7 @@ public class TeacherController {
 	@RequestMapping(value = "/homeTeacher", method = RequestMethod.GET)
 	public String homeTeacher(Model model) {
 		System.out.println("home enseignant get");
-		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
+		model.addAttribute("error", "");
 
 		return "homeTeacher";
 	}
@@ -157,8 +157,8 @@ public class TeacherController {
 	@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.GET)
 	public String loginForm(Model model,HttpServletRequest req) {
 		System.out.println("connexion  d'un enseignant get");
-		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
-
+		model.addAttribute("errorLogin", "");
+		model.addAttribute("errorPassword", "");
 		return "loginTeacher";
 	}
 
@@ -221,7 +221,7 @@ public class TeacherController {
 	@RequestMapping(value = { "/updateParameters" }, method = RequestMethod.GET)
 	public String updateParameterGet(Model model,HttpServletRequest req) {
 		System.out.println("modifier les parametre de connexion get");
-		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
+		model.addAttribute("error", "");
 		return "updateParameters";
 	}
 
@@ -255,8 +255,7 @@ public class TeacherController {
 	public String addDocumentGet(Model model,HttpServletRequest req) {
 		System.out.println("addDocument get");
 		
-		model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
-		
+		model.addAttribute("error", "");
 		return "addDocument";
 	}
 
@@ -325,6 +324,7 @@ public class TeacherController {
 	@RequestMapping(value = { "/updateDocument" }, method = RequestMethod.GET)
 	public String updateDocumentGet(Model model,HttpServletRequest req) {
 		System.out.println("updateDocument get");
+		model.addAttribute("error", "");
 		return "updateDocument";
 	}
 
@@ -378,7 +378,7 @@ public class TeacherController {
 	@RequestMapping(value = { "/editProfil" }, method = RequestMethod.GET)
 	public String editProfilGet(Model model,HttpServletRequest req) {
 		System.out.println("editProfil get");
-		model.addAttribute("error", "erreur d'ajout du document");
+		model.addAttribute("error", "");
 		return "editProfil";
 	}
 
@@ -429,7 +429,7 @@ public class TeacherController {
 		@RequestMapping(value = "/InformationTeacher", method = RequestMethod.GET)
 		public String InformationTeacherGet(HttpServletRequest request, HttpServletResponse response, Model model) {
 			System.out.println("InformationTeacher get");
-			model.addAttribute("error", "erreur d'ajout du document");
+			model.addAttribute("error", "");
 			
 			String name = request.getParameter("teacherName");
 			
