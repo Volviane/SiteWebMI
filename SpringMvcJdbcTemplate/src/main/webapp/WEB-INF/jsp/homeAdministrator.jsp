@@ -37,7 +37,9 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/css/assets/css/img/favicon.ico">
      <!-- CSS-->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styleAdmin.css" type="text/css" media="all">
+    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/style.blue.css" id="theme-stylesheet">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css" media="all">
     
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -55,8 +57,28 @@
         
       </section>
       <!-- Header Section-->
-      <section class="dashboard-header section-padding">
-        
+      <section class="dashboard-header padding">
+        		<div class="row">
+				<div class="col-md-3 col-sm-3 col-xs-6">
+					<div class="dashboard-div-wrapper bk-clr-one">
+						<a href="#"></a> 
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-3 col-xs-6">
+					<div class="dashboard-div-wrapper bk-clr-two">
+						<a href="#"></a> 
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-3 col-xs-6">
+					<div class="dashboard-div-wrapper bk-clr-three">
+						<a href="#"></a> 
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-3 col-xs-6">
+					<div class="dashboard-div-wrapper bk-clr-four">
+						<a href="#"></a> 
+					</div>
+				</div>
       </section>
       <!-- Statistics Section-->
       <section class="statistics">
@@ -105,9 +127,9 @@
               <!-- Daily Feed Widget-->
               <div id="daily-feeds" class="card updates daily-feeds">
                 <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center">
-                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">Your daily Feeds </a></h2>
+                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box"> </a></h2>
                   <div class="right-column">
-                    <div class="badge badge-primary">10 messages</div><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box"><i class="fa fa-angle-down"></i></a>
+                    <div class="badge badge-primary"></div><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box"><i class="fa fa-angle-down"></i></a>
                   </div>
                 </div>
                 <div id="feeds-box" role="tabpanel" class="collapse show">

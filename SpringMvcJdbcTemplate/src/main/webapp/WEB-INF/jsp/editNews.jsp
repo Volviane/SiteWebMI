@@ -7,6 +7,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<c:if test="${administrator.login==null}">
+			<c:redirect  url="connectionAdministrator"></c:redirect>
+	     </c:if>
 <!DOCTYPE html>
 <html>
   <head>
@@ -67,6 +70,9 @@
                         <input type="date" class="form-control" name="publicationDate"  />
                     <label>resumé du communiqué</label>
                       <textarea rows="5" cols="5" class="form-control" name="newsContent" required></textarea>
+                      
+                          <label>fichier du communiqué</label>
+                        <input type="file" class="form-control" name="newsFile"  />
                         <hr />
                        <input type="submit" value="créer" class="btn btn-info">
                </form>

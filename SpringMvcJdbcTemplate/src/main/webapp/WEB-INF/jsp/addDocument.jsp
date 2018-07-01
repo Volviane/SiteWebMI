@@ -73,7 +73,7 @@
 					</c:if>
 					
 					<div class="form-group-material">						
-						<input id="description-document" type="text" name="documentTitle" required
+						<input id="description-document" type="text" name="documentDescription" required
 							data-msg="veuillez entrer le titre du document" class="input-material">
 						<label for="description-document" class="label-material">Descripton du document</label>
 						<textarea rows="5" cols="30" ></textarea>
@@ -81,7 +81,7 @@
 					
 					<div class="form-group-material">		
 						<label for="file-document" class="label-material">Choisir le fichier</label>				
-						<input id="file-document" type="file" name="file" required
+						<input id="file-document" type="file" name="files" required
 							data-msg="veuillez entrer le titre du document" class="input-material">
 						
 					</div>
