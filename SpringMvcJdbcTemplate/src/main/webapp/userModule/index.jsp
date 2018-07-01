@@ -21,7 +21,9 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/userResources/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/userResources/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/userResources/css/imagehover.min.css">
+    
+   
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/userResources/css/imagehover.min.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/userResources/css/style.css">
   
   <!-- Styles peso -->
@@ -33,7 +35,7 @@
   <link href="${pageContext.request.contextPath}/resources/userResources/lib/owlcarousel/owl.transitions.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/resources/userResources/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/resources/userResources/lib/animate/animate.min.css" rel="stylesheet">
-  <link href="${pageContext.request.contextPath}/resources/userResources/lib/venobox/venobox.css" rel="stylesheet">
+<!--   <link href="${pageContext.request.contextPath}/resources/userResources/lib/venobox/venobox.css" rel="stylesheet"> -->
  <!-- Nivo Slider Theme -->
   <link href="${pageContext.request.contextPath}/resources/userResources/css/nivo-slider-theme.css" rel="stylesheet">
  <!-- Main Stylesheet File -->
@@ -41,96 +43,43 @@
 
   <!-- Responsive Stylesheet File -->
   <link href="${pageContext.request.contextPath}/resources/userResources/css/responsive.css" rel="stylesheet">
+
+
 </head>
 
 <body>
      <div id="preloader"></div>
+     
+ 
 
-  <header>
-    <!-- header-area start -->
-    <div id="sticker" class="header-area">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 col-sm-12">
-
-            <!-- Navigation -->
-            <nav class="navbar navbar-default">
-              <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".bs-example-navbar-collapse-1" aria-expanded="false">
-										<span class="sr-only">Toggle navigation</span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-									</button>
-                <!-- Brand -->
-                <a class="navbar-brand page-scroll sticky-logo" href="index.html">
-                  <h1><span>mi</span> Departement</h1>
-                  <!-- Uncomment below if you prefer to use an image logo -->
-                  <!-- <img src="img/logo.png" alt="" title=""> -->
-								</a>
-              </div>
-              <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="collapse navbar-collapse main-menu bs-example-navbar-collapse-1" id="navbar-example">
-                <ul class="nav navbar-nav navbar-right">
-                  <li class="active">
-                    <a class="page-scroll" href="#home">Acceuil</a>
-                  </li>
-                  <li>
-                    <a class="page-scroll" href="#about">About</a>
-                  </li>
-                  <li>
-                    <a class="page-scroll" href="#services">Services</a>
-                  </li>
-                  <li>
-                    <a class="page-scroll" href="#team">Team</a>
-                  </li>
-                  <li>
-                    <a class="page-scroll" href="#portfolio">Portfolio</a>
-                  </li>
-                  <li>
-                    <a class="page-scroll" href="#blog">Blog</a>
-                  </li>
-                  <li>
-                    <a class="page-scroll" href="#contact">Contact</a>
-                  </li>
-                </ul>
-              </div>
-              <!-- navbar-collapse -->
-            </nav>
-            <!-- END: Navigation -->
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- header-area end -->
-  </header>
-  <!-- header end -->
+  <c:import url="includes/headerUser.jsp"></c:import>
+  
+  
 
   <!-- Start Slider Area -->
-  <div id="home" class="slider-area">
+  <div id="home" class="slider-area"  style="display: block; height:400px;">
     <div class="bend niceties preview-2">
-      <div id="ensign-nivoslider" class="slides">
-        <img src="${pageContext.request.contextPath}/resources/userResources/img/slider/banniere-2.png" alt="" title="#slider-direction-1" height="500px"/>
-        <img src="${pageContext.request.contextPath}/resources/userResources/img/slider/banniere_1.png" alt="" title="#slider-direction-2" height="500px"/>
-        <img src="${pageContext.request.contextPath}/resources/userResources/img/slider/banniere-3.png" alt="" title="#slider-direction-3" height="500px" />
+      <div id="ensign-nivoslider" class="slides" style="display: block; height:400px;">
+<!--         <img src="${pageContext.request.contextPath}/resources/userResources/img/slider/banniere-2.png" alt="" title="#slider-direction-1" height="500px"/> -->
+       <img src="${pageContext.request.contextPath}/resources/userResources/img/slider/banniere_1.png" alt="" title="#slider-direction-2" height="500px" style="display: block"/>
+        <img src="${pageContext.request.contextPath}/resources/userResources/img/slider/banniere-3.png" alt="" title="#slider-direction-3" height="400px" style="display: block" />
       </div>
-
-      <!-- direction 1 -->
+<!-- 
+      direction 1
       <div id="slider-direction-1" class="slider-direction slider-one">
         <div class="container">
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="slider-content">
-                <!-- layer 1 -->
+                layer 1
                 <div class="layer-1-1 hidden-xs wow slideInDown" data-wow-duration="2s" data-wow-delay=".2s">
                   <h2 class="title1">The Best Business Information </h2>
                 </div>
-                <!-- layer 2 -->
+                layer 2
                 <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
                   <h1 class="title2">We're In The Business Of Helping You Start Your Business</h1>
                 </div>
-                <!-- layer 3 -->
+                layer 3
                 <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
                   <a class="ready-btn right-btn page-scroll" href="#services">See Services</a>
                   <a class="ready-btn page-scroll" href="#about">Learn More</a>
@@ -141,24 +90,24 @@
         </div>
       </div>
 
-      <!-- direction 2 -->
+      direction 2
       <div id="slider-direction-2" class="slider-direction slider-two">
         <div class="container">
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="slider-content text-center">
-                <!-- layer 1 -->
+                layer 1
                 <div class="layer-1-1 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
                   <h2 class="title1">The Best Business Information </h2>
                 </div>
-                <!-- layer 2 -->
+                layer 2
                 <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
                   <h1 class="title2">We're In The Business Of Get Quality Business Service</h1>
                 </div>
-                <!-- layer 3 -->
+                layer 3
                 <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                  <a class="ready-btn right-btn page-scroll" href="#services">See Services</a>
-                  <a class="ready-btn page-scroll" href="#about">Learn More</a>
+                  <a class="ready-btn right-btn page-scroll" href="events.jsp">Voir les évènements</a>
+                  <a class="ready-btn page-scroll" href="event/id">Lire la suite</a>
                 </div>
               </div>
             </div>
@@ -166,39 +115,44 @@
         </div>
       </div>
 
-      <!-- direction 3 -->
+      direction 3
       <div id="slider-direction-3" class="slider-direction slider-two">
         <div class="container">
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="slider-content">
-                <!-- layer 1 -->
+                layer 1
                 <div class="layer-1-1 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
                   <h2 class="title1">The Best business Information </h2>
                 </div>
-                <!-- layer 2 -->
+                layer 2
                 <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
                   <h1 class="title2">Helping Business Security  & Peace of Mind for Your Family</h1>
                 </div>
-                <!-- layer 3 -->
+                layer 3
                 <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                  <a class="ready-btn right-btn page-scroll" href="#services">See Services</a>
-                  <a class="ready-btn page-scroll" href="#about">Learn More</a>
+                  <a class="ready-btn right-btn" href="formations.jsp">Voir les Formations</a>
+                  <a class="ready-btn" href="#about">Learn More</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+  -->   
+  </div>
   </div>
   <!-- End Slider Area -->
+  
+  
+  <div style="clear:both;display:block;"></div>
+  
   <!--Feature-->
   <section id="feature" class="section-padding">
     <div class="container">
       <div class="row">
         <div class="header-section text-center">
-          <h2>Features</h2>
+          <h2>Présentation du Département</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem nesciunt vitae,<br> maiores, magni dolorum aliquam.</p>
           <hr class="bottom-line">
         </div>
@@ -206,7 +160,7 @@
           <div class="fea">
             <div class="col-md-4">
               <div class="heading pull-right">
-                <h4>Latest Technologies</h4>
+                <h4></h4>
                 <p>Donec et lectus bibendum dolor dictum auctor in ac erat. Vestibulum egestas sollicitudin metus non urna in eros tincidunt convallis id id nisi in interdum.</p>
               </div>
               <div class="fea-img pull-left">
@@ -241,6 +195,81 @@
     </div>
   </section>
   <!--/ feature-->
+  
+  
+  <!--Faculity member-->
+  <section id="faculity-member" class="section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="header-section text-center">
+          <h2>Découvrez les membres du département de Mathématiques-Informatique</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem nesciunt vitae,<br> maiores, magni dolorum aliquam.</p>
+          <hr class="bottom-line">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+          <div class="pm-staff-profile-container">
+            <div class="pm-staff-profile-image-wrapper text-center">
+              <div class="pm-staff-profile-image">
+                <img src="${pageContext.request.contextPath}/resources/userResources/img/prNkenlifack.jpg" alt="" class="img-thumbnail img-circle" />
+              </div>
+            </div>
+            <div class="pm-staff-profile-details text-center">
+              <p class="pm-staff-profile-name">Pr Marcellin NKENLIFACK</p>
+              <p class="pm-staff-profile-title">Chef de Département</p>
+
+              <p class="pm-staff-profile-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et placerat dui. In posuere metus et elit placerat tristique. Maecenas eu est in sem ullamcorper tincidunt. </p>
+            	<p>
+            <button name="submit" type="submit" class="btn btn-block btn-submit">
+            Voir sa page personnelle <i class="fa fa-arrow-right"></i></button>
+          </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-4 col-sm-4">
+          <div class="pm-staff-profile-container">
+            <div class="pm-staff-profile-image-wrapper text-center">
+              <div class="pm-staff-profile-image">
+                <img src="${pageContext.request.contextPath}/resources/userResources/img/prTadmon.jpg" alt="" class="img-thumbnail img-circle" />
+              </div>
+            </div>
+            <div class="pm-staff-profile-details text-center">
+              <p class="pm-staff-profile-name">Pr Calvin Tadmon</p>
+              <p class="pm-staff-profile-title">Lead Software Engineer</p>
+
+              <p class="pm-staff-profile-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et placerat dui. In posuere metus et elit placerat tristique. Maecenas eu est in sem ullamcorper tincidunt. </p>
+            	<p>
+            <button name="submit" type="submit" class="btn btn-block btn-submit">
+            Voir sa page personnelle <i class="fa fa-arrow-right"></i></button>
+          </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-4 col-sm-4">
+          <div class="pm-staff-profile-container">
+            <div class="pm-staff-profile-image-wrapper text-center">
+              <div class="pm-staff-profile-image">
+                <img src="${pageContext.request.contextPath}/resources/userResources/img/mrFoko1.jpg" alt="" class="img-thumbnail img-circle" />
+              </div>
+            </div>
+            <div class="pm-staff-profile-details text-center">
+              <p class="pm-staff-profile-name">Miguel FOKO</p>
+              <p class="pm-staff-profile-title">Lead Software Engineer</p>
+
+              <p class="pm-staff-profile-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et placerat dui. In posuere metus et elit placerat tristique. Maecenas eu est in sem ullamcorper tincidunt. </p>
+            	<p>
+            <button name="submit" type="submit" class="btn btn-block btn-submit">
+            Voir sa page personnelle <i class="fa fa-arrow-right"></i></button>
+          </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Faculity member-->
+  
   <!--Organisations-->
   <section id="organisations" class="section-padding">
     <div class="container">
@@ -281,24 +310,8 @@
     </div>
   </section>
   <!--/ Organisations-->
-  <!--Cta-->
-  <section id="cta-2">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <h2 class="text-center">Subscribe Now</h2>
-          <p class="cta-2-txt">Sign up for our free weekly software design courses, we’ll send them right to your inbox.</p>
-          <div class="cta-2-form text-center">
-            <form action="#" method="post" id="workshop-newsletter-form">
-              <input name="" placeholder="Enter Your Email Address" type="email">
-              <input class="cta-2-form-submit-btn" value="Subscribe" type="submit">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--/ Cta-->
+  
+
   <!--work-shop-->
   <section id="work-shop" class="section-padding">
     <div class="container">
@@ -342,64 +355,9 @@
     </div>
   </section>
   <!--/ work-shop-->
-  <!--Faculity member-->
-  <section id="faculity-member" class="section-padding">
-    <div class="container">
-      <div class="row">
-        <div class="header-section text-center">
-          <h2>Meet Our Faculty Member</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem nesciunt vitae,<br> maiores, magni dolorum aliquam.</p>
-          <hr class="bottom-line">
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4">
-          <div class="pm-staff-profile-container">
-            <div class="pm-staff-profile-image-wrapper text-center">
-              <div class="pm-staff-profile-image">
-                <img src="${pageContext.request.contextPath}/resources/userResources/img/mentor.jpg" alt="" class="img-thumbnail img-circle" />
-              </div>
-            </div>
-            <div class="pm-staff-profile-details text-center">
-              <p class="pm-staff-profile-name">Bryan Johnson</p>
-              <p class="pm-staff-profile-title">Lead Software Engineer</p>
-
-              <p class="pm-staff-profile-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et placerat dui. In posuere metus et elit placerat tristique. Maecenas eu est in sem ullamcorper tincidunt. </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4">
-          <div class="pm-staff-profile-container">
-            <div class="pm-staff-profile-image-wrapper text-center">
-              <div class="pm-staff-profile-image">
-                <img src="${pageContext.request.contextPath}/resources/userResources/img/mentor.jpg" alt="" class="img-thumbnail img-circle" />
-              </div>
-            </div>
-            <div class="pm-staff-profile-details text-center">
-              <p class="pm-staff-profile-name">Bryan Johnson</p>
-              <p class="pm-staff-profile-title">Lead Software Engineer</p>
-
-              <p class="pm-staff-profile-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et placerat dui. In posuere metus et elit placerat tristique. Maecenas eu est in sem ullamcorper tincidunt. </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4">
-          <div class="pm-staff-profile-container">
-            <div class="pm-staff-profile-image-wrapper text-center">
-              <div class="pm-staff-profile-image">
-                <img src="${pageContext.request.contextPath}/resources/userResources/img/mentor.jpg" alt="" class="img-thumbnail img-circle" />
-              </div>
-            </div>
-            <div class="pm-staff-profile-details text-center">
-              <p class="pm-staff-profile-name">Bryan Johnson</p>
-              <p class="pm-staff-profile-title">Lead Software Engineer</p>
-
-              <p class="pm-staff-profile-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et placerat dui. In posuere metus et elit placerat tristique. Maecenas eu est in sem ullamcorper tincidunt. </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--/ Faculity member-->
+  
+  
+  
   <!--Testimonial-->
   <section id="testimonial" class="section-padding">
     <div class="container">
@@ -425,6 +383,8 @@
     </div>
   </section>
   <!--/ Testimonial-->
+  
+  
   <!--Courses-->
   <section id="courses" class="section-padding">
     <div class="container">
@@ -445,7 +405,7 @@
               <h3>Course Name</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
             </figcaption>
-            <a href="#"></a>
+            <a href="#">Lire la suite</a>
           </figure>
         </div>
         <div class="col-md-4 col-sm-6 padleft-right">
@@ -455,7 +415,7 @@
               <h3>Course Name</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
             </figcaption>
-            <a href="#"></a>
+            <a href="#">Lire la suite</a>
           </figure>
         </div>
         <div class="col-md-4 col-sm-6 padleft-right">
@@ -465,7 +425,7 @@
               <h3>Course Name</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
             </figcaption>
-            <a href="#"></a>
+            <a href="#">Lire la suite</a>
           </figure>
         </div>
         <div class="col-md-4 col-sm-6 padleft-right">
@@ -475,7 +435,7 @@
               <h3>Course Name</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
             </figcaption>
-            <a href="#"></a>
+            <a href="#">Lire la suite</a>
           </figure>
         </div>
         <div class="col-md-4 col-sm-6 padleft-right">
@@ -485,7 +445,7 @@
               <h3>Course Name</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
             </figcaption>
-            <a href="#"></a>
+            <a href="#">Lire la suite</a>
           </figure>
         </div>
         <div class="col-md-4 col-sm-6 padleft-right">
@@ -495,13 +455,15 @@
               <h3>Course Name</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
             </figcaption>
-            <a href="#"></a>
+            <a href="#">Lire la suite</a>
           </figure>
         </div>
       </div>
     </div>
   </section>
   <!--/ Courses-->
+  
+  
   <!--Pricing-->
   <section id="pricing" class="section-padding">
     <div class="container">
@@ -557,57 +519,15 @@
     </div>
   </section>
   <!--/ Pricing-->
-  <!--Contact-->
-  <section id="contact" class="section-padding">
-    <div class="container">
-      <div class="row">
-        <div class="header-section text-center">
-          <h2>Contact Us</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem nesciunt vitae,<br> maiores, magni dolorum aliquam.</p>
-          <hr class="bottom-line">
-        </div>
-        <div id="sendmessage">Your message has been sent. Thank you!</div>
-        <div id="errormessage"></div>
-        <form action="" method="post" role="form" class="contactForm">
-          <div class="col-md-6 col-sm-6 col-xs-12 left">
-            <div class="form-group">
-              <input type="text" name="name" class="form-control form" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-              <div class="validation"></div>
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-              <div class="validation"></div>
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-              <div class="validation"></div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-sm-6 col-xs-12 right">
-            <div class="form-group">
-              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-              <div class="validation"></div>
-            </div>
-          </div>
-
-          <div class="col-xs-12">
-            <!-- Button -->
-            <button type="submit" id="submit" name="submit" class="form contact-form-button light-form-button oswald light">SEND EMAIL</button>
-          </div>
-        </form>
-
-      </div>
-    </div>
-  </section>
-  <!--/ Contact-->
+  
+  
   <!--Footer-->
   <footer id="footer" class="footer">
     <div class="container text-center">
 
-      <h3>Start Your Free Trial Now!</h3>
+      <h3>Souscrire à notre Newsletter!</h3>
 
-      <form class="mc-trial row">
+      <form action="" method="get" class="mc-trial row">
         <div class="form-group col-md-3 col-md-offset-2 col-sm-4">
           <div class=" controls">
             <input name="name" placeholder="Enter Your Name" class="form-control" type="text">
@@ -635,7 +555,7 @@
         <li><a href="#link"><i class="fa fa-dribbble fa-fw"></i></a></li>
         <li><a href="#link"><i class="fa fa-linkedin fa-fw"></i></a></li>
       </ul>
-      ©2016 Mentor Theme. All rights reserved
+     Maths-info &copy; 2018. All rights reserved
       <div class="credits">
         Designed by <a href="#">Coders</a>
       </div>
@@ -666,7 +586,7 @@
   <!-- Contact Form JavaScript File -->
   <script src="${pageContext.request.contextPath}/resources/userResources/contactform/contactform.js"></script>
 
-  <script src="${pageContext.request.contextPath}/resources/userResources/js/main.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/userResources/js/main.js"></script> 
 </body>
 
 </html>

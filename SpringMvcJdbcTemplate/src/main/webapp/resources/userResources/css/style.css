@@ -3,6 +3,8 @@
     Theme URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
     Author: BootstrapMade.com
     Author URL: https://bootstrapmade.com
+    
+    Remplacement de #5fcf80 par #2f71a6: 11 occurences
 */
 
 body {
@@ -34,19 +36,23 @@ table {
 h1, h2, h3, h4, h5, h6{
     font-family: Open Sans, sans-serif;
     font-weight: 700;
-    color: #4B4B4C;
+    dcolor: #4B4B4C;
+     color: #2f71a6;
 }
 a{
-    color: #5fcf80;
+    gcolor: #2f71a6;
+     color: #2f71a6;
 }
 a:hover, a:focus{
-    color: #5fcf80;
+    dcolor: #2f71a6;
+    color: #2f71a6;
 }
 /***********************************
 Navigation bar
 ************************************/
 .navbar-default .navbar-brand {
-    color: #5FCF80;
+    dcolor: #5FCF80;
+    color: #2f71a6;
 }
 .navbar-default {
     background-color: #ffffff;
@@ -66,12 +72,14 @@ Navigation bar
 }
 .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover
 {
-	color: #5FCF80;
+	dcolor: #5FCF80;
+	color: #2f71a6;
 }
 
 .navbar-nav .active a{
     background: none !important;
-    color: #5FCF80 !important;
+    dcolor: #5FCF80 !important;
+    color: #2f71a6 !important;
     outline: none;
 }
 
@@ -79,12 +87,15 @@ Navigation bar
 	background-color: #5FCF80;
 	border-radius: 25px;
 	color: #ffffff !important;
-	border: 1px solid #5FCF80;
+	xborder: 1px solid #5FCF80;
+	border: 1px solid #2f71a6;
 }
 .btn-trial a:hover, .btn-trial a:focus{
-	border: 1px solid #5FCF80;
+	dborder: 1px solid #5FCF80 #2f71a6;
+	border: 1px solid #2f71a6;
 	background-color: #fff;
-	color: #5FCF80 !important;
+	scolor: #5FCF80 #2f71a6 !important;
+	color: #2f71a6 !important;
 }
 .navbar-default .navbar-brand {
     font-family: 'Dosis', sans-serif !important;
@@ -220,7 +231,7 @@ Banner
     font-size: 16px;
 }
 .quote .btn{
-    background-color: #5fcf80;
+    background-color: #2f71a6;
     color: #fff;
     -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -229,7 +240,7 @@ Banner
 }
 .quote .btn:hover, .quote .btn:focus{
     background-color: #fff;
-    color: #5fcf80;
+    color: #2f71a6;
     border-color: #fff;
      -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -345,7 +356,7 @@ Cta
     min-width: 280px;
     margin-left: -4px;
     margin-bottom: 2px;
-    border: 1px solid #5fcf80;
+    border: 1px solid #2f71a6;
     background-color: rgb(247, 247, 247);
     border-radius: 30px 0px 0px 30px;
 }
@@ -353,7 +364,7 @@ Cta
     font-size: 18px;
     text-transform: capitalize;
     color: #fff;
-    background-color: #5fcf80;
+    background-color: #2f71a6;
     border: 2px solid #fff;
     padding: 14px 30px;
     margin-left: -4px;
@@ -482,7 +493,7 @@ Price Table
     padding: 20px 0px;
     font-weight: bold !important;
     font-size: 14px;
-    background-color: #5fcf80;
+    background-color: #2f71a6;
 }
 /***********************************
 Contact Us
@@ -600,14 +611,14 @@ Footer
     border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 .btn-submit:hover, .btn-submit:focus{
-    background-color: #5fcf80;
+    background-color: #2f71a6;
     color: #fff;
 }
 .btn-submit{
 	padding: 14px 12px;
 	border-radius: 50px;
 	text-transform: uppercase;
-    background-color: #5fcf80;
+    background-color: #2f71a6;
     color: #fff;
 }
 .btn-submit i{
@@ -655,7 +666,7 @@ Footer
     padding: 10px 20px;
 }
 .light-form-button{
-    background: #5fcf80;
+    background: #2f71a6;
     border: 1px solid rgba(119, 81, 81, 0.34);
     width: 24%;
     padding: 10px 10px;
@@ -669,7 +680,7 @@ Footer
   transition: all 0.3s ease-in-out;
 }
 .btn-green, .btn-green:hover{
-    background-color: #5fcf80;
+    background-color: #2f71a6;
     color: #fff;
 }
 .footer .form-control:focus{
