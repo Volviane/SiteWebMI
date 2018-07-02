@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -26,6 +27,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.ResourceBundleViewResolver;
+import org.springframework.web.servlet.view.XmlViewResolver;
 
 import com.mi.dao.ArticleDAO;
 import com.mi.dao.ArticleDAOImpl;
@@ -53,8 +56,27 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/jsp/");
 		resolver.setSuffix(".jsp");
+		resolver.setOrder(2);
 		return resolver;
 	}
+	
+	/*@Bean
+	public ViewResolver resourceBundleViewResolver() {
+	    ResourceBundleViewResolver bean = new ResourceBundleViewResolver();
+	    bean.setBasename("views");
+	    bean.setOrder(1);
+	    return bean;
+	}
+
+	@Bean
+	public ViewResolver xmlViewResolver() {
+	    XmlViewResolver bean = new XmlViewResolver();
+	    bean.setLocation(new ClassPathResource("/WEB-INF/views.xml"));
+	    bean.setOrder(0);
+	    return bean;
+	}*/
+	
+	
 	@Bean(name = "multipartResolver")
 	public CommonsMultipartResolver createMultipartResolver() {
 	    CommonsMultipartResolver resolver=new CommonsMultipartResolver();

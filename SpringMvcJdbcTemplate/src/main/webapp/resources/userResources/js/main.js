@@ -48,11 +48,11 @@
   //---------------------------------------------
   $('#ensign-nivoslider').nivoSlider({
     effect: 'random',
-    slices: 15,
+    slices: 2,
     boxCols: 12,
     boxRows: 8,
-    animSpeed: 500,
-    pauseTime: 5000,
+    animSpeed: 5000,
+    pauseTime: 20000,
     startSlide: 0,
     directionNav: true,
     controlNavThumbs: false,
