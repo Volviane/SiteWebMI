@@ -1,29 +1,48 @@
 package com.mi.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.mi.model.Article;
+import com.mi.model.Document;
 import com.mi.model.Event;
 import com.mi.model.Level;
 import com.mi.model.Participation;
 import com.mi.model.Student;
+import com.mi.model.Teacher;
 import com.mi.repositories.AcademicYearRepository;
 import com.mi.repositories.AdministratorRepository;
+import com.mi.repositories.ArticleRepository;
 import com.mi.repositories.CommuniqueRepository;
 import com.mi.repositories.CourseRepository;
 import com.mi.repositories.CycleRepository;
@@ -43,6 +62,10 @@ import com.mi.repositories.TeachersRepository;
 public class StudentController {
 	
 	public static final Logger logger = LoggerFactory.getLogger(AdministratorController.class);
+	
+	private static final String SAVE_DIR=/*"C:"+File.separator+"Users"+File.separator+"MFOGO"+File.separator+"Documents"+File.separator+"Master1"+File.separator+"Semestre2"
+			+ ""+File.separator+"Projet"+File.separator+"workspace"+File.separator+*/"SiteWebMI"+File.separator+"SpringMvcJdbcTemplate"+File.separator+"Documents";
+
 	
 	@Autowired
 	ResearchDomainRepository researchDomainRepository;
@@ -91,6 +114,9 @@ public class StudentController {
 	
 	@Autowired
 	ParticipationRepository participationRepository;
+	
+	@Autowired
+	ArticleRepository articleRepository;
 
 
 
@@ -231,6 +257,219 @@ public class StudentController {
 
 			return "registrationStudent";
 		}
+		
+		
+		
+		//connexion d'un enseignant
+		@RequestMapping(value = { "/loginStudent" }, method = RequestMethod.GET)
+		public String loginFormGet(Model model,HttpServletRequest req) {
+			System.out.println("connexion  d'un etudiant get");
+			model.addAttribute("errorLogin", "");
+			model.addAttribute("errorPassword", "");
+			return "loginStudent";
+		}
+
+		@RequestMapping(value = { "/loginStudent" }, method = RequestMethod.POST)
+		public String loginStudentPost(Model model,@ModelAttribute("loginAdmin") Teacher admin, HttpServletRequest req) {
+			System.out.println("connexion  d'un enseignant post");
+
+			String login = req.getParameter("login");
+			String password = req.getParameter("password");
+			System.out.println("-------------------------------");
+			System.out.println(login);
+			System.out.println("-------------------------------");
+
+			System.out.println("-------------------------------");
+			System.out.println(password);
+			// recherche du membre dans la base de donnees
+			try {
+				System.out.println("c'est le try");
+				Student student =  studentRepository.findByLogin(login);
+				System.out.println(student);
+				if (student != null) {
+					String pass = cryptographe(password);
+					System.out.println(pass);
+					if (pass.equals(student.getPasswordSec())) {
+						System.out.println("deuxieme if c'est moi");
+						
+						HttpSession session = req.getSession();
+						session.setAttribute( "student", student );
+						
+						Student studentName = (Student) session.getAttribute( "student" );
+						
+						System.out.println("je suis en session avec http et mon nom est : " + studentName.getLogin());
+						
+						model.addAttribute("teachers", "You have been login successfully." + studentName.getLogin());
+						return "homeTeacher";
+
+					} else {
+						logger.error("Teacher with password {} not found.", password);
+						model.addAttribute("errorPassword", "Password not found.");
+						req.setAttribute("errorPassword", "Password not found.");
+					}
+				} else {
+					logger.error("Teacher with password {} not found.", login);
+					model.addAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
+					req.setAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
+
+				}
+			} catch (Exception ex) {
+				logger.error("Teacher with pseudonym {} not found.", login);
+				model.addAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
+				req.setAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
+			}
+
+			//return "redirect:/TeacherHome";
+			return "loginStudent";
+		}
+
+		//modifier les parametres de connexion get method
+		@RequestMapping(value = { "/updateParameterStudent" }, method = RequestMethod.GET)
+		public String updateParameterStudentGet(Model model,HttpServletRequest req) {
+			System.out.println("modifier les parametre de connexion get");
+			model.addAttribute("error", "");
+			return "updateParameterStudent";
+		}
+
+		@RequestMapping(value = { "/updateParameterStudent" }, method = RequestMethod.POST)
+		@Transactional
+		public String updateParameterPost(Model model, HttpServletRequest req) throws ParseException {
+			System.out.println("updateParameterStudent Post");
+
+			String login= req.getParameter("login");
+			String password= req.getParameter("password");
+			
+			
+			HttpSession session = req.getSession();
+			Student student =  (Student) session.getAttribute( "student" );
+
+			System.out.println(login);
+			System.out.println(password);
+
+
+			student.setLogin(login);
+			student.setPassword(password);
+			studentRepository.save(student);
+
+			model.addAttribute("students", "sucess ");
+
+			return "updateParameterStudent";
+		}
+
+		//ajouter un document
+		@RequestMapping(value = { "/addArticle" }, method = RequestMethod.GET)
+		public String addArticleGet(Model model,HttpServletRequest req) {
+			System.out.println("addArticle get");
+			
+			model.addAttribute("error", "");
+			return "addArticle";
+		}
+
+		@RequestMapping(value = { "/addArticle" }, method = RequestMethod.POST)
+		@Transactional
+		public String addDocumentPost(Model model, HttpServletRequest req,@RequestParam("files") MultipartFile file) throws ParseException, IOException, ServletException {
+
+			String articleTitle= req.getParameter("articleTitle");
+			String articleAbstract= req.getParameter("articleAbstract");
+			String eventName= req.getParameter("eventName");
+
+			Calendar calendarCourante = Calendar.getInstance();
+			//int createYear = calendarCourante.get(Calendar.YEAR);
+			int createMonth = calendarCourante.get(Calendar.YEAR);
+			String createYear= createMonth+"";
+		
+			//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+			//Date createDate = sdf.parse(createYear);
+			
+			try {
+				HttpSession session = req.getSession();
+				Student author =  (Student) session.getAttribute( "student" );
+				Event event= eventRepository.findByEventTitle(eventName);
+				Participation participation = participationRepository.findByParticipantAndEvent(author, event); 
+				
+				String articleName= articleTitle+"_"+createYear+".pdf";
+				System.out.println(author.getFirstName());
+				byte[] bytes = file.getBytes();
+				File dir = new File(SAVE_DIR);
+				if (!dir.exists())
+					dir.mkdirs();
+				
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(SAVE_DIR + File.separator + articleName));
+				stream.write(bytes);
+				stream.close();
+			
+				String articleNames=SAVE_DIR + File.separator + articleName;
+				
+				Article article= new Article();
+				
+				
+				article.setArticleTitle(articleTitle);
+				article.setArticleAbstract(articleAbstract);
+				article.setArticleName(articleNames);
+				article.setAuthor(author);
+				
+				articleRepository.save(article);
+				
+				Article art =articleRepository.findByArticleTitle(articleTitle);
+				
+				participation.setStudentArticle(art);
+				
+				participationRepository.save(participation);
+
+				model.addAttribute("articles", "article ajoute avec sucess");
+				model.addAttribute("partications", "mise a jour de la participation");
+
+				
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				model.addAttribute("error", "erreur d'ajout de l'article");
+				
+			}
+			
+			return "addArticle";
+				/*
+			*/
+		}
+		
+		//lister les article par evennement
+		@RequestMapping(value = { "/listArticle" }, method = RequestMethod.GET)
+		public String listArticleGet(Model model,HttpServletRequest req) {
+			System.out.println("listArticle get");
+			String eventTitle = req.getParameter("eventTItle");
+			Event event= eventRepository.findByEventTitle(eventTitle);
+			 
+			List<Participation> participation =participationRepository.findByEvent(event);
+			List<Article> article =new ArrayList<>() ;
+			List<Student> student =new ArrayList<>() ;
+			for(Participation part: participation){
+				
+				article.add(part.getStudentArticle());
+				student.add(part.getParticipant());
+			
+			}
+			
+			model.addAttribute("articles", article);
+			model.addAttribute("students", student);
+			return "listArticle";
+		}
+		
+		
+		// se deconnecter
+		@RequestMapping(value = "/logoutStudent", method = RequestMethod.GET)
+		public String logoutStudentPost(HttpServletRequest request, HttpServletResponse response, Model model) {
+
+			  HttpSession session = request.getSession();
+			  session.setAttribute( "student", null );
+			  model.addAttribute("students", "la session a ete supprimme");
+
+			return "loginStudent";
+		}
+		
+		
+		
+
 		
 		
 
