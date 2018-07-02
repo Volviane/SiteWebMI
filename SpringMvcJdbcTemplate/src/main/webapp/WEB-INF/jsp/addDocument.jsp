@@ -73,7 +73,7 @@
 					</c:if>
 					
 					<div class="form-group-material">						
-						<input id="description-document" type="text" name="documentDescription" required
+						<input id="description-document" type="text" name="documentTitle" required
 							data-msg="veuillez entrer le titre du document" class="input-material">
 						<label for="description-document" class="label-material">Descripton du document</label>
 						<textarea rows="5" cols="30" ></textarea>
@@ -86,12 +86,14 @@
 						
 					</div>
 					
+					
 					<div class="form-group text-center">
 						<input type="submit" value="AJOUTER" class="btn btn-info">
 						<!-- This should be submit button but I replaced it with <a> for demo purposes-->
 					</div>
 				</form>
-				
+				${documents}
+				${error}
 		</div>
 	</div>
 	    </div>

@@ -159,7 +159,7 @@ public class TeacherController {
 		System.out.println("connexion  d'un enseignant get");
 		model.addAttribute("errorLogin", "");
 		model.addAttribute("errorPassword", "");
-		return "loginTeacher";
+		return "index";
 	}
 
 	@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.POST)
@@ -214,7 +214,7 @@ public class TeacherController {
 		}
 
 		//return "redirect:/TeacherHome";
-		return "loginTeacher";
+		return "index";
 	}
 
 	//modifier les parametres de connexion get method
