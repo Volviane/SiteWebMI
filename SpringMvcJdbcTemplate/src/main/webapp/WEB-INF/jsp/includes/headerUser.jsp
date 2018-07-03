@@ -37,16 +37,14 @@
 							<li class="dropdown">
 								<a class="page-scroll" data-toggle="dropdown" href="#about">PRESENTATION<b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a href="">Le département de Maths-Info</a></li>
-									<li><a href="">Le département de Maths-Info</a></li>
-									<li><a href="">Le département de Maths-Info</a></li>
+									<li><a href="${pageContext.request.contextPath}/"> département de Maths-Info</a></li>
+									<li><a href="${pageContext.request.contextPath}/"> enseignants du département</a></li>
+									<li><a href="${pageContext.request.contextPath}/">organigramme</a></li>
 								</ul>
 							</li>
-							<li><a class="page-scroll" href="#services">Formations</a></li>
-							<li><a class="page-scroll" href="#team">Recherche</a></li>
-							<li><a class="page-scroll" href="#portfolio">actualité</a></li>
-							<li><a class="page-scroll" href="#blog">Blog</a></li>
-							<li><a class="page-scroll" href="#contact">Contact</a></li>
+							<li><a class="page-scroll" href="${pageContext.request.contextPath}/formation">Formations</a></li>
+							<li><a class="page-scroll" href="${pageContext.request.contextPath}/actualité">actualité</a></li>
+							<li><a class="page-scroll" href="${pageContext.request.contextPath}/contact">Contact</a></li>
 							<li><a href="#" data-target="#login" data-toggle="modal">Se connecter</a></li>
 						</ul>
 					</div>
