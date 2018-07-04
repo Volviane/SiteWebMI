@@ -27,7 +27,7 @@ public class Student extends InternetSufer implements Serializable{
 	@Column(name="ETUDIANT_ID")
 	private Long idStudent;
 	
-	@Column(name="MATRICULE")
+	@Column(name="MATRICULE", unique=true)
 	private String matricule;
 	
 	@ManyToOne

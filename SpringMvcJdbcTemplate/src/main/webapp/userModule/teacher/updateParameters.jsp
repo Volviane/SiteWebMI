@@ -31,26 +31,42 @@
 
 		<div class="col-md-7" style="padding: 0px">
 			<!--Contenu-->
-			<div class="panel panel-default col-md-8">
+			<h2>
+				<span></span>Modification des Paramètres de connexion
+			</h2>
+			<div class="panel panel-default col-md-8 well">
 				<div class="panel-body">
 					<form action="updateParameters" method="post">
 						<div class="form-group">
-							<label for="exampleInputEmail1">Email address</label> <input
+							<label for="exampleInputEmail1">Login</label> <input
 								type="text" name="login" class="form-control"
 								id="exampleInputEmail1" aria-describedby="emailHelp"
-								placeholder="Enter email"> <small id="emailHelp"
-								class="form-text text-muted">We'll never share your
-								email with anyone else.</small>
+								placeholder="Entrez votre email"> 
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Password</label> <input
+							<label for="exampleInputPassword1">Entrez l'Ancien Mot de Passe</label> <input
 								type="password" name="password" class="form-control"
-								id="exampleInputPassword1" placeholder="Password">
+								id="exampleInputPassword1" placeholder="Mot de passe">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Nouveau Mot de Passe</label> <input
+								type="password" name="password" class="form-control"
+								id="exampleInputPassword1" placeholder="Mot de passe">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Confirmer le Mot de Passe</label> <input
+								type="password" name="password" class="form-control"
+								id="exampleInputPassword1" placeholder="Confirmation de mot de passe">
 						</div>
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</form>
+					<c:if test="${empty errors }">
+						<div class="alert alert-success" role="alert">Paramètres modifiés avec succès</div>
+					</c:if>
+					<c:if test="${empty documents }">
+						<div class="alert alert-danger" role="alert">Echec de modifications</div>
+					</c:if>
 				</div>
-				<div class="panel-footer">Panel footer</div>
 			</div>
 		</div>
 		<!--/ Contenu-->

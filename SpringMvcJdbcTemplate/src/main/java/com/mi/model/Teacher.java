@@ -30,6 +30,9 @@ public class Teacher extends InternetSufer implements Serializable{
 	@Column(name="DESCRIPTION")
 	private String descriptionEnseignant;
 	
+	@Column(name="PHOTO")
+	private String pictureName;
+	
 	@Embedded
 	private CV cv;
 	
@@ -222,6 +225,20 @@ public class Teacher extends InternetSufer implements Serializable{
 	}
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	/**
+	 * @return the pictureName
+	 */
+	public String getPictureName() {
+		return pictureName;
+	}
+
+	/**
+	 * @param pictureName the pictureName to set
+	 */
+	public void setPictureName(String pictureName) {
+		this.pictureName = pictureName;
 	}
 	
 	

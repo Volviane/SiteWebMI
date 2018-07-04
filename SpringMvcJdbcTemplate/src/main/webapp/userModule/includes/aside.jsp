@@ -1,31 +1,32 @@
 <aside class="col-md-3 pull-right" style="padding: 0px;">
 	<section>
-		<h3>Communiqués</h3>
+		<h5>Communiqués</h5>
 		<hr>
 		<div>
-				<h4>Titre du communiqué</h4>
+				<h6 class="gras">Titre du communiqué</h6>
 				<p>Bienvenu à tous sur le site du département de Maths-Info de l'université de Dschang</p>
 				<p>Publié le 02 Juillet 2018</p>
 				<a href="" class="btn btn-primary text-center">Lire la suite</a>
 			</div>
-		
+		<hr>
 		<c:forEach items="" var="com">
 		<hr>
 			<div>
-				<h4><c:out value="${com.communiqueTitle}"></c:out></h4>
+				<h6 class="gras"><c:out value="${com.communiqueTitle}"></c:out></h6>
 				<p><c:out value="${com.communiqueContent}"></c:out></p>
 				<p>Publié le <c:out value="${com.publicationDate}"/></p>
 				<a href="" class="btn btn-primary text-center">Lire la suite</a>
 			</div>
-		</c:forEach>
-		<hr>
+			<hr>
+		</c:forEach>		
 		<a href="" class="btn btn-primary">Voir toutes les Publications</a>
 	</section>
 	<hr>
-	<section>
-		<h3>Evènements</h3>
+	<section style="margin-top: 10px;">
+		<h5>Evènements</h5>
+		<hr>
 		<div>
-				<h4>Titre de l'évènement</h4>
+				<h6 class="gras">Titre de l'évènement</h6>
 				<p>Bienvenu à tous sur le site du département de Maths-Info de l'université de Dschang</p>
 				<p>Publié le 02 Juillet 2018</p>
 				<a href="" class="btn btn-primary text-center">Lire la suite</a>
@@ -33,13 +34,13 @@
 			<hr>
 		<c:forEach items="" var="com">
 			<div>
-				<h4><c:out value="${com.communiqueTitle}"></c:out></h4>
+				<h6 class="gras"><c:out value="${com.communiqueTitle}"></c:out></h6>
 				<p><c:out value="${com.communiqueContent}"></c:out></p>
 				<p>Publié le <c:out value="${com.publicationDate}"/></p>
 				<a href="" class="btn btn-primary text-center">Lire la suite</a>
 			</div>
 			<hr>
 		</c:forEach>
-		<a href="" class="btn btn-primary">Voir toutes les Publications</a>
+		<a href="" class="btn btn-primary">Voir tous les Evènements</a>
 	</section>
 </aside>

@@ -60,3 +60,8 @@
 	href="${pageContext.request.contextPath}/resources/css/style.css"
 	type="text/css" media="all">
 
+
+<style>
+	.gras{ font-weight: bolder;}
+	.vertical-align-middle{vertical-align: middle;}
+</style>
