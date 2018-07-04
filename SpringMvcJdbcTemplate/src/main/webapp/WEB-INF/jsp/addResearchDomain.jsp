@@ -66,7 +66,7 @@
                     
                      <label>option</label>
                     
-                    	 <select class="form-control" name="cycleName">
+                    	 <select class="form-control" name="optionName">
                      			<c:forEach items="${options}" var="i">
                      				<option value="${i.optionName }" ><c:out value="${i.optionName }"></c:out></option>
                      			</c:forEach>
@@ -83,12 +83,13 @@
                        
                         <hr />
                         <input type="submit" value="Enregistrer" class="btn btn-info">
+                        <hr />
                           <c:if test="${error!=null}">
-						<h6 class=""> <font color="red">le Domaine n'a pas enregistré</font></h1>
-			       </c:if>
-			        <c:if test="${error==null}">
-						<h6 class=""> <font color="red">le Domaine a été bien enregistré</font></h1>
-			       </c:if>
+							<h6 class=""> <font color="red">${error}</font></h1>
+			       		</c:if>
+			        	<c:if test="${error==null}">
+							<h6 class=""> <font color="green">enregistrement reussi</font></h1>
+			       		</c:if>
                 </form>
 
                 </div>

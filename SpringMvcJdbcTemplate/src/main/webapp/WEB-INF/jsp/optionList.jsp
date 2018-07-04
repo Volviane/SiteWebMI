@@ -63,7 +63,12 @@
          <div class="row">
                 <div class="col-md-6 table-responsive">
 		             <table class="table table-bordered table-striped table-condensed">
+		             	 <tr class="active">
+							<td>N°</td>
+							<td>Options</td>
+						   </tr>
 		             	<c:forEach items="${options}" var="i" varStatus="pos">
+		             	  
 		             	  <tr class="info">
 							<td ><c:out value="${pos.count}"></c:out></td>
 							<td ><c:out value="${i.optionName }"></c:out></td>

@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -159,7 +160,7 @@ public class TeacherController {
 		System.out.println("connexion  d'un enseignant get");
 		model.addAttribute("errorLogin", "");
 		model.addAttribute("errorPassword", "");
-		return "loginTeacher";
+		return "index";
 	}
 
 	@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.POST)
@@ -177,8 +178,7 @@ public class TeacherController {
 		// recherche du membre dans la base de donnees
 		try {
 			System.out.println("c'est le try");
-			Teacher teacher = new Teacher();
-			teacher = teachersRepository.findByLogin(login);
+			Teacher teacher = teachersRepository.findByLogin(login);
 			System.out.println(teacher);
 			if (teacher != null) {
 				String pass = cryptographe(password);
@@ -214,11 +214,11 @@ public class TeacherController {
 		}
 
 		//return "redirect:/TeacherHome";
-		return "loginTeacher";
+		return "index";
 	}
 
 	//modifier les parametres de connexion get method
-	@RequestMapping(value = { "/updateParameters" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/updateParameterTeacher" }, method = RequestMethod.GET)
 	public String updateParameterGet(Model model,HttpServletRequest req) {
 		System.out.println("modifier les parametre de connexion get");
 		model.addAttribute("error", "");
@@ -378,7 +378,14 @@ public class TeacherController {
 	@RequestMapping(value = { "/editProfil" }, method = RequestMethod.GET)
 	public String editProfilGet(Model model,HttpServletRequest req) {
 		System.out.println("editProfil get");
-		model.addAttribute("error", "");
+		List<ResearchDomain> listOfResearchDomain = researchDomainRepository.findAll();
+
+		if (listOfResearchDomain.isEmpty() ) {
+			model.addAttribute("error", "error : liste vide");
+		}
+		model.addAttribute("researchDomains", listOfResearchDomain);
+		
+		//model.addAttribute("error", "");
 		return "editProfil";
 	}
 
@@ -426,7 +433,7 @@ public class TeacherController {
 		}
 
 		// information pour afficher la page personnelle
-		@RequestMapping(value = "/InformationTeacher", method = RequestMethod.GET)
+		@RequestMapping(value = "/informationTeacher", method = RequestMethod.GET)
 		public String InformationTeacherGet(HttpServletRequest request, HttpServletResponse response, Model model) {
 			System.out.println("InformationTeacher get");
 			model.addAttribute("error", "");
@@ -442,7 +449,7 @@ public class TeacherController {
 			model.addAttribute("grades", grade);
 			model.addAttribute("jurys", jury);
 			
-			return "InformationTeacher";
+			return "informationTeacher";
 		}
 
 

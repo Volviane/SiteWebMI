@@ -28,9 +28,18 @@ public class Result implements Serializable {
 	
 	@Column(name="STATUT_PUBLICATION")
 	private boolean isPublish = false;
-	
-	
-	
+
+
+
+	public boolean isPublish() {
+		return isPublish;
+	}
+
+	public void setPublish(boolean isPublish) {
+		this.isPublish = isPublish;
+	}
+
+
 	@ManyToOne
 	@JoinColumn(name="JURY_ID")
 	private Jury jury;

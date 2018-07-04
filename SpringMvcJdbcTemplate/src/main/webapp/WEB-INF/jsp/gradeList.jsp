@@ -63,7 +63,12 @@
          <div class="row">
                 <div class="col-md-6 table-responsive">
 		             <table class="table table-bordered table-striped table-condensed">
+		             	<tr class="active">
+							<td>N°</td>
+							<td>Grades</td>
+						   </tr>
 		             	<c:forEach items="${grades}" var="i" varStatus="pos">
+		             	 
 		             	  <tr class="active">
 							<td><c:out value="${pos.count}"></c:out></td>
 							<td><c:out value="${i.gradeName }"></c:out></td>

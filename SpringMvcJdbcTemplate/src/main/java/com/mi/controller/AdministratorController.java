@@ -1,9 +1,14 @@
 package com.mi.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -15,6 +20,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -38,19 +44,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mi.model.AcademicYear;
 import com.mi.model.Administrator;
 import com.mi.model.Communique;
 import com.mi.model.Course;
 import com.mi.model.Cycle;
+import com.mi.model.Document;
 import com.mi.model.Event;
 import com.mi.model.Grade;
 import com.mi.model.Jury;
 import com.mi.model.Level;
 import com.mi.model.Option;
 import com.mi.model.ResearchDomain;
+import com.mi.model.Result;
 import com.mi.model.Role;
 import com.mi.model.Teacher;
 import com.mi.repositories.AcademicYearRepository;
@@ -64,6 +74,7 @@ import com.mi.repositories.JuryRepository;
 import com.mi.repositories.LevelRepository;
 import com.mi.repositories.OptionRepository;
 import com.mi.repositories.ResearchDomainRepository;
+import com.mi.repositories.ResultRepository;
 import com.mi.repositories.RoleRepository;
 import com.mi.repositories.TeachersRepository;
 
@@ -71,6 +82,9 @@ import com.mi.repositories.TeachersRepository;
 @SessionAttributes("Administrator") 
 public class AdministratorController/* implements UserDetailsService */{
 	public static final Logger logger = LoggerFactory.getLogger(AdministratorController.class);
+	
+	private static final String SAVE_DIR="SiteWebMI"+File.separator+"SpringMvcJdbcTemplate"+File.separator+"Documents";
+
 	
 	@Autowired
 	ResearchDomainRepository researchDomainRepository;
@@ -113,6 +127,9 @@ public class AdministratorController/* implements UserDetailsService */{
 
 	@Autowired
 	OptionRepository optionRepository;
+	
+	@Autowired
+	ResultRepository resultRepository;
 
 
 
@@ -464,9 +481,8 @@ public class AdministratorController/* implements UserDetailsService */{
 	
 	*/
 
+	
 	// ajouter les cycles
-
-
 	@RequestMapping(value = "/addCycle", method = RequestMethod.GET)
 	public String cycleGet(Model model,HttpServletRequest req) {
 		System.out.println("add cycle  get");
@@ -1125,6 +1141,96 @@ try {
 		return "listEvent";
 	}
 	
+	
+	@RequestMapping(value = { "/editResult" }, method = RequestMethod.GET)
+	public String editResultGet(Model model,HttpServletRequest req) {
+		System.out.println("createCommunique GET");
+
+		List<AcademicYear> listOfAcademicYear = academicYearRepository.findAll();
+
+		if (listOfAcademicYear.isEmpty() ) {
+			model.addAttribute("error", "error : liste vide");
+		}
+		model.addAttribute("academicYear", listOfAcademicYear);
+
+		return "editResult";
+	}
+	
+	
+	//editer un resultat
+	
+	@RequestMapping(value = { "/editResult" }, method = RequestMethod.POST)
+	@Transactional
+	public String addDocumentPost(Model model, HttpServletRequest req,@RequestParam("files") MultipartFile file) throws ParseException, IOException, ServletException {
+
+		String sessions= req.getParameter("session");
+		String academicYear= req.getParameter("academicYear");
+		String resultTitle= req.getParameter("resultTitle");
+
+		AcademicYear year= academicYearRepository.findByAcademicYear(academicYear);
+		
+
+		//Calendar calendarCourante = Calendar.getInstance();
+		//int createYear = calendarCourante.get(Calendar.YEAR);
+		//int createMonth = calendarCourante.get(Calendar.YEAR);
+		
+	
+		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		//Date createDate = sdf.parse(createYear);
+		
+		try {
+			
+			String resultFileName= resultTitle+"_"+sessions+"_"+academicYear+".png";
+			
+			byte[] bytes = file.getBytes();
+			File dir = new File(SAVE_DIR);
+			if (!dir.exists())
+				dir.mkdirs();
+			
+			BufferedOutputStream stream = new BufferedOutputStream(
+					new FileOutputStream(SAVE_DIR + File.separator + resultFileName));
+			stream.write(bytes);
+			stream.close();
+		
+			String resultFileNames=SAVE_DIR + File.separator + resultFileName;
+			Result result= new Result();
+
+			result.setAcademicYear(year);
+			result.setResultFileName(resultFileNames);
+			result.setResultTitle(resultTitle);
+			result.setSession(sessions);
+			result.setPublish(false);
+
+			resultRepository.save(result);
+			model.addAttribute("resutls", "resultat ajoute avec sucess");
+
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("error", "erreur d'ajout du document");
+			
+		}
+		
+		return "editResult";
+			/*
+		*/
+	}
+	
+	
+	@RequestMapping(value = { "/listResult" }, method = RequestMethod.GET)
+	public String listResultGet(Model model,HttpServletRequest req) {
+		System.out.println("list result GET");
+
+		List<Result> listOfResult = resultRepository.findAll();
+		
+		if (listOfResult.isEmpty() ) {
+			model.addAttribute("error", "error : liste vide");
+		}
+		model.addAttribute("results", listOfResult);
+
+		return "publishResult";
+	}
 	// ajouter les dommaine de competence
 	
 		@RequestMapping(value = { "/addResearchDomain" }, method = RequestMethod.GET)
@@ -1173,7 +1279,7 @@ try {
 		
 		@RequestMapping(value = { "/listResearchDomain" }, method = RequestMethod.GET)
 		public String listResearchDomainGet(Model model,HttpServletRequest req) {
-			System.out.println("createCommunique GET");
+			System.out.println("listResearchDomain GET");
 
 			List<ResearchDomain> listOfResearchDomain = researchDomainRepository.findAll();
 
@@ -1184,8 +1290,27 @@ try {
 
 			return "listResearchDomain";
 		}
+		
+		
+		//publication 
+		
+		@RequestMapping(value = { "/publishResult" }, method = RequestMethod.GET)
+		public String publishResultGet(Model model,HttpServletRequest req) {
+			System.out.println("publishResult GET");
 
+			List<Result> listOfResult = resultRepository.findByIsPublish(false);
+			
+			if (listOfResult.isEmpty() ) {
+				model.addAttribute("error", "error : liste vide");
+			}
+			model.addAttribute("results", listOfResult);
 
+			return "publishResult";
+		}
+		
+		
+		
+	
 	// se deconnecter
 	@RequestMapping(value = "/logoutAdministrator", method = RequestMethod.GET)
 	public String logoutPost(HttpServletRequest request, HttpServletResponse response, Model model) {

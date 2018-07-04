@@ -7,6 +7,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<c:if test="${administrator.login==null}">
+			<c:redirect  url="connectionAdministrator"></c:redirect>
+</c:if>
 <!DOCTYPE html>
 <html>
   <head>
@@ -58,27 +61,56 @@
       </section>
       <!-- Header Section-->
       <section class="dashboard-header padding">
-        		<div class="row">
-				<div class="col-md-3 col-sm-3 col-xs-6">
-					<div class="dashboard-div-wrapper bk-clr-one">
-						<a href="#"></a> 
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-3 col-xs-6">
-					<div class="dashboard-div-wrapper bk-clr-two">
-						<a href="#"></a> 
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-3 col-xs-6">
-					<div class="dashboard-div-wrapper bk-clr-three">
-						<a href="#"></a> 
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-3 col-xs-6">
-					<div class="dashboard-div-wrapper bk-clr-four">
-						<a href="#"></a> 
-					</div>
-				</div>
+      	<div class="cadre clearA"> 
+			 <div class="titleCo"> nombre total d'enseignants </div>
+			 <c:forEach items="${teachers}" var="i" varStatus="pos">
+							<c:out value="${pos.count}"> ${pos.count}</c:out>
+						  
+			</c:forEach>
+		 
+		</div>
+		<div class="cadre clearA"> 
+			 <div class="titleCo"> nombre total de cycles </div>
+			 <c:forEach items="${teachers}" var="i" varStatus="pos">
+							<c:out value="${pos.count}"> ${pos.count}</c:out>
+						  
+			</c:forEach>
+		 
+		</div>
+		<div class="cadre clearA"> 
+			 <div class="titleCo"> nombre total d'options </div>
+			 <c:forEach items="${teachers}" var="i" varStatus="pos">
+							<c:out value="${pos.count}"> ${pos.count}</c:out>
+						  
+			</c:forEach>
+		 
+		</div>
+      
+      
+      
+      
+      
+<!--         		<div class="row"> -->
+<!-- 				<div class="col-md-3 col-sm-3 col-xs-6"> -->
+<!-- 					<div class="dashboard-div-wrapper bk-clr-one"> -->
+<!-- 						<a href="#"></a>  -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-md-3 col-sm-3 col-xs-6"> -->
+<!-- 					<div class="dashboard-div-wrapper bk-clr-two"> -->
+<!-- 						<a href="#"></a>  -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-md-3 col-sm-3 col-xs-6"> -->
+<!-- 					<div class="dashboard-div-wrapper bk-clr-three"> -->
+<!-- 						<a href="#"></a>  -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-md-3 col-sm-3 col-xs-6"> -->
+<!-- 					<div class="dashboard-div-wrapper bk-clr-four"> -->
+<!-- 						<a href="#"></a>  -->
+<!-- 					</div> -->
+<!-- 				</div> -->
       </section>
       <!-- Statistics Section-->
       <section class="statistics">
