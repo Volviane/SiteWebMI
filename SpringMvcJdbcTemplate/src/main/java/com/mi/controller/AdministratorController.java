@@ -175,7 +175,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		System.out.println("home admin get");
 		model.addAttribute("error", "");
 
-		return "homeAdministrator";
+		return "admin/homeAdministrator";
 	}
 
 	//Add role get methode
@@ -183,7 +183,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	public String roleGet(Model model) {
 		System.out.println("addrole get");
 		model.addAttribute("error", "");
-		return "addRole";
+		return "admin/addRole";
 	}
 
 	//Add role post methode
@@ -233,7 +233,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			
 		}
 		
-		return "addRole";
+		return "admin/addRole";
 	}
 	//Liste role method
 	@RequestMapping(value = { "/roleList" }, method = RequestMethod.GET)
@@ -249,7 +249,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		}
 		model.addAttribute("roles", listOfRole);
 		req.setAttribute("roles", listOfRole);
-		return "roleList";
+		return "admin/roleList";
 	}
 
 
@@ -258,7 +258,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	public String createForm(Model model,HttpServletRequest req) {
 		System.out.println("inscription d'un admin");
 		model.addAttribute("error", "");
-		return "registrationAdministrator";
+		return "admin/registrationAdministrator";
 	}
 	//create administrator post method
 	@RequestMapping(value = { "/registrationAdministrator" }, method = RequestMethod.POST)
@@ -291,7 +291,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		}
 
 		
-		return "registrationAdministrator";
+		return "admin/registrationAdministrator";
 	}
 
 	//connexion d'un administrateur
@@ -302,7 +302,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		model.addAttribute("errorLogin", "");
 		model.addAttribute("errorPassword", "");
 
-		return "connectionAdministrator";
+		return "admin/connectionAdministrator";
 	}
 
 	@RequestMapping(value = { "/connectionAdministrator" }, method = RequestMethod.POST)
@@ -340,7 +340,7 @@ public class AdministratorController/* implements UserDetailsService */{
 					model.addAttribute("Administrators", "You have been login successfully." + administratorName.getLogin());
 						//req.setAttribute("succes", "You have been login successfully. " +administratorName);
 						
-						return "homeAdministrator";
+						return "admin/homeAdministrator";
 					
 					//return "connectionAdministrator";
 
@@ -365,7 +365,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		System.out.println("ma petite laisse tomber c'est pas a ton niveau ma fille" );
 
 		//return "redirect:/administratorHome";
-		return "connectionAdministrator";
+		return "admin/connectionAdministrator";
 	}
 	
 	@RequestMapping(value = "/retrieve", method = RequestMethod.GET)
@@ -487,7 +487,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	public String cycleGet(Model model,HttpServletRequest req) {
 		System.out.println("add cycle  get");
 		model.addAttribute("error", "");
-		return "addCycle";
+		return "admin/addCycle";
 	}
 
 	@RequestMapping(value = "/addCycle", method = RequestMethod.POST)
@@ -509,7 +509,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			// TODO: handle exception
 		}
 		
-		return "addCycle";
+		return "admin/addCycle";
 	}
 
 	//lister tous les cycles
@@ -525,7 +525,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		}
 		model.addAttribute("cycles", listOfCycle);
 		req.setAttribute("cycles", listOfCycle);
-		return "cycleList";
+		return "admin/cycleList";
 	}
 
 	//list les option d'un cycle
@@ -542,7 +542,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		}
 		model.addAttribute("cycleOption", listOfOption);
 		req.setAttribute("cycleOption", listOfOption);
-		return "cycleListOption";
+		return "admin/cycleListOption";
 	}
 
 	//ajouter les options 
@@ -556,7 +556,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			System.out.println(cycle.getCycleName());
 		}
 		model.addAttribute("cycles", cycles);
-		return "addOption";
+		return "admin/addOption";
 	}
 
 	@RequestMapping(value = "/addOption", method = RequestMethod.POST)
@@ -588,7 +588,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			model.addAttribute("error", "echec d'eregistrement ");
 		}
 		
-		return "addOption";
+		return "admin/addOption";
 	}
 
 	// liste de tous les option
@@ -603,7 +603,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		}
 		model.addAttribute("options", listOfOption);
 		req.setAttribute("options",finalList);
-		return "optionList";
+		return "admin/optionList";
 	}
 
 
@@ -618,7 +618,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		}
 		model.addAttribute("options", options);
 
-		return "addLevel";
+		return "admin/addLevel";
 	}
 
 
@@ -651,7 +651,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			
 		}
 		
-		return "addLevel";
+		return "admin/addLevel";
 	}
 
 	// liste de tous les niveaux
@@ -667,7 +667,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		}
 		model.addAttribute("levels", listOfLevel);
 		req.setAttribute("levels", listOfLevel);
-		return "levelList";
+		return "admin/levelList";
 	}
 
 	//ajouter les UVs
@@ -685,7 +685,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		model.addAttribute("levels", listOfLevel);
 		req.setAttribute("level", finalList);
 
-		return "addCourse";
+		return "admin/addCourse";
 	}
 
 	@RequestMapping(value = "/addCourse", method = RequestMethod.POST)
@@ -715,7 +715,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		}
 		
 
-		return "addCourse";
+		return "admin/addCourse";
 	}
 
 	@RequestMapping(value = { "/courseList" }, method = RequestMethod.GET)
@@ -732,7 +732,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		model.addAttribute("courses", listOfCourse);
 		req.setAttribute("course", listOfCourse);
 
-		return "courseList";
+		return "admin/courseList";
 	}
 	//list des uv sachant le niveau
 	@RequestMapping(value = { "/courseListLevel" }, method = RequestMethod.GET)
@@ -747,7 +747,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		model.addAttribute("cycleOptions", listOfCourse);
 		req.setAttribute("cycleOptions", listOfCourse);
 
-		return "coursesList";
+		return "admin/coursesList";
 	}
 
 	//enregisrtre les grades
@@ -755,7 +755,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	public String gradeGet(Model model) {
 		System.out.println("addGrade GET");
 		model.addAttribute("error", "");
-		return "addGrade";
+		return "admin/addGrade";
 	}
 
 	@RequestMapping(value = { "/addGrade" }, method = RequestMethod.POST)
@@ -781,7 +781,7 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		
 
-		return "addGrade";
+		return "admin/addGrade";
 	}
 	
 	@RequestMapping(value = { "/gradeList" }, method = RequestMethod.GET)
@@ -801,7 +801,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		req.setAttribute("grades", listOfGrade);
 
 
-		return "gradeList";
+		return "admin/gradeList";
 	}
 
 	//enregisrtre un ensegnant
@@ -819,7 +819,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		model.addAttribute("grades", listOfGrade);
 		req.setAttribute("course", listOfGrade);
 
-		return "createTeacher";
+		return "admin/createTeacher";
 	}
 	@RequestMapping(value = { "/createTeacher" }, method = RequestMethod.POST)
 	@Transactional
@@ -903,7 +903,7 @@ try {
 		model.addAttribute("teachers", listOfTeacher);
 		req.setAttribute("teacher", listOfTeacher);
 
-		return "teacherList";
+		return "admin/teacherList";
 	}
 
 
@@ -958,7 +958,7 @@ try {
 		System.out.println("openAcademicYear GET");
 		model.addAttribute("error", "");
 
-		return "openAcademicYear";
+		return "admin/openAcademicYear";
 
 		}
 
@@ -972,7 +972,7 @@ try {
 		academicYears.setAcademicYear(academicYear);
 		academicYearRepository.save(academicYears);
 
-		return "openAcademicYear";
+		return "admin/openAcademicYear";
 	}
 
 		@RequestMapping(value = { "/createJury" }, method = RequestMethod.GET)
@@ -988,7 +988,7 @@ try {
 		model.addAttribute("levels", listOfLevel);
 		model.addAttribute("teachers", listOfTeacher);
 
-		return "createJury";
+		return "admin/createJury";
 	}
 
 
@@ -1018,7 +1018,7 @@ try {
 		
 
 
-		return "createJury";
+		return "admin/createJury";
 	}
 
 	//editer un communique
@@ -1026,7 +1026,7 @@ try {
 	public String createCommuniqueGet(Model model,HttpServletRequest req) {
 		System.out.println("editNews GET");
 		model.addAttribute("error", "");
-		return "editNews";
+		return "admin/editNews";
 	}
 
 	@RequestMapping(value = { "/editNews" }, method = RequestMethod.POST)
@@ -1066,7 +1066,7 @@ try {
 	model.addAttribute("error", "echec d'enregistrement");
 }
 		
-		return "editNews";
+		return "admin/editNews";
 	}
 
 	@RequestMapping(value = { "/listNews" }, method = RequestMethod.GET)
@@ -1081,7 +1081,7 @@ try {
 		}
 		model.addAttribute("communiques", listOfCommunique);
 
-		return "listNews";
+		return "admin/listNews";
 	}
 
 
@@ -1091,7 +1091,7 @@ try {
 	public String createEventGet(Model model,HttpServletRequest req) {
 		System.out.println("createEvent GET");
 		model.addAttribute("error", "");
-		return "createEvent";
+		return "admin/createEvent";
 	}
 
 	@RequestMapping(value = { "/createEvent" }, method = RequestMethod.POST)
@@ -1124,7 +1124,7 @@ try {
 		}
 		
 
-		return "createEvent";
+		return "admin/createEvent";
 	}
 
 	@RequestMapping(value = { "/listEvent" }, method = RequestMethod.GET)
@@ -1138,7 +1138,7 @@ try {
 		}
 		model.addAttribute("events", listOfEvent);
 
-		return "listEvent";
+		return "admin/listEvent";
 	}
 	
 	
@@ -1153,7 +1153,7 @@ try {
 		}
 		model.addAttribute("academicYear", listOfAcademicYear);
 
-		return "editResult";
+		return "admin/editResult";
 	}
 	
 	
@@ -1212,7 +1212,7 @@ try {
 			
 		}
 		
-		return "editResult";
+		return "admin/editResult";
 			/*
 		*/
 	}
@@ -1229,7 +1229,7 @@ try {
 		}
 		model.addAttribute("results", listOfResult);
 
-		return "publishResult";
+		return "admin/publishResult";
 	}
 	// ajouter les dommaine de competence
 	
@@ -1244,7 +1244,7 @@ try {
 			}
 			model.addAttribute("options", listOfOption);
 
-			return "addResearchDomain";
+			return "admin/addResearchDomain";
 		}
 
 		@RequestMapping(value = { "/addResearchDomain" }, method = RequestMethod.POST)
@@ -1274,7 +1274,7 @@ try {
 			}
 			
 
-			return "addResearchDomain";
+			return "admin/addResearchDomain";
 		}
 		
 		@RequestMapping(value = { "/listResearchDomain" }, method = RequestMethod.GET)
@@ -1288,7 +1288,7 @@ try {
 			}
 			model.addAttribute("researchDomains", listOfResearchDomain);
 
-			return "listResearchDomain";
+			return "admin/listResearchDomain";
 		}
 		
 		
@@ -1305,7 +1305,7 @@ try {
 			}
 			model.addAttribute("results", listOfResult);
 
-			return "publishResult";
+			return "admin/publishResult";
 		}
 		
 		
@@ -1320,6 +1320,6 @@ try {
 		// session.setAttribute( "administrator", null );
 		  model.addAttribute("sessionOut", "la session a ete supprimme");
 
-		return "connectionAdministrator";
+		return "admin/connectionAdministrator";
 	}
 }

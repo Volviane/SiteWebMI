@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<c:if test="${teacher==null}">
+			<c:redirect  url="/"></c:redirect>
+	     </c:if>
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +18,7 @@
 
 
 	<!-- DEBUT DU HEADER -->
-	<c:import url="includes/headerUser.jsp"></c:import>
+	<c:import url="includesTeacher/headerTeacher.jsp"></c:import>
 	<!-- FIN DU HEADER-->
 
 	<div
@@ -81,7 +84,7 @@
 							<div class="form-group">
 								<label for="file-document" class="">Choisir
 									le fichier</label> <input id="file-document" type="file"
-									name="documentTitle" required
+									name="file" required
 									data-msg="veuillez entrer le titre du document"
 									class="input-material">
 
@@ -106,7 +109,7 @@
 	</div>
 
 	<!-- DEBUT DE L'ASIDE -->
-	<c:import url="includes/aside.jsp"></c:import>
+	<c:import url="../includes/aside.jsp"></c:import>
 	<!-- FIN DE L'ASIDE -->
 
 <div
@@ -119,7 +122,7 @@
 		</div>
 
 	<!--Footer-->
-	<c:import url="includes/footer.jsp"></c:import>
+	<c:import url="../includes/footer.jsp"></c:import>
 	<!--/ Footer-->
 
 	<!-- INCLUSION DES JS -->

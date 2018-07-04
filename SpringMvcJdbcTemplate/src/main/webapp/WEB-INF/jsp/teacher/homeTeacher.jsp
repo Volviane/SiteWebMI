@@ -7,7 +7,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<c:if test="${teacher==null}">
+			<c:redirect  url="/"></c:redirect>
+	     </c:if>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -33,7 +35,7 @@
 
 
 	<!-- DEBUT DU HEADER -->
-	<c:import url="includes/headerUser.jsp"></c:import>
+	<c:import url="includesTeacher/headerTeacher.jsp"></c:import>
 	<!-- FIN DU HEADER-->
 	<div
 		style="clear: both; display: block; margin-top: 88px; height: 60px;">
@@ -63,7 +65,7 @@
 						<c:out value="${teacher.grade.gradeName }" />
 					</h5>
 					<p>
-						<c:out value="${teacher.teacherDescription}" />
+<%-- 						<c:out value="${teacher.teacherDescription}" /> --%>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 						Exercitationem nesciunt vitae,<br> maiores, magni dolorum
 						aliquam.
@@ -75,7 +77,7 @@
 		</div>
 
 		<!-- DEBUT DE L'ASIDE -->
-		<c:import url="includes/aside.jsp"></c:import>
+		<c:import url="../includes/aside.jsp"></c:import>
 		<!-- FIN DE L'ASIDE -->
 	
 <div
@@ -83,7 +85,7 @@
 	
 
 	<!--Footer-->
-	<c:import url="includes/footer.jsp"></c:import>
+	<c:import url="../includes/footer.jsp"></c:import>
 	<!--/ Footer-->
 	
 	<!-- INCLUSION DES JS -->
