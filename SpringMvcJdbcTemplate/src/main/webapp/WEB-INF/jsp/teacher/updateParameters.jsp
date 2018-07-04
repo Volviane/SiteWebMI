@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<c:if test="${teacher==null}">
+			<c:redirect  url="/"></c:redirect>
+	     </c:if>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,7 +17,7 @@
 <body>
 
 	<!-- DEBUT DU HEADER -->
-	<c:import url="includes/headerUser.jsp"></c:import>
+	<c:import url="includesTeacher/headerTeacher.jsp"></c:import>
 	<!-- FIN DU HEADER-->
 	<div
 		style="clear: both; display: block; margin-top: 88px; height: 60px;">
@@ -74,14 +77,14 @@
 <!-- 	</div> -->
 
 <!-- DEBUT DE L'ASIDE -->
-		<c:import url="includes/aside.jsp"></c:import>
+		<c:import url="../includes/aside.jsp"></c:import>
 		<!-- FIN DE L'ASIDE -->
 
 <div
 		style="clear: both; display: block; margin-top: 88px; height: 60px;"></div>
 	<div class="row">
 	<!--Footer-->
-	<c:import url="includes/footer.jsp"></c:import>
+	<c:import url="../includes/footer.jsp"></c:import>
 	<!--/ Footer-->
 	</div>
 	

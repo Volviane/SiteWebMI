@@ -18,7 +18,74 @@
   <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
   <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
-<c:import url="includesTeacher/teacherCSS.jsp"></c:import>
+<link rel="stylesheet" type="text/css"
+	href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/userResources/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/userResources/css/bootstrap.min.css">
+
+
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/userResources/css/imagehover.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/userResources/css/style.css">
+
+<!-- Styles peso -->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/userResources/css/stylePerso.css">
+
+<!-- Libraries CSS Files -->
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/lib/nivo-slider/css/nivo-slider.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/lib/owlcarousel/owl.carousel.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/lib/owlcarousel/owl.transitions.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/lib/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/lib/animate/animate.min.css"
+	rel="stylesheet">
+<!--   <link href="${pageContext.request.contextPath}/resources/userResources/lib/venobox/venobox.css" rel="stylesheet"> -->
+<!-- Nivo Slider Theme -->
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/css/nivo-slider-theme.css"
+	rel="stylesheet">
+<!-- Main Stylesheet File -->
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/css/style1.css"
+	rel="stylesheet">
+
+<!-- Responsive Stylesheet File -->
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/css/responsive.css"
+	rel="stylesheet">
+
+<!-- Custom stylesheet - for your changes-->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/assets/css/css/custom.css">
+<!-- Favicon-->
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/resources/css/assets/css/img/favicon.ico">
+<!-- CSS-->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/styleAdmin.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/style.css"
+	type="text/css" media="all">
+
+
+<style>
+	.gras{ font-weight: bolder;}
+	.vertical-align-middle{vertical-align: middle;}
+</style>
+
 </head>
 
 <body>
@@ -253,7 +320,7 @@
   </section>
   <!--/ Faculity member-->
   
-  <%@include file="includeFile/footerUser.jsp"%>
+  <%@include file="includes/footer.jsp"%>
 
   <script src="${pageContext.request.contextPath}/resources/userResources/js/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/userResources/js/jquery.easing.min.js"></script>

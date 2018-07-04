@@ -14,7 +14,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Math-Info page personnelle</title>
+<title>Math-Info liste des enseignants</title>
 <meta name="description"
 	content="Free Bootstrap Theme by BootstrapMade.com">
 <meta name="keywords"
@@ -38,40 +38,12 @@
 
 	<div class="container">
 
-		<div class="col-md-8" style="padding: 0px">
-			<!--Contenu-->
-			<div class="media">
-				<div class="media-left">
-					<a href="#"> <img
-						src="${pageContext.request.contextPath}/resources/userResources/img/${teacher.image }"
-						alt="" class="img-thumbnail img-circle media-object" />
-						<h5>Chef de Département</h5>
-					</a>
-				</div>
-				<div class="media-body">
-					<h4 class="media-heading">Marcellin NKENLIFACK</h4>
-					<h5>
-						<c:out value="${teacher.grade.gradeName }" />
-					</h5>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Exercitationem nesciunt vitae,<br> maiores, magni dolorum
-						aliquam.
-					</p>
-
-				</div>
-			</div>
-			<!--/ Contenu-->
-		</div>
-
-		<!-- DEBUT DE L'ASIDE -->
-		<c:import url="includes/aside.jsp"></c:import>
-		<!-- FIN DE L'ASIDE -->
+	
 	</div>
 
 
 	<!--Footer-->
-	<c:import url="includes/footer.jsp"></c:import>
+	 <%@include file="includes/footer.jsp"%>
 	<!--/ Footer-->
 	
 	<!-- INCLUSION DES JS -->

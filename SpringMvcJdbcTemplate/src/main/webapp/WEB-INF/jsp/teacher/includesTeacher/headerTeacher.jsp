@@ -45,7 +45,7 @@
 							<li><a class="page-scroll" href="${pageContext.request.contextPath}/formation">Formations</a></li>
 							<li><a class="page-scroll" href="${pageContext.request.contextPath}/actualité">actualité</a></li>
 							<li><a class="page-scroll" href="${pageContext.request.contextPath}/contact">Contact</a></li>
-							<li><a href="#" data-target="#login" data-toggle="modal">Se connecter</a></li>
+							<li><a href="${pageContext.request.contextPath}/logoutTeacher">Se deconnecter</a></li>
 						</ul>
 					</div>
 					<!-- navbar-collapse -->
@@ -59,56 +59,6 @@
 </header>
 <!-- header end -->
 
-<!--Modal box-->
-<div class="modal fade" id="login" role="dialog">
-	<div class="modal-dialog modal-sm">
 
-		<!-- Modal content no 1-->
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title text-center form-title">CONNEXION ENSEIGNANT</h4>
-			</div>
-			<div class="modal-body padtrbl">
-
-				<div class="login-box-body">
-					<p class="login-box-msg">connectez-vous pour débuter votre session</p>
-					<div class="form-group">
-						<form name="" id="loginForm" action="<c:url value='loginTeacher'/>" method="post" class="text-left form-validate">
-							<div class="form-group has-feedback">
-								<!----- username -------------->
-								<input class="form-control" placeholder="login" id="loginid"
-									type="text" autocomplete="off" name="login" /> <span
-									style="display: none; font-weight: bold; position: absolute; color: red; position: absolute; padding: 4px; font-size: 11px; background-color: rgba(128, 128, 128, 0.26); z-index: 17; right: 27px; top: 5px;"
-									id="span_loginid"></span>
-								<!---Alredy exists  ! -->
-								<span class="glyphicon glyphicon-user form-control-feedback"></span>
-								<span class="text-danger">${errorLogin}</span>
-							</div>
-							<div class="form-group has-feedback">
-								<!----- password -------------->
-								<input class="form-control" placeholder="mot de passe" id="loginpsw"
-									type="password" autocomplete="off" name="password" /><span
-									style="display: none; font-weight: bold; position: absolute; color: grey; position: absolute; padding: 4px; font-size: 11px; background-color: rgba(128, 128, 128, 0.26); z-index: 17; right: 27px; top: 5px;"
-									id="span_loginpsw"></span>
-					  			<!---Alredy exists  ! -->
-								<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-								<span class="text-danger">${errorPassword}</span>
-							</div>
-							<div class="row">
-								<div class="col-xs-12">
-									<input type="submit" class="btn btn-green btn-block btn-flat"
-										onclick="userlogin()"  value="se connecter" />
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
-</div>
-<!--/ Modal box-->
 
 

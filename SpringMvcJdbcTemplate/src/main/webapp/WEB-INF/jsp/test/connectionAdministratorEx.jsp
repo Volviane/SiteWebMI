@@ -78,7 +78,7 @@
         </div>
     </div>
     <!-- CONTENT-WRAPPER SECTION END-->
-  <%@include file="includeFile/footerAdmin.jsp"%>
+  
    
     <script src="assets/js/bootstrap.js"></script>
 </body>

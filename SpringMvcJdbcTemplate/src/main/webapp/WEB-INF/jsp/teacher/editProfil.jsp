@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<c:if test="${teacher==null}">
+			<c:redirect  url="/"></c:redirect>
+	     </c:if>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +17,7 @@
 
 
 	<!-- DEBUT DU HEADER -->
-	<c:import url="includes/headerUser.jsp"></c:import>
+	<c:import url="includesTeacher/headerTeacher.jsp"></c:import>
 	<!-- FIN DU HEADER-->
 
 	<div
@@ -39,7 +41,7 @@
 			<hr>
 			<p>Vous pouvez ici modifier vos informations personnelles</p>
 		
-			<form id="form-1" class="well form-horizontal col-md-10" action="<c:url value='addDocument'/>" method="post" enctype="multipart/form-data">
+			<form id="form-1" class="well form-horizontal col-md-10" action="<c:url value='editProfil'/>" method="post" enctype="multipart/form-data">
 				<table id="table-1" class="table table-hover" >
 					<tbody>
 						<tr>
@@ -113,7 +115,7 @@
 							<td>
 							<div class="form-group">
 								<label for="birthDate" class="">Date de Naissance</label>
-								<input class="form-control" id="birthDate" name="birthDate" type="date" value="<c:out value="${teacher.birthDate}"/>" onblur="setEditableOff('birthDate')" readonly>
+								<input class="form-control" id="birthDate" name="birthDate" type="date" value="<c:out value="${teacher.birthDate}"/>" onblur="setEditableOff('birthDate')">
 							</div>
 							</td>
 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('birthDate')"></a> </td>
@@ -181,7 +183,7 @@
 							<td>
 							<div class="form-group">
 								<label for="photo" class="">Choisir une photo</label>
-								<input class="form-control" id="photo" name="photo" type="file" value="<c:out value="${teacher.pictureName}"/>" onblur="setEditableOff('photo')" readonly>
+								<input class="form-control" id="photo" name="file" type="file" value="<c:out value="${teacher.pictureName}"/>" onblur="setEditableOff('photo')" readonly>
 							</div>
 							</td>
 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('photo')"></a> </td>
@@ -219,7 +221,7 @@
 	</div>
 	</div>
 	<!-- DEBUT DE L'ASIDE -->
-	<c:import url="includes/aside.jsp"></c:import>
+	<c:import url="../includes/aside.jsp"></c:import>
 	<!-- FIN DE L'ASIDE -->
 
 <div
@@ -227,7 +229,7 @@
 	
 
 	<!--Footer-->
-	<c:import url="includes/footer.jsp"></c:import>
+	<c:import url="../includes/footer.jsp"></c:import>
 	<!--/ Footer-->
 
 	<!-- INCLUSION DES JS -->

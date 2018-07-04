@@ -81,12 +81,7 @@
                     
                         <hr />
                         <input type="submit" value="Enregistrer" class="btn btn-info">
-                          <c:if test="${error!=null}">
-						<h6 class=""> <font color="red">l'option n'a pas enregistré</font></h1>
-			       </c:if>
-			        <c:if test="${error==null}">
-						<h6 class=""> <font color="red">l'option a été bien enregistré</font></h1>
-			       </c:if>
+                         
                 </form>
                 <hr />
                           <c:if test="${error!=null}">

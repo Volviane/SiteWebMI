@@ -26,7 +26,7 @@
 </head>
 
 <body id="homeAdmin">
-	<%@include file="includeFile/navAdmin.jsp"%>
+	
 	<!-- MENU SECTION END-->
 	<div class="space"></div>
 	<form class="navbar-form pull-right">
@@ -153,7 +153,7 @@
 		</div>
 	</div>
 	<!-- CONTENT-WRAPPER SECTION END-->
-	<%@include file="includeFile/footerAdmin.jsp"%>
+	
 	<!-- FOOTER SECTION END-->
 	<!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
 	<!-- CORE JQUERY SCRIPTS -->

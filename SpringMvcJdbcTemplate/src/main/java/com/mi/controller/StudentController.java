@@ -157,7 +157,7 @@ public class StudentController {
 		public String homeStudent(Model model) {
 			System.out.println("home etudiant get");
 
-			return "homeStudent";
+			return "student/homeStudent";
 		}
 	
 		// inscription a un evennement
@@ -165,7 +165,7 @@ public class StudentController {
 		public String registrationStudentGet(Model model) {
 			System.out.println("registrationStudent get");
 
-			return "registrationStudent";
+			return "student/registrationStudent";
 		}
 		
 		
@@ -255,7 +255,7 @@ public class StudentController {
 				model.addAttribute("error", "echec d'enregistrment");
 			}
 
-			return "registrationStudent";
+			return "student/registrationStudent";
 		}
 		
 		
@@ -266,7 +266,7 @@ public class StudentController {
 			System.out.println("connexion  d'un etudiant get");
 			model.addAttribute("errorLogin", "");
 			model.addAttribute("errorPassword", "");
-			return "loginStudent";
+			return "student/loginStudent";
 		}
 
 		@RequestMapping(value = { "/loginStudent" }, method = RequestMethod.POST)
@@ -320,7 +320,7 @@ public class StudentController {
 			}
 
 			//return "redirect:/TeacherHome";
-			return "loginStudent";
+			return "student/loginStudent";
 		}
 
 		//modifier les parametres de connexion get method
@@ -328,7 +328,7 @@ public class StudentController {
 		public String updateParameterStudentGet(Model model,HttpServletRequest req) {
 			System.out.println("modifier les parametre de connexion get");
 			model.addAttribute("error", "");
-			return "updateParameterStudent";
+			return "student/updateParameterStudent";
 		}
 
 		@RequestMapping(value = { "/updateParameterStudent" }, method = RequestMethod.POST)
@@ -353,7 +353,7 @@ public class StudentController {
 
 			model.addAttribute("students", "sucess ");
 
-			return "updateParameterStudent";
+			return "student/updateParameterStudent";
 		}
 
 		//ajouter un document
@@ -362,7 +362,7 @@ public class StudentController {
 			System.out.println("addArticle get");
 			
 			model.addAttribute("error", "");
-			return "addArticle";
+			return "student/addArticle";
 		}
 
 		@RequestMapping(value = { "/addArticle" }, method = RequestMethod.POST)
@@ -428,7 +428,7 @@ public class StudentController {
 				
 			}
 			
-			return "addArticle";
+			return "student/addArticle";
 				/*
 			*/
 		}
@@ -452,7 +452,7 @@ public class StudentController {
 			
 			model.addAttribute("articles", article);
 			model.addAttribute("students", student);
-			return "listArticle";
+			return "student/listArticle";
 		}
 		
 		
@@ -464,7 +464,7 @@ public class StudentController {
 			  session.setAttribute( "student", null );
 			  model.addAttribute("students", "la session a ete supprimme");
 
-			return "loginStudent";
+			return "student/loginStudent";
 		}
 		
 		
