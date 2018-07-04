@@ -14,9 +14,9 @@
       event.preventDefault();
     }
   });
-  $(".navbar-collapse a").on('click', function() {
-    $(".navbar-collapse.collapse").removeClass('in');
-  });
+//  $(".navbar-collapse a").on('click', function() {
+//    $(".navbar-collapse.collapse").removeClass('in');
+//  });
 
   // Add smooth scrolling to all links in navbar
   $("a.mouse-hover, a.get-quote").on('click', function(event) {

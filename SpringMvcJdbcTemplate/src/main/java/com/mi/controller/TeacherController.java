@@ -149,7 +149,7 @@ public class TeacherController {
 		System.out.println("home enseignant get");
 		model.addAttribute("error", "");
 
-		return "homeTeacher";
+		return "teacher/homeTeacher";
 	}
 
 
@@ -160,7 +160,7 @@ public class TeacherController {
 		System.out.println("connexion  d'un enseignant get");
 		model.addAttribute("errorLogin", "");
 		model.addAttribute("errorPassword", "");
-		return "loginTeacher";
+		return "index";
 	}
 
 	@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.POST)
@@ -194,7 +194,7 @@ public class TeacherController {
 					System.out.println("je suis en session avec http et mon nom est : " + teacherName.getLogin());
 					
 					model.addAttribute("teachers", "You have been login successfully." + teacherName.getLogin());
-					return "homeTeacher";
+					return "teacher/homeTeacher";
 
 				} else {
 					logger.error("Teacher with password {} not found.", password);
@@ -214,7 +214,7 @@ public class TeacherController {
 		}
 
 		//return "redirect:/TeacherHome";
-		return "loginTeacher";
+		return "index";
 	}
 
 	//modifier les parametres de connexion get method
@@ -222,7 +222,7 @@ public class TeacherController {
 	public String updateParameterGet(Model model,HttpServletRequest req) {
 		System.out.println("modifier les parametre de connexion get");
 		model.addAttribute("error", "");
-		return "updateParameters";
+		return "teacher/updateParameters";
 	}
 
 	@RequestMapping(value = { "/updateParameters" }, method = RequestMethod.POST)
@@ -247,7 +247,7 @@ public class TeacherController {
 
 		model.addAttribute("teachers", "sucess ");
 
-		return "updateParameters";
+		return "teacher/updateParameters";
 	}
 
 	//ajouter un document
@@ -256,13 +256,13 @@ public class TeacherController {
 		System.out.println("addDocument get");
 		
 		model.addAttribute("error", "");
-		return "addDocument";
+		return "teacher/addDocument";
 	}
 
 	@RequestMapping(value = { "/addDocument" }, method = RequestMethod.POST)
 	@Transactional
-	public String addDocumentPost(Model model, HttpServletRequest req,@RequestParam("files") MultipartFile file) throws ParseException, IOException, ServletException {
-
+	public String addDocumentPost(Model model, HttpServletRequest req,@RequestParam("file") MultipartFile file) throws ParseException, IOException, ServletException {
+		System.out.println("add documet post");
 		String documentTitle= req.getParameter("documentTitle");
 		String documentDescription= req.getParameter("documentDescription");
 		String documentType= req.getParameter("documentType");
@@ -277,7 +277,7 @@ public class TeacherController {
 	
 		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 		//Date createDate = sdf.parse(createYear);
-		
+		System.out.println("add documet post avat try;");
 		try {
 			HttpSession session = req.getSession();
 			Teacher author =  (Teacher) session.getAttribute( "teacher" );
@@ -315,7 +315,7 @@ public class TeacherController {
 			
 		}
 		
-		return "addDocument";
+		return "teacher/addDocument";
 			/*
 		*/
 	}
@@ -325,7 +325,7 @@ public class TeacherController {
 	public String updateDocumentGet(Model model,HttpServletRequest req) {
 		System.out.println("updateDocument get");
 		model.addAttribute("error", "");
-		return "updateDocument";
+		return "teacher/updateDocument";
 	}
 
 
@@ -369,7 +369,7 @@ public class TeacherController {
 			return "updateDocument";
 		}else{
 			model.addAttribute("error", "erreur d'ajout du document");
-			return "updateDocument";
+			return "teacher/updateDocument";
 		}
 	}
 
@@ -386,7 +386,7 @@ public class TeacherController {
 		model.addAttribute("researchDomains", listOfResearchDomain);
 		
 		//model.addAttribute("error", "");
-		return "editProfil";
+		return "teacher/editProfil";
 	}
 
 	@RequestMapping(value = { "/editProfil" }, method = RequestMethod.POST)
@@ -418,7 +418,7 @@ public class TeacherController {
 			model.addAttribute("teachers", "profil edite avec succes");
 		
 		}
-		return "editProfil";
+		return "teacher/editProfil";
 	}
 	
 	// se deconnecter
@@ -429,11 +429,11 @@ public class TeacherController {
 			  session.setAttribute( "teacher", null );
 			  model.addAttribute("teachers", "la session a ete supprimme");
 
-			return "connectionAdministrator";
+			return "index";
 		}
 
 		// information pour afficher la page personnelle
-		@RequestMapping(value = "/InformationTeacher", method = RequestMethod.GET)
+		@RequestMapping(value = "/informationTeacher", method = RequestMethod.GET)
 		public String InformationTeacherGet(HttpServletRequest request, HttpServletResponse response, Model model) {
 			System.out.println("InformationTeacher get");
 			model.addAttribute("error", "");
@@ -449,8 +449,24 @@ public class TeacherController {
 			model.addAttribute("grades", grade);
 			model.addAttribute("jurys", jury);
 			
-			return "InformationTeacher";
+			return "teacher/informationTeacher";
 		}
+		//visualiser la liste des teachers
+		@RequestMapping(value = { "/viewTeacherList" }, method = RequestMethod.GET)
+		public String teacherList(Model model, HttpServletRequest req) {
+			System.out.println("teacherList");
+
+			List<Teacher> listOfTeacher =teachersRepository.findAll();
+
+			if (listOfTeacher.isEmpty()) {
+				model.addAttribute("error", "liste vide");
+			}
+			model.addAttribute("teachers", listOfTeacher);
+			req.setAttribute("teacher", listOfTeacher);
+
+			return "teacher/viewTeacherList";
+		}
+
 
 
 

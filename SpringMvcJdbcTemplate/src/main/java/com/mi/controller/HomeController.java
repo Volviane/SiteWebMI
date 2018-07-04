@@ -33,7 +33,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
 		System.out.println("c'est le home principal");
-		return "includeFile/index";
+		return "index";
 	}
 	
 	/*@RequestMapping(value = "/addCycle", method = RequestMethod.GET)
