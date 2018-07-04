@@ -433,7 +433,7 @@ public class TeacherController {
 		}
 
 		// information pour afficher la page personnelle
-		@RequestMapping(value = "/InformationTeacher", method = RequestMethod.GET)
+		@RequestMapping(value = "/informationTeacher", method = RequestMethod.GET)
 		public String InformationTeacherGet(HttpServletRequest request, HttpServletResponse response, Model model) {
 			System.out.println("InformationTeacher get");
 			model.addAttribute("error", "");
@@ -449,7 +449,7 @@ public class TeacherController {
 			model.addAttribute("grades", grade);
 			model.addAttribute("jurys", jury);
 			
-			return "InformationTeacher";
+			return "informationTeacher";
 		}
 
 

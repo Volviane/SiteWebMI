@@ -88,6 +88,13 @@
 						<h6 class=""> <font color="red">l'option a été bien enregistré</font></h1>
 			       </c:if>
                 </form>
+                <hr />
+                          <c:if test="${error!=null}">
+							<h6 class=""> <font color="red">${error}</font></h1>
+			       		</c:if>
+			        	<c:if test="${error==null}">
+							<h6 class=""> <font color="green">enregistrement reussi</font></h1>
+			       		</c:if>
 
                 </div>
            </div>

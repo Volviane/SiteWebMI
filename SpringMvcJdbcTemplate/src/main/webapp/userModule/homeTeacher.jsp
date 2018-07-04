@@ -31,6 +31,14 @@
 <body>
 	<div id="preloader"></div>
 
+
+	<!-- DEBUT DU HEADER -->
+	<c:import url="includes/headerUser.jsp"></c:import>
+	<!-- FIN DU HEADER-->
+
+	<div
+		style="clear: both; display: block; margin-top: 88px; height: 60px;"></div>
+	
 	<!-- DEBUT DU MENU -->
 		<c:import url="includesTeacher/teacherMenu.jsp"></c:import>
     <!-- FIN DU MENU -->
