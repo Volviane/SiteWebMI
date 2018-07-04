@@ -160,7 +160,7 @@ public class TeacherController {
 		System.out.println("connexion  d'un enseignant get");
 		model.addAttribute("errorLogin", "");
 		model.addAttribute("errorPassword", "");
-		return "index";
+		return "teacher/loginTeacher";
 	}
 
 	@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.POST)
@@ -214,7 +214,7 @@ public class TeacherController {
 		}
 
 		//return "redirect:/TeacherHome";
-		return "index";
+		return "teacher/loginTeacher";
 	}
 
 	//modifier les parametres de connexion get method
@@ -225,27 +225,40 @@ public class TeacherController {
 		return "teacher/updateParameters";
 	}
 
-	@RequestMapping(value = { "/updateParameters" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/updateParameterTeacher" }, method = RequestMethod.POST)
 	@Transactional
 	public String updateParameterPost(Model model, HttpServletRequest req) throws ParseException {
 		System.out.println("updateParameters Post");
 
 		String login= req.getParameter("login");
 		String password= req.getParameter("password");
+		String newlogin= req.getParameter("newLogin");
+		String newpassword= req.getParameter("newPassword");
 		
 		
 		HttpSession session = req.getSession();
 		Teacher teacher =  (Teacher) session.getAttribute( "teacher" );
 
-		System.out.println(login);
-		System.out.println(password);
+		System.out.println(newlogin);
+		System.out.println(newpassword);
 
+		if(teacher.getLogin()==login){
+			
+			teacher.setLogin(newlogin);
+			teacher.setPassword(newpassword);
+			
+			if (teacher.getPasswordSec()==cryptographe(password)){
+			
+			teachersRepository.save(teacher);
+			}else{
+				model.addAttribute("errorPassword", "Veuillez entrez votre ancien mot de passe");
+				
+			}
+		}else{
+			model.addAttribute("errorLogin", "Veuillez entrez votre ancienn login");
+		}
 
-		teacher.setLogin(login);
-		teacher.setPassword(password);
-		teachersRepository.save(teacher);
-
-		model.addAttribute("teachers", "sucess ");
+		model.addAttribute("teachers", "vos parametre ont ete modifies");
 
 		return "teacher/updateParameters";
 	}
@@ -261,8 +274,8 @@ public class TeacherController {
 
 	@RequestMapping(value = { "/addDocument" }, method = RequestMethod.POST)
 	@Transactional
-	public String addDocumentPost(Model model, HttpServletRequest req,@RequestParam("file") MultipartFile file) throws ParseException, IOException, ServletException {
-		System.out.println("add documet post");
+	public String addDocumentPost(Model model, HttpServletRequest req,@RequestParam("files") MultipartFile file) throws ParseException, IOException, ServletException {
+
 		String documentTitle= req.getParameter("documentTitle");
 		String documentDescription= req.getParameter("documentDescription");
 		String documentType= req.getParameter("documentType");
@@ -277,7 +290,7 @@ public class TeacherController {
 	
 		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 		//Date createDate = sdf.parse(createYear);
-		System.out.println("add documet post avat try;");
+		
 		try {
 			HttpSession session = req.getSession();
 			Teacher author =  (Teacher) session.getAttribute( "teacher" );
@@ -429,11 +442,11 @@ public class TeacherController {
 			  session.setAttribute( "teacher", null );
 			  model.addAttribute("teachers", "la session a ete supprimme");
 
-			return "index";
+			return "teacher/loginTeacher";
 		}
 
 		// information pour afficher la page personnelle
-		@RequestMapping(value = "/informationTeacher", method = RequestMethod.GET)
+		@RequestMapping(value = "/InformationTeacher", method = RequestMethod.GET)
 		public String InformationTeacherGet(HttpServletRequest request, HttpServletResponse response, Model model) {
 			System.out.println("InformationTeacher get");
 			model.addAttribute("error", "");
@@ -449,24 +462,8 @@ public class TeacherController {
 			model.addAttribute("grades", grade);
 			model.addAttribute("jurys", jury);
 			
-			return "teacher/informationTeacher";
+			return "teacher/InformationTeacher";
 		}
-		//visualiser la liste des teachers
-		@RequestMapping(value = { "/viewTeacherList" }, method = RequestMethod.GET)
-		public String teacherList(Model model, HttpServletRequest req) {
-			System.out.println("teacherList");
-
-			List<Teacher> listOfTeacher =teachersRepository.findAll();
-
-			if (listOfTeacher.isEmpty()) {
-				model.addAttribute("error", "liste vide");
-			}
-			model.addAttribute("teachers", listOfTeacher);
-			req.setAttribute("teacher", listOfTeacher);
-
-			return "teacher/viewTeacherList";
-		}
-
 
 
 
