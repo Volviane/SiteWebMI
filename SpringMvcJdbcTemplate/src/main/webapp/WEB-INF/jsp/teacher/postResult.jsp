@@ -15,7 +15,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>créer u jury</title>
+    <title>publier un résultat</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -49,45 +49,52 @@
   </head>
   <body>
     <!-- Side Navbar -->
-    <%@include file="includeFile/sideBarAdmin.jsp"%>
+   
     
     <div class="page">
       <!-- navbar-->
-     <%@include file="includeFile/navAdmin.jsp"%>
+    
       <!-- Counts Section -->
       <section class="dashboard-counts padding">
-          <h4 class="page-head-line">créer un jury</strong></h4>
+          <h4 class="page-head-line">publier un résultat</strong></h4>
       </section>
       <!-- Header Section-->
       <section class="dashboard-header padding">
          <div class="row">
               <div class="col-md-6">
-		       <form action="<c:url value='createJury'/>" method="post">
-                    <label>année</label>
-                        <input type="text" class="form-control" name="academicYear" required  />
-                    <label>niveau</label>
+		       <form action="<c:url value='postResult'/>" method="post">
+                     <label>cycle</label>
                     
-                    	 <select class="form-control" name="juryLevelName" required>
-                     			<c:forEach items="${levels}" var="i">
-                     				<option value="${i.levelName }" ><c:out value="${i.levelName }"></c:out></option>
+                    	 <select class="form-control" name="cycleName">
+                     			<c:forEach items="${cycles}" var="i">
+                     				<option value="${i.cycleName }"><c:out value="${i.cycleName }"></c:out></option>
                      			</c:forEach>
                      	 </select>
-<!--                     <label>coordonnateur</label> -->
-                    
-<!--                     	 <select class="form-control" name="cordo"> -->
-                     			<option> </option>
-<!--                      	 </select> -->
-                    <label>président du jury </label>
-                    
-                    	 <select class="form-control" name="juryPresidentName" required>
-                     			<c:forEach items="${teachers}" var="i">
-                     				<option value="${i.lastName }" ><c:out value="${i.lastName }"></c:out></option>
+                      <label>option</label>
+                         <select class="form-control" name="optionName">
+                     			<c:forEach items="${options}" var="i">
+                     				<option value="${i.optionName }"><c:out value="${i.optionName }"></c:out></option>
                      			</c:forEach>
                      	 </select>
+                     <label>niveau</label>
+                    
+                    	 <select class="form-control" name="levelName">
+                     			<c:forEach items="${level}" var="i">
+                     				<option value="${i.levelName }"><c:out value="${i.levelName }"></c:out></option>
+                     			</c:forEach>
+                     	 </select>
+                     
+                     		<label>fichier </label>
+                    		<div class="form-group">
+                     			
+                      			  <input type="text" class="form-control" name="fileResult" />
+                             </div>
+                            
+                    
                         <hr />
-                  <input type="submit" value="ouvrir" class="btn btn-info">
-                 </form>
-                  <hr />
+                  <input type="submit" value="Enregistrer" class="btn btn-info">
+                </form>
+                 <hr />
                           <c:if test="${error!=null}">
 							<h6 class=""> <font color="red">${error}</font></h1>
 			       		</c:if>
@@ -98,7 +105,7 @@
            </div>
       </section>
       
-    	<%@include file="includeFile/footerAdmin.jsp"%>
+    
     </div>
     <!-- JavaScript files-->
     <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery/jquery.min.js"></script>

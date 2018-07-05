@@ -15,7 +15,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>publier un résultat</title>
+    <title>lister communiqués</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -56,44 +56,26 @@
      <%@include file="includeFile/navAdmin.jsp"%>
       <!-- Counts Section -->
       <section class="dashboard-counts padding">
-          <h4 class="page-head-line">publier un résultat</strong></h4>
+         <h4 class="page-head-line">Liste des communiqués</strong></h4>
       </section>
       <!-- Header Section-->
       <section class="dashboard-header padding">
          <div class="row">
-              <div class="col-md-6">
-		       <form action="<c:url value='addCourse'/>" method="post">
-                     <label>cycle</label>
-                    
-                    	 <select class="form-control" name="cycleName">
-                     			<c:forEach items="${cycles}" var="i">
-                     				<option value="${i.cycleName }"><c:out value="${i.cycleName }"></c:out></option>
-                     			</c:forEach>
-                     	 </select>
-                      <label>option</label>
-                         <select class="form-control" name="optionName">
-                     			<c:forEach items="${options}" var="i">
-                     				<option value="${i.optionName }"><c:out value="${i.optionName }"></c:out></option>
-                     			</c:forEach>
-                     	 </select>
-                     <label>niveau</label>
-                    
-                    	 <select class="form-control" name="levelName">
-                     			<c:forEach items="${level}" var="i">
-                     				<option value="${i.levelName }"><c:out value="${i.levelName }"></c:out></option>
-                     			</c:forEach>
-                     	 </select>
-                     
-                     		<label>fichier </label>
-                    		<div class="form-group">
-                     			
-                      			  <input type="text" class="form-control" name="fileResult" />
-                             </div>
-                            
-                    
-                        <hr />
-                  <input type="submit" value="Enregistrer" class="btn btn-info">
-                </form>
+                <div class="col-md-6 table-responsive">
+		             <table class="table table-bordered table-striped table-condensed">
+		             	<tr class="active">
+							<td>N°</td>
+							<td>Communiques</td>
+						   </tr>
+		             	<c:forEach items="${communiques}" var="i" varStatus="pos">
+		             	 
+		             	  <tr class="active">
+							<td><c:out value="${pos.count}"></c:out></td>
+							<td><c:out value="${i.communiqueTitle }"></c:out></td>
+						   </tr>
+						 </c:forEach>
+		             </table>
+
                 </div>
            </div>
       </section>

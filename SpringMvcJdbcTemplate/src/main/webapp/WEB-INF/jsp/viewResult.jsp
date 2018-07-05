@@ -105,32 +105,26 @@
 	<c:import url="includes/headerUser.jsp"></c:import>
 	<!-- FIN DU HEADER-->
 	<div class="container space">
-			<h4 class="page-head-line">LISTE DES ENSEIGNANTS</strong></h4>
-       <c:forEach items="${teachers}" var="i" varStatus="pos">
+			<h4 class="page-head-line">LISTE DES RESULTATS</strong></h4>
+       <c:forEach items="${results}" var="i" varStatus="pos">
 		<div class="media">
 		
 			<div class="media-left">
-				<img src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG" alt="" class="img-thumbnail img-circle media-object" style="width: 60px">
+				<h4> <c:out value="${i.resultTitle }"></c:out> </h4>
+				
 			</div>
 				<div class="media-body">
-					<h4 class="media-heading">
-						<c:out value="${i.firstName }"></c:out>
-					</h4>
-					<p>je suis le teacher</p>
+					<h6 class="media-heading">
+						 <b> <c:out value="${i.session }"></c:out></b> <b> <c:out value="${i.academicYear }"></c:out> </b>
+					</h6>
+					<p><c:out value="${i.resultFileName }"></c:out></p>
 					<p>
-					  <div class="col-lg-4" >
-						<a
-							href="${pageContext.request.contextPath}/viewPersonalPage? id=<c:out value="${i.idTeacher }"></c:out>">
-							<button name="submit" type="submit"
-								class="btn btn-block btn-submit">
-								Voir page personnelle <i class="fa fa-arrow-right"></i>
-							</button>
-						</a>
-					 </div>	
+					
 					</p>
 				</div>
 
 			</div>
+			<hr>
 	  </c:forEach>
 	</div>
 <div class="spaces"></div>

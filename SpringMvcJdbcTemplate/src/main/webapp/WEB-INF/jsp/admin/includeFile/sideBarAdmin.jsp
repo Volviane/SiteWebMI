@@ -39,6 +39,8 @@
                 <li><a href="${pageContext.request.contextPath}/courseList">Liste des cours </a></li>
                 <li><a href="${pageContext.request.contextPath}/gradeList">Liste des grades </a></li>
                  <li><a href="${pageContext.request.contextPath}/teacherList">Liste des enseignants </a></li>
+                 <li><a href="${pageContext.request.contextPath}/listNews">Liste des communiqués </a></li>
+                 <li><a href="${pageContext.request.contextPath}/listEvent">Liste des évènement </a></li>
                   <li><a href="${pageContext.request.contextPath}/listResearchDomain">Liste des Domaines de recherche </a></li>
               </ul>
             </li>

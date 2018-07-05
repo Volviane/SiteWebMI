@@ -173,7 +173,9 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/homeAdministrator", method = RequestMethod.GET)
 	public String homeAdmin(Model model) {
 		System.out.println("home admin get");
+		long numberTeacher = teachersRepository.count();
 		model.addAttribute("error", "");
+		model.addAttribute("numberTeacher", numberTeacher);
 
 		return "admin/homeAdministrator";
 	}
@@ -699,6 +701,8 @@ public class AdministratorController/* implements UserDetailsService */{
 		String levelName= req.getParameter("levelName");
 		String semester= "Semestre"+semesters;
 		Course course = new Course();
+
+
 		Level level = levelRepository.findByLevelName(levelName);
 		course.setLevel(level);
 		course.setCourseTitle(courseName);
@@ -822,7 +826,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		return "admin/createTeacher";
 	}
 	@RequestMapping(value = { "/createTeacher" }, method = RequestMethod.POST)
-	@Transactional
+  //	@Transactional
 	public String createTeacherPost(Model model, HttpServletRequest req) throws AddressException, MessagingException {
 		System.out.println("createTeacher post");
 
@@ -889,7 +893,7 @@ try {
 	
 }
 		
-		return "createTeacher";
+		return "admin/createTeacher";
 	}
 	@RequestMapping(value = { "/teacherList" }, method = RequestMethod.GET)
 	public String teacherList(Model model, HttpServletRequest req) {
@@ -1004,6 +1008,7 @@ try {
 		AcademicYear academicYears = academicYearRepository.findByAcademicYear(academicYear);
 		Level juryLevel = levelRepository.findByLevelName(juryLevelName);
 		 Jury jury = new Jury();
+
 		 jury.setAcademicYear(academicYears);
 		 jury.setJuryLevel(juryLevel);
 		 jury.setJuryPresident(juryPresident);
@@ -1127,9 +1132,11 @@ try {
 		return "admin/createEvent";
 	}
 
+
 	@RequestMapping(value = { "/listEvent" }, method = RequestMethod.GET)
 	public String listEventGet(Model model,HttpServletRequest req) {
 		System.out.println("createCommunique GET");
+
 
 		List<Event> listOfEvent = eventRepository.findAll();
 

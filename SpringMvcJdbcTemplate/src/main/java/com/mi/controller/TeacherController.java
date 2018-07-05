@@ -204,7 +204,9 @@ public class TeacherController {
 					System.out.println("je suis en session avec http et mon nom est : " + teacherName.getLogin());
 					
 					model.addAttribute("teachers", "You have been login successfully." + teacherName.getLogin());
+
 					model.addAttribute("teachs", teacher);
+
 					return "teacher/homeTeacher";
 
 				} else {

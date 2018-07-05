@@ -32,7 +32,7 @@
 						class="collapse navbar-collapse main-menu bs-example-navbar-collapse-1"
 						id="navbar-example">
 						<ul class="nav navbar-nav navbar-right">
-							<li class="active"><a class="page-scroll" href="#home">Acceuil</a>
+							<li class="active"><a class="page-scroll" href="${pageContext.request.contextPath}/index">Acceuil</a>
 							</li>
 							<li class="dropdown">
 								<a class="page-scroll" data-toggle="dropdown" href="#about">PRESENTATION<b class="caret"></b></a>
