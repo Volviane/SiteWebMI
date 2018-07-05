@@ -20,10 +20,79 @@
 <meta name="keywords"
 	content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 	<!-- DEFINITION DES STYLES CSS -->
- 	<c:import url="includesTeacher/teacherCSS.jsp"></c:import>
+ 	<link rel="stylesheet" type="text/css"
+	href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/userResources/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/userResources/css/bootstrap.min.css">
+
+
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/userResources/css/imagehover.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/userResources/css/style.css">
+
+<!-- Styles peso -->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/userResources/css/stylePerso.css">
+
+<!-- Libraries CSS Files -->
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/lib/nivo-slider/css/nivo-slider.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/lib/owlcarousel/owl.carousel.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/lib/owlcarousel/owl.transitions.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/lib/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/lib/animate/animate.min.css"
+	rel="stylesheet">
+<!--   <link href="${pageContext.request.contextPath}/resources/userResources/lib/venobox/venobox.css" rel="stylesheet"> -->
+<!-- Nivo Slider Theme -->
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/css/nivo-slider-theme.css"
+	rel="stylesheet">
+<!-- Main Stylesheet File -->
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/css/style1.css"
+	rel="stylesheet">
+
+<!-- Responsive Stylesheet File -->
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/css/responsive.css"
+	rel="stylesheet">
+
+<!-- Custom stylesheet - for your changes-->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/assets/css/css/custom.css">
+<!-- Favicon-->
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/resources/css/assets/css/img/favicon.ico">
+<!-- CSS-->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/styleAdmin.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/style.css"
+	type="text/css" media="all">
+
+
+<style>
+	.gras{ font-weight: bolder;}
+	.vertical-align-middle{vertical-align: middle;}
+</style>
+
  	<!-- FIN DEFINITION DES STYLES -->
  	
 <style type="text/css">
+	.space{ padding-top: 100px;}
+	.spaces{ height: 300px;}
 </style>
 
 </head>
@@ -35,19 +104,71 @@
 	<!-- DEBUT DU HEADER -->
 	<c:import url="includes/headerUser.jsp"></c:import>
 	<!-- FIN DU HEADER-->
+	<div class="container space">
+        <div class="row">
+                <div class="col-md-6 table-responsive">
+		             <table class="table table-bordered table-striped table-condensed">
+		               <tr class="active">
+							<td>N°</td>
+							<td>noms enseignants</td>
+					  </tr>
+		             	<c:forEach items="${teachers}" var="i" varStatus="pos">
+		             	  <tr class="active">
+							<td><c:out value="${pos.count}"></c:out></td>
+							<td><c:out value="${i.firstName }"></c:out></td>
+						   </tr>
+						 </c:forEach>
 
-	<div class="container">
+		             </table>
 
+                </div>
+           </div>
 	
 	</div>
-
+<div class="spaces"></div>
 
 	<!--Footer-->
 	 <%@include file="includes/footer.jsp"%>
 	<!--/ Footer-->
 	
 	<!-- INCLUSION DES JS -->
-	<c:import url="includesTeacher/teacherJS.jsp"></c:import>
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/js/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/js/jquery.easing.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/js/custom.js"></script>
+	
+	<!-- JavaScript Libraries-->
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/lib/jquery/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/lib/venobox/venobox.min.js"></script>
+	 <script
+		src="${pageContext.request.contextPath}/resources/userResources/lib/knob/jquery.knob.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/lib/parallax/parallax.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/lib/easing/easing.min.js"></script>
+	
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/lib/isotope/isotope.pkgd.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/js/main.js"></script>
+		
+	    <!-- JavaScript files-->
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery-validation/jquery.validate.min.js"></script>
+    <!-- Main File-->
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/front.js"></script>
 	<!-- FIN INCLUSION DES JS -->
 </body>
 

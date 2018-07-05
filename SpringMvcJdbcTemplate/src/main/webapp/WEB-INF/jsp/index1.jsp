@@ -17,8 +17,8 @@
   <title>Math-Info Accueil</title>
   <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
   <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-	<!-- DEFINITION DES STYLES CSS -->
- 	<link rel="stylesheet" type="text/css"
+
+<link rel="stylesheet" type="text/css"
 	href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/userResources/css/font-awesome.min.css">
@@ -84,22 +84,19 @@
 <style>
 	.gras{ font-weight: bolder;}
 	.vertical-align-middle{vertical-align: middle;}
+	.space{ height: 300px;}
 </style>
 
- 	<!-- FIN DEFINITION DES STYLES -->
- 	
-<style type="text/css">
-</style>
 </head>
 
 <body>
-	<div id="preloader"></div>
+     <div id="preloader"></div>
+     
+ 
 
+  <c:import url="includes/headerUser.jsp"></c:import>
 
-	<!-- DEBUT DU HEADER -->
-	<c:import url="includes/headerUser.jsp"></c:import>
-	<!-- FIN DU HEADER-->
-	<!-- Start Slider Area -->
+  <!-- Start Slider Area -->
   <div id="home" class="slider-area"  style="display: block; height:400px;">
     <div class="bend niceties preview-2">
       <div id="ensign-nivoslider" class="slides" style="display: block; height:400px;">
@@ -323,63 +320,31 @@
   <!--/ Faculity member-->
   
   <%@include file="includes/footer.jsp"%>
-	
-	
 
-  <<!-- INCLUSION DES JS -->
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/js/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/js/jquery.easing.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/js/custom.js"></script>
-	
-	<!-- JavaScript Libraries-->
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/lib/jquery/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/lib/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/lib/venobox/venobox.min.js"></script>
-	 <script
-		src="${pageContext.request.contextPath}/resources/userResources/lib/knob/jquery.knob.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/lib/parallax/parallax.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/lib/easing/easing.min.js"></script>
-	
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/lib/isotope/isotope.pkgd.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/js/main.js"></script>
-		
-	    <!-- JavaScript files-->
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/popper.js/umd/popper.min.js"> </script>
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery-validation/jquery.validate.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/userResources/js/custom.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/userResources/lib/owlcarousel/owl.carousel.min.js"></script>
-     <script src="${pageContext.request.contextPath}/resources/userResources/lib/nivo-slider/js/jquery.nivo.slider.js" type="text/javascript"></script>
-   <script src="${pageContext.request.contextPath}/resources/userResources/lib/venobox/venobox.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/userResources/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/userResources/js/jquery.easing.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/userResources/js/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/userResources/js/custom.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/userResources/contactform/contactform.js"></script>
+
+	<!-- JavaScript Libraries -->
+  <script src="${pageContext.request.contextPath}/resources/userResources/lib/jquery/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/userResources/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/userResources/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/userResources/lib/venobox/venobox.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/userResources/lib/knob/jquery.knob.js"></script>
   <script src="${pageContext.request.contextPath}/resources/userResources/lib/wow/wow.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/userResources/lib/parallax/parallax.js"></script>
   <script src="${pageContext.request.contextPath}/resources/userResources/lib/easing/easing.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/userResources/lib/appear/jquery.appear.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/userResources/lib/nivo-slider/js/jquery.nivo.slider.js" type="text/javascript"></script>
+  <script src="${pageContext.request.contextPath}/resources/userResources/lib/appear/jquery.appear.js"></script>
   <script src="${pageContext.request.contextPath}/resources/userResources/lib/isotope/isotope.pkgd.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
+
   <!-- Contact Form JavaScript File -->
   <script src="${pageContext.request.contextPath}/resources/userResources/contactform/contactform.js"></script>
 
   <script src="${pageContext.request.contextPath}/resources/userResources/js/main.js"></script> 
-    <!-- Main File-->
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/front.js"></script>
-	<!-- FIN INCLUSION DES JS -->
  <c:if test="${!empty errorLogin || !empty errorPassword }">
 	  <script type="text/javascript">
 			$(window).on('load', function() {
