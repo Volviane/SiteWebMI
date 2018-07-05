@@ -465,7 +465,20 @@ public class TeacherController {
 			return "teacher/InformationTeacher";
 		}
 
+		@RequestMapping(value = { "/viewTeacherList" }, method = RequestMethod.GET)
+		public String teacherList(Model model, HttpServletRequest req) {
+			System.out.println("teacherList");
 
+			List<Teacher> listOfTeacher =teachersRepository.findAll();
+
+			if (listOfTeacher.isEmpty()) {
+				model.addAttribute("error", "liste vide");
+			}
+			model.addAttribute("teachers", listOfTeacher);
+			req.setAttribute("teacher", listOfTeacher);
+
+			return "viewTeacherList";
+		}
 
 
 

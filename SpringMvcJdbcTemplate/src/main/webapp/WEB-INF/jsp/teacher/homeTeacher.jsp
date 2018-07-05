@@ -60,15 +60,12 @@
 					</a>
 				</div>
 				<div class="media-body">
-					<h4 class="media-heading"><c:out value="${teacher.firstName }" />  <c:out value="${teacher.lastName }" />Marcellin NKENLIFACK</h4>
+					<h4 class="media-heading"><c:out value="${teacher.firstName }" />  <c:out value="${teacher.lastName }" /></h4>
 					<h5>
 						<c:out value="${teacher.grade.gradeName }" />
 					</h5>
 					<p>
 <%-- 						<c:out value="${teacher.teacherDescription}" /> --%>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Exercitationem nesciunt vitae,<br> maiores, magni dolorum
-						aliquam.
 					</p>
 
 				</div>
