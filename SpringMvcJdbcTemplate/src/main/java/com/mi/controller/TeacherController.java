@@ -2,6 +2,7 @@ package com.mi.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
@@ -42,13 +43,16 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mi.model.Teacher;
+import com.mi.model.AcademicYear;
 import com.mi.model.Administrator;
 import com.mi.model.Communique;
 import com.mi.model.Document;
 import com.mi.model.Grade;
 import com.mi.model.Jury;
 import com.mi.model.ResearchDomain;
+import com.mi.model.Result;
 import com.mi.model.Role;
+import com.mi.repositories.AcademicYearRepository;
 import com.mi.repositories.CommuniqueRepository;
 import com.mi.repositories.CourseRepository;
 import com.mi.repositories.DocumentRepository;
@@ -58,6 +62,7 @@ import com.mi.repositories.JuryRepository;
 import com.mi.repositories.LevelRepository;
 import com.mi.repositories.OptionRepository;
 import com.mi.repositories.ResearchDomainRepository;
+import com.mi.repositories.ResultRepository;
 import com.mi.repositories.RoleRepository;
 import com.mi.repositories.TeachersRepository;
 
@@ -99,6 +104,9 @@ public class TeacherController {
 
 	@Autowired 
 	EventRepository eventRepository;
+	
+	@Autowired
+	ResultRepository resultRepository;
 
 
 	@Autowired
@@ -106,6 +114,8 @@ public class TeacherController {
 
 	@Autowired
 	ResearchDomainRepository researchDomainRepository;
+	@Autowired
+	AcademicYearRepository academicYearRepository;
 
 
 
@@ -160,7 +170,7 @@ public class TeacherController {
 		System.out.println("connexion  d'un enseignant get");
 		model.addAttribute("errorLogin", "");
 		model.addAttribute("errorPassword", "");
-		return "teacher/loginTeacher";
+		return "index";
 	}
 
 	@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.POST)
@@ -194,7 +204,8 @@ public class TeacherController {
 					System.out.println("je suis en session avec http et mon nom est : " + teacherName.getLogin());
 					
 					model.addAttribute("teachers", "You have been login successfully." + teacherName.getLogin());
-					return "teacher/homeTeacher";
+					
+					return "redirect:/teacher/homeTeacher";
 
 				} else {
 					logger.error("Teacher with password {} not found.", password);
@@ -214,7 +225,7 @@ public class TeacherController {
 		}
 
 		//return "redirect:/TeacherHome";
-		return "teacher/loginTeacher";
+		return "redirect:/index";
 	}
 
 	//modifier les parametres de connexion get method
@@ -222,7 +233,7 @@ public class TeacherController {
 	public String updateParameterGet(Model model,HttpServletRequest req) {
 		System.out.println("modifier les parametre de connexion get");
 		model.addAttribute("error", "");
-		return "teacher/updateParameters";
+		return "teacher/updateParameterTeacher";
 	}
 
 	@RequestMapping(value = { "/updateParameterTeacher" }, method = RequestMethod.POST)
@@ -258,9 +269,9 @@ public class TeacherController {
 			model.addAttribute("errorLogin", "Veuillez entrez votre ancienn login");
 		}
 
-		model.addAttribute("teachers", "vos parametre ont ete modifies");
+		model.addAttribute("teachers", "vos parametres ont ete modifies");
 
-		return "teacher/updateParameters";
+		return "teacher/updateParameterTeacher";
 	}
 
 	//ajouter un document
@@ -332,6 +343,70 @@ public class TeacherController {
 			/*
 		*/
 	}
+	
+	// on donne le nom d'un enseignant ion retourne ses documents
+	
+		@RequestMapping(value = { "/listDocuments" }, method = RequestMethod.GET)
+		public String listDocumentsGet(Model model,HttpServletRequest req) {
+			System.out.println("listDocuments get");
+			
+			HttpSession session = req.getSession();
+			Teacher author =  (Teacher) session.getAttribute( "teacher" );
+			
+			List<Document> listOfdocuments= documentRepository.findByAuthor(author);
+			
+			if(listOfdocuments.isEmpty()){
+			
+			model.addAttribute("error", "liste de documents vide");
+			}else{
+				model.addAttribute("documents", listOfdocuments);
+			}
+			return "teacher/listDocuments";
+		}
+		
+		//liste des documents en fonction du type
+		@RequestMapping(value = { "/listDocumentsByType" }, method = RequestMethod.GET)
+		public String listDocumentsByTypeGet(Model model,HttpServletRequest req) {
+			System.out.println("listDocuments get");
+			
+			HttpSession session = req.getSession();
+			Teacher author =  (Teacher) session.getAttribute( "teacher" );
+			String documentType =req.getParameter("documentType");
+			
+			List<Document> listOfdocuments= documentRepository.findByAuthorAndDocumentType(author, documentType);
+			
+			if(listOfdocuments.isEmpty()){
+			
+			model.addAttribute("error", "liste de documents vide");
+			}else{
+				model.addAttribute("documents", listOfdocuments);
+			}
+			return "teacher/listDocumentsByType";
+		}
+		
+		//chercher un document en particuier avec son id
+		@RequestMapping(value = { "/documentsDescription" }, method = RequestMethod.GET)
+		public String documentsDescriptionGet(Model model,HttpServletRequest req) {
+			System.out.println("listDocuments get");
+			
+			/*HttpSession session = req.getSession();
+			Teacher author =  (Teacher) session.getAttribute( "teacher" );*/
+			String idDoc =req.getParameter("idDocument");
+			
+			Long idDocument=Long.parseLong(idDoc);
+			
+			Document documents= documentRepository.findByIdDocument(idDocument);
+			
+			if(documents==null){
+			
+			model.addAttribute("error", "liste de documents vide");
+			}else{
+				model.addAttribute("documents", documents);
+			}
+			return "teacher/documentsDescription";
+		}
+	
+	
 
 	//modifier un document
 	@RequestMapping(value = { "/updateDocument" }, method = RequestMethod.GET)
@@ -356,7 +431,7 @@ public class TeacherController {
 		//int createYear = calendarCourante.get(Calendar.YEAR);
 		int createMonth = calendarCourante.get(Calendar.DATE);
 		String createYear= createMonth+"";
-
+			// recuperer la date courante dans le controlleur
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 		Date createDate = sdf.parse(createYear);
 
@@ -391,12 +466,16 @@ public class TeacherController {
 	@RequestMapping(value = { "/editProfil" }, method = RequestMethod.GET)
 	public String editProfilGet(Model model,HttpServletRequest req) {
 		System.out.println("editProfil get");
+		HttpSession session = req.getSession();
+		Teacher authors =  (Teacher) session.getAttribute( "teacher" );
 		List<ResearchDomain> listOfResearchDomain = researchDomainRepository.findAll();
+		Teacher teacher = teachersRepository.findByLogin(authors.getLogin());
 
 		if (listOfResearchDomain.isEmpty() ) {
 			model.addAttribute("error", "error : liste vide");
 		}
 		model.addAttribute("researchDomains", listOfResearchDomain);
+		model.addAttribute("teachers", teacher);
 		
 		//model.addAttribute("error", "");
 		return "teacher/editProfil";
@@ -404,11 +483,18 @@ public class TeacherController {
 
 	@RequestMapping(value = { "/editProfil" }, method = RequestMethod.POST)
 	@Transactional
-	public String editProfilPost(Model model, HttpServletRequest req,@RequestParam("file") MultipartFile file) throws ParseException {
+	public String editProfilPost(Model model, HttpServletRequest req,@RequestParam("files") MultipartFile file) throws ParseException, IOException {
 
 		String domainLabel= req.getParameter("domainLabel");
 		String phoneNumber= req.getParameter("phoneNumber");
+		String lastName= req.getParameter("lastName");
+		String firstName= req.getParameter("firstName");
+		String emailAdress= req.getParameter("emailAdress");
+		String sex= req.getParameter("sex");
+		String birthPlace= req.getParameter("birthPlace");
+		String gradeName= req.getParameter("grade");
 		String birth= req.getParameter("birthDate");
+		String description= req.getParameter("teacherDescription");
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 		Date birthDate = sdf.parse(birth);
@@ -419,14 +505,40 @@ public class TeacherController {
 		Teacher teacher = teachersRepository.findByLogin(authors.getLogin());
 
 		ResearchDomain researchDomain=researchDomainRepository.findByDomainLabel(domainLabel);
+		Grade grade = gradeRepository.findByGradeName(gradeName);
 
 		if(teacher==null){
 			model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
 			
 		}else{
+			
+			String pictureName= lastName+"_"+firstName+"profil.png";
+			byte[] bytes = file.getBytes();
+			File dir = new File(SAVE_DIR);
+			if (!dir.exists())
+				dir.mkdirs();
+			
+			BufferedOutputStream stream = new BufferedOutputStream(
+					new FileOutputStream(SAVE_DIR + File.separator + pictureName));
+			stream.write(bytes);
+			stream.close();
+		
+			String pictureNames=SAVE_DIR + File.separator + pictureName;
+			
+			
 			teacher.setBirthDate(birthDate);
 			teacher.setPhoneNumber(phoneNumber);
 			teacher.setResearchDomain(researchDomain);
+			teacher.setBirthPlace(birthPlace);
+			teacher.setDescriptionEnseignant(description);
+			teacher.setEmailAdress(emailAdress);
+			teacher.setFirstName(firstName);
+			teacher.setGrade(grade);
+			teacher.setSexe(sex);
+			teacher.setLastName(lastName);
+			teacher.setPictureName(pictureNames);
+		
+			
 			teachersRepository.save(teacher);
 			model.addAttribute("teachers", "profil edite avec succes");
 		
@@ -446,14 +558,15 @@ public class TeacherController {
 		}
 
 		// information pour afficher la page personnelle
-		@RequestMapping(value = "/InformationTeacher", method = RequestMethod.GET)
+		@RequestMapping(value = "/informationTeacher", method = RequestMethod.GET)
 		public String InformationTeacherGet(HttpServletRequest request, HttpServletResponse response, Model model) {
 			System.out.println("InformationTeacher get");
 			model.addAttribute("error", "");
 			
-			String name = request.getParameter("teacherName");
+			String name = request.getParameter("idTeacher");
+			Long idTeacher=Long.parseLong(name);
 			
-			Teacher teach = teachersRepository.findByLastName(name);
+			Teacher teach = teachersRepository.findByIdTeacher(idTeacher);
 			ResearchDomain recher= teach.getResearchDomain();
 			Grade grade =teach.getGrade();
 			Set<Jury> jury = teach.getJury();
@@ -462,9 +575,11 @@ public class TeacherController {
 			model.addAttribute("grades", grade);
 			model.addAttribute("jurys", jury);
 			
-			return "teacher/InformationTeacher";
+			return "teacher/informationTeacher";
 		}
 
+		
+	//methode pour liste les enseignants a un internaute	
 		@RequestMapping(value = { "/viewTeacherList" }, method = RequestMethod.GET)
 		public String teacherList(Model model, HttpServletRequest req) {
 			System.out.println("teacherList");
@@ -480,7 +595,95 @@ public class TeacherController {
 			return "viewTeacherList";
 		}
 
+		@RequestMapping(value = { "/editResult" }, method = RequestMethod.GET)
+		public String editResultGet(Model model,HttpServletRequest req) {
+			System.out.println("createCommunique GET");
 
+			List<AcademicYear> listOfAcademicYear = academicYearRepository.findAll();
+
+			if (listOfAcademicYear.isEmpty() ) {
+				model.addAttribute("error", "error : liste vide");
+			}
+			model.addAttribute("academicYear", listOfAcademicYear);
+
+			return "admin/editResult";
+		}
+		
+		
+		//editer un resultat
+		
+		@RequestMapping(value = { "/editResult" }, method = RequestMethod.POST)
+		@Transactional
+		public String editResultPost(Model model, HttpServletRequest req,@RequestParam("files") MultipartFile file) throws ParseException, IOException, ServletException {
+
+			String sessions= req.getParameter("session");
+			String academicYear= req.getParameter("academicYear");
+			String resultTitle= req.getParameter("resultTitle");
+
+			AcademicYear year= academicYearRepository.findByAcademicYear(academicYear);
+			
+
+			//Calendar calendarCourante = Calendar.getInstance();
+			//int createYear = calendarCourante.get(Calendar.YEAR);
+			//int createMonth = calendarCourante.get(Calendar.YEAR);
+			
+		
+			//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+			//Date createDate = sdf.parse(createYear);
+			
+			try {
+				
+				String resultFileName= resultTitle+"_"+sessions+"_"+academicYear+".png";
+				
+				byte[] bytes = file.getBytes();
+				File dir = new File(SAVE_DIR);
+				if (!dir.exists())
+					dir.mkdirs();
+				
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(SAVE_DIR + File.separator + resultFileName));
+				stream.write(bytes);
+				stream.close();
+			
+				String resultFileNames=SAVE_DIR + File.separator + resultFileName;
+				Result result= new Result();
+
+				result.setAcademicYear(year);
+				result.setResultFileName(resultFileNames);
+				result.setResultTitle(resultTitle);
+				result.setSession(sessions);
+				result.setPublish(false);
+
+				resultRepository.save(result);
+				model.addAttribute("resutls", "resultat ajoute avec sucess");
+
+				
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				model.addAttribute("error", "erreur d'ajout du document");
+				
+			}
+			
+			return "teacher/editResult";
+				/*
+			*/
+		}
+		
+		
+		@RequestMapping(value = { "/listResult" }, method = RequestMethod.GET)
+		public String listResultGet(Model model,HttpServletRequest req) {
+			System.out.println("list result GET");
+
+			List<Result> listOfResult = resultRepository.findAll();
+			
+			if (listOfResult.isEmpty() ) {
+				model.addAttribute("error", "error : liste vide");
+			}
+			model.addAttribute("results", listOfResult);
+
+			return "listResult";
+		}
 
 
 
@@ -514,36 +717,6 @@ public class TeacherController {
 		}
 	}
 	
-
-	//userDetails method
-	//@Override
-	@Transactional(readOnly = true)
-	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-		System.out.println(login+" donne pardon");
-		UserDetails userDetail=null;
-		//Member user = memberRepository.findByPseudonym(pseudonym);
-		Teacher teach = teachersRepository.findByLogin(login);
-		System.out.println(teach.getLogin()+"tu es nulll???");
-		if(teachersRepository.findByLogin(login)!=null) {
-
-			System.out.println(teachersRepository.findByLogin(login)+"toototot");
-
-
-			Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-			System.out.println("huoooo");
-			for (Role role : teachersRepository.findByLogin(login).getRoles()){
-				grantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
-				System.out.println("huoooo2222222222222222222"+ role);
-			}
-			System.out.println("huoooo333333333333333333");
-
-			userDetail=new org.springframework.security.core.userdetails.User(teachersRepository.findByLogin(login).getLogin(), 
-					teachersRepository.findByLogin(login).getPassword(), grantedAuthorities);
-			System.out.println("huoooo444444444444444444444");
-
-		}
-		return userDetail;
-	}
 
 
 }

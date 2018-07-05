@@ -11,20 +11,13 @@ import com.mi.model.Document;
 import com.mi.model.Teacher;
 
 public interface DocumentRepository extends JpaRepository<Document, String> {
-	/*
-	@Query("select document from Document document")
-	List<Document> findAllDocument();
-	
-	@Query("select document from Article article")
-	List<Article> findAllArticle();
-	
-	//@Query("select document from Dissertation dissertation")
-	//List<Dissertation> findAllDissertation();
-*/
+
 	
 	public Document findByDocumentTitle(String documentTitle);
 	public Document findByDocumentType(String documentType);
-	public Document findByAuthor(String author);
+	public List<Document> findByAuthor(Teacher author);
+	public List<Document> findByAuthorAndDocumentType(Teacher author , String documentType);
 	public Document findByDocumentName(String documentName);
+	public Document findByIdDocument(Long idDocument);
 	
 }

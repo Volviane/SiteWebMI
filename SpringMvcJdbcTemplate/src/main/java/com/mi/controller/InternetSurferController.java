@@ -3,6 +3,8 @@ package com.mi.controller;
 import java.io.File;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -159,6 +161,50 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 
 				return "homePrincipal";
 			}
-		
+			
+			
+			@RequestMapping(value = { "/viewEvent" }, method = RequestMethod.GET)
+			public String viewEventGet(Model model,HttpServletRequest req) {
+				System.out.println("viewEvent GET");
+
+				List<Event> listOfEvent = eventRepository.findAll();
+
+				if (listOfEvent.isEmpty() ) {
+					model.addAttribute("error", "error : liste vide");
+				}
+				model.addAttribute("events", listOfEvent);
+
+				return "viewEvent";
+			}
+			
+			@RequestMapping(value = { "/viewNews" }, method = RequestMethod.GET)
+			public String viewNewsGet(Model model,HttpServletRequest req) {
+				System.out.println("listNews GET");
+				
+
+				List<Communique> listOfCommunique = communiqueRepository.findAll();
+
+				if (listOfCommunique.isEmpty() ) {
+					model.addAttribute("error", "liste vide");
+				}
+				model.addAttribute("communiques", listOfCommunique);
+
+				return "viewNews";
+			}
+			
+			@RequestMapping(value = { "/viewResult" }, method = RequestMethod.GET)
+			public String viewResultGet(Model model,HttpServletRequest req) {
+				System.out.println("list result GET");
+
+				List<Result> listOfResult = resultRepository.findAll();
+				
+				if (listOfResult.isEmpty() ) {
+					model.addAttribute("error", "error : liste vide");
+				}
+				model.addAttribute("results", listOfResult);
+
+				return "viewResult";
+			}
+
 
 }
