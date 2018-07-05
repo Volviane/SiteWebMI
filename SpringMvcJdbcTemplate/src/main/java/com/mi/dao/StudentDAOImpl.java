@@ -23,7 +23,7 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 	@Override
 	public int saveOrUpdate(Student student) {
-		int ret=-1;
+		/*int ret=-1;
 		System.out.println("1");
 		if (student.getInscriptionCode() > 0) {
 			String sql = "UPDATE student SET StudentLastName=?,StudentFirstName=?,UniversityName=?,StudentEmail=?,"
@@ -58,7 +58,8 @@ public class StudentDAOImpl implements StudentDAO {
 				return ret;
 			}
 		}
-
+*/
+		return 1;
 	}
 
 	@Override
@@ -69,7 +70,7 @@ public class StudentDAOImpl implements StudentDAO {
 
 	@Override
 	public Student get(int inscriptionCode) {
-		String sql = "SELECT * FROM student WHERE StudentCode=" + inscriptionCode;
+		/*String sql = "SELECT * FROM student WHERE StudentCode=" + inscriptionCode;
 		return jdbcTemplate.query(sql, new ResultSetExtractor<Student>() {
 
 			@Override
@@ -92,7 +93,8 @@ public class StudentDAOImpl implements StudentDAO {
 				return null;
 			}
 
-		});
+		});*/
+		return null;
 	}
 
 	@Override
@@ -103,7 +105,7 @@ public class StudentDAOImpl implements StudentDAO {
 	@Override
 	public User getByEmailAndPassword(String email, String password,String quality) {
 
-		if(quality.equals("etudiant")){
+		/*if(quality.equals("etudiant")){
 			String sql = "SELECT * FROM student WHERE StudentEmail='" + email+"' AND StudentPassword='"+password+"'";
 			return jdbcTemplate.query(sql, new ResultSetExtractor<Student>() {
 
@@ -184,7 +186,13 @@ public class StudentDAOImpl implements StudentDAO {
 				return null;
 			}
 
-		});
+		});*/
+		return null;
+	}
+	@Override
+	public Student getByMail(String email) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
