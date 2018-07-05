@@ -170,7 +170,7 @@ public class TeacherController {
 		System.out.println("connexion  d'un enseignant get");
 		model.addAttribute("errorLogin", "");
 		model.addAttribute("errorPassword", "");
-		return "teacher/loginTeacher";
+		return "index";
 	}
 
 	@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.POST)
