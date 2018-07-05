@@ -92,7 +92,7 @@
  	
 <style type="text/css">
 	.space{ padding-top: 100px;}
-	.spaces{ height: 300px;}
+	.spaces{ height: 3000px;}
 </style>
 
 </head>
@@ -105,25 +105,33 @@
 	<c:import url="includes/headerUser.jsp"></c:import>
 	<!-- FIN DU HEADER-->
 	<div class="container space">
-        <div class="row">
-                <div class="col-md-6 table-responsive">
-		             <table class="table table-bordered table-striped table-condensed">
-		               <tr class="active">
-							<td>N°</td>
-							<td>noms enseignants</td>
-					  </tr>
-		             	<c:forEach items="${teachers}" var="i" varStatus="pos">
-		             	  <tr class="active">
-							<td><c:out value="${pos.count}"></c:out></td>
-							<td><c:out value="${i.firstName }"></c:out></td>
-						   </tr>
-						 </c:forEach>
+			<h4 class="page-head-line">LISTE DES ENSEIGNANTS</strong></h4>
+       <c:forEach items="${teachers}" var="i" varStatus="pos">
+		<div class="media">
+		
+			<div class="media-left">
+				<img src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG" alt="" class="img-thumbnail img-circle media-object" style="width: 60px">
+			</div>
+				<div class="media-body">
+					<h4 class="media-heading">
+						<c:out value="${i.firstName }"></c:out>
+					</h4>
+					<p>je suis le teacher</p>
+					<p>
+					  <div class="col-lg-4" >
+						<a
+							href="${pageContext.request.contextPath}/resources/informationTeacher? id=<c:out value="${i.idTeacher }"></c:out>">
+							<button name="submit" type="submit"
+								class="btn btn-block btn-submit">
+								Voir page personnelle <i class="fa fa-arrow-right"></i>
+							</button>
+						</a>
+					 </div>	
+					</p>
+				</div>
 
-		             </table>
-
-                </div>
-           </div>
-	
+			</div>
+	  </c:forEach>
 	</div>
 <div class="spaces"></div>
 

@@ -39,10 +39,16 @@
 			</h2>
 			<div class="panel panel-default col-md-8 well">
 				<div class="panel-body">
-					<form action="updateParameters" method="post">
+					<form action="updateParameterTeacher" method="post">
+						<div class="form-group">
+							<label for="exampleInputEmail1">Entrez l'Ancien login</label> <input
+								type="text" name="login" class="form-control"
+								id="exampleInputEmail1" aria-describedby="emailHelp"
+								placeholder="Entrez votre email"> 
+						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Login</label> <input
-								type="text" name="login" class="form-control"
+								type="text" name="newLogin" class="form-control"
 								id="exampleInputEmail1" aria-describedby="emailHelp"
 								placeholder="Entrez votre email"> 
 						</div>
@@ -53,12 +59,12 @@
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">Nouveau Mot de Passe</label> <input
-								type="password" name="password" class="form-control"
+								type="password" name="newPassword" class="form-control"
 								id="exampleInputPassword1" placeholder="Mot de passe">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">Confirmer le Mot de Passe</label> <input
-								type="password" name="password" class="form-control"
+								type="password"  class="form-control"
 								id="exampleInputPassword1" placeholder="Confirmation de mot de passe">
 						</div>
 						<button type="submit" class="btn btn-primary">Submit</button>

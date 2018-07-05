@@ -54,19 +54,13 @@
 			<div class="media">
 				<div class="media-left">
 					<a href="#"> <img
-						src="${pageContext.request.contextPath}/resources/userResources/img/prNkenlifack.jpg"
+						src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
 						alt="" class="img-thumbnail img-circle media-object" />
-						<h5>Chef de Département</h5>
+						<h4 class="media-heading"><c:out value="${teacher.firstName }" />  <c:out value="${teacher.lastName }" /></h4>
+					   <h5><c:out value="${teacher.gradeName }" /></h5>
 					</a>
 				</div>
 				<div class="media-body">
-					<h4 class="media-heading"><c:out value="${teacher.firstName }" />  <c:out value="${teacher.lastName }" /></h4>
-					<h5>
-						<c:out value="${teacher.grade.gradeName }" />
-					</h5>
-					<p>
-<%-- 						<c:out value="${teacher.teacherDescription}" /> --%>
-					</p>
 
 				</div>
 			</div>
