@@ -56,8 +56,8 @@
 					<a href="#"> <img
 						src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
 						alt="" class="img-thumbnail img-circle media-object" />
-						<h4 class="media-heading"><c:out value="${teacher.firstName }" />  <c:out value="${teacher.lastName }" /></h4>
-					   <h5><c:out value="${teacher.gradeName }" /></h5>
+						<h4 class="media-heading"><c:out value="${teachs.firstName }" />  <c:out value="${teachs.lastName }" /></h4>
+					   <h5><c:out value="${teachs.gradeName }" /></h5>
 					</a>
 				</div>
 				<div class="media-body">

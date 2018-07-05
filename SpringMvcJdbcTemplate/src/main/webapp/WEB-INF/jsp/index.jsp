@@ -206,10 +206,14 @@
           <div class="fea">
             <div class="col-md-4">
               <div class="heading pull-right">
-                <h4>les derniers resultats</h4>
-                   <form action="<c:url value='lisrResult'/>" method="post">
-                      <input type="submit" value="consulter" class="btn btn-info">
-                    </form>
+                <h4>consulter les communiqués</h4>
+                   <a
+							href="${pageContext.request.contextPath}/viewNews">
+							<button name="submit" type="submit"
+								class="btn btn-info">
+								consulter 
+							</button>
+						</a>
               </div>
               <div class="fea-img pull-left">
                 <i class="fa fa-css3"></i>
@@ -219,10 +223,15 @@
           <div class="fea">
             <div class="col-md-4">
               <div class="heading pull-right">
-                <h4>évènements récents</h4>
-               		<form action="<c:url value='listEvent'/>" method="post">
-                      <input type="submit" value="consulter" class="btn btn-success">
-                    </form>
+                <h4> consulter les évènements </h4>
+                      <a
+							href="${pageContext.request.contextPath}/viewEvent">
+							<button name="submit" type="submit"
+								class="btn btn-warning">
+								consulter 
+							</button>
+						</a>
+                   
               </div>
               <div class="fea-img pull-left">
                 <i class="fa fa-drupal"></i>
@@ -232,10 +241,14 @@
           <div class="fea">
             <div class="col-md-4">
               <div class="heading pull-right">
-                <h4>communiqués importants</h4>
-                	<form action="<c:url value='lisrNews'/>" method="post">
-                      <input type="submit" value="consulter" class="btn btn-warning">
-                    </form>
+                <h4> consulter les resultats</h4>
+                	<a
+							href="${pageContext.request.contextPath}/viewResult">
+							<button name="submit" type="submit"
+								class="btn btn-success">
+								consulter 
+							</button>
+						</a>
                 
               </div>
               <div class="fea-img pull-left">
@@ -380,7 +393,7 @@
     <!-- Main File-->
     <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/front.js"></script>
 	<!-- FIN INCLUSION DES JS -->
- <c:if test="${!empty errorLogin || !empty errorPassword }">
+  <c:if test="${!empty errorLogin || !empty errorPassword }">
 	  <script type="text/javascript">
 			$(window).on('load', function() {
 			   $('#login').modal('show')

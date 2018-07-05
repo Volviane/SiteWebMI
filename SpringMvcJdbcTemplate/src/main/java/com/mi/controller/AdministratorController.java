@@ -173,7 +173,9 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/homeAdministrator", method = RequestMethod.GET)
 	public String homeAdmin(Model model) {
 		System.out.println("home admin get");
+		long numberTeacher = teachersRepository.count();
 		model.addAttribute("error", "");
+		model.addAttribute("numberTeacher", numberTeacher);
 
 		return "admin/homeAdministrator";
 	}
@@ -822,7 +824,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		return "admin/createTeacher";
 	}
 	@RequestMapping(value = { "/createTeacher" }, method = RequestMethod.POST)
-	@Transactional
+  //	@Transactional
 	public String createTeacherPost(Model model, HttpServletRequest req) throws AddressException, MessagingException {
 		System.out.println("createTeacher post");
 
@@ -889,7 +891,7 @@ try {
 	
 }
 		
-		return "createTeacher";
+		return "admin/createTeacher";
 	}
 	@RequestMapping(value = { "/teacherList" }, method = RequestMethod.GET)
 	public String teacherList(Model model, HttpServletRequest req) {
