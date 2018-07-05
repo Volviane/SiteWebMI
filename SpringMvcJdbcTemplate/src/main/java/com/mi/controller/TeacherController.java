@@ -205,7 +205,7 @@ public class TeacherController {
 					
 					model.addAttribute("teachers", "You have been login successfully." + teacherName.getLogin());
 					
-					return "redirect:/teacher/homeTeacher";
+					return "teacher/homeTeacher";
 
 				} else {
 					logger.error("Teacher with password {} not found.", password);
@@ -225,7 +225,7 @@ public class TeacherController {
 		}
 
 		//return "redirect:/TeacherHome";
-		return "redirect:/index";
+		return "index";
 	}
 
 	//modifier les parametres de connexion get method
