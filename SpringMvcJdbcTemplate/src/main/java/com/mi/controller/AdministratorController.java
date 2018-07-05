@@ -1,14 +1,10 @@
 package com.mi.controller;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -20,7 +16,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,32 +23,21 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.mi.model.AcademicYear;
 import com.mi.model.Administrator;
 import com.mi.model.Communique;
 import com.mi.model.Course;
 import com.mi.model.Cycle;
-import com.mi.model.Document;
 import com.mi.model.Event;
 import com.mi.model.Grade;
 import com.mi.model.Jury;
@@ -457,29 +441,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	 */
 
 
-	/*// retrieve user in session
-	@RequestMapping(value = "/retrieve", method = RequestMethod.GET)
-	public void retrieve(String error, String logout, Authentication authenticationg, Principal principal,
-			HttpServletRequest request) {
-		System.out.println("revettttttttttttttttttttttttttttttttttttt");
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//String userDetails = SecurityContextHolder.getContext().getAuthentication().getName();
-		if(SecurityContextHolder.getContext().getAuthentication()==null){
-			System.out.println("suis le if");
-			System.out.println(auth);
-		}else{
-			System.out.println("je suis en session Saphir et mon nom est  " + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-		}
-
-	 * if (userDetails instanceof UserDetails) { return ((UserDetails)
-	 * userDetails).getUsername(); }
-
-
-		//	return userDetails;
-
-	}
-
-	 */
+	
 
 
 	// ajouter les cycles

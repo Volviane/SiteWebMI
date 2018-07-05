@@ -1,6 +1,5 @@
 package com.mi.controller;
 
-import java.io.File;
 import java.util.List;
 import java.util.Set;
 
@@ -48,10 +47,10 @@ public class InternetSurferController {
 	
 public static final Logger logger = LoggerFactory.getLogger(AdministratorController.class);
 	
-	private static final String SAVE_DIR=/*"C:"+File.separator+"Users"+File.separator+"MFOGO"+File.separator+"Documents"+File.separator+"Master1"+File.separator+"Semestre2"
-			+ ""+File.separator+"Projet"+File.separator+"workspace"+File.separator+*/"SiteWebMI"+File.separator+"SpringMvcJdbcTemplate"+File.separator+"Documents";
+	/*private static final String SAVE_DIR="C:"+File.separator+"Users"+File.separator+"MFOGO"+File.separator+"Documents"+File.separator+"Master1"+File.separator+"Semestre2"
+			+ ""+File.separator+"Projet"+File.separator+"workspace"+File.separator+"SiteWebMI"+File.separator+"SpringMvcJdbcTemplate"+File.separator+"Documents";
 
-	
+	*/
 	@Autowired
 	ResearchDomainRepository researchDomainRepository;
 	
@@ -144,7 +143,7 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 		return aCrypter;
 	}
 	
-	//Home pricipal
+	//Home principale pour les internautes
 			@RequestMapping(value = "/index", method = RequestMethod.GET)
 			public String homePrincipal(Model model) {
 				System.out.println("home Principal get");
@@ -167,7 +166,7 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 				return "index";
 			}
 			
-			
+			//pour la consultation des evennements
 			@RequestMapping(value = { "/viewEvent" }, method = RequestMethod.GET)
 			public String viewEventGet(Model model,HttpServletRequest req) {
 				System.out.println("viewEvent GET");
@@ -181,7 +180,7 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 
 				return "viewEvent";
 			}
-			
+			//pour la consultation des communique
 			@RequestMapping(value = { "/viewNews" }, method = RequestMethod.GET)
 			public String viewNewsGet(Model model,HttpServletRequest req) {
 				System.out.println("listNews GET");
@@ -196,7 +195,7 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 
 				return "viewNews";
 			}
-			
+			//pour la consultation des resultats
 			@RequestMapping(value = { "/viewResult" }, method = RequestMethod.GET)
 			public String viewResultGet(Model model,HttpServletRequest req) {
 				System.out.println("list result GET");

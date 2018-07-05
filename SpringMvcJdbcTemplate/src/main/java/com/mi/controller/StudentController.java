@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mi.model.Article;
@@ -58,6 +59,7 @@ import com.mi.repositories.StudentRepository;
 import com.mi.repositories.TeachersRepository;
 
 @Controller
+@SessionAttributes("Student") 
 @MultipartConfig(fileSizeThreshold=1024*1024*2,maxFileSize=1024*1024*10,maxRequestSize=1024*1024*50)
 public class StudentController {
 	
