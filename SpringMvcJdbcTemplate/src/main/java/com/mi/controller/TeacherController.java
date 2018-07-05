@@ -203,25 +203,25 @@ public class TeacherController {
 					
 					System.out.println("je suis en session avec http et mon nom est : " + teacherName.getLogin());
 					
-					model.addAttribute("teachers", "You have been login successfully." + teacherName.getLogin());
+					model.addAttribute("teachers", "Vous etes connectez a votre espace personne. M. " + teacherName.getLogin());
 					model.addAttribute("teachs", teacher);
 					return "teacher/homeTeacher";
 
 				} else {
 					logger.error("Teacher with password {} not found.", password);
-					model.addAttribute("errorPassword", "Password not found.");
-					req.setAttribute("errorPassword", "Password not found.");
+					model.addAttribute("errorPassword", "Mot de passe mal saisi.");
+					req.setAttribute("errorPassword", "Mot de passe mal saisi.");
 				}
 			} else {
 				logger.error("Teacher with password {} not found.", login);
-				model.addAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
-				req.setAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
+				model.addAttribute("errorLogin", "login mal saisi, l'enseignant "+ login + "n'existe pas");
+				req.setAttribute("errorLogin", "login mal saisi, l'enseignant "+ login + "n'existe pas");
 
 			}
 		} catch (Exception ex) {
 			logger.error("Teacher with pseudonym {} not found.", login);
-			model.addAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
-			req.setAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
+			model.addAttribute("errorLogin", "login mal saisi, l'enseignant "+ login + "n'existe pas");
+			req.setAttribute("errorLogin", "login mal saisi, l'enseignant "+ login + "n'existe pas");
 		}
 
 		//return "redirect:/TeacherHome";
@@ -299,8 +299,13 @@ public class TeacherController {
 		int createMonth = calendarCourante.get(Calendar.YEAR);
 		String createYear= createMonth+"";
 	
-		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-		//Date createDate = sdf.parse(createYear);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		Date createDate = new Date();
+		/*String d=date+"";
+		
+		Date createDate = sdf.parse(d);*/
+
+		System.out.println(createDate);
 		
 		try {
 			HttpSession session = req.getSession();
@@ -325,7 +330,7 @@ public class TeacherController {
 				document.setDocumentTitle(documentTitle);
 				document.setDocumentType(documentType);
 				document.setDocumentName(documentNames);
-			//	document.setCreateDate(createDate);
+				document.setCreateDate(createDate);
 				document.setAuthor(author);
 
 				documentRepository.save(document);
@@ -425,7 +430,7 @@ public class TeacherController {
 		String documentDescription= req.getParameter("documentDescription");
 		String documentType= req.getParameter("documentType");
 		String documentName= req.getParameter("documentName");
-		//	String createDate= req.getParameter("createDate");
+		
 
 		Calendar calendarCourante = Calendar.getInstance();
 		//int createYear = calendarCourante.get(Calendar.YEAR);
@@ -433,8 +438,12 @@ public class TeacherController {
 		String createYear= createMonth+"";
 			// recuperer la date courante dans le controlleur
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-		Date createDate = sdf.parse(createYear);
+		Date date = new Date();
+		String d=date+"";
+		
+		Date createDate = sdf.parse(d);
 
+		System.out.println(createDate);
 
 		HttpSession session = req.getSession();
 		Teacher author =  (Teacher) session.getAttribute( "teacher" );
@@ -554,7 +563,7 @@ public class TeacherController {
 			  session.setAttribute( "teacher", null );
 			  model.addAttribute("teachers", "la session a ete supprimme");
 
-			return "teacher/loginTeacher";
+			return "index";
 		}
 
 		// information pour afficher la page personnelle

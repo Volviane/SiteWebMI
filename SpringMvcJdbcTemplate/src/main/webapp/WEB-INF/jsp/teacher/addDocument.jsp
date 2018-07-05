@@ -84,7 +84,7 @@
 							<div class="form-group">
 								<label for="file-document" class="">Choisir
 									le fichier</label> <input id="file-document" type="file"
-									name="file" required
+									name="files" required
 									data-msg="veuillez entrer le titre du document"
 									class="input-material">
 

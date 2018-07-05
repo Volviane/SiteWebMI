@@ -2,8 +2,10 @@ package com.mi.controller;
 
 import java.io.File;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.mi.model.Communique;
 import com.mi.model.Document;
 import com.mi.model.Event;
+import com.mi.model.Grade;
+import com.mi.model.Jury;
+import com.mi.model.ResearchDomain;
 import com.mi.model.Result;
 import com.mi.model.Teacher;
 import com.mi.repositories.AcademicYearRepository;
@@ -140,7 +145,7 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 	}
 	
 	//Home pricipal
-			@RequestMapping(value = "/homePrincipal", method = RequestMethod.GET)
+			@RequestMapping(value = "/index", method = RequestMethod.GET)
 			public String homePrincipal(Model model) {
 				System.out.println("home Principal get");
 				
@@ -159,7 +164,7 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 				
 				
 
-				return "homePrincipal";
+				return "index";
 			}
 			
 			
@@ -205,6 +210,28 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 
 				return "viewResult";
 			}
+			
+			// information pour afficher la page personnelle
+			@RequestMapping(value = "/viewPersonalPage", method = RequestMethod.GET)
+			public String InformationTeacherGet(HttpServletRequest request, HttpServletResponse response, Model model) {
+				System.out.println("viewPersonalPage get");
+				model.addAttribute("error", "");
+				
+				String name = request.getParameter("idTeacher");
+				Long idTeacher=Long.parseLong(name);
+				
+				Teacher teach = teachersRepository.findByIdTeacher(idTeacher);
+				ResearchDomain recher= teach.getResearchDomain();
+				Grade grade =teach.getGrade();
+				Set<Jury> jury = teach.getJury();
+				model.addAttribute("teahers", teach);
+				model.addAttribute("researchDomains", recher);
+				model.addAttribute("grades", grade);
+				model.addAttribute("jurys", jury);
+				
+				return "viewPersonalPage";
+			}
+
 
 
 }
