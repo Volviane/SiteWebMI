@@ -15,7 +15,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>créer u jury</title>
+    <title>lister évènements</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -56,44 +56,26 @@
      <%@include file="includeFile/navAdmin.jsp"%>
       <!-- Counts Section -->
       <section class="dashboard-counts padding">
-          <h4 class="page-head-line">créer un jury</strong></h4>
+         <h4 class="page-head-line">Liste des évènements</strong></h4>
       </section>
       <!-- Header Section-->
       <section class="dashboard-header padding">
          <div class="row">
-              <div class="col-md-6">
-		       <form action="<c:url value='createJury'/>" method="post">
-                    <label>année</label>
-                        <input type="text" class="form-control" name="academicYear" required  />
-                    <label>niveau</label>
-                    
-                    	 <select class="form-control" name="juryLevelName" required>
-                     			<c:forEach items="${levels}" var="i">
-                     				<option value="${i.levelName }" ><c:out value="${i.levelName }"></c:out></option>
-                     			</c:forEach>
-                     	 </select>
-<!--                     <label>coordonnateur</label> -->
-                    
-<!--                     	 <select class="form-control" name="cordo"> -->
-                     			<option> </option>
-<!--                      	 </select> -->
-                    <label>président du jury </label>
-                    
-                    	 <select class="form-control" name="juryPresidentName" required>
-                     			<c:forEach items="${teachers}" var="i">
-                     				<option value="${i.lastName }" ><c:out value="${i.lastName }"></c:out></option>
-                     			</c:forEach>
-                     	 </select>
-                        <hr />
-                  <input type="submit" value="ouvrir" class="btn btn-info">
-                 </form>
-                  <hr />
-                          <c:if test="${error!=null}">
-							<h6 class=""> <font color="red">${error}</font></h1>
-			       		</c:if>
-			        	<c:if test="${error==null}">
-							<h6 class=""> <font color="green">enregistrement reussi</font></h1>
-			       		</c:if>
+                <div class="col-md-6 table-responsive">
+		             <table class="table table-bordered table-striped table-condensed">
+		             	<tr class="active">
+							<td>N°</td>
+							<td>évènements</td>
+						   </tr>
+		             	<c:forEach items="${events}" var="i" varStatus="pos">
+		             	 
+		             	  <tr class="active">
+							<td><c:out value="${pos.count}"></c:out></td>
+							<td><c:out value="${i.eventTitle }"></c:out></td>
+						   </tr>
+						 </c:forEach>
+		             </table>
+
                 </div>
            </div>
       </section>

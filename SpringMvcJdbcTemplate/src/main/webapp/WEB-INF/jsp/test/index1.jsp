@@ -319,7 +319,7 @@
   </section>
   <!--/ Faculity member-->
   
-  <%@include file="includes/footer.jsp"%>
+ 
 
   <script src="${pageContext.request.contextPath}/resources/userResources/js/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/userResources/js/jquery.easing.min.js"></script>

@@ -63,8 +63,9 @@
       <section class="dashboard-header padding">
       	<div class="cadre clearA"> 
 			 <div class="titleCo"> nombre total d'enseignants </div>
+			 		${numberTeacher}
 			 <c:forEach items="${teachers}" var="i" varStatus="pos">
-							<c:out value="${pos.count}"> ${pos.count}</c:out>
+							${teachers.size()}
 						  
 			</c:forEach>
 		 

@@ -64,10 +64,6 @@
 						</tr>
 						<tr>
 							<td>
-							<div class="form-group">
-								<label for="matricule" class="">Matricule</label>
-								<input class="form-control" id="matricule" name="matricule" type="text" value="<c:out value="${teacher.matricule}"/>" onblur="setEditableOff('matricule')" readonly>
-							</div>
 							</td>
 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('matricule')"></a> </td>
 						</tr>
@@ -96,12 +92,12 @@
 								<label for="sexe" >Sexe</label>
 								<div class="radio">
 									<label for="male" class="radio-inline">
-									    <input type="radio" id="male" name="sexe" value="Homme" checked disabled>
+									    <input type="radio" id="male" name="sex" value="Homme" checked disabled>
 									    Homme 
 									  </label>
 									  
 								 	<label for="female" class="radio-inline">
-									    <input type="radio" id="female" name="sexe" value="Femme" disabled>
+									    <input type="radio" id="female" name="sex" value="Femme" disabled>
 									   	Femme
 								    </label>
 								</div>
@@ -174,7 +170,7 @@
 							<td>
 								<div class="form-group">
 									<label	for="teacherDescription" class="">Brève descripton de Vous</label>
-									<textarea class="form-control" id="teacherDescription" rows="5" cols="30" onblur="setEditableOff('teacherDescription')" readonly></textarea>
+									<textarea class="form-control" name="teacherDescription" id="teacherDescription" rows="5" cols="30" onblur="setEditableOff('teacherDescription')" readonly></textarea>
 								</div>
 							</td>
 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('teacherDescription')"></a> </td>
@@ -183,7 +179,7 @@
 							<td>
 							<div class="form-group">
 								<label for="photo" class="">Choisir une photo</label>
-								<input class="form-control" id="photo" name="file" type="file" value="<c:out value="${teacher.pictureName}"/>" onblur="setEditableOff('photo')" readonly>
+								<input class="form-control" id="photo" name="files" type="file" value="<c:out value="${teacher.pictureName}"/>" onblur="setEditableOff('photo')" readonly>
 							</div>
 							</td>
 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('photo')"></a> </td>

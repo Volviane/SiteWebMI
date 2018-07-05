@@ -1232,3 +1232,4 @@ public class AdministratorController/* implements UserDetailsService */{
 		return "admin/connectionAdministrator";
 	}
 }
+
