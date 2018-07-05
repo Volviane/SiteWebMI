@@ -849,7 +849,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		Grade grade = gradeRepository.findByGradeName(gradeName);
 		String login = "login"+firstName;
 		String password = emailAdress+"pass";
-		String passwordSec = emailAdress+"pass";
+		String passwordSec = /*emailAdress+*/"pass";
 		String subject1 = "Registration Information";
 		Teacher teacher = new Teacher();
 		teacher.setLastName(lastName);
@@ -1142,95 +1142,7 @@ try {
 	}
 	
 	
-	@RequestMapping(value = { "/editResult" }, method = RequestMethod.GET)
-	public String editResultGet(Model model,HttpServletRequest req) {
-		System.out.println("createCommunique GET");
-
-		List<AcademicYear> listOfAcademicYear = academicYearRepository.findAll();
-
-		if (listOfAcademicYear.isEmpty() ) {
-			model.addAttribute("error", "error : liste vide");
-		}
-		model.addAttribute("academicYear", listOfAcademicYear);
-
-		return "admin/editResult";
-	}
 	
-	
-	//editer un resultat
-	
-	@RequestMapping(value = { "/editResult" }, method = RequestMethod.POST)
-	@Transactional
-	public String addDocumentPost(Model model, HttpServletRequest req,@RequestParam("files") MultipartFile file) throws ParseException, IOException, ServletException {
-
-		String sessions= req.getParameter("session");
-		String academicYear= req.getParameter("academicYear");
-		String resultTitle= req.getParameter("resultTitle");
-
-		AcademicYear year= academicYearRepository.findByAcademicYear(academicYear);
-		
-
-		//Calendar calendarCourante = Calendar.getInstance();
-		//int createYear = calendarCourante.get(Calendar.YEAR);
-		//int createMonth = calendarCourante.get(Calendar.YEAR);
-		
-	
-		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-		//Date createDate = sdf.parse(createYear);
-		
-		try {
-			
-			String resultFileName= resultTitle+"_"+sessions+"_"+academicYear+".png";
-			
-			byte[] bytes = file.getBytes();
-			File dir = new File(SAVE_DIR);
-			if (!dir.exists())
-				dir.mkdirs();
-			
-			BufferedOutputStream stream = new BufferedOutputStream(
-					new FileOutputStream(SAVE_DIR + File.separator + resultFileName));
-			stream.write(bytes);
-			stream.close();
-		
-			String resultFileNames=SAVE_DIR + File.separator + resultFileName;
-			Result result= new Result();
-
-			result.setAcademicYear(year);
-			result.setResultFileName(resultFileNames);
-			result.setResultTitle(resultTitle);
-			result.setSession(sessions);
-			result.setPublish(false);
-
-			resultRepository.save(result);
-			model.addAttribute("resutls", "resultat ajoute avec sucess");
-
-			
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			model.addAttribute("error", "erreur d'ajout du document");
-			
-		}
-		
-		return "admin/editResult";
-			/*
-		*/
-	}
-	
-	
-	@RequestMapping(value = { "/listResult" }, method = RequestMethod.GET)
-	public String listResultGet(Model model,HttpServletRequest req) {
-		System.out.println("list result GET");
-
-		List<Result> listOfResult = resultRepository.findAll();
-		
-		if (listOfResult.isEmpty() ) {
-			model.addAttribute("error", "error : liste vide");
-		}
-		model.addAttribute("results", listOfResult);
-
-		return "admin/publishResult";
-	}
 	// ajouter les dommaine de competence
 	
 		@RequestMapping(value = { "/addResearchDomain" }, method = RequestMethod.GET)
