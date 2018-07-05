@@ -15,16 +15,24 @@ public class Option implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_OPTION")
-	private Integer idOption;
+	private Long idOption;
 
 	@Column(name = "NOM_OPTION")
 	private String optionName;
+	
+
+	@Column(name="DESCRIPTION_OPTION")
+	private String optionDescription;
 	
 	@ManyToOne
 	private Cycle cycle;
 
 	@OneToMany(mappedBy="option")
 	private Set<Level> levels = new HashSet<Level>();
+	
+
+	@OneToMany(mappedBy="option")
+	private Set<ResearchDomain> researchDomain = new HashSet<ResearchDomain>();
 	
 
 	/**
@@ -43,7 +51,7 @@ public class Option implements Serializable{
 
 	
 	public Option() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
@@ -57,7 +65,7 @@ public class Option implements Serializable{
 	/**
 	 * @return the idOption
 	 */
-	public Integer getIdOption() {
+	public Long getIdOption() {
 		return idOption;
 	}
 
@@ -65,7 +73,7 @@ public class Option implements Serializable{
 	 * @param idOption
 	 *            the idOption to set
 	 */
-	public void setIdOption(Integer idOption) {
+	public void setIdOption(Long idOption) {
 		this.idOption = idOption;
 	}
 
@@ -96,6 +104,34 @@ public class Option implements Serializable{
 	 */
 	public void setCycle(Cycle cycle) {
 		this.cycle = cycle;
+	}
+
+	/**
+	 * @return the optionDescription
+	 */
+	public String getOptionDescription() {
+		return optionDescription;
+	}
+
+	/**
+	 * @param optionDescription the optionDescription to set
+	 */
+	public void setOptionDescription(String optionDescription) {
+		this.optionDescription = optionDescription;
+	}
+
+	/**
+	 * @return the researchDomain
+	 */
+	public Set<ResearchDomain> getResearchDomain() {
+		return researchDomain;
+	}
+
+	/**
+	 * @param researchDomain the researchDomain to set
+	 */
+	public void setResearchDomain(Set<ResearchDomain> researchDomain) {
+		this.researchDomain = researchDomain;
 	}
 
 }

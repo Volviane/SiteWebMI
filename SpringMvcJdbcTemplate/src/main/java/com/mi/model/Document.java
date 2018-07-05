@@ -1,50 +1,71 @@
 package com.mi.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+
 @Entity
-@Table(name="DOCUMENT")
-public class Document {
+@Table(name="DOCUMENTS")
+//@Inheritance(strategy=InheritanceType.SINGLE_TABLE)//choix de la stratégie d'héritage une table pour la hierarchie
+//@DiscriminatorColumn(name="TYPE_DOCUMENT",discriminatorType=DiscriminatorType.STRING)//Définit une colone discriminatoire dans la table pour différence les types des entités
+//@DiscriminatorValue("DOCUMENT")
+public class Document implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="DOCUMENT_ID")
 	private Long idDocument;
 	
+	@Column(name="TITRE_DOCUMENT")
 	private String documentTitle;
+	
+	@Column(name="RESUME_DOCUMENT")
 	private String documentAbstract;
-	@Transient
-	private List<String> keywords = new ArrayList<String>();
+	
+	@Column(name="DESCRIPTION_DOCUMENT")
+	private String documentDescription;
+	
+	@Column(name="TYPE_DOCUMENT")
 	private String documentType;
-	private String locationFile;
+	
+	@Column(name="NOM_DOCUMENT")
+	private String documentName;
 
+	@OneToOne(optional=false, fetch=FetchType.LAZY)
+	@JoinColumn(name="TEACHER_ID", unique=true)
+	private Teacher author;
+	
+	@Temporal(TemporalType.DATE)
+	private Date createDate;
+	
+	
 	public Document() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	/**
-	 * @param documentTitle
-	 * @param documentAbstract
-	 * @param keywords
-	 * @param documentType
-	 * @param locationFile
-	 */
-	public Document(String documentTitle, String documentAbstract, List<String> keywords, String documentType,
-			String locationFile) {
-		super();
-		this.documentTitle = documentTitle;
-		this.documentAbstract = documentAbstract;
-		this.keywords = keywords;
-		this.documentType = documentType;
-		this.locationFile = locationFile;
-	}
+	
 
 	/**
 	 * @return the idDocument
@@ -88,47 +109,66 @@ public class Document {
 		this.documentAbstract = documentAbstract;
 	}
 
-	/**
-	 * @return the keywords
-	 */
-	public List<String> getKeywords() {
-		return keywords;
+
+
+	public String getDocumentDescription() {
+		return documentDescription;
 	}
 
-	/**
-	 * @param keywords the keywords to set
-	 */
-	public void setKeywords(List<String> keywords) {
-		this.keywords = keywords;
+
+
+	public void setDocumentDescription(String documentDescription) {
+		this.documentDescription = documentDescription;
 	}
 
-	/**
-	 * @return the documentType
-	 */
+
+
 	public String getDocumentType() {
 		return documentType;
 	}
 
-	/**
-	 * @param documentType the documentType to set
-	 */
+
+
 	public void setDocumentType(String documentType) {
 		this.documentType = documentType;
 	}
 
-	/**
-	 * @return the locationFile
-	 */
-	public String getLocationFile() {
-		return locationFile;
+
+
+	public String getDocumentName() {
+		return documentName;
 	}
 
-	/**
-	 * @param locationFile the locationFile to set
-	 */
-	public void setLocationFile(String locationFile) {
-		this.locationFile = locationFile;
+
+
+	public void setDocumentName(String documentName) {
+		this.documentName = documentName;
 	}
 
+
+
+	public Teacher getAuthor() {
+		return author;
+	}
+
+
+
+	public void setAuthor(Teacher author) {
+		this.author = author;
+	}
+
+
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 	
-}
+	
+
+	}

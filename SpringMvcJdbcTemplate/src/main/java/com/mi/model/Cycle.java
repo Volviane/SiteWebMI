@@ -19,6 +19,9 @@ public class Cycle implements Serializable{
 	@Column(name="NOM_CYCLE")
 	private String cycleName;
 	
+	@Column(name="DESCRIPTION_CYCLE")
+	private String cycleDescription;
+	
 	@OneToMany(mappedBy="cycle",fetch=FetchType.EAGER)
 	private Set<Option> options = new HashSet<Option>();
 	
@@ -38,7 +41,7 @@ public class Cycle implements Serializable{
 	}
 
 	public Cycle() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
@@ -75,6 +78,20 @@ public class Cycle implements Serializable{
 	 */
 	public void setCycleName(String cycleName) {
 		this.cycleName = cycleName;
+	}
+
+	/**
+	 * @return the cycleDescription
+	 */
+	public String getCycleDescription() {
+		return cycleDescription;
+	}
+
+	/**
+	 * @param cycleDescription the cycleDescription to set
+	 */
+	public void setCycleDescription(String cycleDescription) {
+		this.cycleDescription = cycleDescription;
 	}
 	
 }

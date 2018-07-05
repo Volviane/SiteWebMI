@@ -9,7 +9,8 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="ENSEIGNANT")
+@Table(name="ENSEIGNANTS")
+//@AttributeOverride(name="ID",column=@Column(name="ID_ENSEIGNANT"))
 public class Teacher extends InternetSufer implements Serializable{
 	
 	@Id
@@ -17,11 +18,30 @@ public class Teacher extends InternetSufer implements Serializable{
 	@Column(name="ENSEIGNANT_ID")
 	private Long idTeacher;
 	
+/*	@Column(name="LOGIN")
+	private String login;
+	
+	@Column(name="PASSWORD")
+	private String password;*/
+	
+	@Column(name="MATRICULE")
+	private String matricule;
+	
+	@Column(name="DESCRIPTION")
+	private String descriptionEnseignant;
+	
+	@Column(name="PHOTO")
+	private String pictureName;
+	
 	@Embedded
 	private CV cv;
 	
 	@ManyToOne
-	@JoinColumn(name="teachers")
+	@JoinColumn(name="DOMAINE_RECHERCHE")
+	private ResearchDomain researchDomain;
+	
+	@ManyToOne
+	@JoinColumn(name="GRADE_ID")
 	private Grade grade;
 	
 	@ManyToMany(mappedBy="members")
@@ -30,9 +50,14 @@ public class Teacher extends InternetSufer implements Serializable{
 	@OneToMany(mappedBy="juryPresident")
 	private Set<Jury> presidedJury = new HashSet<Jury>();
 	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name="ROLE_TEACHERS")
+	private Set<Role> roles=new HashSet<Role>();
+	
+	
 	public Teacher() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
@@ -47,12 +72,83 @@ public class Teacher extends InternetSufer implements Serializable{
 	 * @param birthPlace
 	 * @param cv
 	 * @param grade
+<<<<<<< HEAD
 	 */
-	public Teacher(String lastName, String firstName, String emailAdress, String login, String password,
+	public Teacher(String lastName, String firstName, String emailAdress, String login, String password,String passwordSec,
 			String phoneNumber, String sexe, Date birthDate, String birthPlace, CV cv, Grade grade) {
-		super(lastName, firstName, emailAdress, login, password, phoneNumber, sexe, birthDate, birthPlace);
+		super(lastName, firstName, emailAdress, login, password, passwordSec, phoneNumber, sexe, birthDate, birthPlace);
 		this.cv = cv;
 		this.grade = grade;
+	}
+
+/*	*//**
+	 * @return the login
+	 *//*
+	public String getLogin() {
+		return login;
+	}
+
+	*//**
+	 * @param login the login to set
+	 *//*
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	*//**
+	 * @return the password
+	 *//*
+	public String getPassword() {
+		return password;
+	}
+
+	*//**
+	 * @param password the password to set
+	 *//*
+	public void setPassword(String password) {
+		this.password = password;
+	}*/
+
+	/**
+	 * @return the matricule
+	 */
+	public String getMatricule() {
+		return matricule;
+	}
+
+	/**
+	 * @param matricule the matricule to set
+	 */
+	public void setMatricule(String matricule) {
+		this.matricule = matricule;
+	}
+
+	/**
+	 * @return the descriptionEnseignant
+	 */
+	public String getDescriptionEnseignant() {
+		return descriptionEnseignant;
+	}
+
+	/**
+	 * @param descriptionEnseignant the descriptionEnseignant to set
+	 */
+	public void setDescriptionEnseignant(String descriptionEnseignant) {
+		this.descriptionEnseignant = descriptionEnseignant;
+	}
+
+	/**
+	 * @return the presidedJury
+	 */
+	public Set<Jury> getPresidedJury() {
+		return presidedJury;
+	}
+
+	/**
+	 * @param presidedJury the presidedJury to set
+	 */
+	public void setPresidedJury(Set<Jury> presidedJury) {
+		this.presidedJury = presidedJury;
 	}
 
 	/**
@@ -109,6 +205,40 @@ public class Teacher extends InternetSufer implements Serializable{
 	 */
 	public void setJury(Set<Jury> jury) {
 		this.jury = jury;
+	}
+
+	/**
+	 * @return the researchDomain
+	 */
+	public ResearchDomain getResearchDomain() {
+		return researchDomain;
+	}
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	/**
+	 * @param researchDomain the researchDomain to set
+	 */
+	public void setResearchDomain(ResearchDomain researchDomain) {
+		this.researchDomain = researchDomain;
+	}
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	/**
+	 * @return the pictureName
+	 */
+	public String getPictureName() {
+		return pictureName;
+	}
+
+	/**
+	 * @param pictureName the pictureName to set
+	 */
+	public void setPictureName(String pictureName) {
+		this.pictureName = pictureName;
 	}
 	
 	

@@ -1,6 +1,8 @@
 package com.mi.model;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,24 +13,45 @@ public class Result implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="RESULTAT_ID")
 	private Long idResult;
+	
 	@Column(name="SESSION")
 	private String session;
+	
 	@Column(name="ANNEE")
-	private String academicYear;
+	private AcademicYear academicYear;
+	
 	@Column(name="TITRE")
 	private String resultTitle;
-	@Column(name="NOM FICHIER")
+	
+	@Column(name="NOM_FICHIER")
 	private String resultFileName;
 	
+	@Column(name="STATUT_PUBLICATION")
+	private boolean isPublish = false;
+
+
+
+	public boolean isPublish() {
+		return isPublish;
+	}
+
+	public void setPublish(boolean isPublish) {
+		this.isPublish = isPublish;
+	}
+
+
 	@ManyToOne
 	@JoinColumn(name="JURY_ID")
 	private Jury jury;
 	
 	
 	public Result() {
-		// TODO Auto-generated constructor stub
+		
 	}
-
+	
+	public void publish(){
+		isPublish = true;
+	}
 
 	/**
 	 * @param session
@@ -36,7 +59,7 @@ public class Result implements Serializable {
 	 * @param resultTitle
 	 * @param resultFileName
 	 */
-	public Result(String session, String annee, String resultTitle, String resultFileName) {
+	public Result(String session, AcademicYear annee, String resultTitle, String resultFileName) {
 		super();
 		this.session = session;
 		this.academicYear = annee;
@@ -52,7 +75,7 @@ public class Result implements Serializable {
 	 * @param resultFileName
 	 * @param jury
 	 */
-	public Result(String session, String annee, String resultTitle, String resultFileName, Jury jury) {
+	public Result(String session, AcademicYear annee, String resultTitle, String resultFileName, Jury jury) {
 		super();
 		this.session = session;
 		this.academicYear = annee;
@@ -97,7 +120,7 @@ public class Result implements Serializable {
 	/**
 	 * @return the academicYear
 	 */
-	public String getAcademicYear() {
+	public AcademicYear getAcademicYear() {
 		return academicYear;
 	}
 
@@ -105,7 +128,7 @@ public class Result implements Serializable {
 	/**
 	 * @param academicYear the academicYear to set
 	 */
-	public void setAcademicYear(String annee) {
+	public void setAcademicYear(AcademicYear annee) {
 		this.academicYear = annee;
 	}
 

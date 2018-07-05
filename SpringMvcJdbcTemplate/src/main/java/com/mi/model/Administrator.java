@@ -13,7 +13,7 @@ public class Administrator implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_ADMIN")
-	private Integer idAdmin;
+	private Long idAdmin;
 
 	@Column(name = "LOGIN", length = 30, unique = true)
 	private String login;
@@ -27,8 +27,9 @@ public class Administrator implements Serializable {
 	@OneToMany(mappedBy="admin",fetch = FetchType.LAZY)
 	private Set<Communique> communiques = new HashSet<Communique>();
 
-	@ManyToMany(mappedBy = "admins")
-	private Set<Role> roles;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name="ROLE_ADMIN")
+	private Set<Role> roles=new HashSet<Role>();
 	
 	/**
 	 * @return the passwordSec
@@ -68,7 +69,7 @@ public class Administrator implements Serializable {
 	/**
 	 * @return the idAdmin
 	 */
-	public int getIdAdmin() {
+	public Long getIdAdmin() {
 		return idAdmin;
 	}
 
@@ -76,7 +77,7 @@ public class Administrator implements Serializable {
 	 * @param idAdmin
 	 *            the idAdmin to set
 	 */
-	public void setIdAdmin(int idAdmin) {
+	public void setIdAdmin(Long idAdmin) {
 		this.idAdmin = idAdmin;
 	}
 
@@ -128,9 +129,6 @@ public class Administrator implements Serializable {
 	 * @param idAdmin
 	 *            the idAdmin to set
 	 */
-	public void setIdAdmin(Integer idAdmin) {
-		this.idAdmin = idAdmin;
-	}
 
 	/**
 	 * @return the communiques
