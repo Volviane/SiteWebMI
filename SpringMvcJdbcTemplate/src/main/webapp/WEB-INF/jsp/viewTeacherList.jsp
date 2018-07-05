@@ -120,7 +120,7 @@
 					<p>
 					  <div class="col-lg-4" >
 						<a
-							href="${pageContext.request.contextPath}/viewPersonalPage? id=<c:out value="${i.idTeacher }"></c:out>">
+							href="${pageContext.request.contextPath}/viewPersonalPage?id=<c:out value="${i.idTeacher }"></c:out>">
 							<button name="submit" type="submit"
 								class="btn btn-block btn-submit">
 								Voir page personnelle <i class="fa fa-arrow-right"></i>
@@ -133,6 +133,9 @@
 			</div>
 	  </c:forEach>
 	</div>
+	<!-- DEBUT DE L'ASIDE -->
+		<c:import url="includes/aside.jsp"></c:import>
+		<!-- FIN DE L'ASIDE -->
 <div class="spaces"></div>
 
 	<!--Footer-->

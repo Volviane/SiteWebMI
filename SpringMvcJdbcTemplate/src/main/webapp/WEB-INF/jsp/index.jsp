@@ -284,7 +284,7 @@
 
               <p class="pm-staff-profile-bio"></p>
             	<p>
-             <a href="${pageContext.request.contextPath}/informationTeacher"> <button name="submit" type="submit" class="btn btn-block btn-submit">
+             <a href="${pageContext.request.contextPath}/viewPersonalPage"> <button name="submit" type="submit" class="btn btn-block btn-submit">
             Voir sa page personnelle <i class="fa fa-arrow-right"></i></button> </a>
           </p>
             </div>
@@ -304,7 +304,7 @@
 
               <p class="pm-staff-profile-bio"></p>
             	<p>
-            <a href="${pageContext.request.contextPath}/resources/informationTeacher"> <button name="submit" type="submit" class="btn btn-block btn-submit">
+            <a href="${pageContext.request.contextPath}/viewPersonalPage"> <button name="submit" type="submit" class="btn btn-block btn-submit">
             Voir sa page personnelle <i class="fa fa-arrow-right"></i></button> </a>
           </p>
             </div>
@@ -324,7 +324,7 @@
 
               <p class="pm-staff-profile-bio"> </p>
             	<p>
-            <a href="${pageContext.request.contextPath}/resources/informationTeacher"> <button name="submit" type="submit" class="btn btn-block btn-submit">
+            <a href="${pageContext.request.contextPath}/viewPersonalPage"> <button name="submit" type="submit" class="btn btn-block btn-submit">
             Voir sa page personnelle <i class="fa fa-arrow-right"></i></button> </a>
           </p>
             </div>

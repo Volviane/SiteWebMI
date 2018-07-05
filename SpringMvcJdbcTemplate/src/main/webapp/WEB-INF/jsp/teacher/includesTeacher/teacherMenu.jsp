@@ -20,7 +20,7 @@
 						<div class="panel-body" style="padding: 0px; padding-left: 12px">
 							<ul class="nav nav-pills nav-stacked">
 								<li><a href="informationTeacher">Consulter mes Informations personnelles</a></li>
-								<li><a href="updateParameters">Modifier mes Paramètres</a></li>
+								<li><a href="updateParameterTeacher">Modifier mes Paramètres</a></li>
 								<li><a href="editProfil">Editer mon profil</a></li>
 							</ul>
 						</div>
