@@ -41,12 +41,12 @@
 							<ul id="item2" class="nav nav-pills nav-stacked">
 								<li><a href="addDocument">Nouveau document</a></li>
 								<li><a href="updateDocument">Modifier Document</a></li>
-								<li><a href="">Mes Articles</a></li>
-								<li><a href="">Mes Cours</a></li>
-								<li><a href="">Mes Fiches de TD</a></li>
-								<li><a href="">Mes Epreuves</a></li>
-								<li><a href="">Mes corrections</a></li>
-								<li><a href="">Mes Livres </a></li>
+								<li><a href="listDocumentsByType?documentType=Article%20de%20Recherche">Mes Articles</a></li>
+								<li><a href="listDocumentsByType?documentType=Support%20de%20Cours">Mes Cours</a></li>
+								<li><a href="listDocumentsByType?documentType=Fiche%20de%20TD">Mes Fiches de TD</a></li>
+								<li><a href="listDocumentsByType?documentType=Epreuve">Mes Epreuves</a></li>
+								<li><a href="listDocumentsByType?documentType=Correction%20Epreuves">Mes corrections</a></li>
+								<li><a href="listDocumentsByType?documentType=">Mes Livres </a></li>
 							</ul>
 						</div>
 					</div>

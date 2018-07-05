@@ -9,6 +9,6 @@ import com.mi.model.Communique;
 public interface CommuniqueRepository extends JpaRepository<Communique, Long>{
 	public Communique findByCommuniqueTitle(String communiqueTitle);
 	public Communique findByIdCommunique(Long id);
-	public List<Communique> findAllOrderByPublicationDateDesc();
-	public Communique findFirstOrderByPublicationDateDesc();
+	//public List<Communique> findAllOrderByPublicationDate();
+	//public Communique findFirstOrderByPublicationDate();
 }
