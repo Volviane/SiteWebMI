@@ -701,6 +701,8 @@ public class AdministratorController/* implements UserDetailsService */{
 		String levelName= req.getParameter("levelName");
 		String semester= "Semestre"+semesters;
 		Course course = new Course();
+
+
 		Level level = levelRepository.findByLevelName(levelName);
 		course.setLevel(level);
 		course.setCourseTitle(courseName);
@@ -1006,6 +1008,7 @@ try {
 		AcademicYear academicYears = academicYearRepository.findByAcademicYear(academicYear);
 		Level juryLevel = levelRepository.findByLevelName(juryLevelName);
 		 Jury jury = new Jury();
+
 		 jury.setAcademicYear(academicYears);
 		 jury.setJuryLevel(juryLevel);
 		 jury.setJuryPresident(juryPresident);
@@ -1129,9 +1132,11 @@ try {
 		return "admin/createEvent";
 	}
 
+
 	@RequestMapping(value = { "/listEvent" }, method = RequestMethod.GET)
 	public String listEventGet(Model model,HttpServletRequest req) {
 		System.out.println("createCommunique GET");
+
 
 		List<Event> listOfEvent = eventRepository.findAll();
 
