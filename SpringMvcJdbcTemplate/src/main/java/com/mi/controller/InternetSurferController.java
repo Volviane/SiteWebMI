@@ -228,7 +228,7 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 				model.addAttribute("grades", grade);
 				model.addAttribute("jurys", jury);
 				
-				return "viewPersonalPage?id=idTeacher";
+				return "viewPersonalPage";
 			}
 
 
