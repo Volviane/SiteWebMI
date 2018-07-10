@@ -272,7 +272,7 @@ public class StudentController {
 		}
 
 		@RequestMapping(value = { "/loginStudent" }, method = RequestMethod.POST)
-		public String loginStudentPost(Model model,@ModelAttribute("loginAdmin") Teacher admin, HttpServletRequest req) {
+		public String loginStudentPost(Model model,@ModelAttribute("loginAdmin") Teacher admin, HttpServletRequest req,HttpServletResponse resp) {
 			System.out.println("connexion  d'un enseignant post");
 
 			String login = req.getParameter("login");
@@ -302,7 +302,9 @@ public class StudentController {
 						System.out.println("je suis en session avec http et mon nom est : " + studentName.getLogin());
 						
 						model.addAttribute("teachers", "You have been login successfully." + studentName.getLogin());
-						return "homeTeacher";
+						 resp.sendRedirect("homeStudent");
+						
+						 return "student/homeStudent";
 
 					} else {
 						logger.error("Teacher with password {} not found.", password);
