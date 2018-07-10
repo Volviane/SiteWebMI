@@ -60,32 +60,69 @@
         
       </section>
       <!-- Header Section-->
-      <section class="dashboard-header padding">
-      	<div class="cadre clearA"> 
-			 <div class="titleCo"> nombre total d'enseignants </div>
-			 		${numberTeacher}
-			 <c:forEach items="${teachers}" var="i" varStatus="pos">
-							${teachers.size()}
-						  
-			</c:forEach>
-		 
-		</div>
-		<div class="cadre clearA"> 
-			 <div class="titleCo"> nombre total de cycles </div>
-			 <c:forEach items="${teachers}" var="i" varStatus="pos">
-							<c:out value="${pos.count}"> ${pos.count}</c:out>
-						  
-			</c:forEach>
-		 
-		</div>
-		<div class="cadre clearA"> 
-			 <div class="titleCo"> nombre total d'options </div>
-			 <c:forEach items="${teachers}" var="i" varStatus="pos">
-							<c:out value="${pos.count}"> ${pos.count}</c:out>
-						  
-			</c:forEach>
-		 
-		</div>
+      <section class="dashboard-header">
+        <section class="dashboard-counts section-padding">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="icon-user"></i></div>
+                <div class="name"><strong class="text-uppercase">Nombre d'enseignants</strong>
+                  <div class="count-number">${nberTeacher}</div>
+                </div>
+              </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="icon-padnote"></i></div>
+                <div class="name"><strong class="text-uppercase">Nombre de cycles</strong>
+                  <div class="count-number">${nberCycle}</div>
+                </div>
+              </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="icon-check"></i></div>
+                <div class="name"><strong class="text-uppercase">Nombre de niveaux</strong>
+                  <div class="count-number">${nberLevel}</div>
+                </div>
+              </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="icon-bill"></i></div>
+                <div class="name"><strong class="text-uppercase">Nombre d'options</strong>
+                  <div class="count-number">${nberOption}</div>
+                </div>
+              </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="icon-padnote"></i></div>
+                <div class="name"><strong class="text-uppercase">Nombre d'unité de valeur</strong>
+                  <div class="count-number">${nberCourse}</div>
+                </div>
+              </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="icon-check"></i></div>
+                <div class="name"><strong class="text-uppercase">Nombre de domaines de recherche</strong>
+                  <div class="count-number">${nberResearchDomain} </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+            
+      	
       
       
       
@@ -146,7 +183,7 @@
               <!-- Recent Updates Widget          -->
               <div id="new-updates" class="card updates recent-updated">
                 <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
-                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">News Updates</a></h2><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box"><i class="fa fa-angle-down"></i></a>
+                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">Nouvelles mise à jour</a></h2><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box"><i class="fa fa-angle-down"></i></a>
                 </div>
                 <div id="updates-box" role="tabpanel" class="collapse show">
                   <ul class="news list-unstyled">
@@ -179,7 +216,7 @@
               <!-- Recent Activities Widget      -->
               <div id="recent-activities-wrapper" class="card updates activities">
                 <div id="activites-header" class="card-header d-flex justify-content-between align-items-center">
-                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box">Recent Activities</a></h2><a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box"><i class="fa fa-angle-down"></i></a>
+                  <h2 class="h5 display"><a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box"> Activités récentes</a></h2><a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box"><i class="fa fa-angle-down"></i></a>
                 </div>
                 <div id="activities-box" role="tabpanel" class="collapse show">
                   <ul class="activities list-unstyled">

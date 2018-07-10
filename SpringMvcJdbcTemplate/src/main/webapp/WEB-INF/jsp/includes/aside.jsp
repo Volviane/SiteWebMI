@@ -7,7 +7,7 @@
 				<p>Publié le 02 Juillet 2018</p>
 		</div>
 		<hr>
-		<a href="${pageContext.request.contextPath}/viewEvent" class="btn btn-primary">Voir tous les évènements</a>
+		<a href="${pageContext.request.contextPath}/viewNews" class="btn btn-primary">Voir tous les Communiqués</a>
 	</section>
 	<hr>
 	<section>
@@ -17,8 +17,8 @@
 				<p>Publié le 02 Juillet 2018</p>
 		</div>
 			<hr>
-		<a href="${pageContext.request.contextPath}/viewNews" class="btn btn-primary">Voir tous les Communiqués</a>
-	</section>
+		<a href="${pageContext.request.contextPath}/viewEvent" class="btn btn-primary">Voir tous les évènements</a>
+				</section>
 	<hr>
 	<section>
 		<h3>résultats</h3>

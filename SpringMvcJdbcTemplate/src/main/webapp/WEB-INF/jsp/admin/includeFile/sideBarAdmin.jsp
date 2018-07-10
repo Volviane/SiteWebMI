@@ -4,7 +4,7 @@
         <div class="menu sidenav-header d-flex align-items-center justify-content-center">
           <!-- User Info-->
           <div class="sidenav-header-inner text-center"><img src="${pageContext.request.contextPath}/resources/css/assets/css/img/logo-uds.PNG" alt="person" class="img-fluid rounded-circle">
-            <h2 class="h5">ADMIN</h2>
+            <h2 class="h5">${login}</h2>
           </div>
           <!-- Small Brand information, appears on minimized sidebar-->
           <div class=" menu sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
@@ -44,16 +44,16 @@
                   <li><a href="${pageContext.request.contextPath}/listResearchDomain">Liste des Domaines de recherche </a></li>
               </ul>
             </li>
-            <li><a href="#item3" aria-expanded="false" data-toggle="collapse"> <i class=""></i>Mise à jour </a>
-              <ul id="item3" class="collapse list-unstyled ">
-                <li><a href="${pageContext.request.contextPath}/addRole">Modifier role</a></li>
-                <li><a href="${pageContext.request.contextPath}/addCycle">Modifier cycle</a></li>
-                <li><a href="${pageContext.request.contextPath}/addOption">Modifier option</a></li>
-                <li><a href="${pageContext.request.contextPath}/addLevel">Modifier niveau </a></li>
-                <li><a href="${pageContext.request.contextPath}/addCourse">Modifier UE </a></li>
-                <li><a href="${pageContext.request.contextPath}/addGrade">Modifier grade </a></li>
-              </ul>
-            </li>
+<!--             <li><a href="#item3" aria-expanded="false" data-toggle="collapse"> <i class=""></i>Mise à jour </a> -->
+<!--               <ul id="item3" class="collapse list-unstyled "> -->
+<%--                 <li><a href="${pageContext.request.contextPath}/addRole">Modifier role</a></li> --%>
+<%--                 <li><a href="${pageContext.request.contextPath}/addCycle">Modifier cycle</a></li> --%>
+<%--                 <li><a href="${pageContext.request.contextPath}/addOption">Modifier option</a></li> --%>
+<%--                 <li><a href="${pageContext.request.contextPath}/addLevel">Modifier niveau </a></li> --%>
+<%--                 <li><a href="${pageContext.request.contextPath}/addCourse">Modifier UE </a></li> --%>
+<%--                 <li><a href="${pageContext.request.contextPath}/addGrade">Modifier grade </a></li> --%>
+<!--               </ul> -->
+<!--             </li> -->
             <li><a href="#item4" aria-expanded="false" data-toggle="collapse"> <i class=""></i>Publications </a>
               <ul id="item4" class="collapse list-unstyled ">
                 <li><a href="${pageContext.request.contextPath}/postEvent">Publier un évènement </a></li>
