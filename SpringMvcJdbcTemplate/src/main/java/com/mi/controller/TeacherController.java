@@ -160,7 +160,7 @@ public class TeacherController {
 	}
 
 	@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.POST)
-	public String login(Model model,@ModelAttribute("loginAdmin") Teacher admin, HttpServletRequest req) {
+	public String login(Model model,@ModelAttribute("loginAdmin") Teacher admin, HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("connexion  d'un enseignant post");
 
 		String login = req.getParameter("login");
@@ -191,6 +191,7 @@ public class TeacherController {
 					
 					model.addAttribute("teachers", "Vous etes connectez a votre espace personne. M. " + teacherName.getLogin());
 					model.addAttribute("teachs", teacher);
+					 resp.sendRedirect("homeTeacher");
 					return "teacher/homeTeacher";
 
 				} else {

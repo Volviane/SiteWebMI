@@ -299,7 +299,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	}
 
 	@RequestMapping(value = { "/connectionAdministrator" }, method = RequestMethod.POST)
-	public String login(Model model,@ModelAttribute("loginAdmin") Administrator admin, HttpServletRequest req) {
+	public String login(Model model,@ModelAttribute("loginAdmin") Administrator admin, HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("connexion  d'un admin");
 
 		String loginAdmin = req.getParameter("login");
@@ -332,7 +332,21 @@ public class AdministratorController/* implements UserDetailsService */{
 
 					model.addAttribute("Administrators", "Connexion reussi M. ." + administratorName.getLogin());
 					//req.setAttribute("succes", "You have been login successfully. " +administratorName);
-
+					
+					/*long nberTeacher=teachersRepository.count();
+					long nberCycle=cycleRepository.count();
+					long nberLevel=levelRepository.count();
+					long nberOption=optionRepository.count();
+					long nberResearchDomain=researchDomainRepository.count();
+					long nberCourse=courseRepository.count();
+					//model.addAttribute("error", "");
+					model.addAttribute("nberTeacher",nberTeacher);
+					model.addAttribute("nberCycle",nberCycle);
+					model.addAttribute("nberLevel",nberLevel);
+					model.addAttribute("nberOption",nberOption);
+					//model.addAttribute("nberResearchDomain",nberResearchDomain);
+					model.addAttribute("nberCourse",nberCourse);*/
+					 resp.sendRedirect("homeAdministrator");
 					return "admin/homeAdministrator";
 
 					//return "connectionAdministrator";
