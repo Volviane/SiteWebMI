@@ -855,6 +855,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		String password = emailAdress+"pass";
 		String passwordSec = /*emailAdress+*/"pass";
 		String subject1 = "Registration Information";
+		
 		Teacher teacher = new Teacher();
 		teacher.setLastName(lastName);
 		teacher.setFirstName(firstName);
@@ -863,13 +864,18 @@ public class AdministratorController/* implements UserDetailsService */{
 		teacher.setLogin(login);
 		teacher.setPassword(bCryptPasswordEncoder.encode(password));
 		teacher.setPasswordSec(cryptographe(passwordSec));
-		String content1 = "Compte créé avec succès, vos informations se présentent comme suit:  \n"
-				+teacher.getLastName() + " \n"
-				+ teacher.getLogin() +"\n"
-				+ decryptographe(teacher.getPasswordSec())+"\n"
+		
+		String content1 = "Bonjour M. "+teacher.getLastName()+",\n"
+				+ "Votre compte Enseignant sur la plateforme du département de Mathématique informatique de l'université de Dschang a été créé avec succès.\b"
+				+ " vos informations sont les suivantes:  \n"
+				+"Nom: "+teacher.getLastName() + " \n"
+				+"Login: "+ teacher.getLogin() +"\n"
+				+"Mot de Passe: "+ decryptographe(teacher.getPasswordSec())+"\n"
 				+ "...\n"
-				+ "Pour vous connecter a votre espace personnel cliquez ici :\n"
-				+ "http://localhost:8080/SpringMvcJdbcTemplate/connectionTeachers";
+				//+ "Pour vous connecter a votre espace personnel cliquez ici :\n"
+				+ "Vous pouvez acceder directement à votre espace personnel via le lien suivant:\n"
+				+ "http://"+req.getLocalAddr()+":"+req.getLocalPort()+"/SpringMvcJdbcTemplate/homeTeacher?login="+teacher.getLogin()+"&o="+cryptographe("mail");
+		System.out.println(content1);
 		// String form="saphirmfogo@gmail.com";V
 		MimeMessage msg = new MimeMessage(session);
 		/// msg.setFrom(new InternetAddress(form));
@@ -878,7 +884,10 @@ public class AdministratorController/* implements UserDetailsService */{
 		msg.setText(content1);
 		msg.setSentDate(new Date());
 try {
+	//Enregistrement de l'enseignant
 	teachersRepository.save(teacher);
+	
+	//Envoi du mail
 	Transport transport = session.getTransport("smtp");
 	transport.connect("smtp.gmail.com", "saphirmfogo@gmail.com", "best1234");
 	transport.sendMessage(msg, msg.getAllRecipients());
@@ -889,7 +898,7 @@ try {
 
 } catch (Exception e) {
 	// TODO: handle exception
-	model.addAttribute("error", "echec d'enregistrment");
+	model.addAttribute("error", "Echec d'enregistrment");
 	
 }
 		

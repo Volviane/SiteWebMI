@@ -51,6 +51,7 @@
 
 		<div class="col-md-7" style="padding: 0px">
 			<!--Contenu-->
+			<h3>Bienvenue Dans votre Espace Personnel</h3>
 			<div class="media">
 				<div class="media-left">
 					<a href="#"> <img
@@ -61,7 +62,7 @@
 					</a>
 				</div>
 				<div class="media-body">
-
+					
 				</div>
 			</div>
 			<!--/ Contenu-->

@@ -100,12 +100,12 @@
 	<c:import url="includes/headerUser.jsp"></c:import>
 	<!-- FIN DU HEADER-->
 	<!-- Start Slider Area -->
-  <div id="home" class="slider-area"  style="display: block; height:400px;">
+  <div id="home" class="slider-area"  style="display: block; height:300px;">
     <div class="bend niceties preview-2">
-      <div id="ensign-nivoslider" class="slides" style="display: block; height:400px;">
+      <div id="ensign-nivoslider" class="slides" style="display: block; height:300px;">
 <!--         <img src="${pageContext.request.contextPath}/resources/userResources/img/slider/banniere-2.png" alt="" title="#slider-direction-1" height="500px"/> -->
-       <img src="${pageContext.request.contextPath}/resources/userResources/img/slider/banniere_1.png" alt="" title="#slider-direction-2" height="500px" style="display: block"/>
-        <img src="${pageContext.request.contextPath}/resources/userResources/img/slider/banniere-3.png" alt="" title="#slider-direction-3" height="400px" style="display: block" />
+       <img src="${pageContext.request.contextPath}/resources/userResources/img/slider/banniere_1.png" alt="" title="#slider-direction-2" height="300px" style="display: block"/>
+        <img src="${pageContext.request.contextPath}/resources/userResources/img/slider/banniere-3.png" alt="" title="#slider-direction-3" height="300px" style="display: block" />
       </div>
 <!-- 
       direction 1
@@ -197,7 +197,7 @@
         <div class="header-section text-center">
           <h2>Présentation du Département</h2>
           <p>Le Département de mathématiques-informatique,est un des départements de la faculté des sciences de l'université 
-              de Dschang. Il offre beaucoup de formations, notemment une licence en mathématique-informatique, un master en réseau
+              de Dschang. Il offre diverses formations, notemment une licence en mathématique-informatique, un master en réseau
               et services distriués, un master en algèbre et un master en analyse.
            </p>
           <hr class="bottom-line">
@@ -216,7 +216,7 @@
 						</a>
               </div>
               <div class="fea-img pull-left">
-                <i class="fa fa-css3"></i>
+                <i class="fa fa-bullhorn"></i>
               </div>
             </div>
           </div>
@@ -234,7 +234,7 @@
                    
               </div>
               <div class="fea-img pull-left">
-                <i class="fa fa-drupal"></i>
+                <i class="fa fa-calendar"></i>
               </div>
             </div>
           </div>

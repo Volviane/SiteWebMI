@@ -1,12 +1,13 @@
 package com.mi.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="GRADES")
-public class Grade {
+public class Grade implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

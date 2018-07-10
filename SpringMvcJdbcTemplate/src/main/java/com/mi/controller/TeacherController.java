@@ -155,8 +155,18 @@ public class TeacherController {
 
 	//Home enseignant
 	@RequestMapping(value = "/homeTeacher", method = RequestMethod.GET)
-	public String homeTeacher(Model model) {
+	public String homeTeacher(Model model,HttpServletRequest req) {
 		System.out.println("home enseignant get");
+		
+		String login = req.getParameter("login");
+		String coption = req.getParameter("o");
+		String option ="mail";
+		if(option.equals(decryptographe(coption))){
+			Teacher teacher = teachersRepository.findByLogin(login);
+			HttpSession session = req.getSession();
+			session.setAttribute( "teacher", teacher );
+		}
+		
 		model.addAttribute("error", "");
 
 		return "teacher/homeTeacher";
@@ -254,15 +264,17 @@ public class TeacherController {
 
 		System.out.println(newlogin);
 		System.out.println(newpassword);
+		System.out.println(teacher.getLogin());
 
-		if(teacher.getLogin()==login){
+		if(teacher.getLogin().equals(login)){
 			
 			teacher.setLogin(newlogin);
-			teacher.setPassword(newpassword);
-			
-			if (teacher.getPasswordSec()==cryptographe(password)){
-			
+			teacher.setPassword(bCryptPasswordEncoder.encode(newpassword));
+			System.out.println(teacher.getPasswordSec());
+			if (teacher.getPasswordSec().equals(cryptographe(password))){
+				System.out.println(teacher.toString());
 			teachersRepository.save(teacher);
+			model.addAttribute("teachers", "vos parametres ont ete modifies");
 			}else{
 				model.addAttribute("errorPassword", "Veuillez entrez votre ancien mot de passe");
 				
@@ -270,8 +282,7 @@ public class TeacherController {
 		}else{
 			model.addAttribute("errorLogin", "Veuillez entrez votre ancienn login");
 		}
-
-		model.addAttribute("teachers", "vos parametres ont ete modifies");
+		
 
 		return "teacher/updateParameterTeacher";
 	}
@@ -286,7 +297,7 @@ public class TeacherController {
 	}
 
 	@RequestMapping(value = { "/addDocument" }, method = RequestMethod.POST)
-	@Transactional
+	/*@Transactional*/
 	public String addDocumentPost(Model model, HttpServletRequest req,@RequestParam("files") MultipartFile file) throws ParseException, IOException, ServletException {
 
 		String documentTitle= req.getParameter("documentTitle");
@@ -382,7 +393,9 @@ public class TeacherController {
 			model.addAttribute("error", "liste de documents vide");
 			}else{
 				model.addAttribute("documents", listOfdocuments);
+				model.addAttribute("documentType", documentType);
 			}
+			//model.addAttribute("documentType", documentType);
 			return "teacher/listDocumentsByType";
 		}
 		
@@ -472,12 +485,15 @@ public class TeacherController {
 		Teacher authors =  (Teacher) session.getAttribute( "teacher" );
 		List<ResearchDomain> listOfResearchDomain = researchDomainRepository.findAll();
 		Teacher teacher = teachersRepository.findByLogin(authors.getLogin());
+		
+		List<Grade> grades = gradeRepository.findAll(); 
 
 		if (listOfResearchDomain.isEmpty() ) {
 			model.addAttribute("error", "error : liste vide");
 		}
 		model.addAttribute("researchDomains", listOfResearchDomain);
 		model.addAttribute("teachers", teacher);
+		model.addAttribute("grades", grades);
 		
 		//model.addAttribute("error", "");
 		return "teacher/editProfil";

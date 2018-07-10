@@ -35,7 +35,7 @@
 		<div class="col-md-7" style="padding: 0px">
 			<!--Contenu-->
 			<h2>
-				<span></span>Modification des Paramètres de connexion
+				<span class="glyphicon glyphicon-pencil"></span> Modification des Paramètres de connexion
 			</h2>
 			<div class="panel panel-default col-md-8 well">
 				<div class="panel-body">
@@ -47,7 +47,7 @@
 								placeholder="Entrez votre email"> 
 						</div>
 						<div class="form-group">
-							<label for="exampleInputEmail1">Login</label> <input
+							<label for="exampleInputEmail1">Entrez le nouveau Login</label> <input
 								type="text" name="newLogin" class="form-control"
 								id="exampleInputEmail1" aria-describedby="emailHelp"
 								placeholder="Entrez votre email"> 
@@ -69,10 +69,10 @@
 						</div>
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</form>
-					<c:if test="${empty errors }">
+					<c:if test="${teachers != null}">
 						<div class="alert alert-success" role="alert">Paramètres modifiés avec succès</div>
 					</c:if>
-					<c:if test="${empty documents }">
+					<c:if test="${ errors != null}">
 						<div class="alert alert-danger" role="alert">Echec de modifications</div>
 					</c:if>
 				</div>
