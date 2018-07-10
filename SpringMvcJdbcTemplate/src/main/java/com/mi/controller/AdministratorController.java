@@ -1,6 +1,5 @@
 package com.mi.controller;
 
-import java.io.File;
 import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -67,7 +66,7 @@ import com.mi.repositories.TeachersRepository;
 public class AdministratorController/* implements UserDetailsService */{
 	public static final Logger logger = LoggerFactory.getLogger(AdministratorController.class);
 
-	private static final String SAVE_DIR="SiteWebMI"+File.separator+"SpringMvcJdbcTemplate"+File.separator+"Documents";
+	//private static final String SAVE_DIR="SiteWebMI"+File.separator+"SpringMvcJdbcTemplate"+File.separator+"Documents";
 
 
 	@Autowired
@@ -124,9 +123,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	private String error = "error message";
-	private String errorLoging = "error message";
-	private String errorPasswor = "error message";
-
+	
 	/*chiffrement de mot de passe*/
 	public static String cryptographe(String name) {
 
@@ -187,7 +184,6 @@ public class AdministratorController/* implements UserDetailsService */{
 				req.setAttribute("role", roles);
 			} catch (Exception e) {
 				model.addAttribute("error", "echec d'enregistrement");
-				// TODO: handle exception
 			}
 		} else if (roleName.equalsIgnoreCase("ROLE_TEACHERS")) {
 			try {
@@ -198,7 +194,7 @@ public class AdministratorController/* implements UserDetailsService */{
 				req.setAttribute("role", roles);
 			} catch (Exception e) {
 				model.addAttribute("error", "echec d'enregistrement");
-				// TODO: handle exception
+				
 			}
 
 		} else if (roleName.equalsIgnoreCase("ROLE_ADMIN")) {
@@ -212,7 +208,7 @@ public class AdministratorController/* implements UserDetailsService */{
 				req.setAttribute("role", roles);
 			} catch (Exception e) {
 				model.addAttribute("error", "echec d'enregistrement");
-				// TODO: handle exception
+				
 			}
 
 		}
@@ -271,7 +267,6 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		} else{
 			model.addAttribute("error", "echec d'enregistrement");
-			// TODO: handle exception
 		}
 
 
@@ -468,7 +463,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			System.out.println("done");
 		} else {
 			model.addAttribute("error", "echec d'enregistrement ");
-			// TODO: handle exception
+			
 		}
 
 		return "admin/addCycle";
@@ -552,7 +547,7 @@ public class AdministratorController/* implements UserDetailsService */{
 
 
 		} else {
-			// TODO: handle exception
+		
 			model.addAttribute("error", "echec d'eregistrement ");
 		}
 
@@ -620,7 +615,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			model.addAttribute("levels", "le niveau a ete creer avec sucess le nom est :: " +levelName);
 			req.setAttribute("success", "succesfully to create level:: " +levelName);
 		} else {
-			// TODO: handle exception
+			
 			model.addAttribute("error", "echec d'enregistremnt");
 
 		}
@@ -680,7 +675,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		course.setSemester(semester);
 		
 		List<Level> listOfLevel = levelRepository.findAll();
-		List<String> finalList = new ArrayList<String>();
+		//List<String> finalList = new ArrayList<String>();
 
 		if (listOfLevel.isEmpty()) {
 			model.addAttribute("error", error);
@@ -693,7 +688,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			model.addAttribute("courses", "le cours a ete creer acvec success le nom est  :: " + courseName);
 			req.setAttribute("courses", "succesfully to create course :: " + courseName);
 		} else{
-			// TODO: handle exception
+			
 			model.addAttribute("error", "echec d'enregistrement");
 		}
 
@@ -758,7 +753,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			req.setAttribute("grades", "succesfully to create grade:: " +gradeName);
 
 		} else {
-			// TODO: handle exception
+			
 			model.addAttribute("error", "echec d'enregistrement");
 		}
 
@@ -876,7 +871,6 @@ public class AdministratorController/* implements UserDetailsService */{
 			req.setAttribute("teacherSucces", "succesfully to create teacher wiht parameter :: " + login + " and " + password);
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			model.addAttribute("error", "echec d'enregistrment");
 
 		}
@@ -1009,7 +1003,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			model.addAttribute("jurys", "jury cree avec succes");
 			req.setAttribute("jury", "jury cree avec succes");
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			model.addAttribute("error", "echec d'enregistrement");
 		}
 
@@ -1059,7 +1053,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			model.addAttribute("communiques", "communiquee cree avec succes");
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			model.addAttribute("error", "echec d'enregistrement");
 		}
 
@@ -1116,7 +1110,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			model.addAttribute("events", "Evenement cree avec succes");
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			model.addAttribute("error", "echec d'enregistrement");
 		}
 
@@ -1178,7 +1172,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			model.addAttribute("researchDomains", "Domaine de recherche  cree avec succes");
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			model.addAttribute("error", "echec d'enregistrement");
 		}
 

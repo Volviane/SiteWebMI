@@ -111,7 +111,7 @@ public class TeacherController {
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	private String error = "error message";
+	//private String error = "error message";
 
 	/*chiffrement de mot de passe*/
 	public static String cryptographe(String name) {
@@ -285,7 +285,7 @@ public class TeacherController {
 		int createMonth = calendarCourante.get(Calendar.YEAR);
 		String createYear= createMonth+"";
 	
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 		Date createDate = new Date();
 		/*String d=date+"";
 		
@@ -325,7 +325,7 @@ public class TeacherController {
 			
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			model.addAttribute("error", "erreur d'ajout du document");
 			
 		}
@@ -418,10 +418,10 @@ public class TeacherController {
 		String documentName= req.getParameter("documentName");
 		
 
-		Calendar calendarCourante = Calendar.getInstance();
+		//Calendar calendarCourante = Calendar.getInstance();
 		//int createYear = calendarCourante.get(Calendar.YEAR);
-		int createMonth = calendarCourante.get(Calendar.DATE);
-		String createYear= createMonth+"";
+		//int createMonth = calendarCourante.get(Calendar.DATE);
+		//String createYear= createMonth+"";
 			// recuperer la date courante dans le controlleur
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 		Date date = new Date();
@@ -655,7 +655,7 @@ public class TeacherController {
 				
 				
 			} catch (Exception e) {
-				// TODO: handle exception
+				
 				model.addAttribute("error", "erreur d'ajout du document");
 				
 			}
@@ -692,7 +692,7 @@ public class TeacherController {
 			byte[] bytes = file.getBytes();
 
 			// Creating the directory to store file
-			String rootPath = System.getProperty("catalina.home");
+			//String rootPath = System.getProperty("catalina.home");
 			//			File dir = new File(rootPath + File.separator + SAVE_DIR+File.separator+option);
 			File dir = new File(SAVE_DIR);
 			if (!dir.exists())
