@@ -154,7 +154,21 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/homeAdministrator", method = RequestMethod.GET)
 	public String homeAdmin(Model model) {
 		System.out.println("home admin get");
+		long nberTeacher=teachersRepository.count();
+		long nberCycle=cycleRepository.count();
+		long nberLevel=levelRepository.count();
+		long nberOption=optionRepository.count();
+		long nberResearchDomain=researchDomainRepository.count();
+		long nberCourse=courseRepository.count();
 		model.addAttribute("error", "");
+		model.addAttribute("nberTeacher",nberTeacher);
+		model.addAttribute("nberCycle",nberCycle);
+		model.addAttribute("nberLevel",nberLevel);
+		model.addAttribute("nberOption",nberOption);
+		model.addAttribute("nberResearchDomain",nberResearchDomain);
+		model.addAttribute("nberCourse",nberCourse);
+
+
 
 		return "admin/homeAdministrator";
 	}

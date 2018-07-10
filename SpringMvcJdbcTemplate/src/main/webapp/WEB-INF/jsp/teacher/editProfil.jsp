@@ -201,14 +201,12 @@
 				</table>
 				
 			</form>
-			<div class="row">
-				<c:if test="${error != null }">
-					<div class="alert alert-danger" role="alert"><c:out value="${error }"/></div>
-				</c:if>
-				<c:if test="${teachers != null}">
-					<div class="alert alert-success" role="alert"><c:out value="${teachers }"/></div>
-				</c:if>
-			</div>
+                          <c:if test="${error!=null}">
+							<h6 class=""> <font color="red">${error}</font></h1>
+			       		</c:if>
+			        	<c:if test="${error==null}">
+							<h6 class=""> <font color="green">modification reussi</font></h1>
+			       		</c:if>
 		</section>
 			
 			
