@@ -104,17 +104,36 @@
 	<!-- DEBUT DU HEADER -->
 	<c:import url="includes/headerUser.jsp"></c:import>
 	<!-- FIN DU HEADER-->
-	<div class="container space">
-		<div
+	<div
 			style="clear: both; display: block; margin-top: 88px; height: 60px;">
 			<ol class="breadcrumb">
-				<li><a href="homeTeacher" class="active gras">Espace
+				<li><a href="homeTeacher" class="active gras">Page
 						Personnel</a></li>
 			</ol>
+	</div>
+	<div class="container space">
+		
+		<div class="col-md-7" style="padding: 0px">
+			<!--Contenu-->
+			<div class="media">
+				<div class="media-left">
+					<a href="#"> <img
+						src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
+						alt="" class="img-thumbnail img-circle media-object" />
+						<h4 class="media-heading"><c:out value="${teachers.firstName }" />  <c:out value="${teachers.lastName }" /></h4>
+					   <h5><c:out value="${teachers.grade }" /></h5> 
+					</a>
+				</div>
+				<div class="media-body">
+
+				</div>
+			</div>
+			<!--/ Contenu-->
 		</div>
+		
 	</div>
 	<!-- DEBUT DE L'ASIDE -->
-		<c:import url="includes/aside.jsp"></c:import>
+		<%@include file="includes/aside.jsp"%>
 		<!-- FIN DE L'ASIDE -->
 <div class="spaces"></div>
 
