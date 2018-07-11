@@ -2,14 +2,12 @@ package com.mi.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,19 +16,10 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,16 +31,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.mi.model.Teacher;
 import com.mi.model.AcademicYear;
-import com.mi.model.Administrator;
-import com.mi.model.Communique;
 import com.mi.model.Document;
 import com.mi.model.Grade;
 import com.mi.model.Jury;
 import com.mi.model.ResearchDomain;
 import com.mi.model.Result;
-import com.mi.model.Role;
+import com.mi.model.Teacher;
 import com.mi.repositories.AcademicYearRepository;
 import com.mi.repositories.CommuniqueRepository;
 import com.mi.repositories.CourseRepository;
@@ -125,7 +111,7 @@ public class TeacherController {
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	private String error = "error message";
+	//private String error = "error message";
 
 	/*chiffrement de mot de passe*/
 	public static String cryptographe(String name) {
@@ -155,6 +141,7 @@ public class TeacherController {
 
 	//Home enseignant
 	@RequestMapping(value = "/homeTeacher", method = RequestMethod.GET)
+
 	public String homeTeacher(Model model,HttpServletRequest req) {
 		System.out.println("home enseignant get");
 		
@@ -184,7 +171,7 @@ public class TeacherController {
 	}
 
 	@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.POST)
-	public String login(Model model,@ModelAttribute("loginAdmin") Teacher admin, HttpServletRequest req) {
+	public String login(Model model,@ModelAttribute("loginAdmin") Teacher admin, HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("connexion  d'un enseignant post");
 
 		String login = req.getParameter("login");
@@ -213,27 +200,31 @@ public class TeacherController {
 					
 					System.out.println("je suis en session avec http et mon nom est : " + teacherName.getLogin());
 					
-					model.addAttribute("teachers", "You have been login successfully." + teacherName.getLogin());
-
+					
+					model.addAttribute("teachers", "Vous etes connectez a votre espace personne. M. " + teacherName.getLogin());
 					model.addAttribute("teachs", teacher);
-
+					 resp.sendRedirect("homeTeacher");
 					return "teacher/homeTeacher";
 
 				} else {
 					logger.error("Teacher with password {} not found.", password);
-					model.addAttribute("errorPassword", "Password not found.");
-					req.setAttribute("errorPassword", "Password not found.");
+					
+					model.addAttribute("errorPassword", "Mot de passe mal saisi.");
+					req.setAttribute("errorPassword", "Mot de passe mal saisi.");
 				}
 			} else {
 				logger.error("Teacher with password {} not found.", login);
-				model.addAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
-				req.setAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
+				
+				
+				model.addAttribute("errorLogin", "login mal saisi, l'enseignant "+ login + "n'existe pas");
+				req.setAttribute("errorLogin", "login mal saisi, l'enseignant "+ login + "n'existe pas");
 
 			}
 		} catch (Exception ex) {
 			logger.error("Teacher with pseudonym {} not found.", login);
-			model.addAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
-			req.setAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
+			
+			model.addAttribute("errorLogin", "login mal saisi, l'enseignant "+ login + "n'existe pas");
+			req.setAttribute("errorLogin", "login mal saisi, l'enseignant "+ login + "n'existe pas");
 		}
 
 		//return "redirect:/TeacherHome";
@@ -266,9 +257,11 @@ public class TeacherController {
 		System.out.println(newpassword);
 		System.out.println(teacher.getLogin());
 
+		
 		if(teacher.getLogin().equals(login)){
 			
 			teacher.setLogin(newlogin);
+			
 			teacher.setPassword(bCryptPasswordEncoder.encode(newpassword));
 			System.out.println(teacher.getPasswordSec());
 			if (teacher.getPasswordSec().equals(cryptographe(password))){
@@ -313,7 +306,12 @@ public class TeacherController {
 		String createYear= createMonth+"";
 	
 		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-		//Date createDate = sdf.parse(createYear);
+		Date createDate = new Date();
+		/*String d=date+"";
+		
+		Date createDate = sdf.parse(d);*/
+
+		System.out.println(createDate);
 		
 		try {
 			HttpSession session = req.getSession();
@@ -338,7 +336,7 @@ public class TeacherController {
 				document.setDocumentTitle(documentTitle);
 				document.setDocumentType(documentType);
 				document.setDocumentName(documentNames);
-			//	document.setCreateDate(createDate);
+				document.setCreateDate(createDate);
 				document.setAuthor(author);
 
 				documentRepository.save(document);
@@ -347,7 +345,7 @@ public class TeacherController {
 			
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			model.addAttribute("error", "erreur d'ajout du document");
 			
 		}
@@ -440,16 +438,20 @@ public class TeacherController {
 		String documentDescription= req.getParameter("documentDescription");
 		String documentType= req.getParameter("documentType");
 		String documentName= req.getParameter("documentName");
-		//	String createDate= req.getParameter("createDate");
 
-		Calendar calendarCourante = Calendar.getInstance();
+
+		//Calendar calendarCourante = Calendar.getInstance();
 		//int createYear = calendarCourante.get(Calendar.YEAR);
-		int createMonth = calendarCourante.get(Calendar.DATE);
-		String createYear= createMonth+"";
+		//int createMonth = calendarCourante.get(Calendar.DATE);
+		//String createYear= createMonth+"";
 			// recuperer la date courante dans le controlleur
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-		Date createDate = sdf.parse(createYear);
+		Date date = new Date();
+		String d=date+"";
 
+		Date createDate = sdf.parse(d);
+
+		System.out.println(createDate);
 
 		HttpSession session = req.getSession();
 		Teacher author =  (Teacher) session.getAttribute( "teacher" );
@@ -572,7 +574,8 @@ public class TeacherController {
 			  session.setAttribute( "teacher", null );
 			  model.addAttribute("teachers", "la session a ete supprimme");
 
-			return "teacher/loginTeacher";
+			
+			return "index";
 		}
 
 		// information pour afficher la page personnelle
@@ -678,7 +681,7 @@ public class TeacherController {
 				
 				
 			} catch (Exception e) {
-				// TODO: handle exception
+				
 				model.addAttribute("error", "erreur d'ajout du document");
 				
 			}
@@ -715,7 +718,7 @@ public class TeacherController {
 			byte[] bytes = file.getBytes();
 
 			// Creating the directory to store file
-			String rootPath = System.getProperty("catalina.home");
+			//String rootPath = System.getProperty("catalina.home");
 			//			File dir = new File(rootPath + File.separator + SAVE_DIR+File.separator+option);
 			File dir = new File(SAVE_DIR);
 			if (!dir.exists())

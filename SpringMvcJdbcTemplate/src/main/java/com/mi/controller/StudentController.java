@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mi.model.Article;
@@ -58,6 +59,7 @@ import com.mi.repositories.StudentRepository;
 import com.mi.repositories.TeachersRepository;
 
 @Controller
+@SessionAttributes("Student") 
 @MultipartConfig(fileSizeThreshold=1024*1024*2,maxFileSize=1024*1024*10,maxRequestSize=1024*1024*50)
 public class StudentController {
 	
@@ -270,7 +272,7 @@ public class StudentController {
 		}
 
 		@RequestMapping(value = { "/loginStudent" }, method = RequestMethod.POST)
-		public String loginStudentPost(Model model,@ModelAttribute("loginAdmin") Teacher admin, HttpServletRequest req) {
+		public String loginStudentPost(Model model,@ModelAttribute("loginAdmin") Teacher admin, HttpServletRequest req,HttpServletResponse resp) {
 			System.out.println("connexion  d'un enseignant post");
 
 			String login = req.getParameter("login");
@@ -300,7 +302,9 @@ public class StudentController {
 						System.out.println("je suis en session avec http et mon nom est : " + studentName.getLogin());
 						
 						model.addAttribute("teachers", "You have been login successfully." + studentName.getLogin());
-						return "homeTeacher";
+						 resp.sendRedirect("homeStudent");
+						
+						 return "student/homeStudent";
 
 					} else {
 						logger.error("Teacher with password {} not found.", password);

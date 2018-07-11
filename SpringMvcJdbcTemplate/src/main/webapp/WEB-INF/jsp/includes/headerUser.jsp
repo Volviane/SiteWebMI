@@ -35,14 +35,21 @@
 							<li class="active"><a class="page-scroll" href="${pageContext.request.contextPath}/index"><span class="glyphicon glyphicon-home"></span> Acceuil</a>
 							</li>
 							<li class="dropdown">
-								<a class="page-scroll" data-toggle="dropdown" href="#about">PRESENTATION<b class="caret"></b></a>
+								<a class="page-scroll" data-toggle="dropdown" href="#about">Présentation<b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a href="${pageContext.request.contextPath}/"> département de Maths-Info</a></li>
 									<li><a href="${pageContext.request.contextPath}/viewTeacherList"> enseignants du département</a></li>
 									<li><a href="${pageContext.request.contextPath}/">organigramme</a></li>
 								</ul>
 							</li>
-							<li><a class="page-scroll" href="${pageContext.request.contextPath}/formation">Formations</a></li>
+							<li class="dropdown">
+								<a class="page-scroll" data-toggle="dropdown" href="#about">Formations<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="${pageContext.request.contextPath}/licenceMi"> licence en maths-info</a></li>
+									<li><a href="${pageContext.request.contextPath}/masterAlgebra">master en algère</a></li>
+									<li><a href="${pageContext.request.contextPath}/masterAnalysis"> master en analyse</a></li>
+									<li><a href="${pageContext.request.contextPath}/masterRsd">master en RSD</a></li>
+								</ul>
+							</li>
 							<li><a class="page-scroll" href="${pageContext.request.contextPath}/actualité">actualité</a></li>
 							<li><a class="page-scroll" href="${pageContext.request.contextPath}/contact">Contact</a></li>
 							<li><a href="#" data-target="#login" data-toggle="modal">Se connecter</a></li>

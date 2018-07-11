@@ -1,9 +1,10 @@
 package com.mi.controller;
 
-import java.io.File;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.mi.model.Communique;
 import com.mi.model.Document;
 import com.mi.model.Event;
+import com.mi.model.Grade;
+import com.mi.model.Jury;
+import com.mi.model.ResearchDomain;
 import com.mi.model.Result;
 import com.mi.model.Teacher;
 import com.mi.repositories.AcademicYearRepository;
@@ -43,10 +47,10 @@ public class InternetSurferController {
 	
 public static final Logger logger = LoggerFactory.getLogger(AdministratorController.class);
 	
-	private static final String SAVE_DIR=/*"C:"+File.separator+"Users"+File.separator+"MFOGO"+File.separator+"Documents"+File.separator+"Master1"+File.separator+"Semestre2"
-			+ ""+File.separator+"Projet"+File.separator+"workspace"+File.separator+*/"SiteWebMI"+File.separator+"SpringMvcJdbcTemplate"+File.separator+"Documents";
+	/*private static final String SAVE_DIR="C:"+File.separator+"Users"+File.separator+"MFOGO"+File.separator+"Documents"+File.separator+"Master1"+File.separator+"Semestre2"
+			+ ""+File.separator+"Projet"+File.separator+"workspace"+File.separator+"SiteWebMI"+File.separator+"SpringMvcJdbcTemplate"+File.separator+"Documents";
 
-	
+	*/
 	@Autowired
 	ResearchDomainRepository researchDomainRepository;
 	
@@ -139,8 +143,8 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 		return aCrypter;
 	}
 	
-	//Home pricipal
-			@RequestMapping(value = "/homePrincipal", method = RequestMethod.GET)
+	//Home principale pour les internautes
+			@RequestMapping(value = "/index", method = RequestMethod.GET)
 			public String homePrincipal(Model model) {
 				System.out.println("home Principal get");
 				
@@ -159,10 +163,10 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 				
 				
 
-				return "homePrincipal";
+				return "index";
 			}
 			
-			
+			//pour la consultation des evennements
 			@RequestMapping(value = { "/viewEvent" }, method = RequestMethod.GET)
 			public String viewEventGet(Model model,HttpServletRequest req) {
 				System.out.println("viewEvent GET");
@@ -176,7 +180,7 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 
 				return "viewEvent";
 			}
-			
+			//pour la consultation des communique
 			@RequestMapping(value = { "/viewNews" }, method = RequestMethod.GET)
 			public String viewNewsGet(Model model,HttpServletRequest req) {
 				System.out.println("listNews GET");
@@ -191,7 +195,7 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 
 				return "viewNews";
 			}
-			
+			//pour la consultation des resultats
 			@RequestMapping(value = { "/viewResult" }, method = RequestMethod.GET)
 			public String viewResultGet(Model model,HttpServletRequest req) {
 				System.out.println("list result GET");
@@ -205,6 +209,28 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 
 				return "viewResult";
 			}
+			
+			// information pour afficher la page personnelle
+			@RequestMapping(value = "/viewPersonalPage", method = RequestMethod.GET)
+			public String InformationTeacherGet(HttpServletRequest request, HttpServletResponse response, Model model) {
+				System.out.println("viewPersonalPage get");
+				model.addAttribute("error", "");
+				
+				String name = request.getParameter("idTeacher");
+				Long idTeacher=Long.parseLong(name);
+				
+				Teacher teach = teachersRepository.findByIdTeacher(idTeacher);
+				ResearchDomain recher= teach.getResearchDomain();
+				Grade grade =teach.getGrade();
+				Set<Jury> jury = teach.getJury();
+				model.addAttribute("teahers", teach);
+				model.addAttribute("researchDomains", recher);
+				model.addAttribute("grades", grade);
+				model.addAttribute("jurys", jury);
+				
+				return "viewPersonalPage";
+			}
+
 
 
 }

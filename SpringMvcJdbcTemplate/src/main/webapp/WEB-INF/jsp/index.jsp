@@ -271,66 +271,37 @@
           <h2>Découvrez les membres du département de Mathématiques-Informatique</h2>
           <hr class="bottom-line">
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4">
-          <div class="pm-staff-profile-container">
-            <div class="pm-staff-profile-image-wrapper text-center">
-              <div class="pm-staff-profile-image">
-                <img src="${pageContext.request.contextPath}/resources/userResources/img/prNkenlifack.jpg" alt="" class="img-thumbnail img-circle" />
-              </div>
-            </div>
-            <div class="pm-staff-profile-details text-center">
-              <p class="pm-staff-profile-name">Pr Marcellin NKENLIFACK</p>
-              <p class="pm-staff-profile-title">Chef de Département</p>
+				<c:forEach items="${teachers}" var="i">
+					<div class="col-lg-4 col-md-4 col-sm-4">
+						<div class="pm-staff-profile-container">
+							<div class="pm-staff-profile-image-wrapper text-center">
+								<div class="pm-staff-profile-image">
+									<img
+										src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
+										alt="" class="img-thumbnail img-circle" />
+								</div>
+							</div>
+							<div class="pm-staff-profile-details text-center">
+								<p class="pm-staff-profile-name">${i.lastName }</p>
+								<p class="pm-staff-profile-title">${i.grade }</p>
 
-              <p class="pm-staff-profile-bio"></p>
-            	<p>
-             <a href="${pageContext.request.contextPath}/informationTeacher"> <button name="submit" type="submit" class="btn btn-block btn-submit">
-            Voir sa page personnelle <i class="fa fa-arrow-right"></i></button> </a>
-          </p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-lg-4 col-md-4 col-sm-4">
-          <div class="pm-staff-profile-container">
-            <div class="pm-staff-profile-image-wrapper text-center">
-              <div class="pm-staff-profile-image">
-                <img src="${pageContext.request.contextPath}/resources/userResources/img/prTadmon.jpg" alt="" class="img-thumbnail img-circle" />
-              </div>
-            </div>
-            <div class="pm-staff-profile-details text-center">
-              <p class="pm-staff-profile-name">Pr Calvin Tadmon</p>
-              <p class="pm-staff-profile-title">enseignant d'analyse</p>
+								<p class="pm-staff-profile-bio"></p>
+								<p>
+									<a
+										href="${pageContext.request.contextPath}/viewPersonalPage?idTeacher=<c:out value="${i.idTeacher }"></c:out>">
+										<button name="submit" type="submit"
+											class="btn btn-block btn-submit">
+											Voir sa page personnelle <i class="fa fa-arrow-right"></i>
+										</button>
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
 
-              <p class="pm-staff-profile-bio"></p>
-            	<p>
-            <a href="${pageContext.request.contextPath}/resources/informationTeacher"> <button name="submit" type="submit" class="btn btn-block btn-submit">
-            Voir sa page personnelle <i class="fa fa-arrow-right"></i></button> </a>
-          </p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-lg-4 col-md-4 col-sm-4">
-          <div class="pm-staff-profile-container">
-            <div class="pm-staff-profile-image-wrapper text-center">
-              <div class="pm-staff-profile-image">
-                <img src="${pageContext.request.contextPath}/resources/userResources/img/mrFoko1.jpg" alt="" class="img-thumbnail img-circle" />
-              </div>
-            </div>
-            <div class="pm-staff-profile-details text-center">
-              <p class="pm-staff-profile-name">Miguel FOKO</p>
-              <p class="pm-staff-profile-title">enseignant d'informatique</p>
 
-              <p class="pm-staff-profile-bio"> </p>
-            	<p>
-            <a href="${pageContext.request.contextPath}/resources/informationTeacher"> <button name="submit" type="submit" class="btn btn-block btn-submit">
-            Voir sa page personnelle <i class="fa fa-arrow-right"></i></button> </a>
-          </p>
-            </div>
-          </div>
-        </div>
-      </div>
+			</div>
     </div>
   </section>
   <!--/ Faculity member-->
