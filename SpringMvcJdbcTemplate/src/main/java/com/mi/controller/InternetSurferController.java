@@ -230,7 +230,43 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 				
 				return "viewPersonalPage";
 			}
+			// masterAlgebra
+			@RequestMapping(value = "/masterAlgebra", method = RequestMethod.GET)
+			public String masterAlgebra(Model model) {
+				System.out.println("masterAlgebra get");
+				model.addAttribute("error", "");
 
+				return "masterAlgebra";
+			}
+				
+				// masterAnalysis
+				@RequestMapping(value = "/masterAnalysis", method = RequestMethod.GET)
+				public String masterAnalysis(Model model) {
+					System.out.println("masterAnalysis get");
+					model.addAttribute("error", "");
 
+					return "masterAnalysis";
+
+				}
+				
+				// masterRsd
+				@RequestMapping(value = "/masterRsd", method = RequestMethod.GET)
+				public String masterRsd(Model model) {
+					System.out.println("masterRsd get");
+					model.addAttribute("error", "");
+
+					return "masterRsd";
+
+				}
+				
+				// masterRsd
+				@RequestMapping(value = "/licenceMi", method = RequestMethod.GET)
+				public String licenceMi(Model model) {
+					System.out.println("licenceMi get");
+					model.addAttribute("error", "");
+
+					return "licenceMi";
+
+				}
 
 }
