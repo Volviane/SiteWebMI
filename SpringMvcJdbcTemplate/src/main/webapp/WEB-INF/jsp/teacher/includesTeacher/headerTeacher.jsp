@@ -43,7 +43,6 @@
 								</ul>
 							</li>
 							<li><a class="page-scroll" href="${pageContext.request.contextPath}/formation">Formations</a></li>
-							<li><a class="page-scroll" href="${pageContext.request.contextPath}/actualité">actualité</a></li>
 							<li><a class="page-scroll" href="${pageContext.request.contextPath}/contact">Contact</a></li>
 							<li><a href="${pageContext.request.contextPath}/logoutTeacher">Se deconnecter</a></li>
 						</ul>

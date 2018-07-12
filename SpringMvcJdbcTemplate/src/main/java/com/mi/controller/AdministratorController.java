@@ -903,7 +903,7 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		}
 
-		return "createTeacher";
+		return "admin/createTeacher";
 	}
 	@RequestMapping(value = { "/teacherList" }, method = RequestMethod.GET)
 	public String teacherList(Model model, HttpServletRequest req) {
@@ -1171,7 +1171,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		List<Option> listOfOption = optionRepository.findAll();
 
 		if (listOfOption.isEmpty() ) {
-			model.addAttribute("error", "error : liste vide");
+			model.addAttribute("error", error);
 		}
 		model.addAttribute("options", listOfOption);
 

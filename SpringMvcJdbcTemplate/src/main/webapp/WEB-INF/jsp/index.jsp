@@ -282,8 +282,7 @@
 								</div>
 							</div>
 							<div class="pm-staff-profile-details text-center">
-								<p class="pm-staff-profile-name">${i.lastName }</p>
-								<p class="pm-staff-profile-title">${i.grade }</p>
+								<p class="pm-staff-profile-name">${i.firstName }</p>
 
 								<p class="pm-staff-profile-bio"></p>
 								<p>
