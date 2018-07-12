@@ -1,10 +1,12 @@
 package com.mi.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -22,6 +25,7 @@ import com.mi.model.Grade;
 import com.mi.model.Jury;
 import com.mi.model.ResearchDomain;
 import com.mi.model.Result;
+import com.mi.model.Student;
 import com.mi.model.Teacher;
 import com.mi.repositories.AcademicYearRepository;
 import com.mi.repositories.AdministratorRepository;
@@ -230,6 +234,115 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 				
 				return "viewPersonalPage";
 			}
+
+			
+			
+			//Connexion de l'enseignant et de l'etudiant
+			
+			@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.GET)
+			public String loginFormGet(Model model,HttpServletRequest req) {
+				System.out.println("connexion  page get");
+				model.addAttribute("errorLogin", "");
+				model.addAttribute("errorPassword", "");
+				return "index";
+			}
+
+			@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.POST)
+			public String loginStudentPost(Model model,@ModelAttribute("loginAdmin") Teacher admin, HttpServletRequest req,HttpServletResponse resp) throws IOException {
+				System.out.println("connexion  page post");
+
+				String login = req.getParameter("login");
+				String password = req.getParameter("password");
+				int etatEtudiant=0;
+				int etatEnseignant=0;
+				
+				System.out.println("-------------------------------");
+				System.out.println(login);
+				System.out.println("-------------------------------");
+
+				System.out.println("-------------------------------");
+				System.out.println(password);
+				// recherche du membre dans la base de donnees
+				//try {
+					//System.out.println("c'est le try");
+				//	Student student =  studentRepository.findByLogin(login);
+				//	Teacher teacher = teachersRepository.findByLogin(login);
+					//System.out.println(student);
+					
+					if(studentRepository.findByLogin(login)==null){
+						etatEtudiant=1;
+					}else{
+						etatEtudiant=11;
+					}
+					if(teachersRepository.findByLogin(login)==null){
+						etatEnseignant=2;
+					}else{
+						etatEnseignant=22;
+					}
+					
+					
+					if(etatEtudiant==11){
+						Student student =  studentRepository.findByLogin(login);
+						String pass = cryptographe(password);
+						System.out.println(pass);
+						if (pass.equals(student.getPasswordSec())) {
+							System.out.println("deuxieme if c'est moi de l'etudiant");
+							
+							HttpSession session = req.getSession();
+							session.setAttribute( "student", student );
+							
+							Student studentName = (Student) session.getAttribute( "student" );
+							
+							System.out.println("je suis en session avec http et mon nom est : " + studentName.getLogin());
+							
+							model.addAttribute("students", "Vous etes connectez a votre espace personne. M./Mne." + studentName.getLogin());
+							 
+							resp.sendRedirect("homeStudent");
+							return "student/homeStudent";
+
+						} else {
+							logger.error("Teacher with password {} not found.", password);
+							model.addAttribute("errorPassword", "Mot de passe mal saisi.");
+							req.setAttribute("errorPassword", "Mot de passe mal saisi.");
+						}
+						
+					}
+					
+					if(etatEnseignant==22){
+						Teacher teacher = teachersRepository.findByLogin(login);
+						String pass = cryptographe(password);
+						System.out.println(pass);
+						if (pass.equals(teacher.getPasswordSec())) {
+							System.out.println("deuxieme if de l'enseignant");
+							
+							HttpSession session = req.getSession();
+							session.setAttribute( "teacher", teacher );
+							
+							Teacher teacherName = (Teacher) session.getAttribute( "teacher" );
+							
+							System.out.println("je suis en session avec http et mon nom est : " + teacherName.getLogin());
+							
+							model.addAttribute("teachers", "Vous etes connectez a votre espace personne. M. " + teacherName.getLogin());
+							model.addAttribute("teachs", teacher);
+							
+							resp.sendRedirect("homeTeacher");
+							return "teacher/homeTeacher";
+
+						} else {
+							logger.error("Teacher with password {} not found.", password);
+							model.addAttribute("errorPassword", "Mot de passe mal saisi.");
+							req.setAttribute("errorPassword", "Mot de passe mal saisi.");
+						}
+					}
+					
+					if(etatEtudiant==1 && etatEnseignant==2){
+						model.addAttribute("errorLogin", "login mal saisi. l'utilisateur " + login + " n'existe pas");
+						req.setAttribute("errorLogin", "login mal saisi, l'utilisateur "+ login + "n'existe pas");
+					}
+					
+				return "index";
+			}
+
 			// masterAlgebra
 			@RequestMapping(value = "/masterAlgebra", method = RequestMethod.GET)
 			public String masterAlgebra(Model model) {
@@ -244,6 +357,7 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 				public String masterAnalysis(Model model) {
 					System.out.println("masterAnalysis get");
 					model.addAttribute("error", "");
+
 
 					return "masterAnalysis";
 
