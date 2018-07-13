@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<c:if test="${teacher==null}">
-			<c:redirect  url="/"></c:redirect>
-	     </c:if>
+<%-- 	<c:if test="${teacher==null}"> --%>
+<%-- 			<c:redirect  url="/"></c:redirect> --%>
+<%-- 	     </c:if> --%>
 
 <!DOCTYPE html>
 <html>

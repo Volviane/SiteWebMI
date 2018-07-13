@@ -21,7 +21,6 @@
 							<ul class="nav nav-pills nav-stacked">
 								<li><a href="informationTeacher">Consulter mes Informations personnelles</a></li>
 								<li><a href="updateParameterTeacher">Modifier mes Paramètres</a></li>
-								<li><a href="editProfil">Editer mon profil</a></li>
 							</ul>
 						</div>
 					</div>
@@ -39,14 +38,10 @@
 						role="tabpanel" aria-labelledby="headingTwo">
 						<div class="panel-body" style="padding: 0px; padding-left: 12px">
 							<ul id="item2" class="nav nav-pills nav-stacked">
-								<li><a href="addDocument">Nouveau document</a></li>
-								<li><a href="updateDocument">Modifier Document</a></li>
-								<li><a href="">Mes Articles</a></li>
-								<li><a href="">Mes Cours</a></li>
-								<li><a href="">Mes Fiches de TD</a></li>
-								<li><a href="">Mes Epreuves</a></li>
-								<li><a href="">Mes corrections</a></li>
-								<li><a href="">Mes Livres </a></li>
+								<li><a href="addArticle">Nouveau document</a></li>
+								<li><a href="updateArticle">Modifier Document</a></li>
+								<li><a href="">Articles</a></li>
+								<li><a href="">Memoires</a></li>
 							</ul>
 						</div>
 					</div>
