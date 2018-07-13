@@ -91,7 +91,7 @@
  	<!-- FIN DEFINITION DES STYLES -->
  	
 <style type="text/css">
-	.space{ padding-top: 100px;}
+	.space{ padding-top: 10px;}
 	.spaces{ height: 3000px;}
 </style>
 
