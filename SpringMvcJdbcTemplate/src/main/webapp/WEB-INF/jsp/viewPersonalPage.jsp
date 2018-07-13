@@ -121,7 +121,7 @@
 						src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
 						alt="" class="img-thumbnail img-circle media-object" />
 						<h4 class="media-heading"><c:out value="${teachers.firstName }" />  <c:out value="${teachers.lastName }" /></h4>
-					   <hr> <label> Grade:  </label><h7>   <c:out value="${teachers.grade }" /></h7> 
+					   <hr> <label> Grade:  </label><h7>   <c:out value="${teachers.grade.gradeName }" /></h7> 
 					    <hr> <label> Adresse email:  </label><h7>   <c:out value="${teachers.emailAdress }" /></h7>  <hr> 
 					    <hr>  <label>télephone:  </label><h7>   <c:out value="${teachers.phoneNumber }" /></h7> 
 					    <hr>  <label>sexe:  </label><h7>   <c:out value="${teachers.sexe }" /></h7> 
