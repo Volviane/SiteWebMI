@@ -41,7 +41,15 @@
 									<li><a href="${pageContext.request.contextPath}/">organigramme</a></li>
 								</ul>
 							</li>
-							<li><a class="page-scroll" href="${pageContext.request.contextPath}/formation">Formations</a></li>
+							<li class="dropdown">
+								<a class="page-scroll" data-toggle="dropdown" href="#about">Formations<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="${pageContext.request.contextPath}/licenceMi"> licence en maths-info</a></li>
+									<li><a href="${pageContext.request.contextPath}/masterAlgebra">master en algère</a></li>
+									<li><a href="${pageContext.request.contextPath}/masterAnalysis"> master en analyse</a></li>
+									<li><a href="${pageContext.request.contextPath}/masterRsd">master en RSD</a></li>
+								</ul>
+							</li>
 							<li><a class="page-scroll" href="${pageContext.request.contextPath}/contact">Contact</a></li>
 							<li><a href="${pageContext.request.contextPath}/logoutTeacher">Se deconnecter</a></li>
 						</ul>
