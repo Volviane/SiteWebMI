@@ -68,6 +68,13 @@
                         <hr />
                   <input type="submit" value="ouvrir" class="btn btn-info">
                  </form>
+                 <hr />
+                          <c:if test="${error!=null}">
+							<h6 class="alert"> <font color="red">${error}</font></h1>
+			       		</c:if>
+			        	<c:if test="${error==null}">
+							<h6 class="alert alert-success"> <font color="green">ouverture reussi</font></h1>
+			       		</c:if>
                 </div>
            </div>
       </section>

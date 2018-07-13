@@ -71,10 +71,10 @@
             </form>
             <hr />
             <c:if test="${error!=null}">
-							<h6 class=""> <font color="red">${error}</font></h1>
+							<h6 class="alert"> <font color="red">${error}</font></h1>
 			       		</c:if>
 			        	<c:if test="${error==null}">
-							<h6 class=""> <font color="green">creation reussie</font></h1>
+							<h6 class="alert alert-success"> <font color="green">creation reussie</font></h1>
 			       		</c:if>
               <small> j'ai déja un compte </small><a href="${pageContext.request.contextPath}/connectionAdministrator" class="signup">se connecter</a>
           </div>

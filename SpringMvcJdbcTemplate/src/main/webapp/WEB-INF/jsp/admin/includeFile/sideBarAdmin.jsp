@@ -54,13 +54,13 @@
 <%--                 <li><a href="${pageContext.request.contextPath}/addGrade">Modifier grade </a></li> --%>
 <!--               </ul> -->
 <!--             </li> -->
-            <li><a href="#item4" aria-expanded="false" data-toggle="collapse"> <i class=""></i>Publications </a>
-              <ul id="item4" class="collapse list-unstyled ">
-                <li><a href="${pageContext.request.contextPath}/postEvent">Publier un évènement </a></li>
-                <li><a href="${pageContext.request.contextPath}/postNews">Publier communiqué</a></li>
+<!--             <li><a href="#item4" aria-expanded="false" data-toggle="collapse"> <i class=""></i>Publications </a> -->
+<!--               <ul id="item4" class="collapse list-unstyled "> -->
+<%--                 <li><a href="${pageContext.request.contextPath}/postEvent">Publier un évènement </a></li> --%>
+<%--                 <li><a href="${pageContext.request.contextPath}/postNews">Publier communiqué</a></li> --%>
                 
-              </ul>
-            </li>
+<!--               </ul> -->
+<!--             </li> -->
           </ul>
         </div>
       </div>
