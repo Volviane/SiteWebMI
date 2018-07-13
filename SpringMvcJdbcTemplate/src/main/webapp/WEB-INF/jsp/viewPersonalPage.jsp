@@ -121,11 +121,12 @@
 						src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
 						alt="" class="img-thumbnail img-circle media-object" />
 						<h4 class="media-heading"><c:out value="${teachers.firstName }" />  <c:out value="${teachers.lastName }" /></h4>
-					   <hr> <label> Grade:  </label><h7>   <c:out value="${teachers.grade.gradeName }" /></h7> 
-					    <hr> <label> Adresse email:  </label><h7>   <c:out value="${teachers.emailAdress }" /></h7>  <hr> 
+					   <hr> <label> photo:  </label><h7>   <c:out value="${teachers.pictureName }" /></h7> <hr> 
+					    <label> Grade:  </label><h7>   <c:out value="${teachers.grade.gradeName }" /></h7> <hr> 
+					    <label> Adresse email:  </label><h7>   <c:out value="${teachers.emailAdress }" /></h7>  
 					    <hr>  <label>télephone:  </label><h7>   <c:out value="${teachers.phoneNumber }" /></h7> 
 					    <hr>  <label>sexe:  </label><h7>   <c:out value="${teachers.sexe }" /></h7> 
-					    <hr>  <label>Date de naissance:  </label><h7>   <c:out value="${teachers.birthDate }" /></h7><hr>
+					    <hr>  <label>Date de naissance:  </label><h7>   <c:out value="${teachers.birthDate }" /></h7>
 					    <hr>  <label>Lieu de naissance:  </label><h7>   <c:out value="${teachers.birthPlace }" /></h7>
 					    <hr>  <label>CV:  </label><h7>   <c:out value="${teachers.cv }" /></h7>
 					    <hr>  <label>Domaines de Recherche:  </label><h7>   <c:out value="${researchDomains.domainLabel }" /></h7>

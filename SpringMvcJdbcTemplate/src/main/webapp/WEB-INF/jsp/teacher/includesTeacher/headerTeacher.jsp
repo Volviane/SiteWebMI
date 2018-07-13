@@ -37,7 +37,6 @@
 							<li class="dropdown">
 								<a class="page-scroll" data-toggle="dropdown" href="#about">PRESENTATION<b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a href="${pageContext.request.contextPath}/"> département de Maths-Info</a></li>
 									<li><a href="${pageContext.request.contextPath}/viewTeacherList"> enseignants du département</a></li>
 									<li><a href="${pageContext.request.contextPath}/">organigramme</a></li>
 								</ul>
