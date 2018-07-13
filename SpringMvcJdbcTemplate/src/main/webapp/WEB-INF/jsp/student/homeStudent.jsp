@@ -57,7 +57,7 @@
 					<a href="#"> <img
 						src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
 						alt="" class="img-thumbnail img-circle media-object" />
-						<h4 class="media-heading"><c:out value="${students.matricule }" /></h4>
+						<h4 class="media-heading"><c:out value="" /></h4>
 <%-- 					   <h5><c:out value="${teachs.gradeName }" /></h5> --%>
 					</a>
 				</div>

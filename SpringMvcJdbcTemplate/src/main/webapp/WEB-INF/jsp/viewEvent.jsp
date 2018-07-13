@@ -14,7 +14,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Math-Info liste des enseignants</title>
+<title>Math-Info liste des évènements</title>
 <meta name="description"
 	content="Free Bootstrap Theme by BootstrapMade.com">
 <meta name="keywords"
@@ -120,7 +120,7 @@
 					<p><c:out value="${i.eventDescription }"></c:out></p>
 					<p>
 						<a
-							href="${pageContext.request.contextPath}/registerEvent">
+							href="${pageContext.request.contextPath}/registrationStudent">
 							<button name="submit" type="submit"
 								class="btn  btn-submit">
 								s'inscrire <i class="fa"></i>

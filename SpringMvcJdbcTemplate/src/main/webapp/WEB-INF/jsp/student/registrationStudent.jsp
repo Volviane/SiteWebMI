@@ -105,64 +105,56 @@
 	<%@include file="../includes/headerUser.jsp"%>
 	<div class="container space">
 			<h4 class="page-head-line">S'ENREGISTRER A UN EVENEMENT</strong></h4>
-             <form action="<c:url value='registerEvent'/>" method="post"
-							class="well" enctype="multipart/form-data">
-							<div class="form-group">
-								<label class="">Nom de l'évènement</label>
-								<select name="eventTitle">
+			<div class="col-md-6">
+				<form action="<c:url value='registrationStudent'/>" method="post">
+				   <label>Nom de l'évènement</label> 
+							<select class="form-control" name="eventName"> 
 									<c:forEach items="${events}" var="i">
 										<option value='<c:out value="${i.eventTitle}"/>'>${i.eventTitle}</option>
 									</c:forEach>
-						       </select>  
-						 </div>
-						 <div class="form-group">
-								<label class="">Matricule</label>
-								<input id="login-username" type="text"  name="matricule" required data-msg="" class="">
- 
-						 </div>
-						<div class="form-group">
-								<label class="">Nom</label>
-								<input id="login-username" type="text"  name="firstName" required data-msg="" class="input-material">
- 
-						 </div>
-						 <div class="form-group">
-								<label class="">Prenom</label>
-								<input id="login-username" type="text"  name="lastName" required data-msg="" class="input-material">
- 
-						 </div>
-						  <div class="form-group">
-								<label class="">Cycle</label>
-								<select class="form-control" name="cycleName">
+						     </select> 
+				   <label>Matricule</label> 
+							<input type="text"  name="matricule" required data-msg="" class="form-control">
+                   <label>Email</label> 
+                           <input type="email" class="validate[required,custom[email]] form-control" name="email"  /> 
+                        
+ 					
+                    <label>Nom</label>
+                        <input type="text" class="validate[required] form-control" name="firstName"  required />
+                     <label>Prénom</label>
+                        <input type="text" class=" validate[required] form-control" name="lastName"  required />
+                     <label class="">Cycle</label>
+								<select class="form-control" name="cycleName"> 
                      				<c:forEach items="${cycles}" var="i">
                      					<option value="${i.cycleName }" ><c:out value="${i.cycleName }"></c:out></option>
                      				</c:forEach>
-                     			 </select> 
-						 </div>
-						  <div class="form-group">
-								<label class="">Option</label>
+                			    </select>
+                	 <label class="">Option</label>
 							 <select class="form-control" name="optionName">
                      			<c:forEach items="${options}" var="i">
                      				<option value="${i.optionName }" ><c:out value="${i.optionName }"></c:out></option>
                      			</c:forEach>
-                     	 </select> 
-						 </div>
-						  <div class="form-group">
-								<label class="">Niveau</label>
-							<select class="form-control" name="levelName">
+                      	     </select>
+                      <label class="">Niveau</label>
+						<select class="form-control" name="studentLevel">
                      			<c:forEach items="${levels}" var="i">
 
                      				<option value="${i.levelName }"><c:out value="${i.levelName }"></c:out></option>
 
 
                      			</c:forEach>
-                     	 </select> 
-						 </div>
-						 
-
-						<div class="form-group">
-								<input type="submit" value="s'inscrire" class="btn btn-info">
-						</div>
-						</form>
+                   	 </select> 
+                        <hr />
+					<input type="submit" value="s'inscrire" class="btn btn-info">
+               </form>
+                <hr />
+                          <c:if test="${error!=null}">
+							<h6 class="alert"> <font color="red">${error}</font></h1>
+			       		</c:if>
+			        	<c:if test="${error==null}">
+							<h6 class="alert alert-success"> <font color="green">inscription reussie</font></h1>
+			       		</c:if>
+             </div>
 	</div>
 	<!-- DEBUT DE L'ASIDE -->
 		<%@include file="../includes/aside.jsp"%>
