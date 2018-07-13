@@ -14,7 +14,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Math-Info liste des enseignants</title>
+<title>Math-Info s'enregistrer à un évènement</title>
 <meta name="description"
 	content="Free Bootstrap Theme by BootstrapMade.com">
 <meta name="keywords"
@@ -102,45 +102,75 @@
 
 
 	<!-- DEBUT DU HEADER -->
-	<c:import url="includes/headerUser.jsp"></c:import>
-	<!-- FIN DU HEADER-->
+	<%@include file="../includes/headerUser.jsp"%>
 	<div class="container space">
-			<h4 class="page-head-line">LISTE DES EVENEMENTS</strong></h4>
-       <c:forEach items="${events}" var="i" varStatus="pos">
-		<div class="media">
-		
-			<div class="media-left">
-				<h4> <c:out value="${i.eventTitle }"></c:out> </h4>
-				
-			</div>
-				<div class="media-body">
-					<h6 class="media-heading">
-						du <b> <c:out value="${i.eventBeginDate }"></c:out></b> au <b> <c:out value="${i.eventEndDate }"></c:out> </b>
-					</h6>
-					<p><c:out value="${i.eventDescription }"></c:out></p>
-					<p>
-						<a
-							href="${pageContext.request.contextPath}/registerEvent">
-							<button name="submit" type="submit"
-								class="btn  btn-submit">
-								s'inscrire <i class="fa"></i>
-							</button>
-						</a>
-					</p>
-				</div>
+			<h4 class="page-head-line">S'ENREGISTRER A UN EVENEMENT</strong></h4>
+             <form action="<c:url value='registerEvent'/>" method="post"
+							class="well" enctype="multipart/form-data">
+							<div class="form-group">
+								<label class="">Nom de l'évènement</label>
+								<select name="eventTitle">
+									<c:forEach items="${events}" var="i">
+										<option value='<c:out value="${i.eventTitle}"/>'>${i.eventTitle}</option>
+									</c:forEach>
+						       </select>  
+						 </div>
+						 <div class="form-group">
+								<label class="">Matricule</label>
+								<input id="login-username" type="text"  name="matricule" required data-msg="" class="">
+ 
+						 </div>
+						<div class="form-group">
+								<label class="">Nom</label>
+								<input id="login-username" type="text"  name="firstName" required data-msg="" class="input-material">
+ 
+						 </div>
+						 <div class="form-group">
+								<label class="">Prenom</label>
+								<input id="login-username" type="text"  name="lastName" required data-msg="" class="input-material">
+ 
+						 </div>
+						  <div class="form-group">
+								<label class="">Cycle</label>
+								<select class="form-control" name="cycleName">
+                     				<c:forEach items="${cycles}" var="i">
+                     					<option value="${i.cycleName }" ><c:out value="${i.cycleName }"></c:out></option>
+                     				</c:forEach>
+                     			 </select> 
+						 </div>
+						  <div class="form-group">
+								<label class="">Option</label>
+							 <select class="form-control" name="optionName">
+                     			<c:forEach items="${options}" var="i">
+                     				<option value="${i.optionName }" ><c:out value="${i.optionName }"></c:out></option>
+                     			</c:forEach>
+                     	 </select> 
+						 </div>
+						  <div class="form-group">
+								<label class="">Niveau</label>
+							<select class="form-control" name="levelName">
+                     			<c:forEach items="${levels}" var="i">
 
-			</div>
-			<hr>
-	  </c:forEach>
+                     				<option value="${i.levelName }"><c:out value="${i.levelName }"></c:out></option>
+
+
+                     			</c:forEach>
+                     	 </select> 
+						 </div>
+						 
+
+						<div class="form-group">
+								<input type="submit" value="s'inscrire" class="btn btn-info">
+						</div>
+						</form>
 	</div>
 	<!-- DEBUT DE L'ASIDE -->
-		<c:import url="includes/aside.jsp"></c:import>
+		<%@include file="../includes/aside.jsp"%>
 		<!-- FIN DE L'ASIDE -->
-	
 <div class="spaces"></div>
 
 	<!--Footer-->
-	 <%@include file="includes/footer.jsp"%>
+	 <%@include file="../includes/footer.jsp"%>
 	<!--/ Footer-->
 	
 	<!-- INCLUSION DES JS -->

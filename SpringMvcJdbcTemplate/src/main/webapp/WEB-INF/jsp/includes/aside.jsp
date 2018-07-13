@@ -17,7 +17,7 @@
 	<hr>
 	<section>
 		
-		<hr>
+		
 		<a href="${pageContext.request.contextPath}/viewResult" class="btn btn-warning">Voir tous les résultats</a>
 	</section>
 	<hr>

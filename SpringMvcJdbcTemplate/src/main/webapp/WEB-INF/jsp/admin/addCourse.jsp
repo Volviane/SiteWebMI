@@ -70,7 +70,6 @@
 
                      				<option value="${i.levelName }"><c:out value="${i.levelName }"></c:out></option>
 
-                     				<option value="${i.levelName }" ><c:out value="${i.levelName }"></c:out></option>
 
                      			</c:forEach>
                      	 </select>
