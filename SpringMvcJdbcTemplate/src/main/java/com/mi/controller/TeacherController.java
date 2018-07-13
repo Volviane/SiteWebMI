@@ -146,13 +146,13 @@ public class TeacherController {
 		System.out.println("home enseignant get");
 		
 		String login = req.getParameter("login");
-		String coption = req.getParameter("o");
-		String option ="mail";
-		if(option.equals(decryptographe(coption))){
+//		String coption = req.getParameter("o");
+//		String option ="mail";
+//		if(option.equals(decryptographe(coption))){
 			Teacher teacher = teachersRepository.findByLogin(login);
 			HttpSession session = req.getSession();
 			session.setAttribute( "teacher", teacher );
-		}
+//		}
 		
 		model.addAttribute("error", "");
 

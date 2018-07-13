@@ -48,7 +48,7 @@
 							<td>
 							<div class="form-group">
 								<label for="lastName" class="">Nom</label>
-								<input class="form-control" id="lastName" name="lastName" type="text" value="<c:out value="${teacher.lastName}"/>" onblur="setEditableOff('lastName')" readonly>
+								<input class="form-control" id="lastName" name="lastName" type="text" value="<c:out value="${teacher.lastName}"/>" onblur="setEditableOff('lastName')">
 							</div>
 							</td>
 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('lastName')"> Modifier</a> </td>
@@ -57,7 +57,7 @@
 							<td>
 							<div class="form-group">
 								<label for="firstName" class="">Prenom</label>
-								<input class="form-control" id="firstName" name="firstName" type="text" value="<c:out value="${teacher.lastName}"/>" onblur="setEditableOff('firstName')" readonly>
+								<input class="form-control" id="firstName" name="firstName" type="text" value="<c:out value="${teacher.lastName}"/>" onblur="setEditableOff('firstName')" >
 							</div>
 							</td>
 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('firstName')"></a> </td>
@@ -72,7 +72,7 @@
 							<td>
 							<div class="form-group">
 								<label for="emailAdress" class="">Adresse mail</label>
-								<input class="form-control" id="emailAdress" name="emailAdress" type="text" value="<c:out value="${teacher.emailAdress}"/>" onblur="setEditableOff('emailAdress')" readonly>
+								<input class="form-control" id="emailAdress" name="emailAdress" type="text" value="<c:out value="${teacher.emailAdress}"/>" onblur="setEditableOff('emailAdress')" >
 							</div>
 							</td>
 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('emailAdress')"></a> </td>
@@ -92,12 +92,12 @@
 								<label for="sexe" >Sexe</label>
 								<div class="radio">
 									<label for="male" class="radio-inline">
-									    <input type="radio" id="male" name="sex" value="Homme" checked disabled>
+									    <input type="radio" id="male" name="sex" value="Homme" checked>
 									    Homme 
 									  </label>
 									  
 								 	<label for="female" class="radio-inline">
-									    <input type="radio" id="female" name="sex" value="Femme" disabled>
+									    <input type="radio" id="female" name="sex" value="Femme">
 									   	Femme
 								    </label>
 								</div>
@@ -121,7 +121,7 @@
 							<td>
 							<div class="form-group">
 								<label for="birthPlace" class="">Lieu de Naissance</label>
-								<input class="form-control" id="birthDate" name="birthPlace" type="text" value="<c:out value="${teacher.birthPlace}"/>" onblur="setEditableOff('birthPlace')" readonly>
+								<input class="form-control" id="birthDate" name="birthPlace" type="text" value="<c:out value="${teacher.birthPlace}"/>" onblur="setEditableOff('birthPlace')" >
 							</div>
 							</td>
 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('birthPlace')"></a> </td>
@@ -131,7 +131,7 @@
 							<td>
 							<div class="form-group">
 								<label for="grade" class="">Grade</label>
-								<select name="grade" class="form-control" id="grade" onblur="setEditableOff('grade')" readonly >
+								<select name="grade" class="form-control" id="grade" onblur="setEditableOff('grade')"  >
 									<option value='<c:out value="${teacher.researchDomain.domainLabel}"></c:out>' selected></option>
 									<c:forEach items="${grades }" var="grade">
 										<option value='<c:out value="${grade.gradeName}"/>'><c:out value="${grade.gradeName}"/></option>
@@ -151,7 +151,7 @@
 							<td>
 							<div class="form-group">
 								<label for="domainLabel" class="">Domaine de Recherche</label>
-								<select name="domainLabel" class="form-control" id="domainLabel" onblur="setEditableOff('domainLabel')" readonly >
+								<select name="domainLabel" class="form-control" id="domainLabel" onblur="setEditableOff('domainLabel')"  >
 									<option value='<c:out value="${teacher.researchDomain.domainLabel}"></c:out>' selected></option>
 									<c:forEach items="${domains }" var="dom">
 										<option value='<c:out value="${dom.domainLabel}"/>'><c:out value="${dom.domainLabel}"/></option>
@@ -170,7 +170,7 @@
 							<td>
 								<div class="form-group">
 									<label	for="teacherDescription" class="">Brève descripton de Vous</label>
-									<textarea class="form-control" name="teacherDescription" id="teacherDescription" rows="5" cols="30" onblur="setEditableOff('teacherDescription')" readonly></textarea>
+									<textarea class="form-control" name="teacherDescription" id="teacherDescription" rows="5" cols="30" onblur="setEditableOff('teacherDescription')" ></textarea>
 								</div>
 							</td>
 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('teacherDescription')"></a> </td>
@@ -179,7 +179,7 @@
 							<td>
 							<div class="form-group">
 								<label for="photo" class="">Choisir une photo</label>
-								<input class="form-control" id="photo" name="files" type="file" value="<c:out value="${teacher.pictureName}"/>" onblur="setEditableOff('photo')" readonly>
+								<input class="form-control" id="photo" name="files" type="file" value="<c:out value="${teacher.pictureName}"/>" onblur="setEditableOff('photo')" >
 							</div>
 							</td>
 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('photo')"></a> </td>

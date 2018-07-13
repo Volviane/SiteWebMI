@@ -84,11 +84,11 @@
                         <hr />
                         <input type="submit" value="Enregistrer" class="btn btn-info">
                         <hr />
-                          <c:if test="${error!=null}">
-							<h6 class=""> <font color="red">${error}</font></h1>
+                         <c:if test="${error!=null}">
+							<h6 class=""> <font color="red">${error}</font></h6>
 			       		</c:if>
 			        	<c:if test="${error==null}">
-							<h6 class=""> <font color="green">enregistrement reussi</font></h1>
+							<h6 class=""> <font color="green">enregistrement reussi</font></h6>
 			       		</c:if>
                 </form>
 

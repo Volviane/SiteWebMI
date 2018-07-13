@@ -105,33 +105,13 @@
 	<c:import url="includes/headerUser.jsp"></c:import>
 	<!-- FIN DU HEADER-->
 	<div class="container space">
-			<h4 class="page-head-line">LISTE DES ENSEIGNANTS</strong></h4>
-       <c:forEach items="${teachers}" var="i" varStatus="pos">
-		<div class="media">
-		
-			<div class="media-left">
-				<img src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG" alt="" class="img-thumbnail img-circle media-object" style="width: 60px">
-			</div>
-				<div class="media-body">
-					<h4 class="media-heading">
-						<c:out value="${i.firstName }"></c:out>
-					</h4>
-					<p>je suis le teacher</p>
-					<p>
-					  <div class="col-lg-4" >
-						<a
-							href="${pageContext.request.contextPath}/viewPersonalPage?idTeacher=<c:out value="${i.idTeacher }"></c:out>">
-							<button name="submit" type="submit"
-								class="btn btn-block btn-submit">
-								Voir page personnelle <i class="fa fa-arrow-right"></i>
-							</button>
-						</a>
-					 </div>	
-					</p>
-				</div>
-
-			</div>
-	  </c:forEach>
+		<div
+			style="clear: both; display: block; margin-top: 88px; height: 60px;">
+			<ol class="breadcrumb">
+				<li><a href="homeTeacher" class="active gras">Espace
+						Personnel</a></li>
+			</ol>
+		</div>
 	</div>
 	<!-- DEBUT DE L'ASIDE -->
 		<c:import url="includes/aside.jsp"></c:import>

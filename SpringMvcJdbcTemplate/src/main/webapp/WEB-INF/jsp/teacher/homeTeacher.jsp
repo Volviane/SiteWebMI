@@ -22,7 +22,7 @@
 <meta name="keywords"
 	content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 	<!-- DEFINITION DES STYLES CSS -->
- 	<c:import url="includesTeacher/teacherCSS.jsp"></c:import>
+ 	<%@include file="includesTeacher/teacherCSS.jsp"%>
  	<!-- FIN DEFINITION DES STYLES -->
  	
 <style type="text/css">
@@ -35,7 +35,7 @@
 
 
 	<!-- DEBUT DU HEADER -->
-	<c:import url="includesTeacher/headerTeacher.jsp"></c:import>
+	<%@include file="includesTeacher/headerTeacher.jsp"%>
 	<!-- FIN DU HEADER-->
 	<div
 		style="clear: both; display: block; margin-top: 88px; height: 60px;">
@@ -45,7 +45,8 @@
 		</div>
 	
 	<!-- DEBUT DU MENU -->
-		<c:import url="includesTeacher/teacherMenu.jsp"></c:import>
+		<%@include file="includesTeacher/teacherMenu.jsp"%>
+		
     <!-- FIN DU MENU -->
 
 
@@ -69,7 +70,7 @@
 		</div>
 
 		<!-- DEBUT DE L'ASIDE -->
-		<c:import url="../includes/aside.jsp"></c:import>
+		<%@include file="../includes/aside.jsp"%>
 		<!-- FIN DE L'ASIDE -->
 	
 <div
@@ -77,11 +78,12 @@
 	
 
 	<!--Footer-->
-	<c:import url="../includes/footer.jsp"></c:import>
+	<%@include file="../includes/footer.jsp"%>
 	<!--/ Footer-->
 	
 	<!-- INCLUSION DES JS -->
-	<c:import url="includesTeacher/teacherJS.jsp"></c:import>
+	
+	<%@include file="includesTeacher/teacherJS.jsp"%>
 	<!-- FIN INCLUSION DES JS -->
 </body>
 
