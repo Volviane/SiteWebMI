@@ -237,27 +237,36 @@ public class TeacherController {
 		HttpSession session = req.getSession();
 		Teacher teacher =  (Teacher) session.getAttribute( "teacher" );
 
+		System.out.println(login);
+		System.out.println(password);
+		System.out.println("=======================");
 		System.out.println(newlogin);
 		System.out.println(newpassword);
+		
+		System.out.println(teacher.getLogin());
 
-		if(teacher.getLogin()==login){
-			
+		if(teacher.getLogin().equals(login)){
+			System.out.println("=======================111111111111");
 			teacher.setLogin(newlogin);
-			teacher.setPassword(newpassword);
+			teacher.setPassword(bCryptPasswordEncoder.encode(newpassword));
+			teacher.setPasswordSec(cryptographe(newpassword));
 			
-			if (teacher.getPasswordSec()==cryptographe(password)){
-			
+			System.out.println("=======================22222222222222");
+			if (decryptographe(teacher.getPasswordSec()).equals(password)){
+				System.out.println("=======================2222222233333333333333222222");
 			teachersRepository.save(teacher);
+			System.out.println("=======================33333333333333");
+			model.addAttribute("teachers", "vos parametres ont ete modifies");
+
 			}else{
 				model.addAttribute("errorPassword", "Veuillez entrez votre ancien mot de passe");
 				
 			}
 		}else{
-			model.addAttribute("errorLogin", "Veuillez entrez votre ancienn login");
+			model.addAttribute("errorLogin", "Veuillez entrez votre ancien login");
 		}
 
-		model.addAttribute("teachers", "vos parametres ont ete modifies");
-
+		
 		return "teacher/updateParameterTeacher";
 	}
 
@@ -544,11 +553,13 @@ public class TeacherController {
 	
 	// se deconnecter
 		@RequestMapping(value = "/logoutTeacher", method = RequestMethod.GET)
-		public String logoutPost(HttpServletRequest request, HttpServletResponse response, Model model) {
+		public String logoutPost(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 
 			  HttpSession session = request.getSession();
 			  session.setAttribute( "teacher", null );
 			  model.addAttribute("teachers", "la session a ete supprimme");
+			  
+			  response.sendRedirect("index");
 
 			return "index";
 		}
