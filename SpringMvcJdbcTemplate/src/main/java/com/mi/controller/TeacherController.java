@@ -161,7 +161,7 @@ public class TeacherController {
 
 
 
-	//connexion d'un enseignant
+	/*//connexion d'un enseignant
 	@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.GET)
 	public String loginForm(Model model,HttpServletRequest req) {
 		System.out.println("connexion  d'un enseignant get");
@@ -230,7 +230,7 @@ public class TeacherController {
 		//return "redirect:/TeacherHome";
 		return "index";
 	}
-
+*/
 	//modifier les parametres de connexion get method
 	@RequestMapping(value = { "/updateParameterTeacher" }, method = RequestMethod.GET)
 	public String updateParameterGet(Model model,HttpServletRequest req) {

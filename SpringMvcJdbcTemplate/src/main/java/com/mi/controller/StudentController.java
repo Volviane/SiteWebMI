@@ -468,7 +468,7 @@ public class StudentController {
 			  session.setAttribute( "student", null );
 			  model.addAttribute("students", "la session a ete supprimme");
 
-			return "student/loginStudent";
+			return "index";
 		}
 		
 		

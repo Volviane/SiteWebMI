@@ -50,7 +50,6 @@
 									<li><a href="${pageContext.request.contextPath}/masterRsd">master en RSD</a></li>
 								</ul>
 							</li>
-							<li><a class="page-scroll" href="${pageContext.request.contextPath}/actualité">actualité</a></li>
 							<li><a class="page-scroll" href="${pageContext.request.contextPath}/contact">Contact</a></li>
 							<li><a href="#" data-target="#login" data-toggle="modal">Se connecter</a></li>
 						</ul>

@@ -51,7 +51,7 @@
 								</ul>
 							</li>
 							<li><a class="page-scroll" href="${pageContext.request.contextPath}/contact">Contact</a></li>
-							<li><a href="${pageContext.request.contextPath}/logoutTeacher">Se deconnecter</a></li>
+							<li><a href="${pageContext.request.contextPath}/logoutStudent">Se deconnecter</a></li>
 						</ul>
 					</div>
 					<!-- navbar-collapse -->

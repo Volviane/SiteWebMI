@@ -271,34 +271,91 @@
           <h2>Découvrez les membres du département de Mathématiques-Informatique</h2>
           <hr class="bottom-line">
         </div>
-				<c:forEach items="${teachers}" var="i">
-					<div class="col-lg-4 col-md-4 col-sm-4">
+<%-- 				<c:forEach items="${teachers}" var="i"> --%>
+<!-- 					<div class="col-lg-4 col-md-4 col-sm-4"> -->
+<!-- 						<div class="pm-staff-profile-container"> -->
+<!-- 							<div class="pm-staff-profile-image-wrapper text-center"> -->
+<!-- 								<div class="pm-staff-profile-image"> -->
+<!-- 									<img -->
+<%-- 										src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG" --%>
+<!-- 										alt="" class="img-thumbnail img-circle" /> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 							<div class="pm-staff-profile-details text-center"> -->
+<%-- 								<p class="pm-staff-profile-name">${i.firstName }</p> --%>
+
+<!-- 								<p class="pm-staff-profile-bio"></p> -->
+<!-- 								<p> -->
+<!-- 									<a -->
+<%-- 										href="${pageContext.request.contextPath}/viewPersonalPage?idTeacher=<c:out value="${i.idTeacher }"></c:out>"> --%>
+<!-- 										<button name="submit" type="submit" -->
+<!-- 											class="btn btn-block btn-submit"> -->
+<!-- 											Voir sa page personnelle <i class="fa fa-arrow-right"></i> -->
+<!-- 										</button> -->
+<!-- 									</a> -->
+<!-- 								</p> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<%-- 				</c:forEach> --%>
+			
+			<div class="col-lg-4 col-md-4 col-sm-4">
 						<div class="pm-staff-profile-container">
 							<div class="pm-staff-profile-image-wrapper text-center">
 								<div class="pm-staff-profile-image">
 									<img
-										src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
+										src="${pageContext.request.contextPath}/resources/userResources/img/prNkenlifack.jpg"
 										alt="" class="img-thumbnail img-circle" />
 								</div>
 							</div>
 							<div class="pm-staff-profile-details text-center">
-								<p class="pm-staff-profile-name">${i.lastName }</p>
-								<p class="pm-staff-profile-title">${i.grade }</p>
+								<p class="pm-staff-profile-name">Pr NKENLIFACK</p>
 
-								<p class="pm-staff-profile-bio"></p>
+								<p class="pm-staff-profile-bio">chef de departement</p>
 								<p>
-									<a
-										href="${pageContext.request.contextPath}/viewPersonalPage?idTeacher=<c:out value="${i.idTeacher }"></c:out>">
-										<button name="submit" type="submit"
-											class="btn btn-block btn-submit">
-											Voir sa page personnelle <i class="fa fa-arrow-right"></i>
-										</button>
-									</a>
 								</p>
 							</div>
 						</div>
-					</div>
-				</c:forEach>
+		  </div>
+		  <div class="col-lg-4 col-md-4 col-sm-4">
+						<div class="pm-staff-profile-container">
+							<div class="pm-staff-profile-image-wrapper text-center">
+								<div class="pm-staff-profile-image">
+									<img
+										src="${pageContext.request.contextPath}/resources/userResources/img/drTchoupe.jpg"
+										alt="" class="img-thumbnail img-circle" />
+								</div>
+							</div>
+							<div class="pm-staff-profile-details text-center">
+								<p class="pm-staff-profile-name">Dr TCHOUPE</p>
+
+								<p class="pm-staff-profile-bio">Enseignant</p>
+								<p>
+								</p>
+							</div>
+						</div>
+			</div>
+			 <div class="col-lg-4 col-md-4 col-sm-4">
+						<div class="pm-staff-profile-container">
+							<div class="pm-staff-profile-image-wrapper text-center">
+								<div class="pm-staff-profile-image">
+									<img
+										src="${pageContext.request.contextPath}/resources/userResources/img/mrFoko1.jpg"
+										alt="" class="img-thumbnail img-circle" />
+								</div>
+							</div>
+							<div class="pm-staff-profile-details text-center">
+								<p class="pm-staff-profile-name">M. FOKO</p>
+
+								<p class="pm-staff-profile-bio">Enseignant</p>
+								<p>
+								</p>
+							</div>
+						</div>
+			</div>
+			
+					
+					
 
 
 			</div>
@@ -364,7 +421,7 @@
     <!-- Main File-->
     <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/front.js"></script>
 	<!-- FIN INCLUSION DES JS -->
-  <c:if test="${!empty errorLogin || !empty errorPassword }">
+  <c:if test="${ errorLogin!= null || errorPassword!= null }">
 	  <script type="text/javascript">
 			$(window).on('load', function() {
 			   $('#login').modal('show')

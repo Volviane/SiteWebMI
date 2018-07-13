@@ -903,7 +903,8 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		}
 
-		return "createTeacher";
+		
+		return "admin/createTeacher";
 	}
 	@RequestMapping(value = { "/teacherList" }, method = RequestMethod.GET)
 	public String teacherList(Model model, HttpServletRequest req) {

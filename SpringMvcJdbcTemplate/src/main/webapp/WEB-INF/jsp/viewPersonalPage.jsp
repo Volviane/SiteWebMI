@@ -91,7 +91,7 @@
  	<!-- FIN DEFINITION DES STYLES -->
  	
 <style type="text/css">
-	.space{ padding-top: 100px;}
+	.space{ padding-top: 10px;}
 	.spaces{ height: 3000px;}
 </style>
 
@@ -104,17 +104,56 @@
 	<!-- DEBUT DU HEADER -->
 	<c:import url="includes/headerUser.jsp"></c:import>
 	<!-- FIN DU HEADER-->
-	<div class="container space">
-		<div
+	<div
 			style="clear: both; display: block; margin-top: 88px; height: 60px;">
 			<ol class="breadcrumb">
-				<li><a href="homeTeacher" class="active gras">Espace
+				<li><a href="homeTeacher" class="active gras">Page
 						Personnel</a></li>
 			</ol>
+	</div>
+	<section class="col-md-2" style="min-height: 500px; font-size: 1em; padding: 5px;">
+					<a
+							href="${pageContext.request.contextPath}/viewTeacherList">
+							<button name="submit" type="submit"
+								class="btn btn-submit">
+								 liste des enseignants <i class="fa fa-arrow-left"></i>
+							</button>
+		         </a>
+
+           </section>
+	<div class="container space">
+	
+		<div class="col-md-7" style="padding: 0px">
+			<!--Contenu-->
+			
+			<div class="media">
+				<div class="media-left">
+					 <img
+						src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
+						alt="" class="img-thumbnail img-circle media-object" />
+						<h4 class="media-heading"><c:out value="${teachers.firstName }" />  <c:out value="${teachers.lastName }" /></h4>
+					   <hr> <label> photo:  </label><h7>   <c:out value="${teachers.pictureName }" /></h7> <hr> 
+					    <label> Grade:  </label><h7>   <c:out value="${teachers.grade.gradeName }" /></h7> <hr> 
+					    <label> Adresse email:  </label><h7>   <c:out value="${teachers.emailAdress }" /></h7>  
+					    <hr>  <label>télephone:  </label><h7>   <c:out value="${teachers.phoneNumber }" /></h7> 
+					    <hr>  <label>sexe:  </label><h7>   <c:out value="${teachers.sexe }" /></h7> 
+					    <hr>  <label>Date de naissance:  </label><h7>   <c:out value="${teachers.birthDate }" /></h7>
+					    <hr>  <label>Lieu de naissance:  </label><h7>   <c:out value="${teachers.birthPlace }" /></h7>
+					    <hr>  <label>CV:  </label><h7>   <c:out value="${teachers.cv }" /></h7>
+					    <hr>  <label>Domaines de Recherche:  </label><h7>   <c:out value="${researchDomains.domainLabel }" /></h7>
+<%-- 					     <hr>  <label>Jury:  </label><h7> jury du niveau <c:out value="${jurys.juryLevel }" /></h7>  --%>
+					
+				</div>
+				<div class="media-body">
+
+				</div>
+			</div>
+			<!--/ Contenu-->
 		</div>
+		
 	</div>
 	<!-- DEBUT DE L'ASIDE -->
-		<c:import url="includes/aside.jsp"></c:import>
+		<%@include file="includes/aside.jsp"%>
 		<!-- FIN DE L'ASIDE -->
 <div class="spaces"></div>
 
