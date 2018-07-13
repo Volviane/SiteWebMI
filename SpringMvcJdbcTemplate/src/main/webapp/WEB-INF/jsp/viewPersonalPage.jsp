@@ -111,10 +111,21 @@
 						Personnel</a></li>
 			</ol>
 	</div>
+	<section class="col-md-2" style="min-height: 500px; font-size: 1em; padding: 5px;">
+					<a
+							href="${pageContext.request.contextPath}/viewTeacherList">
+							<button name="submit" type="submit"
+								class="btn btn-submit">
+								 liste des enseignants <i class="fa fa-arrow-left"></i>
+							</button>
+		         </a>
+
+           </section>
 	<div class="container space">
-		
+	
 		<div class="col-md-7" style="padding: 0px">
 			<!--Contenu-->
+			
 			<div class="media">
 				<div class="media-left">
 					 <img
