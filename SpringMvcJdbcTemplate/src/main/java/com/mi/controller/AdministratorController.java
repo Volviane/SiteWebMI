@@ -1,5 +1,6 @@
 package com.mi.controller;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -1245,13 +1246,13 @@ public class AdministratorController/* implements UserDetailsService */{
 
 	// se deconnecter
 	@RequestMapping(value = "/logoutAdministrator", method = RequestMethod.GET)
-	public String logoutPost(HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String logoutPost(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 
 		HttpSession session = request.getSession();
-		session.invalidate();
-		// session.setAttribute( "administrator", null );
+		//session.invalidate();
+		 session.setAttribute( "administrator", null );
 		model.addAttribute("sessionOut", "la session a ete supprimme");
-
+		response.sendRedirect("connectionAdministrator");
 		return "admin/connectionAdministrator";
 	}
 }

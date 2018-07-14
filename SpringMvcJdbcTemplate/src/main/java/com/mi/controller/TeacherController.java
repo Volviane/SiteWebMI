@@ -145,9 +145,13 @@ public class TeacherController {
 
 	//Home enseignant
 	@RequestMapping(value = "/homeTeacher", method = RequestMethod.GET)
-	public String homeTeacher(Model model) {
+	public String homeTeacher(Model model,HttpServletRequest req) {
 		System.out.println("home enseignant get");
 		model.addAttribute("error", "");
+		HttpSession session = req.getSession();
+		Teacher teacher =  (Teacher) session.getAttribute( "teacher" );
+		
+		model.addAttribute("teachers", teacher);
 
 		return "teacher/homeTeacher";
 	}
