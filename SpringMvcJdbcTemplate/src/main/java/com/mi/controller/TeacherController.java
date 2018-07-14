@@ -20,6 +20,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -145,13 +147,13 @@ public class TeacherController {
 	public String homeTeacher(Model model,HttpServletRequest req) {
 		System.out.println("home enseignant get");
 		
-		String login = req.getParameter("login");
+		//String login = req.getParameter("login");
 //		String coption = req.getParameter("o");
 //		String option ="mail";
 //		if(option.equals(decryptographe(coption))){
-			Teacher teacher = teachersRepository.findByLogin(login);
-			HttpSession session = req.getSession();
-			session.setAttribute( "teacher", teacher );
+			//Teacher teacher = teachersRepository.findByLogin(login);
+//			HttpSession session = req.getSession();
+//			session.setAttribute( "teacher", teacher );
 //		}
 		
 		model.addAttribute("error", "");
@@ -160,15 +162,15 @@ public class TeacherController {
 	}
 
 
-
-	/*//connexion d'un enseignant
+/*
+	//connexion d'un enseignant
 	@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.GET)
 	public String loginForm(Model model,HttpServletRequest req) {
 		System.out.println("connexion  d'un enseignant get");
 		model.addAttribute("errorLogin", "");
 		model.addAttribute("errorPassword", "");
 		return "index";
-	}
+	}*/
 
 	@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.POST)
 	public String login(Model model,@ModelAttribute("loginAdmin") Teacher admin, HttpServletRequest req, HttpServletResponse resp) {
@@ -195,6 +197,21 @@ public class TeacherController {
 					
 					HttpSession session = req.getSession();
 					session.setAttribute( "teacher", teacher );
+					
+					long documentsNumber = documentRepository.countByAuthor(teacher);
+					long articlesNumber = documentRepository.countByDocumentTypeAndAuthor("Article de Recherche",teacher);
+					long coursNumber = documentRepository.countByDocumentTypeAndAuthor("Support de Cours",teacher);
+					long ficheTdNumber = documentRepository.countByDocumentTypeAndAuthor("Fiche de TD",teacher);
+					long epreuvesNumber = documentRepository.countByDocumentTypeAndAuthor("Epreuve",teacher);
+					long correctionEpreuvesNumber = documentRepository.countByDocumentTypeAndAuthor("Correction Epreuve",teacher);
+					
+					session.setAttribute( "documentsNumber", documentsNumber );
+					session.setAttribute( "articlesNumber", articlesNumber );
+					session.setAttribute( "coursNumber", coursNumber );
+					session.setAttribute( "ficheTdNumber", ficheTdNumber );
+					session.setAttribute( "epreuvesNumber", epreuvesNumber );
+					session.setAttribute( "correctionEpreuvesNumber", correctionEpreuvesNumber );
+					
 					
 					Teacher teacherName = (Teacher) session.getAttribute( "teacher" );
 					
@@ -230,7 +247,7 @@ public class TeacherController {
 		//return "redirect:/TeacherHome";
 		return "index";
 	}
-*/
+
 	//modifier les parametres de connexion get method
 	@RequestMapping(value = { "/updateParameterTeacher" }, method = RequestMethod.GET)
 	public String updateParameterGet(Model model,HttpServletRequest req) {
@@ -364,14 +381,36 @@ public class TeacherController {
 			HttpSession session = req.getSession();
 			Teacher author =  (Teacher) session.getAttribute( "teacher" );
 			
-			List<Document> listOfdocuments= documentRepository.findByAuthor(author);
+			//List<Document> listOfdocuments= documentRepository.findByAuthor(author);
+			long total = documentRepository.countByAuthor(author);
+			long numberOfPages = Math.round(total/10);
 			
-			if(listOfdocuments.isEmpty()){
+			//On récupère le numéro de page à afficher
+			int i = 0;
+			Page<Document> pageOfDocuments = null;
+			try {
+				i = Integer.parseInt(req.getParameter("page"));
+				pageOfDocuments = documentRepository.findByAuthor(author,new PageRequest(i, 10));
+			} catch (NumberFormatException e) {
+				pageOfDocuments = documentRepository.findByAuthor(author,new PageRequest(0,10));
+			}
+			
+			/*if(listOfdocuments.isEmpty()){
 			
 			model.addAttribute("error", "liste de documents vide");
 			}else{
 				model.addAttribute("documents", listOfdocuments);
+				model.addAttribute("pages", numberOfPages);
+			}*/
+			if(!pageOfDocuments.hasContent()){
+				model.addAttribute("error", "Vous n'avez aucun documents.  Accédez au menu Nouveau document pour en ajouter.");
+			}else{
+				//List<Document> listOfdocuments = pageOfDocuments.getContent();
+				model.addAttribute("documents", pageOfDocuments);
+				model.addAttribute("currentPage", i);
+				System.out.println("******** Bien envoyé *******");
 			}
+			model.addAttribute("pages", numberOfPages);
 			return "teacher/listDocuments";
 		}
 		

@@ -3,7 +3,7 @@
 	<hr style="text-shadow: 3px;">
 	<nav class="">
 		<ul class="nav nav-pills nav-stacked">
-			<li role="presentation" class="active"><a href="homeTeacher">Accueil</a></li>
+			<li role="presentation" class="active"><a href="homeTeacher"><span class="gyphicon glyphicon-home"></span> Accueil</a></li>
 
 			<div class="panel-group" id="accordion" role="tablist"
 				aria-multiselectable="true">
@@ -19,7 +19,7 @@
 						role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body" style="padding: 0px; padding-left: 12px">
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="informationTeacher">Consulter mes Informations personnelles</a></li>
+								<li><a href="informationTeacher?idTeacher=${teacher.idTeacher}"><span class="gyphicon glyphicon-user"></span>Consulter mes Informations personnelles</a></li>
 								<li><a href="updateParameterTeacher">Modifier mes Paramètres</a></li>
 								<li><a href="editProfil">Editer mon profil</a></li>
 							</ul>
@@ -31,7 +31,7 @@
 						<h4 class="panel-title">
 							<a class="collapsed" role="button" data-toggle="collapse"
 								data-parent="#accordion" href="#collapseTwo"
-								aria-expanded="false" aria-controls="collapseTwo"> Gérer mes
+								aria-expanded="false" aria-controls="collapseTwo"> <span class="gyphicon glyphicon-duplicate"></span>Gérer mes
 								documents </a>
 						</h4>
 					</div>
@@ -39,14 +39,15 @@
 						role="tabpanel" aria-labelledby="headingTwo">
 						<div class="panel-body" style="padding: 0px; padding-left: 12px">
 							<ul id="item2" class="nav nav-pills nav-stacked">
-								<li><a href="addDocument">Nouveau document</a></li>
-								<li><a href="updateDocument">Modifier Document</a></li>
-								<li><a href="listDocumentsByType?documentType=Article%20de%20Recherche">Mes Articles</a></li>
-								<li><a href="listDocumentsByType?documentType=Support%20de%20Cours">Mes Cours</a></li>
-								<li><a href="listDocumentsByType?documentType=Fiche%20de%20TD">Mes Fiches de TD</a></li>
-								<li><a href="listDocumentsByType?documentType=Epreuve">Mes Epreuves</a></li>
-								<li><a href="listDocumentsByType?documentType=Correction%20Epreuves">Mes corrections</a></li>
-								<li><a href="listDocumentsByType?documentType=">Mes Livres </a></li>
+								<li><a href="addDocument"><span class="gyphicon glyphicon-plus"></span> Nouveau document</a></li>
+								<li><a href="updateDocument"><span class="gyphicon glyphicon-pencil"></span> Modifier Document</a></li>
+								<li><a href="listDocuments">Mes Documents<span class="badge pull-right">${documentsNumber}</span></a></li>								
+								<li><a href="listDocumentsByType?documentType=Article%20de%20Recherche">Mes Articles <span class="badge pull-right">${articlesNumber}</span></a></li>
+								<li><a href="listDocumentsByType?documentType=Support%20de%20Cours">Mes Cours<span class="badge pull-right">${coursNumber }</span></a></li>
+								<li><a href="listDocumentsByType?documentType=Fiche%20de%20TD">Mes Fiches de TD<span class="badge pull-right">${ficheTdNumber }</span></a></li>
+								<li><a href="listDocumentsByType?documentType=Epreuve">Mes Epreuves<span class="badge pull-right">${epreuvesNumber }</span></a></li>
+								<li><a href="listDocumentsByType?documentType=Correction%20Epreuves">Mes corrections<span class="badge pull-right">${correctionEpreuvesNumber }</span></a></li>
+								<li><a href="listDocumentsByType?documentType=">Mes Livres </a><span class="badge pull-right"></span></li>
 							</ul>
 						</div>
 					</div>

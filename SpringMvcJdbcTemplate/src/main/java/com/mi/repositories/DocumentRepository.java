@@ -21,8 +21,10 @@ public interface DocumentRepository extends JpaRepository<Document, String> {
 	public List<Document> findByAuthorAndDocumentType(Teacher author , String documentType);
 	public Document findByDocumentName(String documentName);
 	public Page<Document> findAll(Pageable peageble);
-	public List<Document> findBydocumentTypeAndAuthor(String documentType, Teacher author);
+	public List<Document> findByDocumentTypeAndAuthor(String documentType, Teacher author);
 	public long countByDocumentType(String documentType); 
+	public long countByDocumentTypeAndAuthor(String documentType, Teacher author);
+	public long countByAuthor(Teacher author);
 	public Document findByIdDocument(Long idDocument);
-	
+	public Page<Document> findByAuthor(Teacher author,Pageable peageble);
 }

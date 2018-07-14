@@ -41,7 +41,7 @@
 			<hr>
 			<p>Vous pouvez ici modifier vos informations personnelles</p>
 		
-			<form id="form-1" class="well form-horizontal col-md-10" action="<c:url value='editProfil'/>" method="post" enctype="multipart/form-data">
+			<form id="form-1" class="well form-horizontal" action="<c:url value='editProfil'/>" method="post" enctype="multipart/form-data">
 				<table id="table-1" class="table table-hover" >
 					<tbody>
 						<tr>
@@ -62,11 +62,7 @@
 							</td>
 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('firstName')"></a> </td>
 						</tr>
-						<tr>
-							<td>
-							</td>
-							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('matricule')"></a> </td>
-						</tr>
+						
 						
 						<tr>
 							<td>
@@ -82,7 +78,7 @@
 							<td>
 							<div class="form-group">
 								<label for="phoneNumber" class="">Numéro de Téléphone</label>
-								<input class="form-control" id="phoneNumber" name="phoneNumber" type="text" value="<c:out value="${teacher.phoneNumber}"/>" onblur="setEditableOff('phoneNumber')" readonly>
+								<input class="form-control" id="phoneNumber" name="phoneNumber" type="text" value="<c:out value="${teacher.phoneNumber}"/>" onblur="setEditableOff('phoneNumber')">
 							</div>
 							</td>
 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('phoneNumber')"></a> </td>
@@ -132,14 +128,14 @@
 							<div class="form-group">
 								<label for="grade" class="">Grade</label>
 								<select name="grade" class="form-control" id="grade" onblur="setEditableOff('grade')"  >
-									<option value='<c:out value="${teacher.researchDomain.domainLabel}"></c:out>' selected></option>
+									<option value='<c:out value="${teacher.grade.gradeName}"></c:out>' selected><c:out value="${teacher.grade.gradeName}"></c:out></option>
 									<c:forEach items="${grades }" var="grade">
 										<option value='<c:out value="${grade.gradeName}"/>'><c:out value="${grade.gradeName}"/></option>
 									</c:forEach>
-									<option value='Chargé de cours'>Chargé de Cours</option>
-									<option value='Assistant'>Assistant</option>
-									<option value='Professeur'>Professeur</option>
-									<option value='Maitre de Conférence'>Maitre de Conférence</option>
+<!-- 									<option value='Chargé de cours'>Chargé de Cours</option> -->
+<!-- 									<option value='Assistant'>Assistant</option> -->
+<!-- 									<option value='Professeur'>Professeur</option> -->
+<!-- 									<option value='Maitre de Conférence'>Maitre de Conférence</option> -->
 									
 								</select>
 							</div>
@@ -152,15 +148,15 @@
 							<div class="form-group">
 								<label for="domainLabel" class="">Domaine de Recherche</label>
 								<select name="domainLabel" class="form-control" id="domainLabel" onblur="setEditableOff('domainLabel')"  >
-									<option value='<c:out value="${teacher.researchDomain.domainLabel}"></c:out>' selected></option>
+									<option value='<c:out value="${teacher.researchDomain.domainLabel}"></c:out>' selected><c:out value="${teacher.researchDomain.domainLabel}"></c:out></option>
 									<c:forEach items="${domains }" var="dom">
 										<option value='<c:out value="${dom.domainLabel}"/>'><c:out value="${dom.domainLabel}"/></option>
 									</c:forEach>
-									<option value='Génie Logiciel'>Support de Cours</option>
-									<option value='Réseaux et services distribués'>Réseaux et services distribués</option>
-									<option value='Algèbre'>Algèbre</option>
-									<option value='Analyse'>Analyse</option>
-									<option value='Intelligence Artificielle'>Intelligence Artificielle</option>
+<!-- 									<option value='Génie Logiciel'>Support de Cours</option> -->
+<!-- 									<option value='Réseaux et services distribués'>Réseaux et services distribués</option> -->
+<!-- 									<option value='Algèbre'>Algèbre</option> -->
+<!-- 									<option value='Analyse'>Analyse</option> -->
+<!-- 									<option value='Intelligence Artificielle'>Intelligence Artificielle</option> -->
 								</select>
 							</div>
 							</td>
@@ -201,12 +197,16 @@
 				</table>
 				
 			</form>
-                          <c:if test="${error!=null}">
-							<h6 class=""> <font color="red">${error}</font></h1>
-			       		</c:if>
-			        	<c:if test="${error==null}">
-							<h6 class=""> <font color="green">modification reussi</font></h1>
-			       		</c:if>
+			<div class="row">
+				<c:if test="${error!=null}">
+					<div class="alert alert-danger" role="alert">Erreur lors de
+						l'édition du profil</div>
+				</c:if>
+				<c:if test="${success!=null}">
+					<div class="alert alert-success" role="alert">Profil Edité
+						avec Succès</div>
+				</c:if>
+			</div>
 		</section>
 			
 			
