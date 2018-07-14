@@ -40,7 +40,7 @@
 							<li class="dropdown gras">
 								<a class="page-scroll" data-toggle="dropdown" href="#about">PRESENTATION<b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li class="gras"><a class="#">Présentation du Département</a></li>								
+<!-- 									<li class="gras"><a class="#">Présentation du Département</a></li>								 -->
 									<li class="gras"><a href="${pageContext.request.contextPath}/viewTeacherList"> Enseignants du département</a></li>
 									<li class="gras"><a href="${pageContext.request.contextPath}/">Organigramme</a></li>
 								</ul>
@@ -52,12 +52,11 @@
 									<li><a href="licenceMi"> Licence en maths-info</a></li>
 									<li><a href="masterAlgebra">Master en algère</a></li>
 									<li><a href="masterAnalysis">Master en analyse</a></li>
-									<li><a href="masterRsd">Master en Réseau et Services Distribués</a></li>
-									<li><a href="masterGlo">Master en Génie Logiciel</a></li>
-									<li><a href="masterIar">Master en Intélligence Artificielle</a></li>
+									<li><a href="masterRsd">Master en RSD</a></li>
+<!-- 									<li><a href="masterGlo">Master en Génie Logiciel</a></li> -->
+<!-- 									<li><a href="masterIar">Master en Intélligence Artificielle</a></li> -->
 								</ul>
-							</li>
-							<li class="gras"><a class="page-scroll" href="homeTeacher">Espace Personnel</a></li>							
+							</li>							
 							<li class="gras"><a class="page-scroll" href="contact">Contact</a></li>
 							<li class="gras"><a href="logoutTeacher">Se deconnecter</a></li>
 						</ul>

@@ -86,7 +86,7 @@
 				<div class="login-box-body">
 					<p class="login-box-msg">connectez-vous pour débuter votre session</p>
 					<div class="form-group">
-						<form name="" id="loginForm" action="<c:url value='loginTeacher'/>" method="post" class="text-left form-validate">
+						<form name="" id="loginForm" action="<c:url value='login'/>" method="post" class="text-left form-validate">
 							<div class="form-group has-feedback">
 								<!----- username -------------->
 								<input class="form-control" placeholder="login" id="loginid"

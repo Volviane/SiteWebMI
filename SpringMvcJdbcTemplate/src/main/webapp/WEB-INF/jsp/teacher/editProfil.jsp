@@ -41,7 +41,7 @@
 			<hr>
 			<p>Vous pouvez ici modifier vos informations personnelles</p>
 		
-			<form id="form-1" class="well form-horizontal" action="<c:url value='editProfil'/>" method="post" enctype="multipart/form-data">
+			<form id="form-1" class="form-horizontal" action="<c:url value='editProfil'/>" method="post" enctype="multipart/form-data">
 				<table id="table-1" class="table table-hover" >
 					<tbody>
 						<tr>
