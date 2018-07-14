@@ -116,7 +116,7 @@
 							href="${pageContext.request.contextPath}/viewTeacherList">
 							<button name="submit" type="submit"
 								class="btn btn-submit">
-								 liste des enseignants <i class="fa fa-arrow-left"></i>
+								 <i class="fa fa-arrow-left"></i> liste des enseignants 
 							</button>
 		         </a>
 
@@ -131,6 +131,8 @@
 					 <img
 						src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
 						alt="" class="img-thumbnail img-circle media-object" />
+						<img src="<c:url value='/Documents/miguel_miguelprofil.png'/>"
+						alt="" class="img-thumbnail img-circl media-object" />
 						<h4 class="media-heading"><c:out value="${teachers.firstName }" />  <c:out value="${teachers.lastName }" /></h4>
 					   <hr> <label> photo:  </label><h7>   <c:out value="${teachers.pictureName }" /></h7> <hr> 
 					    <label> Grade:  </label><h7>   <c:out value="${teachers.grade.gradeName }" /></h7> <hr> 
