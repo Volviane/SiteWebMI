@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +21,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,11 +59,14 @@ import com.mi.repositories.TeachersRepository;
 public class TeacherController {
 
 	public static final Logger logger = LoggerFactory.getLogger(TeacherController.class);
-	private static final String SAVE_DIR=/*"C:"+File.separator+"Users"+File.separator+"MFOGO"+File.separator+"Documents"+File.separator+"Master1"+File.separator+"Semestre2"
-			+ ""+File.separator+"Projet"+File.separator+"workspace"+File.separator+*/"SiteWebMI"+File.separator+"SpringMvcJdbcTemplate"+File.separator+"Documents";
+	//private static final String SAVE_DIR="SiteWebMI"+File.separator+"SpringMvcJdbcTemplate"+File.separator+"Documents";
 
-	//C:\Program Files\Apache Software Foundation\Tomcat 7.0\webapps
+	private static final String SAVE_DIR="resources"+File.separator+"userResources"+File.separator+"img";
 
+
+	@Autowired
+	ServletContext context;
+	
 	@Autowired
 	DocumentRepository documentRepository;
 
@@ -143,19 +145,8 @@ public class TeacherController {
 
 	//Home enseignant
 	@RequestMapping(value = "/homeTeacher", method = RequestMethod.GET)
-
 	public String homeTeacher(Model model,HttpServletRequest req) {
 		System.out.println("home enseignant get");
-		
-		//String login = req.getParameter("login");
-//		String coption = req.getParameter("o");
-//		String option ="mail";
-//		if(option.equals(decryptographe(coption))){
-			//Teacher teacher = teachersRepository.findByLogin(login);
-//			HttpSession session = req.getSession();
-//			session.setAttribute( "teacher", teacher );
-//		}
-		
 		
 
 		return "teacher/homeTeacher";
@@ -196,63 +187,23 @@ public class TeacherController {
 					System.out.println("deuxieme if c'est moi");
 					
 					HttpSession session = req.getSession();
-					session.setAttribute( "teacher", teacher );
+		Teacher teacher =  (Teacher) session.getAttribute( "teacher" );
 					
-					long documentsNumber = documentRepository.countByAuthor(teacher);
-					long articlesNumber = documentRepository.countByDocumentTypeAndAuthor("Article de Recherche",teacher);
-					long coursNumber = documentRepository.countByDocumentTypeAndAuthor("Support de Cours",teacher);
-					long ficheTdNumber = documentRepository.countByDocumentTypeAndAuthor("Fiche de TD",teacher);
-					long epreuvesNumber = documentRepository.countByDocumentTypeAndAuthor("Epreuve",teacher);
-					long correctionEpreuvesNumber = documentRepository.countByDocumentTypeAndAuthor("Correction Epreuve",teacher);
+		model.addAttribute("teachers", teacher);
 					
-					session.setAttribute( "documentsNumber", documentsNumber );
-					session.setAttribute( "articlesNumber", articlesNumber );
-					session.setAttribute( "coursNumber", coursNumber );
-					session.setAttribute( "ficheTdNumber", ficheTdNumber );
-					session.setAttribute( "epreuvesNumber", epreuvesNumber );
-					session.setAttribute( "correctionEpreuvesNumber", correctionEpreuvesNumber );
-					
-					
-					Teacher teacherName = (Teacher) session.getAttribute( "teacher" );
-					
-					System.out.println("je suis en session avec http et mon nom est : " + teacherName.getLogin());
-					
-					
-					model.addAttribute("teachers", "Vous etes connectez a votre espace personne. M. " + teacherName.getLogin());
-					model.addAttribute("teachs", teacher);
-					 resp.sendRedirect("homeTeacher");
 					return "teacher/homeTeacher";
-
-				} else {
-					logger.error("Teacher with password {} not found.", password);
-					
-					model.addAttribute("errorPassword", "Mot de passe mal saisi.");
-					req.setAttribute("errorPassword", "Mot de passe mal saisi.");
 				}
-			} else {
-				logger.error("Teacher with password {} not found.", login);
 				
 				
-				model.addAttribute("errorLogin", "login mal saisi, l'enseignant "+ login + "n'existe pas");
-				req.setAttribute("errorLogin", "login mal saisi, l'enseignant "+ login + "n'existe pas");
 
-			}
-		} catch (Exception ex) {
-			logger.error("Teacher with pseudonym {} not found.", login);
 			
-			model.addAttribute("errorLogin", "login mal saisi, l'enseignant "+ login + "n'existe pas");
-			req.setAttribute("errorLogin", "login mal saisi, l'enseignant "+ login + "n'existe pas");
-		}
-
-		//return "redirect:/TeacherHome";
-		return "index";
-	}
-
 	//modifier les parametres de connexion get method
 	@RequestMapping(value = { "/updateParameterTeacher" }, method = RequestMethod.GET)
 	public String updateParameterGet(Model model,HttpServletRequest req) {
 		System.out.println("modifier les parametre de connexion get");
 		
+		model.addAttribute("errorLogin", "");
+		model.addAttribute("errorPassword", "");
 		return "teacher/updateParameterTeacher";
 	}
 
@@ -270,27 +221,31 @@ public class TeacherController {
 		HttpSession session = req.getSession();
 		Teacher teacher =  (Teacher) session.getAttribute( "teacher" );
 
+		System.out.println(login);
+		System.out.println(password);
+		System.out.println("=======================");
 		System.out.println(newlogin);
 		System.out.println(newpassword);
+
 		System.out.println(teacher.getLogin());
 
-		
 		if(teacher.getLogin().equals(login)){
 			
+			if (decryptographe(teacher.getPasswordSec()).equals(password)){
+
 			teacher.setLogin(newlogin);
-			
 			teacher.setPassword(bCryptPasswordEncoder.encode(newpassword));
-			System.out.println(teacher.getPasswordSec());
-			if (teacher.getPasswordSec().equals(cryptographe(password))){
-				System.out.println(teacher.toString());
+				teacher.setPasswordSec(cryptographe(newpassword));
 			teachersRepository.save(teacher);
+
 			model.addAttribute("teachers", "vos parametres ont ete modifies");
+
 			}else{
 				model.addAttribute("errorPassword", "Veuillez entrez votre ancien mot de passe");
 				
 			}
 		}else{
-			model.addAttribute("errorLogin", "Veuillez entrez votre ancienn login");
+			model.addAttribute("errorLogin", "Veuillez entrez votre ancien login");
 		}
 		
 
@@ -306,7 +261,7 @@ public class TeacherController {
 	}
 
 	@RequestMapping(value = { "/addDocument" }, method = RequestMethod.POST)
-	/*@Transactional*/
+	@Transactional
 	public String addDocumentPost(Model model, HttpServletRequest req,@RequestParam("files") MultipartFile file) throws ParseException, IOException, ServletException {
 
 		String documentTitle= req.getParameter("documentTitle");
@@ -407,7 +362,6 @@ public class TeacherController {
 				
 				System.out.println("******** Bien envoyé *******");
 			}
-			
 			return "teacher/listDocuments";
 		}
 		
@@ -427,9 +381,7 @@ public class TeacherController {
 			model.addAttribute("error", "liste de documents vide");
 			}else{
 				model.addAttribute("documents", listOfdocuments);
-				model.addAttribute("documentType", documentType);
 			}
-			//model.addAttribute("documentType", documentType);
 			return "teacher/listDocumentsByType";
 		}
 		
@@ -524,14 +476,11 @@ public class TeacherController {
 		List<ResearchDomain> listOfResearchDomain = researchDomainRepository.findAll();
 		Teacher teacher = teachersRepository.findByLogin(authors.getLogin());
 		
-		List<Grade> grades = gradeRepository.findAll(); 
-
 		if (listOfResearchDomain.isEmpty() ) {
 			model.addAttribute("error", "error : liste vide");
 		}
 		model.addAttribute("researchDomains", listOfResearchDomain);
 		model.addAttribute("teachers", teacher);
-		model.addAttribute("grades", grades);
 		
 		//model.addAttribute("error", "");
 		return "teacher/editProfil";
@@ -575,11 +524,11 @@ public class TeacherController {
 				dir.mkdirs();
 			
 			BufferedOutputStream stream = new BufferedOutputStream(
-					new FileOutputStream(SAVE_DIR + File.separator + pictureName));
+					new FileOutputStream(context.getRealPath("") + File.separator  + SAVE_DIR + File.separator + pictureName));
 			stream.write(bytes);
 			stream.close();
 		
-			String pictureNames=SAVE_DIR + File.separator + pictureName;
+			//String pictureNames=context.getRealPath("") + File.separator  +SAVE_DIR + File.separator + pictureName;
 			
 			
 			teacher.setBirthDate(birthDate);
@@ -592,7 +541,7 @@ public class TeacherController {
 			teacher.setGrade(grade);
 			teacher.setSexe(sex);
 			teacher.setLastName(lastName);
-			teacher.setPictureName(pictureNames);
+			teacher.setPictureName(pictureName);
 		
 			
 			teachersRepository.save(teacher);
@@ -604,12 +553,13 @@ public class TeacherController {
 	
 	// se deconnecter
 		@RequestMapping(value = "/logoutTeacher", method = RequestMethod.GET)
-		public String logoutPost(HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String logoutPost(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 
 			  HttpSession session = request.getSession();
 			  session.setAttribute( "teacher", null );
 			  model.addAttribute("teachers", "la session a ete supprimme");
 
+		response.sendRedirect("index");
 			
 			return "index";
 		}
@@ -777,3 +727,4 @@ public class TeacherController {
 
 
 }
+

@@ -35,9 +35,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mi.model.Article;
+import com.mi.model.Cycle;
 import com.mi.model.Document;
 import com.mi.model.Event;
 import com.mi.model.Level;
+import com.mi.model.Option;
 import com.mi.model.Participation;
 import com.mi.model.Student;
 import com.mi.model.Teacher;
@@ -158,14 +160,44 @@ public class StudentController {
 		@RequestMapping(value = "/homeStudent", method = RequestMethod.GET)
 		public String homeStudent(Model model) {
 			System.out.println("home etudiant get");
+			model.addAttribute("error", "");
 
 			return "student/homeStudent";
 		}
 	
 		// inscription a un evennement
+		@SuppressWarnings("unused")
 		@RequestMapping(value = "/registrationStudent", method = RequestMethod.GET)
-		public String registrationStudentGet(Model model) {
+		public String registrationStudentGet(HttpServletRequest request,Model model) {
 			System.out.println("registrationStudent get");
+			model.addAttribute("error", "");
+			
+			String name = request.getParameter("idEvent");
+			Long idEvent=Long.parseLong(name);
+			Event event =eventRepository.findByIdEvent(idEvent);
+			
+			List<Option> listOfOption = optionRepository.findAll();
+			List<String> finalList = new ArrayList<String>();
+			
+			
+			
+			List<Level> listOfLevel = levelRepository.findAll();
+			//List<String> finalList = new ArrayList<String>();
+
+			
+			
+			
+			List<Event> listOfEvent = eventRepository.findAll();
+
+			
+			
+			List<Cycle> cycles = cycleRepository.findAll();
+			
+			model.addAttribute("events", event);
+			model.addAttribute("levels", listOfLevel);
+			model.addAttribute("cycles", cycles);
+			model.addAttribute("options", listOfOption);
+			//model.addAttribute("events", listOfEvent);
 
 			return "student/registrationStudent";
 		}
@@ -200,8 +232,31 @@ public class StudentController {
 			String eventName= req.getParameter("eventName");
 			String email= req.getParameter("email");
 			//String sexe= req.getParameter("sexe");
-			String login = lastName+firstName;
-			String password =lastName+"pass";
+			String login = lastName;
+			String password ="pass";
+			
+			List<Option> listOfOption = optionRepository.findAll();
+			List<String> finalList = new ArrayList<String>();
+			
+			model.addAttribute("options", listOfOption);
+			
+			List<Level> listOfLevel = levelRepository.findAll();
+			//List<String> finalList = new ArrayList<String>();
+
+			
+			model.addAttribute("levels", listOfLevel);
+			
+			List<Event> listOfEvent = eventRepository.findAll();
+
+			
+			model.addAttribute("events", listOfEvent);
+			
+			List<Cycle> cycles = cycleRepository.findAll();
+			
+			model.addAttribute("cycles", cycles);
+			
+			
+			
 			
 			Level level=levelRepository.findByLevelName(studentLevel);
 			Event event=eventRepository.findByEventTitle(eventName);
@@ -234,7 +289,7 @@ public class StudentController {
 						+ decryptographe(stud.getPasswordSec())+"\n"
 						+ "...\n"
 						+ "Pour vous connecter a votre espace personnel cliquez ici :\n"
-						+ "http://localhost:8080/SpringMvcJdbcTemplate/connectionTeachers";
+						+ "http://localhost:8080/SpringMvcJdbcTemplate/login";
 				String subject1="INSCRIPTION A UN EVENNEMENT";
 				MimeMessage msg = new MimeMessage(session);
 				/// msg.setFrom(new InternetAddress(form));
@@ -248,7 +303,7 @@ public class StudentController {
 				transport.sendMessage(msg, msg.getAllRecipients());
 				transport.close();
 				System.out.println("Sent message successfully....");
-				model.addAttribute("students", "succesfully to create student wiht parameter :: " + login + " and " + password);
+				model.addAttribute("students", "creation du compte avec success avec les parametres :: " + login + " et " + password);
 				req.setAttribute("teacherSucces", "succesfully to create teacher wiht parameter :: " + login + " and " + password);
 
 				
@@ -262,76 +317,16 @@ public class StudentController {
 		
 		
 		
-		//connexion d'un enseignant
-		@RequestMapping(value = { "/loginStudent" }, method = RequestMethod.GET)
-		public String loginFormGet(Model model,HttpServletRequest req) {
-			System.out.println("connexion  d'un etudiant get");
-			model.addAttribute("errorLogin", "");
-			model.addAttribute("errorPassword", "");
-			return "student/loginStudent";
-		}
-
-		@RequestMapping(value = { "/loginStudent" }, method = RequestMethod.POST)
-		public String loginStudentPost(Model model,@ModelAttribute("loginAdmin") Teacher admin, HttpServletRequest req,HttpServletResponse resp) {
-			System.out.println("connexion  d'un enseignant post");
-
-			String login = req.getParameter("login");
-			String password = req.getParameter("password");
-			System.out.println("-------------------------------");
-			System.out.println(login);
-			System.out.println("-------------------------------");
-
-			System.out.println("-------------------------------");
-			System.out.println(password);
-			// recherche du membre dans la base de donnees
-			try {
-				System.out.println("c'est le try");
-				Student student =  studentRepository.findByLogin(login);
-				System.out.println(student);
-				if (student != null) {
-					String pass = cryptographe(password);
-					System.out.println(pass);
-					if (pass.equals(student.getPasswordSec())) {
-						System.out.println("deuxieme if c'est moi");
-						
-						HttpSession session = req.getSession();
-						session.setAttribute( "student", student );
-						
-						Student studentName = (Student) session.getAttribute( "student" );
-						
-						System.out.println("je suis en session avec http et mon nom est : " + studentName.getLogin());
-						
-						model.addAttribute("teachers", "You have been login successfully." + studentName.getLogin());
-						 resp.sendRedirect("homeStudent");
-						
-						 return "student/homeStudent";
-
-					} else {
-						logger.error("Teacher with password {} not found.", password);
-						model.addAttribute("errorPassword", "Password not found.");
-						req.setAttribute("errorPassword", "Password not found.");
-					}
-				} else {
-					logger.error("Teacher with password {} not found.", login);
-					model.addAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
-					req.setAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
-
-				}
-			} catch (Exception ex) {
-				logger.error("Teacher with pseudonym {} not found.", login);
-				model.addAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
-				req.setAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
-			}
-
-			//return "redirect:/TeacherHome";
-			return "student/loginStudent";
-		}
+		
 
 		//modifier les parametres de connexion get method
 		@RequestMapping(value = { "/updateParameterStudent" }, method = RequestMethod.GET)
 		public String updateParameterStudentGet(Model model,HttpServletRequest req) {
+		
 			System.out.println("modifier les parametre de connexion get");
 			model.addAttribute("error", "");
+			model.addAttribute("errorLogin", "");
+			model.addAttribute("errorPassword", "");
 			return "student/updateParameterStudent";
 		}
 
@@ -342,6 +337,8 @@ public class StudentController {
 
 			String login= req.getParameter("login");
 			String password= req.getParameter("password");
+			String newlogin= req.getParameter("newLogin");
+			String newpassword= req.getParameter("newPassword");
 			
 			
 			HttpSession session = req.getSession();
@@ -349,13 +346,30 @@ public class StudentController {
 
 			System.out.println(login);
 			System.out.println(password);
+			System.out.println("=======================");
+			System.out.println(newlogin);
+			System.out.println(newpassword);
+			
+			
+			if(student.getLogin().equals(login)){
+				
+				if (decryptographe(student.getPasswordSec()).equals(password)){
+					
+					student.setLogin(newlogin);
+					student.setPassword(bCryptPasswordEncoder.encode(newpassword));
+					student.setPasswordSec(cryptographe(newpassword));
+					studentRepository.save(student);
+				
+				model.addAttribute("students", "vos parametres ont ete modifies");
 
+				}else{
+					model.addAttribute("errorPassword", "Veuillez entrez votre ancien mot de passe");
+					
+				}
+			}else{
+				model.addAttribute("errorLogin", "Veuillez entrez votre ancien login");
+			}
 
-			student.setLogin(login);
-			student.setPassword(password);
-			studentRepository.save(student);
-
-			model.addAttribute("students", "sucess ");
 
 			return "student/updateParameterStudent";
 		}
@@ -441,6 +455,7 @@ public class StudentController {
 		@RequestMapping(value = { "/listArticle" }, method = RequestMethod.GET)
 		public String listArticleGet(Model model,HttpServletRequest req) {
 			System.out.println("listArticle get");
+			model.addAttribute("error", "");
 			String eventTitle = req.getParameter("eventTItle");
 			Event event= eventRepository.findByEventTitle(eventTitle);
 			 
@@ -462,11 +477,14 @@ public class StudentController {
 		
 		// se deconnecter
 		@RequestMapping(value = "/logoutStudent", method = RequestMethod.GET)
-		public String logoutStudentPost(HttpServletRequest request, HttpServletResponse response, Model model) {
+		public String logoutStudentPost(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 
 			  HttpSession session = request.getSession();
 			  session.setAttribute( "student", null );
+			  
 			  model.addAttribute("students", "la session a ete supprimme");
+			  
+			  response.sendRedirect("index");
 
 			return "index";
 		}

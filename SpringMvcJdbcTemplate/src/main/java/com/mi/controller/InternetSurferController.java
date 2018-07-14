@@ -1,9 +1,16 @@
 package com.mi.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,10 +20,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mi.model.Communique;
 import com.mi.model.Document;
@@ -51,10 +61,8 @@ public class InternetSurferController {
 	
 public static final Logger logger = LoggerFactory.getLogger(AdministratorController.class);
 	
-	/*private static final String SAVE_DIR="C:"+File.separator+"Users"+File.separator+"MFOGO"+File.separator+"Documents"+File.separator+"Master1"+File.separator+"Semestre2"
-			+ ""+File.separator+"Projet"+File.separator+"workspace"+File.separator+"SiteWebMI"+File.separator+"SpringMvcJdbcTemplate"+File.separator+"Documents";
+	private static final String SAVE_DIR="resources"+File.separator+"userResources"+File.separator+"img";
 
-	*/
 	@Autowired
 	ResearchDomainRepository researchDomainRepository;
 	
@@ -236,18 +244,18 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 			}
 
 			
-			/*
+			
 			//Connexion de l'enseignant et de l'etudiant
 			
-			@RequestMapping(value = { "/loginStudent" }, method = RequestMethod.GET)
+			@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
 			public String loginFormGet(Model model,HttpServletRequest req) {
 				System.out.println("connexion  page get");
 				model.addAttribute("errorLogin", "");
 				model.addAttribute("errorPassword", "");
 				return "index";
-			}*/
+			}
 
-			/*@RequestMapping(value = { "/loginStudent" }, method = RequestMethod.POST)
+			@RequestMapping(value = { "/login" }, method = RequestMethod.POST)
 			public String loginStudentPost(Model model,@ModelAttribute("loginAdmin") Teacher admin, HttpServletRequest req,HttpServletResponse resp) throws IOException {
 				System.out.println("connexion  page post");
 
@@ -344,7 +352,7 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 					}
 					
 				return "index";
-			}*/
+			}
 
 			// masterAlgebra
 			@RequestMapping(value = "/masterAlgebra", method = RequestMethod.GET)
@@ -385,5 +393,97 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 					return "licenceMi";
 
 				}
+				
+				
+				//Mes tests
+				
+				// editer le profil
+
+				@RequestMapping(value = { "/editProfilTest" }, method = RequestMethod.GET)
+				public String editProfilGet(Model model,HttpServletRequest req) {
+					System.out.println("editProfil get");
+					HttpSession session = req.getSession();
+					Teacher authors =  (Teacher) session.getAttribute( "teacher" );
+					List<ResearchDomain> listOfResearchDomain = researchDomainRepository.findAll();
+					Teacher teacher = teachersRepository.findByLogin(authors.getLogin());
+
+					if (listOfResearchDomain.isEmpty() ) {
+						model.addAttribute("error", "error : liste vide");
+					}
+					model.addAttribute("researchDomains", listOfResearchDomain);
+					model.addAttribute("teachers", teacher);
+
+					//model.addAttribute("error", "");
+					return "teacher/editProfilTest";
+				}
+				
+				@Autowired
+				ServletContext context;
+				
+				@RequestMapping(value = { "/editProfilTest" }, method = RequestMethod.POST)
+				@Transactional
+				public String editProfilPost(Model model, HttpServletRequest req,@RequestParam("files") MultipartFile file) throws ParseException, IOException {
+
+					String domainLabel= req.getParameter("domainLabel");
+					String phoneNumber= req.getParameter("phoneNumber");
+					String lastName= req.getParameter("lastName");
+					String firstName= req.getParameter("firstName");
+					String emailAdress= req.getParameter("emailAdress");
+					String sex= req.getParameter("sex");
+					String birthPlace= req.getParameter("birthPlace");
+					String gradeName= req.getParameter("grade");
+					String birth= req.getParameter("birthDate");
+					String description= req.getParameter("teacherDescription");
+
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+					Date birthDate = sdf.parse(birth);
+
+					HttpSession session = req.getSession();
+					Teacher authors =  (Teacher) session.getAttribute( "teacher" );
+
+					Teacher teacher = teachersRepository.findByLogin(authors.getLogin());
+
+					ResearchDomain researchDomain=researchDomainRepository.findByDomainLabel(domainLabel);
+					Grade grade = gradeRepository.findByGradeName(gradeName);
+
+					if(teacher==null){
+						model.addAttribute("error", "erreur d'ajout du document; veuillez vous connecter d'abord");
+
+					}else{
+
+						String pictureName= lastName+"_"+firstName+"profil.png";
+						byte[] bytes = file.getBytes();
+						File dir = new File(SAVE_DIR);
+						if (!dir.exists())
+							dir.mkdirs();
+
+						BufferedOutputStream stream = new BufferedOutputStream(
+								new FileOutputStream(context.getRealPath("") + File.separator  + SAVE_DIR + File.separator + pictureName));
+						stream.write(bytes);
+						stream.close();
+
+						String pictureNames=context.getRealPath("") + File.separator  +SAVE_DIR + File.separator + pictureName;
+
+
+						teacher.setBirthDate(birthDate);
+						teacher.setPhoneNumber(phoneNumber);
+						teacher.setResearchDomain(researchDomain);
+						teacher.setBirthPlace(birthPlace);
+						teacher.setDescriptionEnseignant(description);
+						teacher.setEmailAdress(emailAdress);
+						teacher.setFirstName(firstName);
+						teacher.setGrade(grade);
+						teacher.setSexe(sex);
+						teacher.setLastName(lastName);
+						teacher.setPictureName(pictureNames);
+
+
+						teachersRepository.save(teacher);
+						model.addAttribute("teachers", teacher);
+
+					}
+					return "teacher/editProfilTest";
+				}
+
 
 }

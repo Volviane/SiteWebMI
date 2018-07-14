@@ -105,10 +105,10 @@
 
 	<!-- DEBUT DU HEADER -->
 	<c:if test="${teacher==null}">
-		<c:import url="includes/headerUser.jsp"></c:import>
+	    <%@include file="includes/headerUser.jsp"%>
 	</c:if>
 	<c:if test="${teacher!=null}">
-		<c:import url="teacher/includesTeacher/headerTeacher.jsp"></c:import>
+		  <%@include file="includes/headerUser.jsp"%>
 	</c:if>
 	
 	<!-- FIN DU HEADER-->
@@ -174,24 +174,24 @@
 	<!-- Fin présentation du département -->
 	
 	<!-- Formations -->
-	<section>
-		<h2>Découvrez nos Formations</h2>
-		<hr class="bottom-line">
-	</section>
+<!-- 	<section> -->
+<!-- 		<h2>Découvrez nos Formations</h2> -->
+<!-- 		<hr class="bottom-line"> -->
+<!-- 	</section> -->
 	<!-- Fin Formations -->
 	
 	<!--Actualité-->
-	<section id="feature" class="section-padding">
+	<section id="feature" class="section-pading">
 		<div class="container">
 			<div class="row">
-				<div class="header-section text-center">
-					<h2>Nos différentes actualités</h2>
-					<p>Soyez informez des nouveautés du département, des
-						informations grâce aux communiqués qui sont publiés. Les activités
-						du départements et les résultats des différentes sessions
-						d'examens publiés.</p>
-					<hr class="bottom-line">
-				</div>
+<!-- 				<div class="header-section text-center"> -->
+<!-- 					<h2>Nos différentes actualités</h2> -->
+<!-- 					<p>Soyez informez des nouveautés du département, des -->
+<!-- 						informations grâce aux communiqués qui sont publiés. Les activités -->
+<!-- 						du départements et les résultats des différentes sessions -->
+<!-- 						d'examens publiés.</p> -->
+<!-- 					<hr class="bottom-line"> -->
+<!-- 				</div> -->
 				<div class="feature-info">
 					<div class="fea">
 						<div class="col-md-4">

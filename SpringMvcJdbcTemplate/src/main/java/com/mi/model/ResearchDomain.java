@@ -18,6 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="DOMAINES_RECHERCHE")
 public class ResearchDomain implements Serializable {
+	
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -31,7 +32,7 @@ public class ResearchDomain implements Serializable {
 	private String domainDescription;
 	
 	@ManyToOne
-	@JoinColumn(name="OPTION")
+	@JoinColumn(name="ID_OPTION")
 	private Option option;
 	
 	@OneToMany(mappedBy = "researchDomain")

@@ -54,8 +54,26 @@
 			<!--Contenu-->
 			<h3>Bienvenue Dans votre Espace Personnel</h3>
 			
-			
 			<section>
+				<%-- <div class="media-left">
+					<c:if test="${teachers.pictureName==null }">
+						<img src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
+							style="height:200px;" alt=""
+							class="img-thumbnail img-circle media-object" />
+					</c:if>
+					<c:if test="${teachers.pictureName!=null }">
+						<img
+							src="${pageContext.request.contextPath}/resources/userResources/img/${teachers.pictureName }"
+							style="height:200px;" alt=""
+							class="img-thumbnail img-circle media-object" />
+					</c:if>
+			</div>
+				<div class="media-body">
+					<h4 class="media-heading">
+						<c:out value="${teachers.firstName }"></c:out>
+					</h4>
+					<p></p>
+				</div> --%>
 				
 			</section>
 			<!--/ Contenu-->
