@@ -1,6 +1,7 @@
 package com.mi.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
@@ -27,7 +28,7 @@ public class Dissertation implements Serializable {
 	@Column(name="THEME_MEMOIRE")
 	private String dissertationTheme;
 	
-	@Column(name="RAPPORTEUR")
+	/*@Column(name="RAPPORTEUR")
 	private String reporter;
 	
 	@Column(name="EXAMINATEUR")
@@ -40,32 +41,19 @@ public class Dissertation implements Serializable {
 	private String grade;
 	
 	@Column(name="ANNEE_SOUTENANCE")
-	private String defenceYear;
+	private Date defenceYear;*/
 	
-	@Column(name="OPTION")
-	private String option;
+	@Column(name="ID_OPTION")
+	private Option option;
 	
 	@OneToOne(optional=false)
-	@JoinColumn(name="CANDIDAT", unique=true)
+	@JoinColumn(name="ID_CANDIDAT", unique=true)
 	private Student candidate;
 	
-	@Column(name="STATUT_MEMOIRE")
+	/*@Column(name="STATUT_MEMOIRE")
 	private String status = "NON TRAITE";
+	*/
 	
-	/**
-	 * @return the status
-	 */
-	public String getStatus() {
-		return status;
-	}
-
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	public Dissertation() {
 		
 	}
@@ -112,87 +100,12 @@ public class Dissertation implements Serializable {
 		this.dissertationTheme = dissertationTheme;
 	}
 
-	/**
-	 * @return the reporter
-	 */
-	public String getReporter() {
-		return reporter;
-	}
-
-	/**
-	 * @param reporter the reporter to set
-	 */
-	public void setReporter(String reporter) {
-		this.reporter = reporter;
-	}
-
-	/**
-	 * @return the examiner
-	 */
-	public String getExaminer() {
-		return examiner;
-	}
-
-	/**
-	 * @param examiner the examiner to set
-	 */
-	public void setExaminer(String examiner) {
-		this.examiner = examiner;
-	}
-
-	/**
-	 * @return the juryPresident
-	 */
-	public String getJuryPresident() {
-		return juryPresident;
-	}
-
-	/**
-	 * @param juryPresident the juryPresident to set
-	 */
-	public void setJuryPresident(String juryPresident) {
-		this.juryPresident = juryPresident;
-	}
-
-	/**
-	 * @return the grade
-	 */
-	public String getGrade() {
-		return grade;
-	}
-
-	/**
-	 * @param grade the grade to set
-	 */
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
-
-	/**
-	 * @return the defenceYear
-	 */
-	public String getDefenceYear() {
-		return defenceYear;
-	}
-
-	/**
-	 * @param defenceYear the defenceYear to set
-	 */
-	public void setDefenceYear(String defenceYear) {
-		this.defenceYear = defenceYear;
-	}
-
-	/**
-	 * @return the option
-	 */
-	public String getOption() {
+	
+	public Option getOption() {
 		return option;
 	}
 
-	/**
-	 * @param option the option to set
-	 */
-	public void setOption(String option) {
+	public void setOption(Option option) {
 		this.option = option;
 	}
 
