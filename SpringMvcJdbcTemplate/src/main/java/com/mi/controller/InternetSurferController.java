@@ -303,6 +303,7 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 						} else {
 							logger.error("Teacher with password {} not found.", password);
 							model.addAttribute("errorPassword", "Mot de passe mal saisi.");
+							model.addAttribute("modalOpen", true);
 							req.setAttribute("errorPassword", "Mot de passe mal saisi.");
 						}
 						
@@ -332,12 +333,14 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 							logger.error("Teacher with password {} not found.", password);
 							model.addAttribute("errorPassword", "Mot de passe mal saisi.");
 							req.setAttribute("errorPassword", "Mot de passe mal saisi.");
+							model.addAttribute("modalOpen", true);
 						}
 					}
 					
 					if(etatEtudiant==1 && etatEnseignant==2){
 						model.addAttribute("errorLogin", "login mal saisi. l'utilisateur " + login + " n'existe pas");
 						req.setAttribute("errorLogin", "login mal saisi, l'utilisateur "+ login + "n'existe pas");
+						model.addAttribute("modalOpen", true);
 					}
 					
 				return "index";

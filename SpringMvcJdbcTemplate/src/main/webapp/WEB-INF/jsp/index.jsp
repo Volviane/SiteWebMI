@@ -349,8 +349,6 @@
 	<
 	<!-- INCLUSION DES JS -->
 	<script
-		src="${pageContext.request.contextPath}/resources/userResources/js/jquery.min.js"></script>
-	<script
 		src="${pageContext.request.contextPath}/resources/userResources/js/jquery.easing.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/userResources/js/bootstrap.min.js"></script>
@@ -422,10 +420,11 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/css/assets/css/js/front.js"></script>
 	<!-- FIN INCLUSION DES JS -->
-	<c:if test="${ errorLogin!= null || errorPassword!= null }">
+  <c:if test="${ modalOpen}">
 		<script type="text/javascript">
-			$(window).on('load', function() {
-			   $('#login').modal('show')
+			$(document).ready(function() {
+					console.log($('#login'));
+				 $('#btnConnexion').trigger("click");
 			  });
 	</script>
 	</c:if>
