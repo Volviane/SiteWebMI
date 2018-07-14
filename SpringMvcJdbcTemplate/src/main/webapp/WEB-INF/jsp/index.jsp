@@ -105,10 +105,10 @@
 
 	<!-- DEBUT DU HEADER -->
 	<c:if test="${teacher==null}">
-		<c:import url="includes/headerUser.jsp"></c:import>
+	    <%@include file="includes/headerUser.jsp"%>
 	</c:if>
 	<c:if test="${teacher!=null}">
-		<c:import url="includes/headerUser.jsp"></c:import>
+		  <%@include file="includes/headerUser.jsp"%>
 	</c:if>
 	
 	<!-- FIN DU HEADER-->

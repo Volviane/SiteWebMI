@@ -110,7 +110,17 @@
 		<div class="media">
 		
 			<div class="media-left">
-				<img src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG" alt="" class="img-thumbnail img-circle media-object" style="width: 60px">
+					<c:if test="${i.pictureName==null }">
+						<img src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
+							style="width:60px;" alt=""
+							class="img-thumbnail img-circle media-object" />
+					</c:if>
+					<c:if test="${i.pictureName!=null }">
+						<img
+							src="${pageContext.request.contextPath}/resources/userResources/img/${i.pictureName }"
+							style="width:60px;" alt=""
+							class="img-thumbnail img-circle media-object" />
+					</c:if>
 			</div>
 				<div class="media-body">
 					<h4 class="media-heading">

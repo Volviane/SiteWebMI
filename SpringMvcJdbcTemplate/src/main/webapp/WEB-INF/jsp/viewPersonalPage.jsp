@@ -93,6 +93,18 @@
 <style type="text/css">
 	.space{ padding-top: 10px;}
 	.spaces{ height: 3000px;}
+	.backgroundInfo  {
+			    width: 400px;
+			    heigh: 400px;
+			    background-color:#f5f5f5;
+			    color:#fff;
+			    margin-bottom:10px;
+			     padding: 10px;
+				}
+	.padding {
+			   margin-left:10px;
+			  
+				}
 </style>
 
 </head>
@@ -128,26 +140,77 @@
 			
 			<div class="media">
 				<div class="media-left">
-					 <img
-						src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
-						alt="" class="img-thumbnail img-circle media-object" />
-						<img src="<c:url value='/Documents/miguel_miguelprofil.png'/>"
-						alt="" class="img-thumbnail img-circl media-object" />
-						<h4 class="media-heading"><c:out value="${teachers.firstName }" />  <c:out value="${teachers.lastName }" /></h4>
-					   <hr> <label> photo:  </label><h7>   <c:out value="${teachers.pictureName }" /></h7> <hr> 
-					    <label> Grade:  </label><h7>   <c:out value="${teachers.grade.gradeName }" /></h7> <hr> 
-					    <label> Adresse email:  </label><h7>   <c:out value="${teachers.emailAdress }" /></h7>  
-					    <hr>  <label>télephone:  </label><h7>   <c:out value="${teachers.phoneNumber }" /></h7> 
-					    <hr>  <label>sexe:  </label><h7>   <c:out value="${teachers.sexe }" /></h7> 
-					    <hr>  <label>Date de naissance:  </label><h7>   <c:out value="${teachers.birthDate }" /></h7>
-					    <hr>  <label>Lieu de naissance:  </label><h7>   <c:out value="${teachers.birthPlace }" /></h7>
-					    <hr>  <label>CV:  </label><h7>   <c:out value="${teachers.cv }" /></h7>
-					    <hr>  <label>Domaines de Recherche:  </label><h7>   <c:out value="${researchDomains.domainLabel }" /></h7>
-<%-- 					     <hr>  <label>Jury:  </label><h7> jury du niveau <c:out value="${jurys.juryLevel }" /></h7>  --%>
 					
 				</div>
 				<div class="media-body">
-
+					<c:if test="${teachers.pictureName==null }">
+						<img src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
+					style="weight: 20px; height:200px" alt="" class="img-thumbnail img-circle media-object" />
+					</c:if>
+					<c:if test="${teachers.pictureName!=null }">
+						<img src="${pageContext.request.contextPath}/resources/userResources/img/${teachers.pictureName }"
+					    style="weight: 20px; height:200px" alt="" class="img-thumbnail img-circle media-object" />
+					 </c:if>
+					 <h4 class="media-heading"><c:out value="${teachers.firstName }" />  <c:out value="${teachers.lastName }" /></h4>
+					  <div class="padding">
+					  <div class="backgroundInfo">
+					   	<c:if test="${teachers.grade.gradeName==null }">
+					    	<p><label> Grade:  </label>  <i> non renseigné</i> </p>
+					     </c:if>
+					     <c:if test="${teachers.grade.gradeName!=null }">
+					    	<p><label> Grade:  </label><h7>   <c:out value="${teachers.grade.gradeName }" /></h7> </p>
+					     </c:if>
+					     <c:if test="${researchDomains.domainLabel==null }">
+					    	<p><label> Domaines de Recherche:  </label> <i>  non renseigné</i> </p>
+					     </c:if>
+					     <c:if test="${researchDomains.domainLabel!=null }">
+					     <p><label>Domaines de Recherche:  </label><h7>   <c:out value="${researchDomains.domainLabel }" /></h7></p>
+					      </c:if>
+					      <c:if test="${teachers.cv==null }">
+					    	<p><label> cv:  </label> <i>  non renseigné</i> </p>
+					     </c:if>
+					     <c:if test="${teachers.cv!=null }">
+					      <p> <label>CV:  </label> <h7> <c:out value="${teachers.cv }" /> </h7> </p>
+					       </c:if>
+					   </div>
+					   <div class="backgroundInfo">
+					   <c:if test="${teachers.emailAdress==null }">
+					    	<p><label> Adresse email:  </label> <i>  non renseigné</i> </p>
+					     </c:if>
+					    <c:if test="${teachers.emailAdress!=null }">
+					     <p><label> Adresse email:  </label><h7>   <c:out value="${teachers.emailAdress }" /></h7> </p>
+					    </c:if>
+					     <c:if test="${teachers.phoneNumber==null }">
+					    	<p><label> télephone:  </label><i>non renseigné</i> </p>
+					     </c:if>
+					    <c:if test="${teachers.phoneNumber!=null }">
+					    <p> <label>télephone:  </label><h7>   <c:out value="${teachers.phoneNumber }" /></h7> </p>
+					    </c:if>
+					   </div> 
+					   <div class="backgroundInfo">
+					    <c:if test="${teachers.sexe==null }">
+					    	<p><label>sexe:  </label><h7>non renseigné</h7> </p>
+					     </c:if>
+					     <c:if test="${teachers.sexe!=null }">
+					      <p><label>sexe:  </label><h7>   <c:out value="${teachers.sexe }" /></h7> </p>
+					     </c:if>
+					     <c:if test="${teachers.birthDate==null }">
+					    	<p><label>Date de naissance:  </label><i>non renseigné</i> </p>
+					     </c:if>
+					     <c:if test="${teachers.birthDate!=null }">
+					      <p><label>Date de naissance:  </label><h7>   <c:out value="${teachers.birthDate }" /></h7></p>
+					      </c:if>
+					       <c:if test="${teachers.birthPlace==null }">
+					    	 <p><label>Lieu de naissance:  </label>  <i> non renseigné</i> </p>
+					       </c:if>
+					     <c:if test="${teachers.birthPlace!=null }">
+					      <p><label>Lieu de naissance:  </label><h7>   <c:out value="${teachers.birthPlace }" /></h7></p>
+					      </c:if>
+					   </div> 
+					    
+					   
+<%-- 					     <hr>  <label>Jury:  </label><h7> jury du niveau <c:out value="${jurys.juryLevel }" /></h7>  --%>
+					 </div> 
 				</div>
 			</div>
 			<!--/ Contenu-->
