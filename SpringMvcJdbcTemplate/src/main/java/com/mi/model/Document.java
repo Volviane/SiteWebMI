@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -53,7 +54,7 @@ public class Document implements Serializable {
 	@Column(name="NOM_DOCUMENT")
 	private String documentName;
 
-	@OneToOne(optional=false, fetch=FetchType.LAZY)
+	@ManyToOne(optional=false, fetch=FetchType.LAZY)
 	@JoinColumn(name="TEACHER_ID", unique=true)
 	private Teacher author;
 	

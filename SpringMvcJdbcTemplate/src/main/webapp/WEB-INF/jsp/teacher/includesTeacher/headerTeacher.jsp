@@ -28,33 +28,43 @@
 						</a>
 					</div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div
-						class="collapse navbar-collapse main-menu bs-example-navbar-collapse-1"
-						id="navbar-example">
+					<div class="collapse navbar-collapse main-menu bs-example-navbar-collapse-1">
+					  <form class="navbar-form pull-right" action="<c:url value='research'/>" method="post">
+							<input type="text" style="width:100px" class="input-sm form-control"
+							placeholder="Recherche">
+							<input type="submit" class="btn btn-primary btn-sm glyphicon glyphicon-eye-open" value="chercher">
+						  </form>
 						<ul class="nav navbar-nav navbar-right">
-							<li class="active"><a class="page-scroll" href="${pageContext.request.contextPath}/index">Acceuil</a>
+							<li class="active gras"><a class="page-scroll" href="${pageContext.request.contextPath}/index">Acceuil</a>
 							</li>
-							<li class="dropdown">
+							<li class="dropdown gras">
 								<a class="page-scroll" data-toggle="dropdown" href="#about">PRESENTATION<b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a href="${pageContext.request.contextPath}/viewTeacherList"> enseignants du département</a></li>
-									<li><a href="${pageContext.request.contextPath}/">organigramme</a></li>
+									<li class="gras"><a class="#">Présentation du Département</a></li>								
+									<li class="gras"><a href="${pageContext.request.contextPath}/viewTeacherList"> Enseignants du département</a></li>
+									<li class="gras"><a href="${pageContext.request.contextPath}/">Organigramme</a></li>
 								</ul>
 							</li>
-							<li class="dropdown">
+							<li class="dropdown gras">
 								<a class="page-scroll" data-toggle="dropdown" href="#about">Formations<b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a href="${pageContext.request.contextPath}/licenceMi"> licence en maths-info</a></li>
-									<li><a href="${pageContext.request.contextPath}/masterAlgebra">master en algère</a></li>
-									<li><a href="${pageContext.request.contextPath}/masterAnalysis"> master en analyse</a></li>
-									<li><a href="${pageContext.request.contextPath}/masterRsd">master en RSD</a></li>
+									<li><a href="licenceMi"> Toutes les Formations</a></li>
+									<li><a href="licenceMi"> Licence en maths-info</a></li>
+									<li><a href="masterAlgebra">Master en algère</a></li>
+									<li><a href="masterAnalysis">Master en analyse</a></li>
+									<li><a href="masterRsd">Master en Réseau et Services Distribués</a></li>
+									<li><a href="masterGlo">Master en Génie Logiciel</a></li>
+									<li><a href="masterIar">Master en Intélligence Artificielle</a></li>
 								</ul>
 							</li>
-							<li><a class="page-scroll" href="${pageContext.request.contextPath}/contact">Contact</a></li>
-							<li><a href="${pageContext.request.contextPath}/logoutTeacher">Se deconnecter</a></li>
+							<li class="gras"><a class="page-scroll" href="homeTeacher">Espace Personnel</a></li>							
+							<li class="gras"><a class="page-scroll" href="contact">Contact</a></li>
+							<li class="gras"><a href="logoutTeacher">Se deconnecter</a></li>
 						</ul>
+						
 					</div>
 					<!-- navbar-collapse -->
+					
 				</nav>
 				<!-- END: Navigation -->
 			</div>

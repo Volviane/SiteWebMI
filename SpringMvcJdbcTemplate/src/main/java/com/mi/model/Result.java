@@ -28,6 +28,9 @@ public class Result implements Serializable {
 	
 	@Column(name="STATUT_PUBLICATION")
 	private boolean isPublish = false;
+	
+	@Column(name="DATE_PUBLICATION")
+	private Date publicationDate;
 
 
 
@@ -178,6 +181,20 @@ public class Result implements Serializable {
 	 */
 	public void setJury(Jury jury) {
 		this.jury = jury;
+	}
+
+	/**
+	 * @return the publicationDate
+	 */
+	public Date getPublicationDate() {
+		return publicationDate;
+	}
+
+	/**
+	 * @param publicationDate the publicationDate to set
+	 */
+	public void setPublicationDate(Date publicationDate) {
+		this.publicationDate = publicationDate;
 	}
 	
 }

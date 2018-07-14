@@ -22,7 +22,14 @@
 	<!-- FIN DU HEADER-->
 
 	<div
-		style="clear: both; display: block; margin-top: 88px; height: 60px;"></div>
+		
+		style="clear: both; display: block; margin-top: 88px; margin-bottom:30px; height: 60px;">
+			<ol class="breadcrumb">
+ 				 <li><a href="homeTeacher">Espace Personnel</a></li>
+  				<li><a href="#">Documents</a></li>
+ 				 <li class="active gras">Nouveau Document</li>
+			</ol>
+		</div>
 
 	<!-- DEBUT DU MENU -->
 	<c:import url="includesTeacher/teacherMenu.jsp"></c:import>
@@ -54,7 +61,8 @@
 								</h6>
 							</c:if>
 
-							<div class="form-group-material">
+							
+							
 								<%-- <select name="documentType">
 							<c:forEach items="documentTypes" var="type">
 								<option value='<c:out value="${type.name}"/>'>${type.name}</option>
@@ -84,6 +92,7 @@
 							<div class="form-group">
 								<label for="file-document" class="">Choisir
 									le fichier</label> <input id="file-document" type="file"
+									
 									name="files" required
 									data-msg="veuillez entrer le titre du document"
 									class="input-material">
@@ -95,11 +104,13 @@
 								<!-- This should be submit button but I replaced it with <a> for demo purposes-->
 							</div>
 						</form>
-						<c:if test="${empty errors }">
+						
+						<c:if test="${documents != null }">
 						<div class="alert alert-success" role="alert">document ajouté avec succès</div>
 					</c:if>
-					<c:if test="${empty documents }">
-						<div class="alert alert-success" role="alert">Echec d'ajout de documents</div>
+			
+					<c:if test="${error != null }">
+						<div class="alert alert-danger" role="alert">Echec d'ajout de documents</div>
 					</c:if>
 					</div>
 				</div>
@@ -107,19 +118,16 @@
 		</div>
 		<!--/ Contenu-->
 	</div>
-
+ 
 	<!-- DEBUT DE L'ASIDE -->
 	<c:import url="../includes/aside.jsp"></c:import>
 	<!-- FIN DE L'ASIDE -->
 
+
 <div
-		style="clear: both; display: block; margin-top: 88px; margin-bottom:30px; height: 60px;">
-			<ol class="breadcrumb">
- 				 <li><a href="homeTeacher">Espace Personnel</a></li>
-  				<li><a href="#">Documents</a></li>
- 				 <li class="active gras">Nouveau Document</li>
-			</ol>
-		</div>
+	
+		style="clear: both; display: block; margin-top: 88px; height: 60px;"></div>
+	
 
 	<!--Footer-->
 	<c:import url="../includes/footer.jsp"></c:import>

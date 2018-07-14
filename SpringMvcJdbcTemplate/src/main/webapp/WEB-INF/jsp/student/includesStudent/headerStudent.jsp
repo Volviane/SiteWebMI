@@ -29,8 +29,12 @@
 					</div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div
-						class="collapse navbar-collapse main-menu bs-example-navbar-collapse-1"
-						id="navbar-example">
+						class="collapse navbar-collapse main-menu bs-example-navbar-collapse-1">
+						 <form class="navbar-form pull-right" action="<c:url value='research'/>" method="post">
+							<input type="text" style="width:150px" class="input-sm form-control"
+							placeholder="Recherche">
+							<input type="submit" class="btn btn-primary btn-sm glyphicon glyphicon-eye-open" value="chercher">
+						  </form>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="active"><a class="page-scroll" href="${pageContext.request.contextPath}/index">Acceuil</a>
 							</li>

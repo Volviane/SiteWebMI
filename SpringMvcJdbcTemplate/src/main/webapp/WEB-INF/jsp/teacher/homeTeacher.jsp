@@ -52,19 +52,12 @@
 
 		<div class="col-md-7" style="padding: 0px">
 			<!--Contenu-->
-			<div class="media">
-				<div class="media-left">
-					<a href="#"> <img
-						src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
-						alt="" class="img-thumbnail img-circle media-object" />
-						<h4 class="media-heading"><c:out value="${teachs.firstName }" />  <c:out value="${teachs.lastName }" /></h4>
-<%-- 					   <h5><c:out value="${teachs.gradeName }" /></h5> --%>
-					</a>
-				</div>
-				<div class="media-body">
-
-				</div>
-			</div>
+			<h3>Bienvenue Dans votre Espace Personnel</h3>
+			
+			
+			<section>
+				
+			</section>
 			<!--/ Contenu-->
 		</div>
 
