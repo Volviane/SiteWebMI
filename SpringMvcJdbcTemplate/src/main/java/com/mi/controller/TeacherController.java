@@ -154,71 +154,7 @@ public class TeacherController {
 
 
 
-	/*//connexion d'un enseignant
-	@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.GET)
-	public String loginForm(Model model,HttpServletRequest req) {
-		System.out.println("connexion  d'un enseignant get");
-		model.addAttribute("errorLogin", "");
-		model.addAttribute("errorPassword", "");
-		return "index";
-	}
-
-	@RequestMapping(value = { "/loginTeacher" }, method = RequestMethod.POST)
-	public String login(Model model,@ModelAttribute("loginAdmin") Teacher admin, HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("connexion  d'un enseignant post");
-
-		String login = req.getParameter("login");
-		String password = req.getParameter("password");
-		System.out.println("-------------------------------");
-		System.out.println(login);
-		System.out.println("-------------------------------");
-
-		System.out.println("-------------------------------");
-		System.out.println(password);
-		// recherche du membre dans la base de donnees
-		try {
-			System.out.println("c'est le try");
-			Teacher teacher = teachersRepository.findByLogin(login);
-			System.out.println(teacher);
-			if (teacher != null) {
-				String pass = cryptographe(password);
-				System.out.println(pass);
-				if (pass.equals(teacher.getPasswordSec())) {
-					System.out.println("deuxieme if c'est moi");
-
-					HttpSession session = req.getSession();
-					session.setAttribute( "teacher", teacher );
-
-					Teacher teacherName = (Teacher) session.getAttribute( "teacher" );
-
-					System.out.println("je suis en session avec http et mon nom est : " + teacherName.getLogin());
-
-					model.addAttribute("teachers", "Vous etes connectez a votre espace personne. M. " + teacherName.getLogin());
-					model.addAttribute("teachs", teacher);
-					 resp.sendRedirect("homeTeacher");
-					return "teacher/homeTeacher";
-
-				} else {
-					logger.error("Teacher with password {} not found.", password);
-					model.addAttribute("errorPassword", "Mot de passe mal saisi.");
-					req.setAttribute("errorPassword", "Mot de passe mal saisi.");
-				}
-			} else {
-				logger.error("Teacher with password {} not found.", login);
-				model.addAttribute("errorLogin", "login mal saisi, l'enseignant "+ login + "n'existe pas");
-				req.setAttribute("errorLogin", "login mal saisi, l'enseignant "+ login + "n'existe pas");
-
-			}
-		} catch (Exception ex) {
-			logger.error("Teacher with pseudonym {} not found.", login);
-			model.addAttribute("errorLogin", "login mal saisi, l'enseignant "+ login + "n'existe pas");
-			req.setAttribute("errorLogin", "login mal saisi, l'enseignant "+ login + "n'existe pas");
-		}
-
-		//return "redirect:/TeacherHome";
-		return "index";
-	}
-	 */
+	
 	//modifier les parametres de connexion get method
 	@RequestMapping(value = { "/updateParameterTeacher" }, method = RequestMethod.GET)
 	public String updateParameterGet(Model model,HttpServletRequest req) {

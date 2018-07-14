@@ -166,30 +166,38 @@ public class StudentController {
 		}
 	
 		// inscription a un evennement
+		@SuppressWarnings("unused")
 		@RequestMapping(value = "/registrationStudent", method = RequestMethod.GET)
-		public String registrationStudentGet(Model model) {
+		public String registrationStudentGet(HttpServletRequest request,Model model) {
 			System.out.println("registrationStudent get");
 			model.addAttribute("error", "");
+			
+			String name = request.getParameter("idEvent");
+			Long idEvent=Long.parseLong(name);
+			Event event =eventRepository.findByIdEvent(idEvent);
 			
 			List<Option> listOfOption = optionRepository.findAll();
 			List<String> finalList = new ArrayList<String>();
 			
-			model.addAttribute("options", listOfOption);
+			
 			
 			List<Level> listOfLevel = levelRepository.findAll();
 			//List<String> finalList = new ArrayList<String>();
 
 			
-			model.addAttribute("levels", listOfLevel);
+			
 			
 			List<Event> listOfEvent = eventRepository.findAll();
 
 			
-			model.addAttribute("events", listOfEvent);
 			
 			List<Cycle> cycles = cycleRepository.findAll();
 			
+			model.addAttribute("events", event);
+			model.addAttribute("levels", listOfLevel);
 			model.addAttribute("cycles", cycles);
+			model.addAttribute("options", listOfOption);
+			//model.addAttribute("events", listOfEvent);
 
 			return "student/registrationStudent";
 		}
@@ -309,70 +317,7 @@ public class StudentController {
 		
 		
 		
-		//connexion d'un enseignant
-		@RequestMapping(value = { "/loginStudent" }, method = RequestMethod.GET)
-		public String loginFormGet(Model model,HttpServletRequest req) {
-			System.out.println("connexion  d'un etudiant get");
-			model.addAttribute("errorLogin", "");
-			model.addAttribute("errorPassword", "");
-			return "student/loginStudent";
-		}
-
-		@RequestMapping(value = { "/loginStudent" }, method = RequestMethod.POST)
-		public String loginStudentPost(Model model,@ModelAttribute("loginAdmin") Teacher admin, HttpServletRequest req,HttpServletResponse resp) {
-			System.out.println("connexion  d'un enseignant post");
-
-			String login = req.getParameter("login");
-			String password = req.getParameter("password");
-			System.out.println("-------------------------------");
-			System.out.println(login);
-			System.out.println("-------------------------------");
-
-			System.out.println("-------------------------------");
-			System.out.println(password);
-			// recherche du membre dans la base de donnees
-			try {
-				System.out.println("c'est le try");
-				Student student =  studentRepository.findByLogin(login);
-				System.out.println(student);
-				if (student != null) {
-					String pass = cryptographe(password);
-					System.out.println(pass);
-					if (pass.equals(student.getPasswordSec())) {
-						System.out.println("deuxieme if c'est moi");
-						
-						HttpSession session = req.getSession();
-						session.setAttribute( "student", student );
-						
-						Student studentName = (Student) session.getAttribute( "student" );
-						
-						System.out.println("je suis en session avec http et mon nom est : " + studentName.getLogin());
-						
-						model.addAttribute("teachers", "You have been login successfully." + studentName.getLogin());
-						 resp.sendRedirect("homeStudent");
-						
-						 return "student/homeStudent";
-
-					} else {
-						logger.error("Teacher with password {} not found.", password);
-						model.addAttribute("errorPassword", "Password not found.");
-						req.setAttribute("errorPassword", "Password not found.");
-					}
-				} else {
-					logger.error("Teacher with password {} not found.", login);
-					model.addAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
-					req.setAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
-
-				}
-			} catch (Exception ex) {
-				logger.error("Teacher with pseudonym {} not found.", login);
-				model.addAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
-				req.setAttribute("errorLogin", "login not found, teacher"+ login + "doesn't exist");
-			}
-
-			//return "redirect:/TeacherHome";
-			return "student/loginStudent";
-		}
+		
 
 		//modifier les parametres de connexion get method
 		@RequestMapping(value = { "/updateParameterStudent" }, method = RequestMethod.GET)

@@ -9,6 +9,7 @@ import com.mi.model.Event;
 
 public interface EventRepository extends JpaRepository<Event, String>{
 	public Event findByEventTitle(String eventTitle);
+	public Event findByIdEvent(Long idEvent);
 	public List<Event> findByEventStatus(String eventStatus);
 	
 	//Retourne la liste de tous les évènements déjà publiés

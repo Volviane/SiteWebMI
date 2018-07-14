@@ -244,18 +244,18 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 			}
 
 			
-			/*
+			
 			//Connexion de l'enseignant et de l'etudiant
 			
-			@RequestMapping(value = { "/loginStudent" }, method = RequestMethod.GET)
+			@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
 			public String loginFormGet(Model model,HttpServletRequest req) {
 				System.out.println("connexion  page get");
 				model.addAttribute("errorLogin", "");
 				model.addAttribute("errorPassword", "");
 				return "index";
-			}*/
+			}
 
-			/*@RequestMapping(value = { "/loginStudent" }, method = RequestMethod.POST)
+			@RequestMapping(value = { "/login" }, method = RequestMethod.POST)
 			public String loginStudentPost(Model model,@ModelAttribute("loginAdmin") Teacher admin, HttpServletRequest req,HttpServletResponse resp) throws IOException {
 				System.out.println("connexion  page post");
 
@@ -352,7 +352,7 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 					}
 					
 				return "index";
-			}*/
+			}
 
 			// masterAlgebra
 			@RequestMapping(value = "/masterAlgebra", method = RequestMethod.GET)
