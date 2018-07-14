@@ -3,7 +3,7 @@
 	<hr style="text-shadow: 3px;">
 	<nav class="">
 		<ul class="nav nav-pills nav-stacked">
-			<li role="presentation" class="active"><a href="homeTeacher"><span class="gyphicon glyphicon-home"></span> Accueil</a></li>
+			<li role="presentation" class="active"><a href="homeTeacher"><span class="fa fa-home"></span> Accueil</a></li>
 
 			<div class="panel-group" id="accordion" role="tablist"
 				aria-multiselectable="true">
@@ -12,16 +12,16 @@
 						<h4 class="panel-title">
 							<a role="button" data-toggle="collapse" data-parent="#accordion"
 								href="#collapseOne" aria-expanded="true"
-								aria-controls="collapseOne"> Informations Personelles  </a><span class="caret"></span>
+								aria-controls="collapseOne"><span class="fa fa-user"></span> Informations Personelles</a><span class="caret pull-right"></span>
 						</h4>
 					</div>
 					<div id="collapseOne" class="panel-collapse collapse in"
 						role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body" style="padding: 0px; padding-left: 12px">
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="informationTeacher?idTeacher=${teacher.idTeacher}"><span class="gyphicon glyphicon-user"></span>Consulter mes Informations personnelles</a></li>
+								<li><a href="informationTeacher?idTeacher=${teacher.idTeacher}"><span class="fa fa-eye"></span> Consulter mes Informations personnelles</a></li>
 								<li><a href="updateParameterTeacher">Modifier mes Paramètres</a></li>
-								<li><a href="editProfil">Editer mon profil</a></li>
+								<li><a href="editProfil"><span class="fa fa-edit"></span> Editer mon profil</a></li>
 							</ul>
 						</div>
 					</div>
@@ -31,17 +31,17 @@
 						<h4 class="panel-title">
 							<a class="collapsed" role="button" data-toggle="collapse"
 								data-parent="#accordion" href="#collapseTwo"
-								aria-expanded="false" aria-controls="collapseTwo"> <span class="gyphicon glyphicon-duplicate"></span>Gérer mes
-								documents </a>
+								aria-expanded="false" aria-controls="collapseTwo"> <span class="fa fa-copy"></span> Gérer mes
+								documents </a><span class="caret pull-right"></span>
 						</h4>
 					</div>
 					<div id="collapseTwo" class="panel-collapse collapse"
 						role="tabpanel" aria-labelledby="headingTwo">
 						<div class="panel-body" style="padding: 0px; padding-left: 12px">
 							<ul id="item2" class="nav nav-pills nav-stacked">
-								<li><a href="addDocument"><span class="gyphicon glyphicon-plus"></span> Nouveau document</a></li>
-								<li><a href="updateDocument"><span class="gyphicon glyphicon-pencil"></span> Modifier Document</a></li>
-								<li><a href="listDocuments">Mes Documents<span class="badge pull-right">${documentsNumber}</span></a></li>								
+								<li><a href="addDocument"><span class="fa fa-plus"></span> Nouveau document</a></li>
+<!-- 								<li><a href="updateDocument"><span class="fa fa-pencil"></span> Modifier Document</a></li> -->
+								<li><a href="listDocuments">Tous mes Documents<span class="badge pull-right">${documentsNumber}</span></a></li>								
 								<li><a href="listDocumentsByType?documentType=Article%20de%20Recherche">Mes Articles <span class="badge pull-right">${articlesNumber}</span></a></li>
 								<li><a href="listDocumentsByType?documentType=Support%20de%20Cours">Mes Cours<span class="badge pull-right">${coursNumber }</span></a></li>
 								<li><a href="listDocumentsByType?documentType=Fiche%20de%20TD">Mes Fiches de TD<span class="badge pull-right">${ficheTdNumber }</span></a></li>

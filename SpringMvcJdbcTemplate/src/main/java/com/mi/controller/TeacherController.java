@@ -156,7 +156,7 @@ public class TeacherController {
 //			session.setAttribute( "teacher", teacher );
 //		}
 		
-		model.addAttribute("error", "");
+		
 
 		return "teacher/homeTeacher";
 	}
@@ -252,7 +252,7 @@ public class TeacherController {
 	@RequestMapping(value = { "/updateParameterTeacher" }, method = RequestMethod.GET)
 	public String updateParameterGet(Model model,HttpServletRequest req) {
 		System.out.println("modifier les parametre de connexion get");
-		model.addAttribute("error", "");
+		
 		return "teacher/updateParameterTeacher";
 	}
 
@@ -302,7 +302,6 @@ public class TeacherController {
 	public String addDocumentGet(Model model,HttpServletRequest req) {
 		System.out.println("addDocument get");
 		
-		model.addAttribute("error", "");
 		return "teacher/addDocument";
 	}
 
@@ -375,26 +374,20 @@ public class TeacherController {
 	// on donne le nom d'un enseignant ion retourne ses documents
 	
 		@RequestMapping(value = { "/listDocuments" }, method = RequestMethod.GET)
-		public String listDocumentsGet(Model model,HttpServletRequest req) {
+		public String listDocumentsGet(Model model,HttpServletRequest req,@RequestParam(name="page",defaultValue="0")int i) {
 			System.out.println("listDocuments get");
 			
 			HttpSession session = req.getSession();
 			Teacher author =  (Teacher) session.getAttribute( "teacher" );
 			
 			//List<Document> listOfdocuments= documentRepository.findByAuthor(author);
-			long total = documentRepository.countByAuthor(author);
-			long numberOfPages = Math.round(total/10);
+			//long total = documentRepository.countByAuthor(author);
 			
-			//On récupère le numéro de page à afficher
-			int i = 0;
-			Page<Document> pageOfDocuments = null;
-			try {
-				i = Integer.parseInt(req.getParameter("page"));
-				pageOfDocuments = documentRepository.findByAuthor(author,new PageRequest(i, 10));
-			} catch (NumberFormatException e) {
-				pageOfDocuments = documentRepository.findByAuthor(author,new PageRequest(0,10));
-			}
 			
+		
+			Page<Document> pageOfDocuments = documentRepository.findByAuthor(author,new PageRequest(i, 10));
+			int numberOfPages = pageOfDocuments.getTotalPages();
+			int[] pages = new int[numberOfPages];
 			/*if(listOfdocuments.isEmpty()){
 			
 			model.addAttribute("error", "liste de documents vide");
@@ -406,11 +399,15 @@ public class TeacherController {
 				model.addAttribute("error", "Vous n'avez aucun documents.  Accédez au menu Nouveau document pour en ajouter.");
 			}else{
 				//List<Document> listOfdocuments = pageOfDocuments.getContent();
-				model.addAttribute("documents", pageOfDocuments);
+				model.addAttribute("documents", pageOfDocuments.getContent());
 				model.addAttribute("currentPage", i);
+				model.addAttribute("precedent", pageOfDocuments.hasPrevious());
+				model.addAttribute("suivant", pageOfDocuments.hasNext());
+				model.addAttribute("pages", pages);
+				
 				System.out.println("******** Bien envoyé *******");
 			}
-			model.addAttribute("pages", numberOfPages);
+			
 			return "teacher/listDocuments";
 		}
 		

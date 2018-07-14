@@ -1,6 +1,4 @@
 <link rel="stylesheet" type="text/css"
-	href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
-<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/userResources/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/userResources/css/bootstrap.min.css">
@@ -64,4 +62,8 @@
 <style>
 	.gras{ font-weight: bolder;}
 	.vertical-align-middle{vertical-align: middle;}
+	.nav > li > a { padding-left: 5px;}
+	a{font-weight: bolder;}
+	.marges-in{padding: 15px;}
+	.amrges-out{margin:15px;}
 </style>
