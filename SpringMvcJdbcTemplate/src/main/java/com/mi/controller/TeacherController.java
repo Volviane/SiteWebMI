@@ -521,7 +521,7 @@ public class TeacherController {
 		ResearchDomain recher= teach.getResearchDomain();
 		Grade grade =teach.getGrade();
 		Set<Jury> jury = teach.getJury();
-		model.addAttribute("teahers", teach);
+		model.addAttribute("teachers", teach);
 		model.addAttribute("researchDomains", recher);
 		model.addAttribute("grades", grade);
 		model.addAttribute("jurys", jury);
