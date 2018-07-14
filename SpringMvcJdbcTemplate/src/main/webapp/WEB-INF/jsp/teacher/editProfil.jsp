@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <c:if test="${teacher==null}">
-			<c:redirect  url="/"></c:redirect>
-	     </c:if>
+	<c:redirect url="/"></c:redirect>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MIUDS- Editer Profil</title>
-	<c:import url="includesTeacher/teacherCSS.jsp"></c:import>
+<c:import url="includesTeacher/teacherCSS.jsp"></c:import>
 
 </head>
 <body>
@@ -21,23 +21,24 @@
 	<!-- FIN DU HEADER-->
 
 	<div
-		style="clear: both; display: block; margin-top: 88px; margin-bottom:20px; height: 60px;">
-			<ol class="breadcrumb">
- 				 <li><a href="homeTeacher">Espace Personnel</a></li>
-  				<li><a href="#">Informations Personnelles</a></li>
- 				 <li class="active gras">Edition du Profil</li>
-			</ol>
-		</div>
+		style="clear: both; display: block; margin-top: 88px; margin-bottom: 20px; height: 60px;">
+		<ol class="breadcrumb">
+			<li><a href="homeTeacher">Espace Personnel</a></li>
+			<li><a href="#">Informations Personnelles</a></li>
+			<li class="active gras">Edition du Profil</li>
+		</ol>
+	</div>
 
 	<!-- DEBUT DU MENU -->
 	<c:import url="includesTeacher/teacherMenu.jsp"></c:import>
 	<!-- FIN DU MENU -->
 
-
 	<div class="col-md-7" style="padding-left: 100px">
 		<!--Contenu-->
 		<section>
-			<h3><span class="gyphicon glyphicon-pencil"></span>Edition du Profil</h3>
+			<h3>
+				<span class="fa fa-edit"></span> Edition du Profil
+			</h3>
 			<hr>
 			<p>Vous pouvez ici modifier vos informations personnelles</p>
 		
@@ -178,11 +179,10 @@
 				
 			</form>
 			<hr />
-
 		</section>
-			
-			
-				
+
+
+
 		<!--/ Contenu-->
 	</div>
 	</div>
@@ -190,9 +190,9 @@
 	<c:import url="../includes/aside.jsp"></c:import>
 	<!-- FIN DE L'ASIDE -->
 
-<div
+	<div
 		style="clear: both; display: block; margin-top: 88px; height: 60px;"></div>
-	
+
 
 	<!--Footer-->
 	<c:import url="../includes/footer.jsp"></c:import>
@@ -201,7 +201,30 @@
 	<!-- INCLUSION DES JS -->
 	<c:import url="includesTeacher/teacherJS.jsp"></c:import>
 	<!-- FIN INCLUSION DES JS -->
+<<<<<<< HEAD
 	
 	
+=======
+
+	<script type="text/javascript">
+	
+	/* 	function setEditableOn(target){
+			console.log("debut: rendre "+target+" éditable");
+			 document.getElementById(target).setAttribute("readonly", "false");
+			//$(target).setAttribute("readonly","false");
+				console.log("fin: rendre "+target+" éditable");
+		}
+	/* 
+		function setEditableOff(target){
+			//setAttribute("readonly",true);
+			document.getElementById(target).setAttribute("readonly", "true");
+		} */
+	/*function setDisabled(target1,target2){
+		 document.getElementById(target1).setAttribute("disabled","false");
+		 document.getElementById(target2).setAttribute("disabled","false");
+	} */
+	</script>
+
+>>>>>>> 54c00452e7a7a5c173d5d5a876024f545cdb0968
 </body>
 </html>

@@ -35,14 +35,14 @@
 							<input type="submit" class="btn btn-primary btn-sm glyphicon glyphicon-eye-open" value="chercher">
 						  </form>
 						<ul class="nav navbar-nav navbar-right">
-							<li class="active gras"><a class="page-scroll" href="${pageContext.request.contextPath}/index">Acceuil</a>
+							<li class="active gras"><a class="gras" href="${pageContext.request.contextPath}/index">Acceuil</a>
 							</li>
 							<li class="dropdown gras">
-								<a class="page-scroll" data-toggle="dropdown" href="#about">PRESENTATION<b class="caret"></b></a>
+								<a class="gras" data-toggle="dropdown" href="#about">PRESENTATION<b class="caret"></b></a>
 								<ul class="dropdown-menu">
-<!-- 									<li class="gras"><a class="#">Présentation du Département</a></li>								 -->
-									<li class="gras"><a href="${pageContext.request.contextPath}/viewTeacherList"> Enseignants du département</a></li>
-									<li class="gras"><a href="${pageContext.request.contextPath}/">Organigramme</a></li>
+									<li class="gras"><a class="gras">Présentation du Département</a></li>								
+									<li class="gras"><a class="gras" href="${pageContext.request.contextPath}/viewTeacherList"> Enseignants du département</a></li>
+									<li class="gras"><a class="gras" href="${pageContext.request.contextPath}/">Organigramme</a></li>
 								</ul>
 							</li>
 							<li class="dropdown gras">
@@ -56,9 +56,10 @@
 <!-- 									<li><a href="masterGlo">Master en Génie Logiciel</a></li> -->
 <!-- 									<li><a href="masterIar">Master en Intélligence Artificielle</a></li> -->
 								</ul>
-							</li>							
-							<li class="gras"><a class="page-scroll" href="contact">Contact</a></li>
-							<li class="gras"><a href="logoutTeacher">Se deconnecter</a></li>
+							</li>
+							<li class="gras"><a class="gras" href="homeTeacher">Espace Personnel</a></li>							
+							<li class="gras"><a class="gras" href="contact">Contact</a></li>
+							<li class="gras"><a href="logoutTeacher" class="gras">Se deconnecter</a></li>
 						</ul>
 						
 					</div>

@@ -38,22 +38,22 @@
 
 	<div class="col-md-7" style="padding-left: 100px">
 		<!--Contenu-->
-		<div class="page login-page col-md-8">
+		<section class="page login-page col-md-8">
 		
 				<div class="form-outer ">
 					<div class="form-inner">
 					<h3>Nouveau Document</h3>
 					<hr>
-						
+						<p class="alert alert-warning"><span class="fa fa-warning"></span> Les champ portant la mention <span class="text-danger gras">*</span> Sont obligatoires</p>
 						<form action="<c:url value='addDocument'/>" method="post"
 							class="" enctype="multipart/form-data">
 
 							<div class="form-group">
 								<label for="title-document"
-									class="">Titre du document</label>
+									class="">Titre du document <span class="text-danger gras">*</span></label>
 								<input id="title-document" type="text" name="documentTitle"
 									required data-msg="veuillez entrer le titre du document"
-									class="form-control"> 
+									class="form-control" required> 
 							</div>
 							<c:if test="${errorLogin!=null}">
 								<h6 class="text-error">
@@ -69,9 +69,9 @@
 							</c:forEach>
 						</select> --%>
 								<label for="titre-document" class="">Type
-									du document</label> <select name="documentType" class="form-control"
-									id="titre-document">
-									<option value='Support de cours'>Support de Cours</option>
+									du document <span class="text-danger gras">*</span></label> <select name="documentType" class="form-control"
+									id="titre-document" required>
+									<option value='Support de cours' selected>Support de Cours</option>
 									<option value='fiche de TD'>Fiche de TD</option>
 									<option value='Epreuve'>Epreuve</option>
 									<option value='Notes de CC'>Notes de CC</option>
@@ -91,7 +91,7 @@
 
 							<div class="form-group">
 								<label for="file-document" class="">Choisir
-									le fichier</label> <input id="file-document" type="file"
+									le fichier <span class="text-danger gras">*</span></label> <input id="file-document" type="file"
 									
 									name="files" required
 									data-msg="veuillez entrer le titre du document"
@@ -100,14 +100,15 @@
 							</div>
                             <hr>
 							<div class="form-group">
-								<input type="submit" value="AJOUTER" class="btn btn-info">
-								<!-- This should be submit button but I replaced it with <a> for demo purposes-->
+								<input type="submit" value="AJOUTER" class="btn btn-info gras">
+								<input type="reset" value="ANNULER" class="btn btn-danger gras">
+								
 							</div>
 						</form>
 					</div>
 				</div>
 			
-		</div>
+		</section>
 		<!--/ Contenu-->
 	</div>
  
