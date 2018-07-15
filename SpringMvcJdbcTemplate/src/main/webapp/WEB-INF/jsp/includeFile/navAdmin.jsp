@@ -2,7 +2,6 @@
             <div class="row colorHeader"> </div>
        
     </header>
-    <!-- HEADER END-->
     <section class="menu-section">
             <div class="row">
                 <div class="col-md-12">
@@ -52,3 +51,32 @@
 
             </div>
     </section>
+    
+<div class="container">
+
+<div class='page-header'>
+
+    <h1>TEST NAVBAR</h1><br>
+
+    <div class='btn-toolbar pull-right'>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default">Menu</button>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <li><a href="">item 1</a></li>
+            <li><a href="">item 2</a></li>
+            <li><a href="">item 3</a></li>
+            <li><a href="">item 4</a></li>
+            <li><a href="">item 5</a></li>
+          </ul>
+        </div>
+    </div>
+
+    <p class="lead">
+        HELLO WORLD !
+    </p> 
+</div>
+
+</div>

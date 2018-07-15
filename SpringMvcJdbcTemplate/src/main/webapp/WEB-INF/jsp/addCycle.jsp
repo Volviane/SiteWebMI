@@ -16,7 +16,7 @@
 	href="${pageContext.request.contextPath}/resources/css/assets/css/bootstrap.css"
 	type="text/css" media="all">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/styleAdmin.css"
+	href="${pageContext.request.contextPath}/resources/css/assets/css/styleAdmin.css"
 	type="text/css" media="all">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/style.css"
@@ -75,6 +75,9 @@
     <!-- CONTENT-WRAPPER SECTION END-->
   <%@include file="includeFile/footerAdmin.jsp"%>
    
-    <script src="assets/js/bootstrap.js"></script>
+    <script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/css/assets/js/bootstrap.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/css/assets/js/jquery-1.11.1.js"></script>
 </body>
 </html>
