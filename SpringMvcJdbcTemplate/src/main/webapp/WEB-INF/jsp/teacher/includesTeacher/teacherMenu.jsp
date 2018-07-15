@@ -1,7 +1,6 @@
 <section class="col-md-2" style="min-height: 500px; font-size: 1em;">
 	<h5>Menu de navigation</h5>
 	<hr style="text-shadow: 3px;">
-<<<<<<< HEAD
 	<nav class="side-navbar " style=" background-color:#f5f5f5;">
       <div class="side-navbar-wrapper">
         <!-- Sidebar Navigation Menus-->
@@ -28,6 +27,8 @@
 								<li><a href="listDocumentsByType?documentType=">Mes Livres </a><span class="badge pull-right"></span></li>
 			 </ul>
             </li>
+                       			<li role="presentation" class="active"><a href="postResult"> POSTER RESULTATS</a></li>
+            
           </ul>
         </div>
       </div>

@@ -7,7 +7,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<c:if test="${administrator.login==null}">
+<c:if test="${teacher.login==null}">
 			<c:redirect  url="connectionAdministrator"></c:redirect>
 	     </c:if>
 <!DOCTYPE html>
@@ -56,13 +56,13 @@
     
       <!-- Counts Section -->
       <section class="dashboard-counts padding">
-          <h4 class="page-head-line">publier un résultat</strong></h4>
+          <h4 class="page-head-line">Poster un résultat</strong></h4>
       </section>
       <!-- Header Section-->
       <section class="dashboard-header padding">
          <div class="row">
               <div class="col-md-6">
-		       <form action="<c:url value='postResult'/>" method="post">
+		       <form action="<c:url value='postResult'/>" method="post" enctype="multipart/form-data">
                      <label>cycle</label>
                     
                     	 <select class="form-control" name="cycleName">
@@ -92,14 +92,14 @@
                             
                     
                         <hr />
-                  <input type="submit" value="Enregistrer" class="btn btn-info">
+                  <input type="submit" value="poster" class="btn btn-info">
                 </form>
                  <hr />
                           <c:if test="${error!=null}">
 							<h6 class=""> <font color="red">${error}</font></h1>
 			       		</c:if>
 			        	<c:if test="${error==null}">
-							<h6 class=""> <font color="green">enregistrement reussi</font></h1>
+							<h6 class=""> <font color="green">publication reussie</font></h1>
 			       		</c:if>
                 </div>
            </div>
