@@ -114,7 +114,12 @@
 			</div>
 	</div>
 	<!-- DEBUT DE L'ASIDE -->
-		<c:import url="includes/aside.jsp"></c:import>
+		<c:if test="${teacher==null  || student==null  }">
+			<c:import url="includes/headerUser.jsp"></c:import>
+  </c:if>
+  <c:if test="${teacher!=null  || student!=null  }">
+			<c:import url="teacher/includesTeacher/headerTeacher.jsp"></c:import>
+  </c:if>
 		<!-- FIN DE L'ASIDE -->
 <div class="spaces"></div>
 

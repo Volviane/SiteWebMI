@@ -178,6 +178,13 @@
 				</table>
 				
 			</form>
+			<hr>
+                          <c:if test="${error!=null}">
+							<h6 class="alert"> <font color="red">${error}</font></h1>
+			       		</c:if>
+			        	<c:if test="${error==null}">
+							<h6 class="alert alert-success"> <font color="green">ajout reussi</font></h1>
+			       		</c:if>
 			<hr />
 		</section>
 
