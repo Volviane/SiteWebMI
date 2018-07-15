@@ -7,9 +7,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
- <c:if test="${student==null}">
-		<c:redirect  url="/"></c:redirect> 
- </c:if> 
+<%--  <c:if test="${student==null}"> --%>
+<%-- 		<c:redirect  url="/"></c:redirect>  --%>
+<%--  </c:if>  --%>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -40,7 +40,7 @@
 	<div
 		style="clear: both; display: block; margin-top: 88px; height: 60px;">
 			<ol class="breadcrumb">
- 				 <li><a href="homeTeacher" class="active gras">Espace Personnel</a></li>
+ 				 <li><a href="homeStudent" class="active gras">Espace Personnel</a></li>
 			</ol>
 		</div>
 	
@@ -52,22 +52,32 @@
 
 		<div class="col-md-7" style="padding: 0px">
 			<!--Contenu-->
-			<div class="media">
-				<div class="media-left">
-					<a href="#"> <img
-						src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
-						alt="" class="img-thumbnail img-circle media-object" />
-						<h4 class="media-heading"><c:out value="" /></h4>
-<%-- 					   <h5><c:out value="${teachs.gradeName }" /></h5> --%>
-					</a>
-				</div>
+			<h3>Bienvenue ${teachers.firstName} ${teachers.lastName}</h3>
+			
+			<section>
+				 <div class="media-left">
+					<c:if test="${students.pictureName==null }">
+						<img src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
+							style="height:200px;" alt=""
+							class="img-thumbnail img-circle media-object" />
+					</c:if>
+					<c:if test="${students.pictureName!=null }">
+						<img
+							src="${pageContext.request.contextPath}/resources/userResources/img/${students.pictureName }"
+							style="height:200px;" alt=""
+							class="img-thumbnail img-circle media-object" />
+					</c:if>
+			</div>
 				<div class="media-body">
-
-				</div>
+					<h4 class="media-heading">
+<%-- 						<c:out value="${students.firstName }"></c:out> --%>
+					</h4>
+					<p></p>
+				</div> 
+				
+			</section>
 			</div>
 			<!--/ Contenu-->
-		</div>
-
 		<!-- DEBUT DE L'ASIDE -->
 		<%@include file="../includes/aside.jsp"%>
 		<!-- FIN DE L'ASIDE -->

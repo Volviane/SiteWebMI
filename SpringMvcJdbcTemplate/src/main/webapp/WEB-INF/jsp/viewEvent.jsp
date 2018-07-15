@@ -120,7 +120,7 @@
 					<p><c:out value="${i.eventDescription }"></c:out></p>
 					<p>
 						<a
-							href="${pageContext.request.contextPath}/registrationStudent?idEvent=<c:out value="${i.idCommunique }"></c:out>">
+							href="${pageContext.request.contextPath}/registrationStudent?idEvent=<c:out value="${i.idEvent }"></c:out>">
 							<button name="submit" type="submit"
 								class="btn  btn-submit">
 								s'inscrire <i class="fa"></i>
