@@ -147,7 +147,7 @@ public class TeacherController {
 	@RequestMapping(value = "/homeTeacher", method = RequestMethod.GET)
 	public String homeTeacher(Model model,HttpServletRequest req) {
 		System.out.println("home enseignant get");
-		model.addAttribute("error", "");
+		model.addAttribute("error", " ");
 		HttpSession session = req.getSession();
 		Teacher teacher =  (Teacher) session.getAttribute( "teacher" );
 		
@@ -219,7 +219,7 @@ public class TeacherController {
 	public String addDocumentGet(Model model,HttpServletRequest req) {
 		System.out.println("addDocument get");
 
-		model.addAttribute("error", "");
+		model.addAttribute("error", " ");
 		return "teacher/addDocument";
 	}
 
@@ -259,17 +259,17 @@ public class TeacherController {
 				dir.mkdirs();
 
 			BufferedOutputStream stream = new BufferedOutputStream(
-					new FileOutputStream(SAVE_DIR + File.separator + documentName));
+					new FileOutputStream(context.getRealPath("") + File.separator  +SAVE_DIR + File.separator + documentName));
 			stream.write(bytes);
 			stream.close();
 
-			String documentNames=SAVE_DIR + File.separator + documentName;
+			//String documentNames=SAVE_DIR + File.separator + documentName;
 			Document document= new Document();
 
 			document.setDocumentDescription(documentDescription);
 			document.setDocumentTitle(documentTitle);
 			document.setDocumentType(documentType);
-			document.setDocumentName(documentNames);
+			document.setDocumentName(documentName);
 			document.setCreateDate(createDate);
 			document.setAuthor(author);
 
@@ -294,7 +294,7 @@ public class TeacherController {
 	@RequestMapping(value = { "/listDocuments" }, method = RequestMethod.GET)
 	public String listDocumentsGet(Model model,HttpServletRequest req) {
 		System.out.println("listDocuments get");
-
+		model.addAttribute("error", " ");
 		HttpSession session = req.getSession();
 		Teacher author =  (Teacher) session.getAttribute( "teacher" );
 
@@ -313,7 +313,7 @@ public class TeacherController {
 	@RequestMapping(value = { "/listDocumentsByType" }, method = RequestMethod.GET)
 	public String listDocumentsByTypeGet(Model model,HttpServletRequest req) {
 		System.out.println("listDocuments get");
-
+		model.addAttribute("error", " ");
 		HttpSession session = req.getSession();
 		Teacher author =  (Teacher) session.getAttribute( "teacher" );
 		String documentType =req.getParameter("documentType");
@@ -337,7 +337,7 @@ public class TeacherController {
 		/*HttpSession session = req.getSession();
 			Teacher author =  (Teacher) session.getAttribute( "teacher" );*/
 		String idDoc =req.getParameter("idDocument");
-
+		model.addAttribute("error", " ");
 		Long idDocument=Long.parseLong(idDoc);
 
 		Document documents= documentRepository.findByIdDocument(idDocument);
@@ -357,7 +357,7 @@ public class TeacherController {
 	@RequestMapping(value = { "/updateDocument" }, method = RequestMethod.GET)
 	public String updateDocumentGet(Model model,HttpServletRequest req) {
 		System.out.println("updateDocument get");
-		model.addAttribute("error", "");
+		model.addAttribute("error", " ");
 		return "teacher/updateDocument";
 	}
 
@@ -415,6 +415,7 @@ public class TeacherController {
 	@RequestMapping(value = { "/editProfil" }, method = RequestMethod.GET)
 	public String editProfilGet(Model model,HttpServletRequest req) {
 		System.out.println("editProfil get");
+		model.addAttribute("error", " ");
 		HttpSession session = req.getSession();
 		Teacher authors =  (Teacher) session.getAttribute( "teacher" );
 		List<ResearchDomain> listOfResearchDomain = researchDomainRepository.findAll();
@@ -498,7 +499,7 @@ public class TeacherController {
 	// se deconnecter
 	@RequestMapping(value = "/logoutTeacher", method = RequestMethod.GET)
 	public String logoutPost(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
-
+		model.addAttribute("error", " ");
 		HttpSession session = request.getSession();
 		session.setAttribute( "teacher", null );
 		model.addAttribute("teachers", "la session a ete supprimme");
@@ -534,7 +535,7 @@ public class TeacherController {
 	@RequestMapping(value = { "/viewTeacherList" }, method = RequestMethod.GET)
 	public String teacherList(Model model, HttpServletRequest req) {
 		System.out.println("teacherList");
-
+		model.addAttribute("error", " ");
 		List<Teacher> listOfTeacher =teachersRepository.findAll();
 
 		if (listOfTeacher.isEmpty()) {
@@ -549,7 +550,7 @@ public class TeacherController {
 	@RequestMapping(value = { "/editResult" }, method = RequestMethod.GET)
 	public String editResultGet(Model model,HttpServletRequest req) {
 		System.out.println("createCommunique GET");
-
+		model.addAttribute("error", " ");
 		List<AcademicYear> listOfAcademicYear = academicYearRepository.findAll();
 
 		if (listOfAcademicYear.isEmpty() ) {
@@ -557,7 +558,7 @@ public class TeacherController {
 		}
 		model.addAttribute("academicYear", listOfAcademicYear);
 
-		return "admin/editResult";
+		return "teacher/editResult";
 	}
 
 
@@ -592,15 +593,15 @@ public class TeacherController {
 				dir.mkdirs();
 
 			BufferedOutputStream stream = new BufferedOutputStream(
-					new FileOutputStream(SAVE_DIR + File.separator + resultFileName));
+					new FileOutputStream(context.getRealPath("") + File.separator  +SAVE_DIR + File.separator + resultFileName));
 			stream.write(bytes);
 			stream.close();
 
-			String resultFileNames=SAVE_DIR + File.separator + resultFileName;
+			//String resultFileNames=SAVE_DIR + File.separator + resultFileName;
 			Result result= new Result();
 
 			result.setAcademicYear(year);
-			result.setResultFileName(resultFileNames);
+			result.setResultFileName(resultFileName);
 			result.setResultTitle(resultTitle);
 			result.setSession(sessions);
 			result.setPublish(false);

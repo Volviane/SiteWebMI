@@ -14,6 +14,7 @@ import java.util.Properties;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
@@ -67,10 +68,11 @@ public class StudentController {
 	
 	public static final Logger logger = LoggerFactory.getLogger(AdministratorController.class);
 	
-	private static final String SAVE_DIR=/*"C:"+File.separator+"Users"+File.separator+"MFOGO"+File.separator+"Documents"+File.separator+"Master1"+File.separator+"Semestre2"
-			+ ""+File.separator+"Projet"+File.separator+"workspace"+File.separator+*/"SiteWebMI"+File.separator+"SpringMvcJdbcTemplate"+File.separator+"Documents";
-
+	private static final String SAVE_DIR="resources"+File.separator+"userResources"+File.separator+"img";
 	
+
+	@Autowired
+	ServletContext context;
 	@Autowired
 	ResearchDomainRepository researchDomainRepository;
 	
@@ -197,7 +199,7 @@ public class StudentController {
 			model.addAttribute("levels", listOfLevel);
 			model.addAttribute("cycles", cycles);
 			model.addAttribute("options", listOfOption);
-			//model.addAttribute("events", listOfEvent);
+			model.addAttribute("eventList", listOfEvent);
 
 			return "student/registrationStudent";
 		}
@@ -405,7 +407,7 @@ public class StudentController {
 				Event event= eventRepository.findByEventTitle(eventName);
 				Participation participation = participationRepository.findByParticipantAndEvent(author, event); 
 				
-				String articleName= articleTitle+"_"+createYear+".pdf";
+				String articleName= articleTitle+"_"+"Article"+"_"+author.getFirstName()+".pdf";
 				System.out.println(author.getFirstName());
 				byte[] bytes = file.getBytes();
 				File dir = new File(SAVE_DIR);
@@ -413,18 +415,18 @@ public class StudentController {
 					dir.mkdirs();
 				
 				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(SAVE_DIR + File.separator + articleName));
+						new FileOutputStream(context.getRealPath("") + File.separator  +SAVE_DIR + File.separator + articleName));
 				stream.write(bytes);
 				stream.close();
 			
-				String articleNames=SAVE_DIR + File.separator + articleName;
+				//String articleNames=SAVE_DIR + File.separator + articleName;
 				
 				Article article= new Article();
 				
 				
 				article.setArticleTitle(articleTitle);
 				article.setArticleAbstract(articleAbstract);
-				article.setArticleName(articleNames);
+				article.setArticleName(articleName);
 				article.setAuthor(author);
 				
 				articleRepository.save(article);
