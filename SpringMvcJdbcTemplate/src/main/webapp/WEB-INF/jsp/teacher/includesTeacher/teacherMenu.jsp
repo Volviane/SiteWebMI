@@ -27,7 +27,7 @@
 								<li><a href="listDocumentsByType?documentType=">Mes Livres </a><span class="badge pull-right"></span></li>
 			 </ul>
             </li>
-                       			<li role="presentation" class="active"><a href="postResult"> POSTER RESULTATS</a></li>
+                       			<li role="presentation" class="active"><a href="editResult"> POSTER RESULTATS</a></li>
             
           </ul>
         </div>

@@ -51,7 +51,7 @@
 							<div class="form-group">
 								<label for="title-document"
 									class="">Titre du document <span class="text-danger gras">*</span></label>
-								<input id="title-document" type="text" name="documentTitle"
+								<input id="title-document" type="text" name="articleTitle"
 									required data-msg="veuillez entrer le titre du document"
 									class="form-control" required> 
 							</div>
@@ -75,9 +75,8 @@
 
 							<div class="form-group">
 							 <label
-									for="description-document" class="">Descripton
-									du document</label>
-								<textarea class="form-control" rows="5" cols="30"></textarea>
+									for="description-document" class="">resumé </label>
+								<textarea class="form-control" rows="5" cols="30" name="articleAbstract" ></textarea>
 							</div>
 
 							<div class="form-group">
@@ -96,6 +95,13 @@
 								
 							</div>
 						</form>
+						 <hr>
+                          <c:if test="${error!=null}">
+							<h6 class="alert"> <font color="red">${error}</font></h1>
+			       		</c:if>
+			        	<c:if test="${error==null}">
+							<h6 class="alert alert-success"> <font color="green">ajout reussi</font></h1>
+			       		</c:if>
 					</div>
 				</div>
 			

@@ -115,9 +115,9 @@
 			</div>
 				<div class="media-body">
 					<h6 class="media-heading">
-						 <b> <c:out value="${i.session }"></c:out></b> <b> <c:out value="${i.academicYear }"></c:out> </b>
+						 session de <b> <c:out value="${i.session }"></c:out></b> <b> <c:out value="${i.academicYear }"></c:out> </b>
 					</h6>
-					<p><c:out value="${i.resultFileName }"></c:out></p>
+<%-- 					<p><c:out value="${i.resultTitle }"></c:out></p> --%>
 					<p>
 					
 					</p>

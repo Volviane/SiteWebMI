@@ -111,7 +111,7 @@
 <%-- 				           <input type="text" class="validate[required] form-control" name="eventName" value="${events.eventTitle}"  required /> --%>
 							
 							<select class="form-control" name="eventName"> 
-							<c:forEach items="${events}" var="i">
+							<c:forEach items="${eventList}" var="i">
 										<option value='<c:out value="${i.eventTitle}"/>'>${i.eventTitle}</option>	
 						     </c:forEach>
 						     </select> 

@@ -52,21 +52,21 @@
 
 		<div class="col-md-7" style="padding: 0px">
 			<!--Contenu-->
-			<h3>Bienvenue ${teachers.firstName} ${teachers.lastName}</h3>
+			<h3>Bienvenue ${student.firstName} ${student.lastName}</h3>
 			
 			<section>
 				 <div class="media-left">
-					<c:if test="${students.pictureName==null }">
-						<img src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
-							style="height:200px;" alt=""
-							class="img-thumbnail img-circle media-object" />
-					</c:if>
-					<c:if test="${students.pictureName!=null }">
-						<img
-							src="${pageContext.request.contextPath}/resources/userResources/img/${students.pictureName }"
-							style="height:200px;" alt=""
-							class="img-thumbnail img-circle media-object" />
-					</c:if>
+<%-- 					<c:if test="${student.pictureName==null }"> --%>
+<%-- 						<img src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG" --%>
+<!-- 							style="height:200px;" alt="" -->
+<!-- 							class="img-thumbnail img-circle media-object" /> -->
+<%-- 					</c:if> --%>
+<%-- 					<c:if test="${student.pictureName!=null }"> --%>
+<!-- 						<img -->
+<%-- 							src="${pageContext.request.contextPath}/resources/userResources/img/${student.pictureName }" --%>
+<!-- 							style="height:200px;" alt="" -->
+<!-- 							class="img-thumbnail img-circle media-object" /> -->
+<%-- 					</c:if> --%>
 			</div>
 				<div class="media-body">
 					<h4 class="media-heading">

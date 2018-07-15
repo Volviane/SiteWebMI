@@ -1,240 +1,123 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<c:if test="${teacher==null}">
-			<c:redirect  url="/"></c:redirect>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="com.mi.model.User"%>
+<%@ page import="com.mi.model.Student"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<c:if test="${teacher.login==null}">
+			<c:redirect  url="connectionAdministrator"></c:redirect>
 	     </c:if>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>MIUDS- Editer Profil</title>
-	<c:import url="includesTeacher/teacherCSS.jsp"></c:import>
-
-</head>
-<body>
-
-	<div id="preloader"></div>
-
-
-	<!-- DEBUT DU HEADER -->
-	<c:import url="includesTeacher/headerTeacher.jsp"></c:import>
-	<!-- FIN DU HEADER-->
-
-	<div
-		style="clear: both; display: block; margin-top: 88px; margin-bottom:20px; height: 60px;">
-			<ol class="breadcrumb">
- 				 <li><a href="homeTeacher">Espace Personnel</a></li>
-  				<li><a href="#">Informations Personnelles</a></li>
- 				 <li class="active gras">Edition du Profil</li>
-			</ol>
-		</div>
-
-	<!-- DEBUT DU MENU -->
-	<c:import url="includesTeacher/teacherMenu.jsp"></c:import>
-	<!-- FIN DU MENU -->
-
-
-	<div class="col-md-6" style="padding-left: 100px">
-		<!--Contenu-->
-		<section>
-			<h3><span class="gyphicon glyphicon-pencil"></span>Edition du Profil</h3>
-			<hr>
-			<p>Vous pouvez ici modifier vos informations personnelles</p>
-		
-			<form id="form-1" class="form-horizontal" action="<c:url value='editProfil'/>" method="post" enctype="multipart/form-data">
-				<table id="table-1" class="table table-hover" >
-					<tbody>
-						<tr>
-							<td>
-							<div class="form-group">
-								<label for="lastName" class="">Nom</label>
-								<input class="form-control" id="lastName" name="lastName" type="text" value="<c:out value="${teachers.lastName}"/>">
-							</div>
-							</td>
-<!-- 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('lastName')"> Modifier</a> </td> -->
-						</tr>
-						<tr>
-							<td>
-							<div class="form-group">
-								<label for="firstName" class="">Prenom</label>
-								<input class="form-control" id="firstName" name="firstName" type="text" value="<c:out value="${teachers.firstName}"/>"  >
-							</div>
-							</td>
-<!-- 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('firstName')"></a> </td> -->
-						</tr>
-						
-						
-						<tr>
-							<td>
-							<div class="form-group">
-								<label for="emailAdress" class="">Adresse mail</label>
-								<input class="form-control" id="emailAdress" name="emailAdress" type="text" value="<c:out value="${teachers.emailAdress}"/>" >
-							</div>
-							</td>
-<!-- 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('emailAdress')"></a> </td> -->
-						</tr>
-						
-						<tr>
-							<td>
-							<div class="form-group">
-								<label for="phoneNumber" class="">Numéro de Téléphone</label>
-								<input class="form-control" id="phoneNumber" name="phoneNumber" type="text" value="<c:out value="${teachers.phoneNumber}"/>">
-							</div>
-							</td>
-<!-- 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('phoneNumber')"></a> </td> -->
-						</tr>
-						<tr>
-							<td>
-								<label for="sexe" >Sexe</label>
-								<div class="radio">
-									<label for="male" class="radio-inline">
-									    <input type="radio" id="male" name="sex" value="Homme" checked>
-									    Homme 
-									  </label>
-									  
-								 	<label for="female" class="radio-inline">
-									    <input type="radio" id="female" name="sex" value="Femme">
-									   	Femme
-								    </label>
-								</div>
-							  
-							 
-							</td>
-<!-- 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setDisabled('male','female')"></a> </td> -->
-						</tr>
-						
-						<tr>
-							<td>
-							<div class="form-group">
-								<label for="birthDate" class="">Date de Naissance</label>
-								<input class="form-control" id="birthDate" name="birthDate" type="date" value="<c:out value="${teachers.birthDate}"/>">
-							</div>
-							</td>
-<!-- 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('birthDate')"></a> </td> -->
-						</tr>
-						
-						<tr>
-							<td>
-							<div class="form-group">
-								<label for="birthPlace" class="">Lieu de Naissance</label>
-								<input class="form-control" id="birthDate" name="birthPlace" type="text" value="<c:out value="${teachers.birthPlace}"/>">
-							</div>
-							</td>
-<!-- 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('birthPlace')"></a> </td> -->
-						</tr>
-						
-						<tr>
-							<td>
-							<div class="form-group">
-								<label for="grade" class="">Grade</label>
-								<input class="form-control" id="grade" name="grade" type="text" value="<c:out value="${teacher.grade.gradeName}"/>" onblur="setEditableOff('lastName')">
-								
-		
-							</div>
-							</td>
-<!-- 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('grade')"></a> </td> -->
-						</tr>
-						
-						<tr>
-							<td>
-							<div class="form-group">
-								<label for="domainLabel" class="">Domaine de Recherche</label>
-								<select name="domainLabel" class="form-control" id="domainLabel"  >
-									<c:forEach items="${researchDomains }" var="dom">
-										<option value='<c:out value="${dom.domainLabel}"/>'><c:out value="${dom.domainLabel}"/></option>
-									</c:forEach>
-
-								</select>
-							</div>
-							</td>
-<!-- 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('domainLabel')"></a> </td> -->
-						</tr>
-						<tr>
-							<td>
-								<div class="form-group">
-									<label	for="teacherDescription" class="">Brève descripton de Vous</label>
-									<textarea class="form-control" name="teacherDescription" id="teacherDescription" rows="5" cols="30" ></textarea>
-								</div>
-							</td>
-<!-- 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('teacherDescription')"></a> </td> -->
-						</tr>
-						<tr>
-							<td>
-							<div class="form-group">
-								<label for="photo" class="">Choisir une photo</label>
-								<input class="form-control" id="photo" name="files" type="file" value="<c:out value="${teacher.pictureName}"/>" >
-							</div>
-							</td>
-<!-- 							<td class="text-center" style="vertical-align: middle;"> <a class="btn btn-info glyphicon glyphicon-pencil" onclick="setEditableOn('photo')"></a> </td> -->
-						</tr>
-					</tbody>
-					<tfoot>
-						<tr>
-							<th>
-								<div class="form-group">
-									<input type="submit" value="ENREGISTRER" class="btn btn-primary pull-right">
-								</div>
-							</th>
-							<th><div class="form-group">
-									<input type="reset" value="REINITIALIZER TOUT" class="btn btn-danger pull-right">
-								</div></th>
-							
-						</tr>
-					</tfoot>
-				</table>
-				
-			</form>
-			<div class="row">
-				<c:if test="${error!=null}">
-					<div class="alert alert-danger" role="alert">Erreur lors de
-						l'édition du profil</div>
-				</c:if>
-				<c:if test="${success!=null}">
-					<div class="alert alert-success" role="alert">Profil Edité
-						avec Succès</div>
-				</c:if>
-			</div>
-		</section>
-			
-			
-				
-		<!--/ Contenu-->
-	</div>
-	</div>
-	<!-- DEBUT DE L'ASIDE -->
-	<c:import url="../includes/aside.jsp"></c:import>
-	<!-- FIN DE L'ASIDE -->
-
-<div
-		style="clear: both; display: block; margin-top: 88px; height: 60px;"></div>
-	
-
-	<!--Footer-->
-	<c:import url="../includes/footer.jsp"></c:import>
-	<!--/ Footer-->
-
-	<!-- INCLUSION DES JS -->
-	<c:import url="includesTeacher/teacherJS.jsp"></c:import>
-	<!-- FIN INCLUSION DES JS -->
-	
-	<script type="text/javascript">
-	
-		function setEditableOn(target){
-			console.log("debut: rendre "+target+" éditable");
-			 document.getElementById(target).setAttribute("readonly", "false");
-			//$(target).setAttribute("readonly","false");
-				console.log("fin: rendre "+target+" éditable");
-		}
-/* 
-		function setEditableOff(target){
-			//setAttribute("readonly",true);
-			document.getElementById(target).setAttribute("readonly", "true");
-		} */
-		function setDisabled(target1,target2){
-			 document.getElementById(target1).setAttribute("disabled","false");
-			 document.getElementById(target2).setAttribute("disabled","false");
-		}
-	</script>
-	
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>publier un résultat</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/vendor/bootstrap/css/bootstrap.css"
+	type="text/css" media="all">
+	<!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/fontastic.css">
+    <!-- Google fonts - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <!-- jQuery Circle-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/grasp_mobile_progress_circle-1.0.0.min.css">
+    <!-- Custom Scrollbar-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/css/assets/css/img/favicon.ico">
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/style.blue.css" id="theme-stylesheet">
+    
+     <!-- CSS-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styleAdmin.css" type="text/css" media="all">
+    
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+  </head>
+  <body>
+    <!-- Side Navbar -->
+   
+    
+    <div class="page">
+      <!-- navbar-->
+    
+      <!-- Counts Section -->
+      <section class="dashboard-counts padding">
+          <h4 class="page-head-line">Poster un résultat</strong></h4>
+      </section>
+      <!-- Header Section-->
+      <section class="dashboard-header padding">
+         <div class="row">
+              <div class="col-md-6">
+		       <form action="<c:url value='postResult'/>" method="post" enctype="multipart/form-data">
+                     <label>cycle</label>
+                    
+                    	 <select class="form-control" name="cycleName">
+                     			<c:forEach items="${cycles}" var="i">
+                     				<option value="${i.cycleName }"><c:out value="${i.cycleName }"></c:out></option>
+                     			</c:forEach>
+                     	 </select>
+                      <label>option</label>
+                         <select class="form-control" name="optionName">
+                     			<c:forEach items="${options}" var="i">
+                     				<option value="${i.optionName }"><c:out value="${i.optionName }"></c:out></option>
+                     			</c:forEach>
+                     	 </select>
+                     <label>niveau</label>
+                    
+                    	 <select class="form-control" name="levelName">
+                     			<c:forEach items="${level}" var="i">
+                     				<option value="${i.levelName }"><c:out value="${i.levelName }"></c:out></option>
+                     			</c:forEach>
+                     	 </select>
+                     
+                     		<label>fichier </label>
+                    		<div class="form-group">
+                     			
+                      			  <input type="text" class="form-control" name="fileResult" />
+                             </div>
+                            
+                    
+                        <hr />
+                  <input type="submit" value="poster" class="btn btn-info">
+                </form>
+                 <hr />
+                          <c:if test="${error!=null}">
+							<h6 class=""> <font color="red">${error}</font></h1>
+			       		</c:if>
+			        	<c:if test="${error==null}">
+							<h6 class=""> <font color="green">publication reussie</font></h1>
+			       		</c:if>
+                </div>
+           </div>
+      </section>
+      
+    
+    </div>
+    <!-- JavaScript files-->
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/chart.js/Chart.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/charts-home.js"></script>
+    <!-- Main File-->
+    <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/front.js"></script>
+  </body>
 </html>

@@ -62,21 +62,21 @@
 										<tr class="info">
 											<th>#</th>
 											<th>Titre</th>
-											<th>Type</th>										
-											<th>Date d'ajout</th>
+											<th>Nom</th>										
+											<th>Resumé</th>
 											<th></th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${documents}" var="doc" varStatus="i">
+										<c:forEach items="${articles}" var="doc" varStatus="i">
 											<tr>
 												<th scope="row"><c:out value="${i.count}" /></th>
-												<td><c:out value="${doc.documentTitle}" /></td>
-												<td><c:out value="${doc.documentType}" /></td>												
-												<td><c:out value="${doc.createDate}" /></td>
-												<td><a
-													href="documentsDescription?idDocument=${doc.idDocument}"
-													class="btn btn-info">Consulter</a></td>
+												<td><c:out value="${doc.articleTitle}" /></td>
+												<td><c:out value="${doc.articleName}" /></td>												
+												<td><c:out value="${doc.articleAbstract}" /></td>
+<!-- 												<td><a -->
+<%-- 													href="documentsDescription?idArticle=${doc.idArticle}" --%>
+<!-- 													class="btn btn-info">Consulter</a></td> -->
 											</tr>
 
 										</c:forEach>
