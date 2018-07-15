@@ -234,6 +234,14 @@ System.out.println("1++++++++");
 	}
 	// Modifier l'article
 
+	@RequestMapping(value = "/updateArticles", method = RequestMethod.GET)
+	public String updateArticlesGet(Model model) {
+		System.out.println("/updateArticles get");
+
+		return "updateArticle";
+	}
+	
+
 	@RequestMapping(value = "/updateArticle", method = RequestMethod.GET)
 	public String updateArticleGet(Model model) {
 		System.out.println("/updateArticle get");

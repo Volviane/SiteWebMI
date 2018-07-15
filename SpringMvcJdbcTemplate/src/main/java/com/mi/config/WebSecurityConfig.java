@@ -15,14 +15,17 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+import com.mi.model.Administrator;
 
 
 @Configuration
-/*@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled=true)*/
-public class WebSecurityConfig /*extends WebSecurityConfigurerAdapter */{
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled=true)
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		System.out.println("conf1");
 		http.csrf().disable();
@@ -33,7 +36,7 @@ public class WebSecurityConfig /*extends WebSecurityConfigurerAdapter */{
 		System.out.println("conf2");
 	}
 
-	//@Autowired
+	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		System.out.println("conf3");
 		auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
@@ -54,12 +57,17 @@ public class WebSecurityConfig /*extends WebSecurityConfigurerAdapter */{
 		
 	}
 	
-	/*@Bean
+	@Bean
 	public org.springframework.security.core.userdetails.UserDetailsService userDetailsService() {
 		System.out.println("conf8");
 		return super.userDetailsService();
 	}
-	*/
+	
+	
+	
+	
+
+	
 
 
     

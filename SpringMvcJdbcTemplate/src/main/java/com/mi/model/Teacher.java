@@ -17,12 +17,12 @@ public class Teacher extends InternetSufer implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ENSEIGNANT_ID")
 	private Long idTeacher;
-//	
-//	@Column(name="LOGIN")
-//	private String login;
-//	
-//	@Column(name="PASSWORD")
-//	private String password;
+	
+/*	@Column(name="LOGIN")
+	private String login;
+	
+	@Column(name="PASSWORD")
+	private String password;*/
 	
 	@Column(name="MATRICULE")
 	private String matricule;
@@ -30,8 +30,15 @@ public class Teacher extends InternetSufer implements Serializable{
 	@Column(name="DESCRIPTION")
 	private String descriptionEnseignant;
 	
+	@Column(name="PHOTO")
+	private String pictureName;
+	
 	@Embedded
 	private CV cv;
+	
+	@ManyToOne
+	@JoinColumn(name="DOMAINE_RECHERCHE")
+	private ResearchDomain researchDomain;
 	
 	@ManyToOne
 	@JoinColumn(name="GRADE_ID")
@@ -42,6 +49,11 @@ public class Teacher extends InternetSufer implements Serializable{
 	
 	@OneToMany(mappedBy="juryPresident")
 	private Set<Jury> presidedJury = new HashSet<Jury>();
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name="ROLE_TEACHERS")
+	private Set<Role> roles=new HashSet<Role>();
+	
 	
 	public Teacher() {
 		super();
@@ -69,33 +81,33 @@ public class Teacher extends InternetSufer implements Serializable{
 		this.grade = grade;
 	}
 
-	/**
+/*	*//**
 	 * @return the login
-	 */
+	 *//*
 	public String getLogin() {
 		return login;
 	}
 
-	/**
+	*//**
 	 * @param login the login to set
-	 */
+	 *//*
 	public void setLogin(String login) {
 		this.login = login;
 	}
 
-	/**
+	*//**
 	 * @return the password
-	 */
+	 *//*
 	public String getPassword() {
 		return password;
 	}
 
-	/**
+	*//**
 	 * @param password the password to set
-	 */
+	 *//*
 	public void setPassword(String password) {
 		this.password = password;
-	}
+	}*/
 
 	/**
 	 * @return the matricule
@@ -193,6 +205,40 @@ public class Teacher extends InternetSufer implements Serializable{
 	 */
 	public void setJury(Set<Jury> jury) {
 		this.jury = jury;
+	}
+
+	/**
+	 * @return the researchDomain
+	 */
+	public ResearchDomain getResearchDomain() {
+		return researchDomain;
+	}
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	/**
+	 * @param researchDomain the researchDomain to set
+	 */
+	public void setResearchDomain(ResearchDomain researchDomain) {
+		this.researchDomain = researchDomain;
+	}
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	/**
+	 * @return the pictureName
+	 */
+	public String getPictureName() {
+		return pictureName;
+	}
+
+	/**
+	 * @param pictureName the pictureName to set
+	 */
+	public void setPictureName(String pictureName) {
+		this.pictureName = pictureName;
 	}
 	
 	

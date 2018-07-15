@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -53,7 +54,7 @@ public class Document implements Serializable {
 	@Column(name="NOM_DOCUMENT")
 	private String documentName;
 
-	@OneToOne(optional=false, fetch=FetchType.LAZY)
+	@ManyToOne(optional=false, fetch=FetchType.LAZY)
 	@JoinColumn(name="TEACHER_ID", unique=true)
 	private Teacher author;
 	
@@ -108,5 +109,67 @@ public class Document implements Serializable {
 	public void setDocumentAbstract(String documentAbstract) {
 		this.documentAbstract = documentAbstract;
 	}
+
+
+
+	public String getDocumentDescription() {
+		return documentDescription;
+	}
+
+
+
+	public void setDocumentDescription(String documentDescription) {
+		this.documentDescription = documentDescription;
+	}
+
+
+
+	public String getDocumentType() {
+		return documentType;
+	}
+
+
+
+	public void setDocumentType(String documentType) {
+		this.documentType = documentType;
+	}
+
+
+
+	public String getDocumentName() {
+		return documentName;
+	}
+
+
+
+	public void setDocumentName(String documentName) {
+		this.documentName = documentName;
+	}
+
+
+
+	public Teacher getAuthor() {
+		return author;
+	}
+
+
+
+	public void setAuthor(Teacher author) {
+		this.author = author;
+	}
+
+
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	
+	
 
 	}

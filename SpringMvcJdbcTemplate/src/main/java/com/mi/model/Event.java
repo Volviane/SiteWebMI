@@ -38,14 +38,21 @@ public class Event implements Serializable{
 	@Column(name="DATE_FIN_INSCRIPTION")
 	private Date inscriptionEndDate;
 	
+	@Column(name="STATUT_PUBLICATION")
+	private boolean isPublish = false;
+	
+	@Column(name="STATUT_EVENT")
+	private String eventStatus;
 	
 	@OneToMany(mappedBy="event")
 	private Set<Participation> participations = new HashSet<Participation>();
 
 	public Event() {
-		
 	}
 
+	public void publish(){
+		isPublish = true;
+	}
 
 	/**
 	 * @param eventTitle
@@ -187,6 +194,47 @@ public class Event implements Serializable{
 	 */
 	public void setParticipations(Set<Participation> participations) {
 		this.participations = participations;
+	}
+
+
+	/**
+	 * @return the isPublish
+	 */
+	public boolean isPublish() {
+		return isPublish;
+	}
+
+
+	/**
+	 * @param isPublish the isPublish to set
+	 */
+	public void setPublish(boolean isPublish) {
+		this.isPublish = isPublish;
+	}
+
+	/**
+	 * @return the eventStatus
+	 */
+	public String getEventStatus() {
+		return eventStatus;
+	}
+
+	/**
+	 * @param eventStatus the eventStatus to set
+	 */
+	public void setEventStatus(String eventStatus) {
+		Date currentDate = new Date();
+		if(this.eventStatus != null) 
+			this.eventStatus = eventStatus;
+		else{
+			if(currentDate.after(eventBeginDate)){
+				eventStatus = "EN COURS";
+			}
+			else if(currentDate.before(eventBeginDate)){
+				eventStatus = "EN APPROCHE";
+			}			
+		}
+		
 	}
 
 }
