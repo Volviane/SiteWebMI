@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -39,9 +40,12 @@ import com.mi.model.Article;
 import com.mi.model.Cycle;
 import com.mi.model.Document;
 import com.mi.model.Event;
+import com.mi.model.Grade;
+import com.mi.model.Jury;
 import com.mi.model.Level;
 import com.mi.model.Option;
 import com.mi.model.Participation;
+import com.mi.model.ResearchDomain;
 import com.mi.model.Student;
 import com.mi.model.Teacher;
 import com.mi.repositories.AcademicYearRepository;
@@ -381,7 +385,7 @@ public class StudentController {
 		public String addArticleGet(Model model,HttpServletRequest req) {
 			System.out.println("addArticle get");
 			
-			model.addAttribute("error", "");
+			model.addAttribute("error", " ");
 			return "student/addArticle";
 		}
 
@@ -428,10 +432,12 @@ public class StudentController {
 				article.setArticleAbstract(articleAbstract);
 				article.setArticleName(articleName);
 				article.setAuthor(author);
-				
+				System.out.println("__________________________");
 				articleRepository.save(article);
-				
+				System.out.println("++++++++++++++++++++++++");
 				Article art =articleRepository.findByArticleTitle(articleTitle);
+				
+				System.out.println(art.getArticleName()+"+++++++++++++++88888");
 				
 				participation.setStudentArticle(art);
 				
@@ -474,6 +480,23 @@ public class StudentController {
 			model.addAttribute("articles", article);
 			model.addAttribute("students", student);
 			return "student/listArticle";
+		}
+		
+		// information pour afficher la page personnelle
+		@RequestMapping(value = "/informationStudent", method = RequestMethod.GET)
+		public String informationStudentGet(HttpServletRequest request, HttpServletResponse response, Model model) {
+			System.out.println("informationStudent get");
+			model.addAttribute("error", "");
+
+			String matricule = request.getParameter("matricule");
+			//Long idTeacher=Long.parseLong(name);
+
+			Student student = studentRepository.findByMatricule(matricule);
+			
+			model.addAttribute("students", student);
+			
+
+			return "student/informationStudent";
 		}
 		
 		
