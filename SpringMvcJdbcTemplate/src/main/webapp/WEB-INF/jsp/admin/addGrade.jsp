@@ -59,7 +59,7 @@
         <h4 class="page-head-line">Ajouter un grade</strong></h4>
       </section>
       <!-- Header Section-->
-      <section class="dashboard-header padding">
+      <section class="offset-1 dashboard-header padding">
          <div class="row">
                 <div class="col-md-6">
 		              <form action="<c:url value='addGrade'/>" method="post">

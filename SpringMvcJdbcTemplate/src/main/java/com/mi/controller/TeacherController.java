@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
@@ -65,6 +66,9 @@ public class TeacherController {
 
 	//C:\Program Files\Apache Software Foundation\Tomcat 7.0\webapps
 
+	@Autowired
+	ServletContext context;
+	
 	@Autowired
 	DocumentRepository documentRepository;
 

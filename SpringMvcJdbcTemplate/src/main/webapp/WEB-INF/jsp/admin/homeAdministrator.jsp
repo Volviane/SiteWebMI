@@ -68,7 +68,7 @@
             <div class="col-xl-2 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-user"></i></div>
-                <div class="name"><strong class="text-uppercase">Nombre d'enseignants</strong>
+                <div class="name"><a href="teacherList" class="text-uppercase">Enseignants</a>
                   <div class="count-number">${nberTeacher}</div>
                 </div>
               </div>
@@ -77,7 +77,7 @@
             <div class="col-xl-2 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-padnote"></i></div>
-                <div class="name"><strong class="text-uppercase">Nombre de cycles</strong>
+                <div class="name"><a href="cycleList" class="text-uppercase">Cycles</a>
                   <div class="count-number">${nberCycle}</div>
                 </div>
               </div>
@@ -86,7 +86,7 @@
             <div class="col-xl-2 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-check"></i></div>
-                <div class="name"><strong class="text-uppercase">Nombre de niveaux</strong>
+                <div class="name"><a href="levleList" class="text-uppercase">Classes LMD</a>
                   <div class="count-number">${nberLevel}</div>
                 </div>
               </div>
@@ -95,7 +95,7 @@
             <div class="col-xl-2 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-bill"></i></div>
-                <div class="name"><strong class="text-uppercase">Nombre d'options</strong>
+                <div class="name"><a href="optionList" class="text-uppercase">Options</a>
                   <div class="count-number">${nberOption}</div>
                 </div>
               </div>
@@ -104,7 +104,7 @@
             <div class="col-xl-2 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-padnote"></i></div>
-                <div class="name"><strong class="text-uppercase">Nombre d'unité de valeur</strong>
+                <div class="name"><a href="courseList" class="text-uppercase">Unité de valeur</a>
                   <div class="count-number">${nberCourse}</div>
                 </div>
               </div>
@@ -113,7 +113,7 @@
             <div class="col-xl-2 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-check"></i></div>
-                <div class="name"><strong class="text-uppercase">Nombre de domaines de recherche</strong>
+                <div class="name"><a href="listReseachDomain" class="text-uppercase">Domaines de recherche</a>
                   <div class="count-number">${nberResearchDomain} </div>
                 </div>
               </div>
