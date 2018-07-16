@@ -393,6 +393,24 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 					return "licenceMi";
 
 				}
+				// on donne le nom d'un enseignant ion retourne ses documents
+				
+				@RequestMapping(value = { "/viewDocument" }, method = RequestMethod.GET)
+			public String listDocumentsGet(Model model,HttpServletRequest req) {
+					System.out.println("viewDocument get");
+				model.addAttribute("error", " ");
+					
+				List<Document> listOfdocuments= documentRepository.findAll();
+					
+				if(listOfdocuments.isEmpty()){
+					
+					model.addAttribute("error", "liste de documents vide");
+					}else{
+						model.addAttribute("documents", listOfdocuments);
+					}
+					
+					return "viewDocument";
+				}
 				
 				
 				//Mes tests

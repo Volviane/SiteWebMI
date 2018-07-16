@@ -14,7 +14,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Math-Info liste des enseignants</title>
+<title>Math-Info liste des documents</title>
 <meta name="description"
 	content="Free Bootstrap Theme by BootstrapMade.com">
 <meta name="keywords"
@@ -110,24 +110,27 @@
 <%--   </c:if> --%>
 <!-- 	<!-- FIN DU HEADER--> -->
 	<div class="container space">
-			<h4 class="page-head-line">LISTE DES RESULTATS</strong></h4>
-       <c:forEach items="${results}" var="i" varStatus="pos">
+			<h4 class="page-head-line">LISTE DES DOCUMENTS</strong></h4>
+			<c:if test="${results.resultFileName==null }">
+						   <i>${error}</i>
+					</c:if>
+       <c:forEach items="${documents}" var="i" varStatus="pos">
 		<div class="media">
 		
 			<div class="media-left">
-				<h4> <c:out value="${i.resultTitle }"></c:out> </h4>
+				<h4> <c:out value="${i.documentTitle }"></c:out> </h4>
 				
 			</div>
 				<div class="media-body">
 					<h6 class="media-heading">
-						 session de <b> <c:out value="${i.session }"></c:out></b> <b></b>
+						  <b> <c:out value="${i.documentType }"></c:out></b> <b></b>
 					</h6>
 					<p>
 					<a
-							href="${pageContext.request.contextPath}/viewImageResult?idResult=<c:out value="${i.idResult}"></c:out>">
+							href="${pageContext.request.contextPath}/resources/userResources/img/${i.documentName }">
 							<button name="submit" type="submit"
 								class="btn  btn-submit">
-								Visualiser le resultat <i class="fa fa-arrow-right"></i>
+								Télécharger le Document <i class="fa fa-arrow-righ"></i>
 							</button>
 						</a>
 					</p>

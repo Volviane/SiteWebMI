@@ -180,12 +180,11 @@
 			</form>
 			<hr>
                           <c:if test="${error!=null}">
-							<h6 class="alert"> <font color="red">${error}</font></h1>
+							<h6 class="alert"> <font color="red">${erro}</font></h1>
 			       		</c:if>
 			        	<c:if test="${error==null}">
-							<h6 class="alert alert-success"> <font color="green">ajout reussi</font></h1>
+							<h6 class="alert alert-success"> <font color="green">profil édité avec success</font></h1>
 			       		</c:if>
-			<hr />
 		</section>
 
 
@@ -208,30 +207,5 @@
 	<!-- INCLUSION DES JS -->
 	<c:import url="includesTeacher/teacherJS.jsp"></c:import>
 	<!-- FIN INCLUSION DES JS -->
-<<<<<<< HEAD
-	
-	
-=======
-
-	<script type="text/javascript">
-	
-	/* 	function setEditableOn(target){
-			console.log("debut: rendre "+target+" éditable");
-			 document.getElementById(target).setAttribute("readonly", "false");
-			//$(target).setAttribute("readonly","false");
-				console.log("fin: rendre "+target+" éditable");
-		}
-	/* 
-		function setEditableOff(target){
-			//setAttribute("readonly",true);
-			document.getElementById(target).setAttribute("readonly", "true");
-		} */
-	/*function setDisabled(target1,target2){
-		 document.getElementById(target1).setAttribute("disabled","false");
-		 document.getElementById(target2).setAttribute("disabled","false");
-	} */
-	</script>
-
->>>>>>> 54c00452e7a7a5c173d5d5a876024f545cdb0968
 </body>
 </html>
