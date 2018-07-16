@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
@@ -60,10 +61,10 @@ import com.mi.repositories.TeachersRepository;
 public class TeacherController {
 
 	public static final Logger logger = LoggerFactory.getLogger(TeacherController.class);
-	private static final String SAVE_DIR=/*"C:"+File.separator+"Users"+File.separator+"MFOGO"+File.separator+"Documents"+File.separator+"Master1"+File.separator+"Semestre2"
-			+ ""+File.separator+"Projet"+File.separator+"workspace"+File.separator+*/"SiteWebMI"+File.separator+"SpringMvcJdbcTemplate"+File.separator+"Documents";
-
+	private static final String SAVE_DIR="resources"+File.separator+"userResources"+File.separator+"img";
 	//C:\Program Files\Apache Software Foundation\Tomcat 7.0\webapps
+	@Autowired
+	ServletContext context;
 
 	@Autowired
 	DocumentRepository documentRepository;
@@ -726,6 +727,33 @@ public class TeacherController {
 			model.addAttribute("results", listOfResult);
 
 			return "listResult";
+		}
+		
+		@RequestMapping(value = { "/viewResult" }, method = RequestMethod.GET)
+		public String viewResultGet(Model model,HttpServletRequest req) {
+			System.out.println("list result GET");
+			
+			List<Result> listOfResult = resultRepository.findAll();
+			
+			if (listOfResult.isEmpty() ) {
+				model.addAttribute("error", "Aucun résultat n'a été défini");
+			}
+			model.addAttribute("results", listOfResult);
+
+			return "viewResult";
+		}
+		
+		@RequestMapping(value = { "/viewImageResult" }, method = RequestMethod.GET)
+		public String viewImageResultGet(Model model,HttpServletRequest req) {
+			System.out.println("viewImageResult GET");
+			
+			String name = req.getParameter("idResult");
+			Long idResult=Long.parseLong(name);
+			Result result=resultRepository.findByIdResult(idResult);
+			
+			model.addAttribute("results", result);
+
+			return "viewImageResult";
 		}
 
 

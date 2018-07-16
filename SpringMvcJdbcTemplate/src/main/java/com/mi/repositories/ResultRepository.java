@@ -20,5 +20,6 @@ public interface ResultRepository extends JpaRepository<Result, Long>{
 	public List<Result> findByJury_JuryPresident(Teacher teacher);
 	public List<Result> findByJury_JuryLevel(Level level);
 	public List<Result> findByIsPublish(boolean isPublish);
+	public Result findByIdResult(Long idResult);
 
 }
