@@ -207,7 +207,7 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 
 				return "viewNews";
 			}
-			//pour la consultation des resultats
+			/*//pour la consultation des resultats
 			@RequestMapping(value = { "/viewResult" }, method = RequestMethod.GET)
 			public String viewResultGet(Model model,HttpServletRequest req) {
 				System.out.println("list result GET");
@@ -221,7 +221,7 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 
 				return "viewResult";
 			}
-			
+			*/
 			// information pour afficher la page personnelle
 			@RequestMapping(value = "/viewPersonalPage", method = RequestMethod.GET)
 			public String InformationTeacherGet(HttpServletRequest request, HttpServletResponse response, Model model) {

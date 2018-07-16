@@ -14,7 +14,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Math-Info liste des enseignants</title>
+<title>Math-Info Visualiser Resultat</title>
 <meta name="description"
 	content="Free Bootstrap Theme by BootstrapMade.com">
 <meta name="keywords"
@@ -91,8 +91,20 @@
  	<!-- FIN DEFINITION DES STYLES -->
  	
 <style type="text/css">
-	.space{ padding-top: 100px;}
+	.space{ padding-top: 10px;}
 	.spaces{ height: 3000px;}
+	.backgroundInfo  {
+			    width: 400px;
+			    heigh: 400px;
+			    background-color:#f5f5f5;
+			    color:#fff;
+			    margin-bottom:10px;
+			     padding: 10px;
+				}
+	.padding {
+			   margin-left:10px;
+			  
+				}
 </style>
 
 </head>
@@ -102,55 +114,51 @@
 
 
 	<!-- DEBUT DU HEADER -->
-	<c:if test="${teacher==null  || student==null  }">
-			<c:import url="includes/headerUser.jsp"></c:import>
-  </c:if>
-  <c:if test="${teacher!=null  || student!=null  }">
-			<c:import url="teacher/includesTeacher/headerTeacher.jsp"></c:import>
-  </c:if>
-  
+	<c:import url="includes/headerUser.jsp"></c:import>
 	<!-- FIN DU HEADER-->
-	<div class="container space">
-			<h4 class="page-head-line">LISTE DES ENSEIGNANTS</strong></h4>
-       <c:forEach items="${teachers}" var="i" varStatus="pos">
-		<div class="media">
-		
-			<div class="media-left">
-					<c:if test="${i.pictureName==null }">
-						<img src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
-							style="width:60px;" alt=""
-							class="img-thumbnail img-circle media-object" />
-					</c:if>
-					<c:if test="${i.pictureName!=null }">
-						<img
-							src="${pageContext.request.contextPath}/resources/userResources/img/${i.pictureName }"
-							style="width:60px;" alt=""
-							class="img-thumbnail img-circle media-object" />
-					</c:if>
-			</div>
-				<div class="media-body">
-					<h4 class="media-heading">
-						<c:out value="${i.firstName }"></c:out>
-					</h4>
-					<p><c:out value="${i.descriptionEnseignant }"></c:out>r</p>
-					<p>
-					  <div class="col-lg-4" >
-						<a
-							href="${pageContext.request.contextPath}/viewPersonalPage?idTeacher=<c:out value="${i.idTeacher }"></c:out>">
+	<div
+			style="clear: both; display: block; margin-top: 88px; height: 60px;">
+			<ol class="breadcrumb">
+				<li><a href="homeTeacher" class="active gras">Visualiser Resultat</a></li>
+			</ol>
+	</div>
+	<section class="col-md-2" style="min-height: 500px; font-size: 1em; padding: 5px;">
+					<a
+							href="${pageContext.request.contextPath}/viewResult">
 							<button name="submit" type="submit"
-								class="btn btn-block btn-submit">
-								Voir page personnelle <i class="fa fa-arrow-right"></i>
+								class="btn btn-submit">
+								 <i class="fa fa-arrow-left"></i> retour aux resultats
 							</button>
-						</a>
-					 </div>	
-					</p>
-				</div>
+		         </a>
 
+           </section>
+	<div class="container space">
+	
+		<div class="col-md-7" style="padding: 0px">
+			<!--Contenu-->
+			
+			<div class="media">
+				<div class="media-left">
+					
+				</div>
+				<div class="media-body">
+					<c:if test="${results.resultFileName==null }">
+						   <i>pas d'image pour le resultat</i>
+					</c:if>
+					<c:if test="${result.resultFileName!=null }">
+						<img src="${pageContext.request.contextPath}/resources/userResources/img/${teachers.resultFileName }"
+					    style="weight: 1000px; height:1000px" alt="" class="img-thumbnail img-circl media-object" />
+					 </c:if>
+				 </div> 
+			 </div> 
+				</div>
 			</div>
-	  </c:forEach>
+			<!--/ Contenu-->
+		</div>
+		
 	</div>
 	<!-- DEBUT DE L'ASIDE -->
-		<c:import url="includes/aside.jsp"></c:import>
+		<%@include file="includes/aside.jsp"%>
 		<!-- FIN DE L'ASIDE -->
 <div class="spaces"></div>
 

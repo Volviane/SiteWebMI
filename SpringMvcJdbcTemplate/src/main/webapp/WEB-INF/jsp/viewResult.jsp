@@ -122,9 +122,14 @@
 					<h6 class="media-heading">
 						 session de <b> <c:out value="${i.session }"></c:out></b> <b> <c:out value="${i.academicYear }"></c:out> </b>
 					</h6>
-<%-- 					<p><c:out value="${i.resultTitle }"></c:out></p> --%>
 					<p>
-					
+					<a
+							href="${pageContext.request.contextPath}/viewImageResult?idResult=<c:out value="${i.idResult}"></c:out>">
+							<button name="submit" type="submit"
+								class="btn  btn-submit">
+								Visualiser le resultat <i class="fa fa-arrow-right"></i>
+							</button>
+						</a>
 					</p>
 				</div>
 

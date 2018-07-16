@@ -384,8 +384,9 @@ public class StudentController {
 		@RequestMapping(value = { "/addArticle" }, method = RequestMethod.GET)
 		public String addArticleGet(Model model,HttpServletRequest req) {
 			System.out.println("addArticle get");
-			
+			List<Event> listOfEvent = eventRepository.findAll();
 			model.addAttribute("error", " ");
+			model.addAttribute("events", listOfEvent);
 			return "student/addArticle";
 		}
 
@@ -401,6 +402,9 @@ public class StudentController {
 			//int createYear = calendarCourante.get(Calendar.YEAR);
 			int createMonth = calendarCourante.get(Calendar.YEAR);
 			String createYear= createMonth+"";
+			
+			List<Event> listOfEvent = eventRepository.findAll();
+			model.addAttribute("events", listOfEvent);
 		
 			//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 			//Date createDate = sdf.parse(createYear);
@@ -408,8 +412,11 @@ public class StudentController {
 			try {
 				HttpSession session = req.getSession();
 				Student author =  (Student) session.getAttribute( "student" );
+				Student st = studentRepository.findByLogin(author.getLogin());
 				Event event= eventRepository.findByEventTitle(eventName);
-				Participation participation = participationRepository.findByParticipantAndEvent(author, event); 
+
+				
+				Participation participation = participationRepository.findByParticipantAndEvent(st, event); 
 				
 				String articleName= articleTitle+"_"+"Article"+"_"+author.getFirstName()+".pdf";
 				System.out.println(author.getFirstName());
@@ -438,8 +445,8 @@ public class StudentController {
 				Article art =articleRepository.findByArticleTitle(articleTitle);
 				
 				System.out.println(art.getArticleName()+"+++++++++++++++88888");
-				
 				participation.setStudentArticle(art);
+				
 				
 				participationRepository.save(participation);
 

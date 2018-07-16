@@ -64,13 +64,14 @@
 								<option value='<c:out value="${type.name}"/>'>${type.name}</option>
 							</c:forEach>
 						</select> --%>
-								<label for="titre-document" class="">Type
-									du document <span class="text-danger gras">*</span></label> 
-									<select name="documentType" class="form-control" id="titre-document" >
-									<option value='Article de Recherche'>Article de
-										Recherche</option>
-									<option value='mémoire'>mémoire</option>
-								</select>
+								<label>Nom de l'évènement</label> 
+<%-- 				           <input type="text" class="validate[required] form-control" name="eventName" value="${events.eventTitle}"  required /> --%>
+							
+							<select class="form-control" name="eventName"> 
+							<c:forEach items="${events}" var="i">
+										<option value='<c:out value="${i.eventTitle}"/>'>${i.eventTitle}</option>	
+						     </c:forEach>
+						     </select> 
 
 
 							<div class="form-group">
