@@ -877,11 +877,11 @@ public class AdministratorController/* implements UserDetailsService */{
 		teacher.setPasswordSec(cryptographe(passwordSec));
 		String content1 = "Compte créé avec succès, vos informations se présentent comme suit:  \n"
 				+"Nom :: " + teacher.getLastName() + " \n"
-				+"Login :: " + teacher.getLogin() +"\n"
-				+"Prenom :: " + decryptographe(teacher.getPasswordSec())+"\n"
+				+"Votre Login :: " + teacher.getLogin() +"\n"
+				+"votre Mot de passe :: " + decryptographe(teacher.getPasswordSec())+"\n"
 				+ "...\n"
 				+ "Pour vous connecter a votre espace personnel cliquez ici :\n"
-				+ "http://localhost:8080/SpringMvcJdbcTemplate/loginTeacher";
+				+ "http://"+req.getLocalAddr()+":"+req.getLocalPort()+"/SpringMvcJdbcTemplate/index#login";
 		// String form="saphirmfogo@gmail.com";V
 		MimeMessage msg = new MimeMessage(session);
 		/// msg.setFrom(new InternetAddress(form));

@@ -61,7 +61,7 @@
       <!-- Header Section-->
       <section class="dashboard-header padding">
          <div class="row">
-              <div class="col-md-6">
+              <div class="offset-1 col-md-6">
 		       <form action="<c:url value='addCourse'/>" method="post">
                       <label class="radio"> <input type="radio" name="validate" value="validate"> validé </label>
                      <c:forEach items="" var="i">

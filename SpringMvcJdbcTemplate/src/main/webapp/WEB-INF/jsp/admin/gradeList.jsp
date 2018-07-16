@@ -61,7 +61,7 @@
       <!-- Header Section-->
       <section class="dashboard-header padding">
          <div class="row">
-                <div class="col-md-6 table-responsive">
+                <div class="offset-1 col-md-6 table-responsive">
 		             <table class="table table-bordered table-striped table-condensed">
 		             	<tr class="active">
 							<td>N°</td>

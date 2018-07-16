@@ -61,7 +61,7 @@
       <!-- Header Section-->
       <section class="dashboard-header padding">
          <div class="row">
-                <div class="col-md-6">
+                <div class="offset-1 col-md-6">
 		             <form action="<c:url value='createTeacher'/>" method="post">
                     <label>Nom:</label>
                         <input type="text" class="validate[required] form-control" name="lastName" placeholder="Entrez votre nom" required />

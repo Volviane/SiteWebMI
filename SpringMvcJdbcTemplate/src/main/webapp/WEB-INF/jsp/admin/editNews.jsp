@@ -61,7 +61,7 @@
       <!-- Header Section-->
       <section class="dashboard-header padding">
          <div class="row">
-                <div class="col-md-6">
+                <div class="offset-1 col-md-6">
 		              <form action="<c:url value='editNews'/>" method="post" enctype="multipart/form-data">
                     <label>titre du communiqué</label>
                         <input type="text" class="form-control" name="newsTitle" required  />

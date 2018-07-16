@@ -67,6 +67,9 @@ public class TeacherController {
 	ServletContext context;
 
 	@Autowired
+	ServletContext context;
+	
+	@Autowired
 	DocumentRepository documentRepository;
 
 	@Autowired

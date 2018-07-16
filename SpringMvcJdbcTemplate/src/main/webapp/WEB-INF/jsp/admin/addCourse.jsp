@@ -15,7 +15,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ajouter ue</title>
+    <title>Ajouter ue</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -61,7 +61,7 @@
       <!-- Header Section-->
       <section class="dashboard-header padding">
        <div class="row">
-             <div class="col-md-6">
+             <div class="offset-1 col-md-6">
                  <form action="<c:url value='addCourse'/>" method="post">
                      <label>niveau</label>
                     
