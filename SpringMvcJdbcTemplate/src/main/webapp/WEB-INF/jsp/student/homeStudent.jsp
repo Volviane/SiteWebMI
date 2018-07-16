@@ -7,9 +7,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%--  <c:if test="${student==null}"> --%>
-<%-- 		<c:redirect  url="/"></c:redirect>  --%>
-<%--  </c:if>  --%>
+ <c:if test="${student==null}">
+		<c:redirect  url="/"></c:redirect> 
+ </c:if> 
 <!DOCTYPE html>
 <html lang="fr">
 
