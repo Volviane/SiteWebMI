@@ -161,7 +161,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		long nberOption=optionRepository.count();
 		long nberResearchDomain=researchDomainRepository.count();
 		long nberCourse=courseRepository.count();
-		//model.addAttribute("error", "");
+		model.addAttribute("error", "");
 		model.addAttribute("nberTeacher",nberTeacher);
 		model.addAttribute("nberCycle",nberCycle);
 		model.addAttribute("nberLevel",nberLevel);
@@ -618,9 +618,9 @@ public class AdministratorController/* implements UserDetailsService */{
 	public String levelPost(Model model, HttpServletRequest req)  {
 		System.out.println("add level  post");
 
-		String levelName= req.getParameter("levelName");
+		String levelNames= req.getParameter("levelName");
 		String optionName= req.getParameter("optionName");
-
+		String levelName=optionName+levelNames;
 		System.out.println("~~~~~~~~~~~~~~~~");
 		System.out.println(levelName);
 		System.out.println("~~~~~~~~~~~~~~~~");

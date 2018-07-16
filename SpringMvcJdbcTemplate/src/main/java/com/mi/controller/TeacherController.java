@@ -559,11 +559,11 @@ public class TeacherController {
 				dir.mkdirs();
 			
 			BufferedOutputStream stream = new BufferedOutputStream(
-					new FileOutputStream(SAVE_DIR + File.separator + pictureName));
+					new FileOutputStream(context.getRealPath("") + File.separator  + SAVE_DIR + File.separator + pictureName));
 			stream.write(bytes);
 			stream.close();
 		
-			String pictureNames=SAVE_DIR + File.separator + pictureName;
+			//String pictureNames=SAVE_DIR + File.separator + pictureName;
 			
 			
 			teacher.setBirthDate(birthDate);
@@ -576,7 +576,7 @@ public class TeacherController {
 			teacher.setGrade(grade);
 			teacher.setSexe(sex);
 			teacher.setLastName(lastName);
-			teacher.setPictureName(pictureNames);
+			teacher.setPictureName(pictureName);
 		
 			
 			teachersRepository.save(teacher);
@@ -655,7 +655,7 @@ public class TeacherController {
 		//editer un resultat
 		
 		@RequestMapping(value = { "/editResult" }, method = RequestMethod.POST)
-		@Transactional
+	//	@Transactional
 		public String editResultPost(Model model, HttpServletRequest req,@RequestParam("files") MultipartFile file) throws ParseException, IOException, ServletException {
 
 			String sessions= req.getParameter("session");
@@ -694,7 +694,7 @@ public class TeacherController {
 			result.setResultFileName(resultFileName);
 				result.setResultTitle(resultTitle);
 				result.setSession(sessions);
-				result.setPublish(false);
+				
 
 				resultRepository.save(result);
 				model.addAttribute("resutls", "Résultat posté avec sucess");
