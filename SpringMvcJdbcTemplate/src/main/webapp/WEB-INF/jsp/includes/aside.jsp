@@ -53,5 +53,7 @@
 			<hr>
 		</c:forEach>
 		<a href="${pageContext.request.contextPath}/viewResult" class="btn btn-warning">Voir tous les résultats</a>
+		<hr>
+		<a href="${pageContext.request.contextPath}/viewDocument" class="btn btn-primary">Voir tous les documents</a>
 	</section>
 </aside>
