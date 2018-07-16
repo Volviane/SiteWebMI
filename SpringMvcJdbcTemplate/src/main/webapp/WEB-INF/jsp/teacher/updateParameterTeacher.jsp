@@ -32,35 +32,35 @@
     <!-- FIN DU MENU -->
 <!-- 	<div class="container"> -->
 
-		<div class="col-md-7" style="padding: 0px">
+		<div class="col-md-7" style="padding-left: 100px">
 			<!--Contenu-->
 			<h2>
-				<span class="glyphicon glyphicon-pencil"></span> Modification des Paramètres de connexion
+				<span class="glyphicon glyphicon-pencil"></span> Modifier les Paramètres de connexion
 			</h2>
-			<div class="panel panel-default col-md-8 well">
+			<div class="panel panel-defaul col-md-8 ">
 				<div class="panel-body">
 					<form action="updateParameterTeacher" method="post">
 						<div class="form-group">
 							<label for="exampleInputEmail1">Entrez l'Ancien login</label> <input
 								type="text" name="login" class="form-control"
 								id="exampleInputEmail1" aria-describedby="emailHelp"
-								placeholder="Entrez votre email"> 
+								placeholder="Ancien login"> 
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Entrez le nouveau Login</label> <input
 								type="text" name="newLogin" class="form-control"
 								id="exampleInputEmail1" aria-describedby="emailHelp"
-								placeholder="Entrez votre email"> 
+								placeholder="nouveau Login"> 
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">Entrez l'Ancien Mot de Passe</label> <input
 								type="password" name="password" class="form-control"
-								id="exampleInputPassword1" placeholder="Mot de passe">
+								id="exampleInputPassword1" placeholder="  Ancien Mot de passe">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">Nouveau Mot de Passe</label> <input
 								type="password" name="newPassword" class="form-control"
-								id="exampleInputPassword1" placeholder="Mot de passe">
+								id="exampleInputPassword1" placeholder="nouveau Mot de passe">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">Confirmer le Mot de Passe</label> <input

@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <c:if test="${teacher==null}">
+<%--  <c:if test="${student==null}">
 			<c:redirect  url="/"></c:redirect>
-	     </c:if>
+	     </c:if> --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MIUDS- Liste des <c:out value="${documentType}"/></title>
-	<c:import url="includesTeacher/teacherCSS.jsp"></c:import>
+	<c:import url="includesStudent/studentCSS.jsp"></c:import>
 
 </head>
 <body>
@@ -17,20 +17,20 @@
 
 
 	<!-- DEBUT DU HEADER -->
-	<c:import url="includesTeacher/headerTeacher.jsp"></c:import>
+	<c:import url="includesStudent/headerStudent.jsp"></c:import>
 	<!-- FIN DU HEADER-->
 
 	<div
 		style="clear: both; display: block; margin-top: 88px; margin-bottom:30px; height: 60px;">
 			<ol class="breadcrumb">
- 				 <li><a href="homeTeacher">Espace Personnel</a></li>
+ 				 <li><a href="homestudent">Espace Personnel</a></li>
   				<li><a href="#">Documents</a></li>
  				 <li class="active gras"><c:out value="${documentType}"/></li>
 			</ol>
 		</div>
 
 	<!-- DEBUT DU MENU -->
-	<c:import url="includesTeacher/teacherMenu.jsp"></c:import>
+	<c:import url="includesStudent/studentMenu.jsp"></c:import>
 	<!-- FIN DU MENU -->
 
 
@@ -116,7 +116,7 @@
 	<!--/ Footer-->
 
 	<!-- INCLUSION DES JS -->
-	<c:import url="includesTeacher/teacherJS.jsp"></c:import>
+	<c:import url="includesStudent/studentJS.jsp"></c:import>
 	<!-- FIN INCLUSION DES JS -->
 	
 	

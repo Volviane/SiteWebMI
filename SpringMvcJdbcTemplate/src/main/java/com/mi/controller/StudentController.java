@@ -10,10 +10,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
@@ -38,9 +40,12 @@ import com.mi.model.Article;
 import com.mi.model.Cycle;
 import com.mi.model.Document;
 import com.mi.model.Event;
+import com.mi.model.Grade;
+import com.mi.model.Jury;
 import com.mi.model.Level;
 import com.mi.model.Option;
 import com.mi.model.Participation;
+import com.mi.model.ResearchDomain;
 import com.mi.model.Student;
 import com.mi.model.Teacher;
 import com.mi.repositories.AcademicYearRepository;
@@ -67,10 +72,11 @@ public class StudentController {
 	
 	public static final Logger logger = LoggerFactory.getLogger(AdministratorController.class);
 	
-	private static final String SAVE_DIR=/*"C:"+File.separator+"Users"+File.separator+"MFOGO"+File.separator+"Documents"+File.separator+"Master1"+File.separator+"Semestre2"
-			+ ""+File.separator+"Projet"+File.separator+"workspace"+File.separator+*/"SiteWebMI"+File.separator+"SpringMvcJdbcTemplate"+File.separator+"Documents";
-
+	private static final String SAVE_DIR="resources"+File.separator+"userResources"+File.separator+"img";
 	
+
+	@Autowired
+	ServletContext context;
 	@Autowired
 	ResearchDomainRepository researchDomainRepository;
 	
@@ -197,7 +203,7 @@ public class StudentController {
 			model.addAttribute("levels", listOfLevel);
 			model.addAttribute("cycles", cycles);
 			model.addAttribute("options", listOfOption);
-			//model.addAttribute("events", listOfEvent);
+			model.addAttribute("eventList", listOfEvent);
 
 			return "student/registrationStudent";
 		}
@@ -379,7 +385,7 @@ public class StudentController {
 		public String addArticleGet(Model model,HttpServletRequest req) {
 			System.out.println("addArticle get");
 			
-			model.addAttribute("error", "");
+			model.addAttribute("error", " ");
 			return "student/addArticle";
 		}
 
@@ -405,7 +411,7 @@ public class StudentController {
 				Event event= eventRepository.findByEventTitle(eventName);
 				Participation participation = participationRepository.findByParticipantAndEvent(author, event); 
 				
-				String articleName= articleTitle+"_"+createYear+".pdf";
+				String articleName= articleTitle+"_"+"Article"+"_"+author.getFirstName()+".pdf";
 				System.out.println(author.getFirstName());
 				byte[] bytes = file.getBytes();
 				File dir = new File(SAVE_DIR);
@@ -413,23 +419,25 @@ public class StudentController {
 					dir.mkdirs();
 				
 				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(SAVE_DIR + File.separator + articleName));
+						new FileOutputStream(context.getRealPath("") + File.separator  +SAVE_DIR + File.separator + articleName));
 				stream.write(bytes);
 				stream.close();
 			
-				String articleNames=SAVE_DIR + File.separator + articleName;
+				//String articleNames=SAVE_DIR + File.separator + articleName;
 				
 				Article article= new Article();
 				
 				
 				article.setArticleTitle(articleTitle);
 				article.setArticleAbstract(articleAbstract);
-				article.setArticleName(articleNames);
+				article.setArticleName(articleName);
 				article.setAuthor(author);
-				
+				System.out.println("__________________________");
 				articleRepository.save(article);
-				
+				System.out.println("++++++++++++++++++++++++");
 				Article art =articleRepository.findByArticleTitle(articleTitle);
+				
+				System.out.println(art.getArticleName()+"+++++++++++++++88888");
 				
 				participation.setStudentArticle(art);
 				
@@ -472,6 +480,23 @@ public class StudentController {
 			model.addAttribute("articles", article);
 			model.addAttribute("students", student);
 			return "student/listArticle";
+		}
+		
+		// information pour afficher la page personnelle
+		@RequestMapping(value = "/informationStudent", method = RequestMethod.GET)
+		public String informationStudentGet(HttpServletRequest request, HttpServletResponse response, Model model) {
+			System.out.println("informationStudent get");
+			model.addAttribute("error", "");
+
+			String matricule = request.getParameter("matricule");
+			//Long idTeacher=Long.parseLong(name);
+
+			Student student = studentRepository.findByMatricule(matricule);
+			
+			model.addAttribute("students", student);
+			
+
+			return "student/informationStudent";
 		}
 		
 		

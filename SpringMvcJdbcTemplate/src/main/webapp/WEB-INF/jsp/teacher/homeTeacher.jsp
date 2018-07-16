@@ -16,7 +16,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Math-Info Accueil</title>
+<title>Math-Info home teacher</title>
 <meta name="description"
 	content="Free Bootstrap Theme by BootstrapMade.com">
 <meta name="keywords"
@@ -52,28 +52,28 @@
 
 		<div class="col-md-7" style="padding: 0px">
 			<!--Contenu-->
-			<h3>Bienvenue Dans votre Espace Personnel</h3>
+			<h3>Bienvenue ${teacher.firstName} ${teacher.lastName}</h3>
 			
 			<section>
-				<%-- <div class="media-left">
-					<c:if test="${teachers.pictureName==null }">
+				 <div class="media-left">
+					<c:if test="${teacher.pictureName==null }">
 						<img src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
 							style="height:200px;" alt=""
 							class="img-thumbnail img-circle media-object" />
 					</c:if>
-					<c:if test="${teachers.pictureName!=null }">
+					<c:if test="${teacher.pictureName!=null }">
 						<img
-							src="${pageContext.request.contextPath}/resources/userResources/img/${teachers.pictureName }"
+							src="${pageContext.request.contextPath}/resources/userResources/img/${teacher.pictureName }"
 							style="height:200px;" alt=""
 							class="img-thumbnail img-circle media-object" />
 					</c:if>
 			</div>
 				<div class="media-body">
 					<h4 class="media-heading">
-						<c:out value="${teachers.firstName }"></c:out>
+<%-- 						<c:out value="${teacher.firstName }"></c:out> --%>
 					</h4>
 					<p></p>
-				</div> --%>
+				</div> 
 				
 			</section>
 			<!--/ Contenu-->

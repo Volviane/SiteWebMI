@@ -109,8 +109,11 @@
 				<form action="<c:url value='registrationStudent'/>" method="post">
 				   <label>Nom de l'évènement</label> 
 <%-- 				           <input type="text" class="validate[required] form-control" name="eventName" value="${events.eventTitle}"  required /> --%>
+							
 							<select class="form-control" name="eventName"> 
-										<option value='<c:out value="${events.eventTitle}"/>'>${events.eventTitle}</option>	
+							<c:forEach items="${eventList}" var="i">
+										<option value='<c:out value="${i.eventTitle}"/>'>${i.eventTitle}</option>	
+						     </c:forEach>
 						     </select> 
 				   <label>Matricule</label> 
 							<input type="text"  name="matricule" required data-msg="" class="form-control">

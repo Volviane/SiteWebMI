@@ -36,7 +36,7 @@
 	<!-- FIN DU MENU -->
 
 
-	<div class="col-md-7" style="padding: 0px">
+	<div class="col-md-7" style="padding-left: 100px">
 		<!--Contenu-->
 		<section class="page login-page col-md-8">
 		
@@ -46,7 +46,7 @@
 					<hr>
 						<p class="alert alert-warning"><span class="fa fa-warning"></span> Les champ portant la mention <span class="text-danger gras">*</span> Sont obligatoires</p>
 						<form action="<c:url value='addDocument'/>" method="post"
-							class="well" enctype="multipart/form-data">
+							class="" enctype="multipart/form-data">
 
 							<div class="form-group">
 								<label for="title-document"
@@ -98,21 +98,20 @@
 									class="input-material">
 
 							</div>
-
+                            <hr>
 							<div class="form-group">
 								<input type="submit" value="AJOUTER" class="btn btn-info gras">
 								<input type="reset" value="ANNULER" class="btn btn-danger gras">
 								
 							</div>
 						</form>
-						
-						<c:if test="${documents != null }">
-						<div class="alert alert-success" role="alert">document ajouté avec succès</div>
-					</c:if>
-			
-					<c:if test="${error != null }">
-						<div class="alert alert-danger" role="alert">Echec d'ajout de documents</div>
-					</c:if>
+						<hr>
+                          <c:if test="${error!=null}">
+							<h6 class="alert"> <font color="red">${error}</font></h1>
+			       		</c:if>
+			        	<c:if test="${error==null}">
+							<h6 class="alert alert-success"> <font color="green">ajout reussi</font></h1>
+			       		</c:if>
 					</div>
 				</div>
 			
