@@ -82,10 +82,10 @@
                  </form>
                  <hr />
                           <c:if test="${error!=null}">
-							<h6 class="alert"> <font color="red">${error}</font></h1>
+							<div class="alert alert-danger"> <font color="red">${error}</font></div>
 			       		</c:if>
-			        	<c:if test="${error==null}">
-							<h6 class="alert alert-success"> <font color="green">enregistrement reussi</font></h1>
+			        	<c:if test="${levels!=null}">
+							<div class="alert alert-success"> <font color="green">${levels}</font></div>
 			       		</c:if>
                 </div>
            </div>

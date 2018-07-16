@@ -47,34 +47,36 @@
       <div class="page login-page">
       <div class="container">
         <div class="form-outer text-center d-flex align-items-center">
-          <div class="form-inner">
-            <div class="logo text-uppercase"><strong class="text-primary">CREATION ADMIN</strong></div>
+          <div class="panel panel-primary form-inner col-sm-8">
+            <div class="panel-header logo text-uppercase"><strong class="text-primary">CREATION ADMIN</strong></div>
+            <div class="panel-body">
              <form action="<c:url value='registrationAdministrator'/>" method="post" class="text-left form-validate">
               <div class="form-group-material">
                 <input id="login-username" type="text"  name="login" required data-msg="veuillez un login" class="input-material">
-                <label for="login-username" class="label-material">login</label>
+                <label for="login-username" class="label-material">Entrez un login</label>
               </div>
               		 <c:if test="${errorLogin!=null}">
-							<h6 class="text-error"> <font color="red">${error}</font></h1>
+							<div class="text-error"> <font color="red">${error}</font></div>
 					 </c:if>
               <div class="form-group-material">
                 <input id="login-password" type="password"  name="password"  required data-msg="veuillez entrer un mot de passe" class="input-material">
-                <label for="login-password" class="label-material">Password</label>
+                <label for="login-password" class="label-material">Entrez un mot de passe</label>
               </div>
                        <c:if test="${errorPassword!=null}">
-							<h6 class="text-error"> <font color="red">${error}</font></h1>
+							<div class="text-error"> <font color="red">${error}</font></div>
 					   </c:if>
               <div class="form-group text-center">
                 <input type="submit" value="creer admin" class="btn btn-info">
                 <!-- This should be submit button but I replaced it with <a> for demo purposes-->
               </div>
             </form>
+            </div>
             <hr />
             <c:if test="${error!=null}">
-							<h6 class="alert"> <font color="red">${error}</font></h1>
+							<div class="alert alert-danger"> <font color="red">${error}</font></div>
 			       		</c:if>
 			        	<c:if test="${error==null}">
-							<h6 class="alert alert-success"> <font color="green">creation reussie</font></h1>
+							<div class="alert alert-success"> <font color="green">Compte administrateur créé avec succès</font></div>
 			       		</c:if>
               <small> j'ai déja un compte </small><a href="${pageContext.request.contextPath}/connectionAdministrator" class="signup">se connecter</a>
           </div>
