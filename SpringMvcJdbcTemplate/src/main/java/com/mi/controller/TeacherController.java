@@ -66,8 +66,7 @@ public class TeacherController {
 	@Autowired
 	ServletContext context;
 
-	@Autowired
-	ServletContext context;
+
 	
 	@Autowired
 	DocumentRepository documentRepository;
@@ -306,7 +305,7 @@ public class TeacherController {
 	public String addDocumentGet(Model model,HttpServletRequest req) {
 		System.out.println("addDocument get");
 		
-		//model.addAttribute("error", "");
+		model.addAttribute("error", "");
 		return "teacher/addDocument";
 	}
 
@@ -591,14 +590,14 @@ public class TeacherController {
 	
 	// se deconnecter
 		@RequestMapping(value = "/logoutTeacher", method = RequestMethod.GET)
-		public String logoutPost(HttpServletRequest request, HttpServletResponse response, Model model) {
+		public String logoutPost(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 		model.addAttribute("error", " ");
 			  HttpSession session = request.getSession();
 			  session.invalidate();
 			 // session.setAttribute( "teacher", null );
 			 // model.addAttribute("teachers", "La session a ete supprimme");
 
-			
+			response.sendRedirect("index");
 			return "index";
 		}
 
@@ -662,12 +661,14 @@ public class TeacherController {
 		public String editResultPost(Model model, HttpServletRequest req,@RequestParam("files") MultipartFile file) throws ParseException, IOException, ServletException {
 
 			String sessions= req.getParameter("session");
-			String academicYear= req.getParameter("academicYear");
+			//String academicYear= req.getParameter("academicYear");
 			String resultTitle= req.getParameter("resultTitle");
 
-			AcademicYear year= academicYearRepository.findByAcademicYear(academicYear);
+			//AcademicYear year= academicYearRepository.findByAcademicYear(academicYear);
 			
-
+			System.out.println(sessions);
+			//System.out.println(academicYear);
+			System.out.println(resultTitle);
 			//Calendar calendarCourante = Calendar.getInstance();
 			//int createYear = calendarCourante.get(Calendar.YEAR);
 			//int createMonth = calendarCourante.get(Calendar.YEAR);
@@ -678,7 +679,7 @@ public class TeacherController {
 			
 			try {
 				
-				String resultFileName= resultTitle+"_"+sessions+"_"+academicYear+".png";
+				String resultFileName= resultTitle+"_"+sessions+".png";
 				
 				byte[] bytes = file.getBytes();
 				File dir = new File(SAVE_DIR);
@@ -693,7 +694,7 @@ public class TeacherController {
 			//String resultFileNames=SAVE_DIR + File.separator + resultFileName;
 				Result result= new Result();
 
-				result.setAcademicYear(year);
+				//result.setAcademicYear(year);
 			result.setResultFileName(resultFileName);
 				result.setResultTitle(resultTitle);
 				result.setSession(sessions);

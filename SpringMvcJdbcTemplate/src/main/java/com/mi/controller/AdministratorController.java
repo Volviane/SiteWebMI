@@ -205,7 +205,7 @@ public class AdministratorController/* implements UserDetailsService */{
 				roles.setRoleName(roleName);
 				roleRepository.save(roles);
 				System.out.println("done");
-				model.addAttribute("roles", roles);
+				model.addAttribute("roles", "le role " + roleName + " a ete enregistre avec succes");
 				req.setAttribute("role", roles);
 			} catch (Exception e) {
 				model.addAttribute("error", "Echec d'Enregistrement: Une érreur est survenue lors de l'ajout du role.");
@@ -1052,7 +1052,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/editNews" }, method = RequestMethod.GET)
 	public String createCommuniqueGet(Model model,HttpServletRequest req) {
 		System.out.println("editNews GET");
-		//model.addAttribute("error", "");
+		model.addAttribute("error", "");
 		return "admin/editNews";
 	}
 

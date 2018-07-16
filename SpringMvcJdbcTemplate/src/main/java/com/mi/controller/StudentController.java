@@ -471,7 +471,7 @@ public class StudentController {
 		public String listArticleGet(Model model,HttpServletRequest req) {
 			System.out.println("listArticle get");
 			model.addAttribute("error", "");
-			String eventTitle = req.getParameter("eventTItle");
+			String eventTitle = req.getParameter("eventTitle");
 			Event event= eventRepository.findByEventTitle(eventTitle);
 			 
 			List<Participation> participation =participationRepository.findByEvent(event);

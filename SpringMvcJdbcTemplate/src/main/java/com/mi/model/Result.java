@@ -17,8 +17,8 @@ public class Result implements Serializable {
 	@Column(name="SESSION")
 	private String session;
 	
-	@Column(name="ANNEE")
-	private AcademicYear academicYear;
+	/*@Column(name="ANNEES")
+	private AcademicYear academicYear;*/
 	
 	@Column(name="TITRE")
 	private String resultTitle;
@@ -62,10 +62,10 @@ public class Result implements Serializable {
 	 * @param resultTitle
 	 * @param resultFileName
 	 */
-	public Result(String session, AcademicYear annee, String resultTitle, String resultFileName) {
+	public Result(String session,  String resultTitle, String resultFileName) {
 		super();
 		this.session = session;
-		this.academicYear = annee;
+	
 		this.resultTitle = resultTitle;
 		this.resultFileName = resultFileName;
 	}
@@ -78,10 +78,10 @@ public class Result implements Serializable {
 	 * @param resultFileName
 	 * @param jury
 	 */
-	public Result(String session, AcademicYear annee, String resultTitle, String resultFileName, Jury jury) {
+	public Result(String session, String resultTitle, String resultFileName, Jury jury) {
 		super();
 		this.session = session;
-		this.academicYear = annee;
+		
 		this.resultTitle = resultTitle;
 		this.resultFileName = resultFileName;
 		this.jury = jury;
@@ -123,18 +123,7 @@ public class Result implements Serializable {
 	/**
 	 * @return the academicYear
 	 */
-	public AcademicYear getAcademicYear() {
-		return academicYear;
-	}
-
-
-	/**
-	 * @param academicYear the academicYear to set
-	 */
-	public void setAcademicYear(AcademicYear annee) {
-		this.academicYear = annee;
-	}
-
+	
 
 	/**
 	 * @return the resultTitle
