@@ -17,7 +17,7 @@ public class Course implements Serializable {
 	@Column(name="CODE_UV")
 	private String courseCode;
 	
-	@Column(name="INTITULE_UV", length=30)
+	@Column(name="INTITULE_UV")
 	private String courseTitle;
 	
 	@Column(name="NOMBRE_CREDITS")

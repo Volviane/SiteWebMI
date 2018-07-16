@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -39,9 +40,12 @@ import com.mi.model.Article;
 import com.mi.model.Cycle;
 import com.mi.model.Document;
 import com.mi.model.Event;
+import com.mi.model.Grade;
+import com.mi.model.Jury;
 import com.mi.model.Level;
 import com.mi.model.Option;
 import com.mi.model.Participation;
+import com.mi.model.ResearchDomain;
 import com.mi.model.Student;
 import com.mi.model.Teacher;
 import com.mi.repositories.AcademicYearRepository;
@@ -380,8 +384,9 @@ public class StudentController {
 		@RequestMapping(value = { "/addArticle" }, method = RequestMethod.GET)
 		public String addArticleGet(Model model,HttpServletRequest req) {
 			System.out.println("addArticle get");
-			
-			model.addAttribute("error", "");
+			List<Event> listOfEvent = eventRepository.findAll();
+			model.addAttribute("error", " ");
+			model.addAttribute("events", listOfEvent);
 			return "student/addArticle";
 		}
 
@@ -397,6 +402,9 @@ public class StudentController {
 			//int createYear = calendarCourante.get(Calendar.YEAR);
 			int createMonth = calendarCourante.get(Calendar.YEAR);
 			String createYear= createMonth+"";
+			
+			List<Event> listOfEvent = eventRepository.findAll();
+			model.addAttribute("events", listOfEvent);
 		
 			//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 			//Date createDate = sdf.parse(createYear);
@@ -404,8 +412,11 @@ public class StudentController {
 			try {
 				HttpSession session = req.getSession();
 				Student author =  (Student) session.getAttribute( "student" );
+				Student st = studentRepository.findByLogin(author.getLogin());
 				Event event= eventRepository.findByEventTitle(eventName);
-				Participation participation = participationRepository.findByParticipantAndEvent(author, event); 
+
+				
+				Participation participation = participationRepository.findByParticipantAndEvent(st, event); 
 				
 				String articleName= articleTitle+"_"+"Article"+"_"+author.getFirstName()+".pdf";
 				System.out.println(author.getFirstName());
@@ -428,12 +439,14 @@ public class StudentController {
 				article.setArticleAbstract(articleAbstract);
 				article.setArticleName(articleName);
 				article.setAuthor(author);
-				
+				System.out.println("__________________________");
 				articleRepository.save(article);
-				
+				System.out.println("++++++++++++++++++++++++");
 				Article art =articleRepository.findByArticleTitle(articleTitle);
 				
+				System.out.println(art.getArticleName()+"+++++++++++++++88888");
 				participation.setStudentArticle(art);
+				
 				
 				participationRepository.save(participation);
 
@@ -474,6 +487,23 @@ public class StudentController {
 			model.addAttribute("articles", article);
 			model.addAttribute("students", student);
 			return "student/listArticle";
+		}
+		
+		// information pour afficher la page personnelle
+		@RequestMapping(value = "/informationStudent", method = RequestMethod.GET)
+		public String informationStudentGet(HttpServletRequest request, HttpServletResponse response, Model model) {
+			System.out.println("informationStudent get");
+			model.addAttribute("error", "");
+
+			String matricule = request.getParameter("matricule");
+			//Long idTeacher=Long.parseLong(name);
+
+			Student student = studentRepository.findByMatricule(matricule);
+			
+			model.addAttribute("students", student);
+			
+
+			return "student/informationStudent";
 		}
 		
 		

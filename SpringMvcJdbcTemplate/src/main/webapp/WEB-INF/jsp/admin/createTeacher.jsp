@@ -56,34 +56,35 @@
      <%@include file="includeFile/navAdmin.jsp"%>
       <!-- Counts Section -->
       <section class="dashboard-counts padding">
-          <h4 class="page-head-line">Créer un enseignant</strong></h4>
+          <h4 class="page-head-line"><strong>Créer un enseignant</strong></h4>
       </section>
       <!-- Header Section-->
       <section class="dashboard-header padding">
          <div class="row">
                 <div class="col-md-6">
 		             <form action="<c:url value='createTeacher'/>" method="post">
-                    <label>nom</label>
-                        <input type="text" class="validate[required] form-control" name="firstName"  required />
-                     <label>prénom</label>
-                        <input type="text" class=" validate[required] form-control" name="lastName"  required />
-                     <label>email</label>
-                        <input type="email" class="validate[required,custom[email]] form-control" name="emailAdress"  />
-                     <label>grade</label>
+                    <label>Nom:</label>
+                        <input type="text" class="validate[required] form-control" name="lastName" placeholder="Entrez votre nom" required />
+                     <label>Prénom:</label>
+                        <input type="text" class="form-control" name="firstName" placeholder="Entrez votre prénom" />
+                     <label>Email</label>
+                        <input type="email" class="validate[required,custom[email]] form-control" name="emailAdress" placeholder="Entrez votre adresse email"  />
+                     <label>Grade</label>
                         <select class="form-control validate[required]" name="gradeName">
                      			<c:forEach items="${grades}" var="i">
                      				<option value="${i.gradeName }" ><c:out value="${i.gradeName }"></c:out></option>
                      			</c:forEach>
                        </select>
                         <hr />
-					<input type="submit" value="créer" class="btn btn-info">
+					<input type="submit" value="Enregistrer" class="btn btn-info">
+					<input type="reset" value="Annuler" class="btn btn-warning">
                </form>
                <hr />
                           <c:if test="${error!=null}">
-							<h6 class="alert"> <font color="red">${error}</font></h1>
+							<div class="alert alert-danger"> <font color="red">${error}</font></div>
 			       		</c:if>
-			        	<c:if test="${error==null}">
-							<h6 class="alert alert-success"> <font color="green">enregistrement reussi</font></h1>
+			        	<c:if test="${teachers!=null}">
+							<div class="alert alert-success"> <font color="green">${teachers}</font></div>
 			       		</c:if>
                 </div>
            </div>
