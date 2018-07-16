@@ -161,7 +161,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		long nberOption=optionRepository.count();
 		long nberResearchDomain=researchDomainRepository.count();
 		long nberCourse=courseRepository.count();
-		model.addAttribute("error", "");
+		//model.addAttribute("error", "");
 		model.addAttribute("nberTeacher",nberTeacher);
 		model.addAttribute("nberCycle",nberCycle);
 		model.addAttribute("nberLevel",nberLevel);
@@ -178,7 +178,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addRole", method = RequestMethod.GET)
 	public String roleGet(Model model) {
 		System.out.println("addrole get");
-		model.addAttribute("error", "");
+		//model.addAttribute("error", "");
 		return "admin/addRole";
 	}
 
@@ -198,7 +198,7 @@ public class AdministratorController/* implements UserDetailsService */{
 				model.addAttribute("roles", roles);
 				req.setAttribute("role", roles);
 			} catch (Exception e) {
-				model.addAttribute("error", "echec d'enregistrement");
+				model.addAttribute("error", "Echec d'Enregistrement: Une érreur est survenue lors de l'ajout du role.");
 			}
 		} else if (roleName.equalsIgnoreCase("ROLE_TEACHERS")) {
 			try {
@@ -208,7 +208,7 @@ public class AdministratorController/* implements UserDetailsService */{
 				model.addAttribute("roles", roles);
 				req.setAttribute("role", roles);
 			} catch (Exception e) {
-				model.addAttribute("error", "echec d'enregistrement");
+				model.addAttribute("error", "Echec d'Enregistrement: Une érreur est survenue lors de l'ajout du role.");
 				
 			}
 
@@ -222,7 +222,7 @@ public class AdministratorController/* implements UserDetailsService */{
 				model.addAttribute("roles", roles);
 				req.setAttribute("role", roles);
 			} catch (Exception e) {
-				model.addAttribute("error", "echec d'enregistrement");
+				model.addAttribute("error", "Echec d'Enregistrement: Une érreur est survenue lors de l'ajout du role.");
 				
 			}
 
@@ -240,7 +240,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			System.out.println(r.getRoleName());
 		}
 		if (listOfRole.isEmpty()) {
-			model.addAttribute("error", error);
+			model.addAttribute("error", "Aucun role n'a été trouvé.");
 		}
 		model.addAttribute("roles", listOfRole);
 		req.setAttribute("roles", listOfRole);
@@ -252,7 +252,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/registrationAdministrator" }, method = RequestMethod.GET)
 	public String createForm(Model model,HttpServletRequest req) {
 		System.out.println("inscription d'un admin");
-		model.addAttribute("error", "");
+		//model.addAttribute("error", "");
 		return "admin/registrationAdministrator";
 	}
 	//create administrator post method
@@ -293,8 +293,8 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/connectionAdministrator" }, method = RequestMethod.GET)
 	public String loginForm(Model model,HttpServletRequest req) {
 		System.out.println("connexion  d'un admin");
-		model.addAttribute("errorLogin", "");
-		model.addAttribute("errorPassword", "");
+		//model.addAttribute("errorLogin", "");
+		//model.addAttribute("errorPassword", "");
 
 		return "admin/connectionAdministrator";
 	}
@@ -472,7 +472,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addCycle", method = RequestMethod.GET)
 	public String cycleGet(Model model,HttpServletRequest req) {
 		System.out.println("add cycle  get");
-		model.addAttribute("error", "");
+		//model.addAttribute("error", "");
 		return "admin/addCycle";
 	}
 
@@ -487,11 +487,11 @@ public class AdministratorController/* implements UserDetailsService */{
 		//cycleService.saveCycle(cycle);
 		if(cycleRepository.findByCycleName(cycleName)==null) {
 			cycleRepository.save(cycle);
-			model.addAttribute("cycles", "le cycle a ete cree avec succes le nom est:: " + cycleName);
+			model.addAttribute("cycles", "Le cycle "+ cycleName+" a été ajouté avec succes." );
 			req.setAttribute("cycles", "succesfully to create cylcle:: " + cycleName);
 			System.out.println("done");
 		} else {
-			model.addAttribute("error", "echec d'enregistrement ");
+			model.addAttribute("error", "Echec d'enregistrement: le cycle "+cycleName+" existe déjà.");
 			
 		}
 
@@ -506,8 +506,8 @@ public class AdministratorController/* implements UserDetailsService */{
 		List<Cycle> listOfCycle = cycleRepository.findAll();
 
 		if (listOfCycle.isEmpty()) {
-			model.addAttribute("error", "liste vide");
-			req.setAttribute("error", error);
+			model.addAttribute("error", "Aucun cycle n'a été ajouté.");
+			req.setAttribute("error", "Aucun cycle n'a été ajouté.");
 		}
 		model.addAttribute("cycles", listOfCycle);
 		req.setAttribute("cycles", listOfCycle);
@@ -524,7 +524,7 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		Set<Option> listOfOption=cycle.getOptions();;
 		if (listOfOption.isEmpty()) {
-			model.addAttribute("error", "liste vide");
+			model.addAttribute("error", "Aucune option n'a été ajoutée pour le cycle "+cycleName);
 		}
 		model.addAttribute("cycleOption", listOfOption);
 		req.setAttribute("cycleOption", listOfOption);
@@ -536,7 +536,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addOption", method = RequestMethod.GET)
 	public String optionGet(Model model,HttpServletRequest req) {
 		System.out.println("addOption get");
-		model.addAttribute("error", "");
+		//model.addAttribute("error", "");
 		List<Cycle> cycles = cycleRepository.findAll();
 		for (Cycle cycle : cycles) {
 			System.out.println(cycle.getCycleName());
@@ -571,13 +571,13 @@ public class AdministratorController/* implements UserDetailsService */{
 		if(optionRepository.findByOptionName(optionName)==null) {
 			optionRepository.save(option);
 			System.out.println("done");
-			model.addAttribute("options", "l'option a ete cree avec sucess le nom est :: "+ optionName);
+			model.addAttribute("options", "L'option "+optionName+" a ete cree avec sucess.");
 			req.setAttribute("options", "succesfully to create option :: "+ optionName);
 
 
 		} else {
 		
-			model.addAttribute("error", "echec d'eregistrement ");
+			model.addAttribute("error", "Echec d'eregistrement: L'option "+optionName+" existe déjà.");
 		}
 
 		return "admin/addOption";
@@ -591,7 +591,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		List<Option> listOfOption = optionRepository.findAll();
 		List<String> finalList = new ArrayList<String>();
 		if (listOfOption.isEmpty()) {
-			model.addAttribute("error", "liste vide");
+			model.addAttribute("error", "Aucune option n'a été ajoutée.");
 		}
 		model.addAttribute("options", listOfOption);
 		req.setAttribute("options",finalList);
@@ -603,7 +603,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addLevel", method = RequestMethod.GET)
 	public String levelGet(Model model,HttpServletRequest req) {
 		System.out.println("add level  get");
-		model.addAttribute("error", "");
+		//model.addAttribute("error", "");
 		List<Option> options = optionRepository.findAll();
 		for (Option option : options) {
 			System.out.println(option.getOptionName());
@@ -635,17 +635,17 @@ public class AdministratorController/* implements UserDetailsService */{
 		Level level = new Level();
 		Option option = optionRepository.findByOptionName(optionName);
 		System.out.println(option);
-		level.setLevelName(optionName+levelName);
+		level.setLevelName(levelName);
 		level.setOption(option);
 		//levelRepository.deleteAll();
-		if(levelRepository.findByLevelName(levelName)==null) {
+		if(levelRepository.findByLevelNameAndOption(levelName,option)==null) {
 			levelRepository.save(level);
 			System.out.println("done");
-			model.addAttribute("levels", "le niveau a ete creer avec sucess le nom est :: " +levelName);
+			model.addAttribute("levels", "Le niveau " +levelName+" de l'option "+option.getOptionName()+" a été créé avec sucess.");
 			req.setAttribute("success", "succesfully to create level:: " +levelName);
 		} else {
 			
-			model.addAttribute("error", "echec d'enregistremnt");
+			model.addAttribute("error", "Echec d'enregistremnt: Le niveau " +levelName+" existe déjà pour l'option "+option.getOptionName());
 
 		}
 
@@ -661,7 +661,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		//List<String> finalList = new ArrayList<String>();
 
 		if (listOfLevel.isEmpty()) {
-			model.addAttribute("error", "liste vide");
+			model.addAttribute("error", "Aucun niveau n'a été ajouté.");
 		}
 		model.addAttribute("levels", listOfLevel);
 		req.setAttribute("levels", listOfLevel);
@@ -673,12 +673,12 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = "/addCourse", method = RequestMethod.GET)
 	public String coursesGet(Model model,HttpServletRequest req) {
 		System.out.println("addCourse get");
-		model.addAttribute("error", "");
+		//model.addAttribute("error", "");
 		List<Level> listOfLevel = levelRepository.findAll();
 		List<String> finalList = new ArrayList<String>();
 
 		if (listOfLevel.isEmpty()) {
-			model.addAttribute("error", error);
+			model.addAttribute("error", "Aucun niveau n'a été ajouté");
 		}
 		model.addAttribute("levels", listOfLevel);
 		req.setAttribute("level", finalList);
@@ -711,14 +711,14 @@ public class AdministratorController/* implements UserDetailsService */{
 		}
 		model.addAttribute("levels", listOfLevel);
 		
-		if(courseRepository.findByCourseCode(courseCode)==null) {
+		if(courseRepository.findByCourseCodeAndLevel(courseCode,level)==null) {
 			courseRepository.save(course);
 			System.out.println("~~~~done~~~~");
-			model.addAttribute("courses", "le cours a ete creer acvec success le nom est  :: " + courseName);
-			req.setAttribute("courses", "succesfully to create course :: " + courseName);
+			model.addAttribute("courses", "le cours "+courseCode+" a ete crée acvec success.");
+			//req.setAttribute("courses", "succesfully to create course :: " + courseName);
 		} else{
 			
-			model.addAttribute("error", "echec d'enregistrement");
+			model.addAttribute("error", "Echec d'enregistrement: un cours de même code a déjà été enregistrer pour ce niveau");
 		}
 
 
@@ -749,7 +749,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		Level level =levelRepository.findByLevelName(levelName);
 		Set<Course> listOfCourse= level.getCourses();
 		if (listOfCourse.isEmpty()) {
-			model.addAttribute("error", "liste vide");
+			model.addAttribute("error", "Aucun cours n'a été défini");
 		}
 		model.addAttribute("cycleOptions", listOfCourse);
 		req.setAttribute("cycleOptions", listOfCourse);
@@ -761,7 +761,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/addGrade" }, method = RequestMethod.GET)
 	public String gradeGet(Model model) {
 		System.out.println("addGrade GET");
-		model.addAttribute("error", "");
+		//model.addAttribute("error", "");
 		return "admin/addGrade";
 	}
 
@@ -778,12 +778,12 @@ public class AdministratorController/* implements UserDetailsService */{
 		if(gradeRepository.findByGradeName(gradeName)==null) {
 			gradeRepository.save(grade);
 			System.out.println("~~~~done~~~");
-			model.addAttribute("grades", "le grade a ete cree avec succes le nom est  :: " +gradeName);
-			req.setAttribute("grades", "succesfully to create grade:: " +gradeName);
+			model.addAttribute("grades", "le grade "+gradeName+" a été ajouté avec succès." );
+			req.setAttribute("grades", "le grade "+gradeName+" a été ajouté avec succès.");
 
 		} else {
 			
-			model.addAttribute("error", "echec d'enregistrement");
+			model.addAttribute("error", "Echec d'enregistrement: le grade "+gradeName+" a déjà été ajouté");
 		}
 
 
@@ -801,7 +801,7 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		if (listOfGrade.isEmpty()) {
 
-			model.addAttribute("error", "liste vide");
+			model.addAttribute("error", "Aucun grade n'a été ajouté");
 		}
 
 		model.addAttribute("grades", listOfGrade);
@@ -815,7 +815,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/createTeacher" }, method = RequestMethod.GET)
 	public String createTeacherGet(Model model,HttpServletRequest req) {
 		System.out.println("createTeacher GET");
-		model.addAttribute("error", "");
+		//model.addAttribute("error", "");
 		List<Grade> listOfGrade = gradeRepository.findAll();
 
 		if (listOfGrade.isEmpty()) {
@@ -891,16 +891,22 @@ public class AdministratorController/* implements UserDetailsService */{
 		msg.setSentDate(new Date());
 		try {
 			teachersRepository.save(teacher);
+		} catch (Exception e) {
+			model.addAttribute("error", "Echec d'enregistrment: Une erreur est survenue lors de l'enregistrement de l'enseignant.");
+		}
+		
+		try {
+			
 			Transport transport = session.getTransport("smtp");
 			transport.connect("smtp.gmail.com", "saphirmfogo@gmail.com", "best1234");
 			transport.sendMessage(msg, msg.getAllRecipients());
 			transport.close();
 			System.out.println("Sent message successfully....");
-			model.addAttribute("teachers", "enseignant cree avec sucess :: " + login + " and " + password);
-			req.setAttribute("teacherSucces", "succesfully to create teacher wiht parameter :: " + login + " and " + password);
+			model.addAttribute("teachers", "L'enseignant "+lastName +" "+ firstName+" a été créé avec sucess.");
+			req.setAttribute("teachers", "L'enseignant "+lastName +" "+ firstName+" a été créé avec sucess.");
 
 		} catch (Exception e) {
-			model.addAttribute("error", "echec d'enregistrment");
+			model.addAttribute("error", "Echec d'enregistrment: Echec d'envoi de la notification");
 
 		}
 
@@ -914,7 +920,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		List<Teacher> listOfTeacher =teachersRepository.findAll();
 
 		if (listOfTeacher.isEmpty()) {
-			model.addAttribute("error", "liste vide");
+			model.addAttribute("error", "La liste d'enseignant est vide.");
 		}
 		model.addAttribute("teachers", listOfTeacher);
 		req.setAttribute("teacher", listOfTeacher);
@@ -972,7 +978,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.GET)
 	public String openAcademicYearGet(Model model,HttpServletRequest req) {
 		System.out.println("openAcademicYear GET");
-		model.addAttribute("error", "");
+		//model.addAttribute("error", "");
 
 		return "admin/openAcademicYear";
 
@@ -987,9 +993,9 @@ public class AdministratorController/* implements UserDetailsService */{
 		if(academicYearRepository.findByAcademicYear(academicYear)==null){
 			academicYears.setAcademicYear(academicYear);
 			academicYearRepository.save(academicYears);
-			model.addAttribute("academicYears", "annee academique cree avec succes");
+			model.addAttribute("academicYears", "Année académique ouverte avec succes");
 		}else{
-			model.addAttribute("error", "echec d'enregistrement");
+			model.addAttribute("error", "Echec d'enregistrement: l'année académique "+academicYear+" existe déjà");
 
 		}
 
@@ -999,12 +1005,12 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/createJury" }, method = RequestMethod.GET)
 	public String createJuryYearGet(Model model,HttpServletRequest req) {
 		System.out.println("createJury GET");
-		model.addAttribute("error", "");
+		//model.addAttribute("error", "");
 		List<Level> listOfLevel = levelRepository.findAll();
 		List<Teacher> listOfTeacher = teachersRepository.findAll();
 
-		if (listOfLevel.isEmpty() && listOfTeacher.isEmpty()) {
-			model.addAttribute("error", error);
+		if (listOfLevel.isEmpty() || listOfTeacher.isEmpty()) {
+			model.addAttribute("error", "Aucun Enseignant ou niveau n'a été ajouté");
 		}
 		model.addAttribute("levels", listOfLevel);
 		model.addAttribute("teachers", listOfTeacher);
@@ -1030,8 +1036,8 @@ public class AdministratorController/* implements UserDetailsService */{
 		jury.setJuryPresident(juryPresident);
 		try {
 			juryRepository.save(jury);
-			model.addAttribute("jurys", "jury cree avec succes");
-			req.setAttribute("jury", "jury cree avec succes");
+			model.addAttribute("jurys", "jury créé avec succes");
+			req.setAttribute("jury", "jury créé avec succes");
 		} catch (Exception e) {
 			
 			model.addAttribute("error", "echec d'enregistrement");
@@ -1046,7 +1052,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/editNews" }, method = RequestMethod.GET)
 	public String createCommuniqueGet(Model model,HttpServletRequest req) {
 		System.out.println("editNews GET");
-		model.addAttribute("error", "");
+		//model.addAttribute("error", "");
 		return "admin/editNews";
 	}
 
@@ -1079,12 +1085,12 @@ public class AdministratorController/* implements UserDetailsService */{
 
 		try {
 			communiqueRepository.save(communique);
-			req.setAttribute("communique", "communiquee cree avec succes");
-			model.addAttribute("communiques", "communiquee cree avec succes");
+			req.setAttribute("communique", "Communiqué crée avec succes");
+			model.addAttribute("communiques", "Communiqué crée avec succes");
 
 		} catch (Exception e) {
 			
-			model.addAttribute("error", "echec d'enregistrement");
+			model.addAttribute("error", "Echec d'enregistrement");
 		}
 
 		return "admin/editNews";
@@ -1098,7 +1104,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		List<Communique> listOfCommunique = communiqueRepository.findAll();
 
 		if (listOfCommunique.isEmpty() ) {
-			model.addAttribute("error", "liste vide");
+			model.addAttribute("error", "Aucun communiqué n'a été édité");
 		}
 		model.addAttribute("communiques", listOfCommunique);
 
@@ -1111,7 +1117,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/createEvent" }, method = RequestMethod.GET)
 	public String createEventGet(Model model,HttpServletRequest req) {
 		System.out.println("createEvent GET");
-		model.addAttribute("error", "");
+		//model.addAttribute("error", "");
 		return "admin/createEvent";
 	}
 
@@ -1137,11 +1143,11 @@ public class AdministratorController/* implements UserDetailsService */{
 		event.setEventTitle(eventTitle);
 		try {
 			eventRepository.save(event);
-			model.addAttribute("events", "Evenement cree avec succes");
+			model.addAttribute("events", "Evenement crée avec succes");
 
 		} catch (Exception e) {
 			
-			model.addAttribute("error", "echec d'enregistrement");
+			model.addAttribute("error", "Echec d'enregistrement");
 		}
 
 
@@ -1155,7 +1161,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		List<Event> listOfEvent = eventRepository.findAll();
 
 		if (listOfEvent.isEmpty() ) {
-			model.addAttribute("error", "error : liste vide");
+			model.addAttribute("error", "Aucun évènement n'a été créé");
 		}
 		model.addAttribute("events", listOfEvent);
 
@@ -1169,11 +1175,11 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/addResearchDomain" }, method = RequestMethod.GET)
 	public String addReseachDomainGet(Model model,HttpServletRequest req) {
 		System.out.println("addReseachDomain GET");
-		model.addAttribute("error", "");	
+		//model.addAttribute("error", "");	
 		List<Option> listOfOption = optionRepository.findAll();
 
 		if (listOfOption.isEmpty() ) {
-			model.addAttribute("error", error);
+			model.addAttribute("error", "Aucune Option n'a été défini");
 		}
 		model.addAttribute("options", listOfOption);
 
@@ -1199,11 +1205,11 @@ public class AdministratorController/* implements UserDetailsService */{
 		researchDomain.setOption(option);
 		try {
 			researchDomainRepository.save(researchDomain);
-			model.addAttribute("researchDomains", "Domaine de recherche  cree avec succes");
+			model.addAttribute("researchDomains", "Domaine de recherche  créé avec succes");
 
 		} catch (Exception e) {
 			
-			model.addAttribute("error", "echec d'enregistrement");
+			model.addAttribute("error", "Echec d'enregistrement");
 		}
 
 
@@ -1228,20 +1234,36 @@ public class AdministratorController/* implements UserDetailsService */{
 	//publication 
 
 	@RequestMapping(value = { "/publishResult" }, method = RequestMethod.GET)
-	public String publishResultGet(Model model,HttpServletRequest req) {
+	public String publishResultGet(Model model,HttpServletRequest req, Long idResult) {
 		System.out.println("publishResult GET");
+
+		Result result = resultRepository.findOne(idResult);
+		result.publish();
+		resultRepository.save(result);
+		model.addAttribute("results", result);
+		
+		List<Result> listOfResult = resultRepository.findByIsPublish(false);
+		if (listOfResult.isEmpty() ) {
+			model.addAttribute("error", "Aucun nouveau résultat n'a été posté.");
+		}
+		model.addAttribute("results", listOfResult);
+		
+		return "admin/publishResult";
+	}
+
+	@RequestMapping(value = { "/listUnPublishResult" }, method = RequestMethod.GET)
+	public String listUnPublishResultGet(Model model,HttpServletRequest req) {
+		System.out.println("listpublishResult GET");
 
 		List<Result> listOfResult = resultRepository.findByIsPublish(false);
 
 		if (listOfResult.isEmpty() ) {
-			model.addAttribute("error", "error : liste vide");
+			model.addAttribute("error", "Aucun nouveau résultat n'a été posté.");
 		}
 		model.addAttribute("results", listOfResult);
 
 		return "admin/publishResult";
 	}
-
-
 
 
 	// se deconnecter

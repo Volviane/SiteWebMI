@@ -100,10 +100,10 @@
                   <input type="submit" value="Enregistrer" class="btn btn-info">
                   <hr />
                           <c:if test="${error!=null}">
-							<h6 class="alert"> <font color="red">${error}</font></h1>
+							<div class="alert alert-danger"> <font color="red">${error}</font></div>
 			       		</c:if>
-			        	<c:if test="${error==null}">
-							<h6 class="alert alert-success"> <font color="green">enregistrement reussi</font></h1>
+			        	<c:if test="${courses!=null}">
+							<div class="alert alert-success"> <font color="green">${courses}</font></div>
 			       		</c:if>
                 </form>
                 </div>
