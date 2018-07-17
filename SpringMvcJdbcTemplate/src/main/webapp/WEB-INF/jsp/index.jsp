@@ -155,13 +155,13 @@
 								Dschang. Il offre diverses formations, notemment une licence en
 								mathématique-informatique, un master en réseau et services
 								distriués, un master en algèbre et un master en analyse.</p>
-							<p>
-								<a
-									href="${pageContext.request.contextPath}/departmentPresentation">
-									<button name="submit" type="submit" class="btn btn-info">
-										Lire la suite</button>
-								</a>
-							</p>
+<!-- 							<p> -->
+<!-- 								<a -->
+<%-- 									href="${pageContext.request.contextPath}/departmentPresentation"> --%>
+<!-- 									<button name="submit" type="submit" class="btn btn-info"> -->
+<!-- 										Lire la suite</button> -->
+<!-- 								</a> -->
+<!-- 							</p> -->
 
 						</div>
 					</div>
@@ -194,7 +194,7 @@
 <!-- 				</div> -->
 				<div class="feature-info">
 					<div class="fea">
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<div class="heading pull-right">
 								<h4>consulter les communiqués</h4>
 								<a href="${pageContext.request.contextPath}/viewNews">
@@ -208,7 +208,7 @@
 						</div>
 					</div>
 					<div class="fea">
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<div class="heading pull-right">
 								<h4>consulter les évènements</h4>
 								<a href="${pageContext.request.contextPath}/viewEvent">
@@ -223,7 +223,7 @@
 						</div>
 					</div>
 					<div class="fea">
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<div class="heading pull-right">
 								<h4>consulter les resultats</h4>
 								<a href="${pageContext.request.contextPath}/viewResult">
@@ -234,6 +234,21 @@
 							</div>
 							<div class="fea-img pull-left">
 								<i class="fa fa-trophy"></i>
+							</div>
+						</div>
+					</div>
+					<div class="fea">
+						<div class="col-md-3">
+							<div class="heading pull-right">
+								<h4>consulter les documents</h4>
+								<a href="${pageContext.request.contextPath}/viewDocument">
+									<button name="submit" type="submit" class="btn btn-primary">
+										consulter</button>
+								</a>
+
+							</div>
+							<div class="fea-img pull-left">
+								<i class="fa fa-book"></i>
 							</div>
 						</div>
 					</div>

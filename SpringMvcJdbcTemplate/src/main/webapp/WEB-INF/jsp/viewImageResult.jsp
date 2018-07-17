@@ -145,8 +145,8 @@
 					<c:if test="${results.resultFileName==null }">
 						   <i>pas d'image pour le resultat</i>
 					</c:if>
-					<c:if test="${result.resultFileName!=null }">
-						<img src="${pageContext.request.contextPath}/resources/userResources/img/${teachers.resultFileName }"
+					<c:if test="${results.resultFileName!=null }">
+						<img src="${pageContext.request.contextPath}/resources/userResources/img/${results.resultFileName }"
 					    style="weight: 1000px; height:1000px" alt="" class="img-thumbnail img-circl media-object" />
 					 </c:if>
 				 </div> 

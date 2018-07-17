@@ -44,7 +44,7 @@
 					<h4>Mise à jour de Document</h4>
 					<hr>
 						
-						<form action="<c:url value='updateDocument'/>" method="post"
+						<form action="updateDocument" method="post"
 							class="well" enctype="multipart/form-data">
 
 							<div class="form-group">
