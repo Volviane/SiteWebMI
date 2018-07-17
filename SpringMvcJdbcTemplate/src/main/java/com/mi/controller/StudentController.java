@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
+import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
@@ -338,8 +339,21 @@ public class StudentController {
 
 		@RequestMapping(value = { "/updateParameterStudent" }, method = RequestMethod.POST)
 		@Transactional
-		public String updateParameterPost(Model model, HttpServletRequest req) throws ParseException {
+		public String updateParameterPost(Model model, HttpServletRequest req) throws ParseException, MessagingException {
 			System.out.println("updateParameterStudent Post");
+			
+			Properties properties = new Properties();
+			properties.put("mail.smtp.host", "smtp.gmail.com");
+			properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+			// properties.put("mail.smtp.host", "smtp-relay.gmail.com");
+			properties.put("mail.smtp.port", "587");
+			properties.put("mail.smtp.auth", "true");
+			properties.put("mail.smtp.starttls.enable", "true");
+			properties.put("mail.smtp.starttls.required", "false");
+			properties.put("mail.smtp.connectiontimeout", "5000");
+			properties.put("mail.smtp.timeout", "5000");
+			properties.put("mail.smtp.writetimeout", "5000");
+			Session sessions = Session.getInstance(properties, null);
 
 			String login= req.getParameter("login");
 			String password= req.getParameter("password");
@@ -359,12 +373,31 @@ public class StudentController {
 			
 			if(student.getLogin().equals(login)){
 				
-				if (decryptographe(student.getPasswordSec()).equals(password)){
+				if (student.getPasswordSec().equals(cryptographe(password))){
 					
 					student.setLogin(newlogin);
 					student.setPassword(bCryptPasswordEncoder.encode(newpassword));
 					student.setPasswordSec(cryptographe(newpassword));
 					studentRepository.save(student);
+					
+					String content1 = "M./Mme " + student.getFirstName()+ " vos parametres de connexions ont ete modifies"+ " \n"
+							+"Login :: " +student.getLastName() + " \n"
+							+"Password :: Retenez bien votre mot de passe\n"
+							
+							+ "Pour vous connecter a votre espace personnel cliquez ici :\n"
+							+ "http://localhost:8080/SpringMvcJdbcTemplate/login";
+					String subject1="MODIFICATION DES PARAMETRES DE CONNEXIONS";
+					MimeMessage msg = new MimeMessage(sessions);
+					/// msg.setFrom(new InternetAddress(form));
+					msg.setRecipients(MimeMessage.RecipientType.TO, student.getEmailAdress());
+					msg.setSubject(subject1);
+					msg.setText(content1);
+					msg.setSentDate(new Date());
+					
+					Transport transport = sessions.getTransport("smtp");
+					transport.connect("smtp.gmail.com", "saphirmfogo@gmail.com", "best1234");
+					transport.sendMessage(msg, msg.getAllRecipients());
+					transport.close();
 				
 				model.addAttribute("students", "vos parametres ont ete modifies");
 
