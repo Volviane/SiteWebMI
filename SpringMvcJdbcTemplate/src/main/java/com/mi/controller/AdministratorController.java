@@ -978,7 +978,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/openAcademicYear" }, method = RequestMethod.GET)
 	public String openAcademicYearGet(Model model,HttpServletRequest req) {
 		System.out.println("openAcademicYear GET");
-		//model.addAttribute("error", "");
+		model.addAttribute("error", "");
 
 		return "admin/openAcademicYear";
 
@@ -1005,7 +1005,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/createJury" }, method = RequestMethod.GET)
 	public String createJuryYearGet(Model model,HttpServletRequest req) {
 		System.out.println("createJury GET");
-		//model.addAttribute("error", "");
+		model.addAttribute("error", "");
 		List<Level> listOfLevel = levelRepository.findAll();
 		List<Teacher> listOfTeacher = teachersRepository.findAll();
 
@@ -1117,7 +1117,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/createEvent" }, method = RequestMethod.GET)
 	public String createEventGet(Model model,HttpServletRequest req) {
 		System.out.println("createEvent GET");
-		//model.addAttribute("error", "");
+		model.addAttribute("error", "");
 		return "admin/createEvent";
 	}
 
@@ -1175,7 +1175,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/addResearchDomain" }, method = RequestMethod.GET)
 	public String addReseachDomainGet(Model model,HttpServletRequest req) {
 		System.out.println("addReseachDomain GET");
-		//model.addAttribute("error", "");	
+		model.addAttribute("error", "");	
 		List<Option> listOfOption = optionRepository.findAll();
 
 		if (listOfOption.isEmpty() ) {
