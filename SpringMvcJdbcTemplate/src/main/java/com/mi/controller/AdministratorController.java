@@ -815,7 +815,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/createTeacher" }, method = RequestMethod.GET)
 	public String createTeacherGet(Model model,HttpServletRequest req) {
 		System.out.println("createTeacher GET");
-		//model.addAttribute("error", "");
+		model.addAttribute("error", "");
 		List<Grade> listOfGrade = gradeRepository.findAll();
 
 		if (listOfGrade.isEmpty()) {

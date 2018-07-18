@@ -316,7 +316,7 @@ public class StudentController {
 				
 			} catch (Exception e) {
 				// TODO: handle exception
-				model.addAttribute("error", "echec d'enregistrment");
+				model.addAttribute("error", "L'enregistrement de l'edudiant reussi mais echec de notification. Le mail n'a pas etet envoye.");
 			}
 
 			return "student/registrationStudent";
@@ -394,15 +394,18 @@ public class StudentController {
 					msg.setText(content1);
 					msg.setSentDate(new Date());
 					
+					try{
 					Transport transport = sessions.getTransport("smtp");
 					transport.connect("smtp.gmail.com", "saphirmfogo@gmail.com", "best1234");
 					transport.sendMessage(msg, msg.getAllRecipients());
 					transport.close();
 				
 				model.addAttribute("students", "vos parametres ont ete modifies");
-
+					}catch(Exception ex){
+						model.addAttribute("students", "vos parametres ont ete modifies");
+					}
 				}else{
-					model.addAttribute("errorPassword", "Veuillez entrez votre ancien mot de passe");
+					model.addAttribute("students", "Parametre modifier mais echec de notification par mail");
 					
 				}
 			}else{

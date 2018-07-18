@@ -318,12 +318,16 @@ public class TeacherController {
 				msg.setSubject(subject1);
 				msg.setText(content1);
 				msg.setSentDate(new Date());
-				
+				try{
 				Transport transport = sessions.getTransport("smtp");
 				transport.connect("smtp.gmail.com", "saphirmfogo@gmail.com", "best1234");
 				transport.sendMessage(msg, msg.getAllRecipients());
 				transport.close();
 				model.addAttribute("teachers", "Vos paramètres ont été modifiés avec succès.");
+				}catch(Exception ex){
+					model.addAttribute("teachers", "Parametre modifier mais echec de notification par mail");
+					
+				}
 			}else{
 				model.addAttribute("errorPassword", "Veuillez entrer votre ancien mot de passe");
 				
