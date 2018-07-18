@@ -742,7 +742,8 @@ public class TeacherController {
 			try {
 				HttpSession session = req.getSession();
 				Teacher teacher =  (Teacher) session.getAttribute( "teacher" );
-				if(teacher.getJury()!=null){
+				if(juryRepository.findByJuryPresident(teacher)!=null){
+				
 				String resultFileName= resultTitle+"_"+sessions+".pdf";
 				
 				byte[] bytes = file.getBytes();
