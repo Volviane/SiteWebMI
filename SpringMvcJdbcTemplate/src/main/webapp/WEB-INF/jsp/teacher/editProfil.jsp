@@ -115,7 +115,7 @@
 							<td>
 							<div class="form-group">
 								<label for="birthPlace" class="">Lieu de Naissance</label>
-								<input class="form-control" id="birthDate" name="birthPlace" type="text" value="<c:out value="${teacher.birthPlace}"/>">
+								<input class="form-control" id="birthDate" name="birthPlace" type="text" value="<c:out value="${teacher.birthPlace}"/>" required>
 							</div>
 							</td>
 						</tr>

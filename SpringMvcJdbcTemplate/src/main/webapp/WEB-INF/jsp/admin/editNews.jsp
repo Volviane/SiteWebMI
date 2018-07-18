@@ -70,9 +70,6 @@
                         <input type="date" class="form-control" name="publicationDate"  />
                     <label>resumé du communiqué</label>
                       <textarea rows="5" cols="5" class="form-control" name="newsContent" required></textarea>
-                      
-                          <label>fichier du communiqué</label>
-                        <input type="file" class="form-control" name="newsFile"  />
                         <hr />
                        <input type="submit" value="créer" class="btn btn-info">
                </form>
