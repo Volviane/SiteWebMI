@@ -44,7 +44,7 @@
 					<div class="form-inner">
 					<h3>Nouveau Document</h3>
 					<hr>
-						<p class="alert alert-warning"><span class="fa fa-warning"></span> Les champ portant la mention <span class="text-danger gras">*</span> Sont obligatoires</p>
+<!-- 						<p class="alert alert-warning"><span class="fa fa-warning"></span> Les champ portant la mention <span class="text-danger gras">*</span> Sont obligatoires</p> -->
 						<form action="<c:url value='addDocument'/>" method="post"
 							class="" enctype="multipart/form-data">
 

@@ -59,7 +59,7 @@
          <h4 class="page-head-line">Ajouter une unité de valeur</strong></h4>
       </section>
       <!-- Header Section-->
-      <section class="dashboard-header padding">
+      <section class="dashboard-header">
        <div class="row">
              <div class="offset-1 col-md-6">
                  <form action="<c:url value='addCourse'/>" method="post">

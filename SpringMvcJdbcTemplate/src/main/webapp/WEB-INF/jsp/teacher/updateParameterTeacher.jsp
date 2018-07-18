@@ -41,31 +41,31 @@
 				<div class="panel-body">
 					<form action="updateParameterTeacher" method="post">
 						<div class="form-group">
-							<label for="exampleInputEmail1">Entrez l'Ancien login</label> <input
+							<label for="exampleInputEmail1">Entrez l'Ancien login</label><span class="text-danger gras">*</span> <input
 								type="text" name="login" class="form-control"
 								id="exampleInputEmail1" aria-describedby="emailHelp"
-								placeholder="Ancien login"> 
+								placeholder="Ancien login" required> 
 						</div>
 						<div class="form-group">
-							<label for="exampleInputEmail1">Entrez le nouveau Login</label> <input
+							<label for="exampleInputEmail1">Entrez le nouveau Login</label><span class="text-danger gras">*</span><input
 								type="text" name="newLogin" class="form-control"
 								id="exampleInputEmail1" aria-describedby="emailHelp"
-								placeholder="nouveau Login"> 
+								placeholder="nouveau Login" required> 
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Entrez l'Ancien Mot de Passe</label> <input
+							<label for="exampleInputPassword1">Entrez l'Ancien Mot de Passe</label><span class="text-danger gras">*</span> <input
 								type="password" name="password" class="form-control"
-								id="exampleInputPassword1" placeholder="  Ancien Mot de passe">
+								id="exampleInputPassword1" placeholder="  Ancien Mot de passe" required>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Nouveau Mot de Passe</label> <input
+							<label for="exampleInputPassword1">Nouveau Mot de Passe</label> <span class="text-danger gras">*</span><input
 								type="password" name="newPassword" class="form-control"
-								id="exampleInputPassword1" placeholder="nouveau Mot de passe">
+								id="exampleInputPassword1" placeholder="nouveau Mot de passe" required>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Confirmer le Mot de Passe</label> <input
+							<label for="exampleInputPassword1">Confirmer le Mot de Passe</label> <span class="text-danger gras">*</span><input
 								type="password"  class="form-control"
-								id="exampleInputPassword1" placeholder="Confirmation de mot de passe">
+								id="exampleInputPassword1" placeholder="Confirmation de mot de passe" required>
 						</div>
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</form>

@@ -65,7 +65,7 @@
 	                          <td><c:out value="${doc.documentType}"/></td>
 	                          <td><c:out value="${doc.documentDescription}"/></td>
 	                          <td><c:out value="${doc.createDate}"/></td>
-	                          <td><a href="documentsDescription?idDocument=${doc.idDocument}" class="btn btn-info">Consulter</a></td>
+	                          <td><a href="${pageContext.request.contextPath}/resources/userResources/img/${doc.documentName }" class="btn btn-info">Consulter</a></td>
 	                        </tr>
                       	
                       	</c:forEach>

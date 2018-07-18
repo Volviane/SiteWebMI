@@ -68,7 +68,7 @@
                      <label>Prénom:</label>
                         <input type="text" class="form-control" name="firstName" placeholder="Entrez votre prénom" />
                      <label>Email</label>
-                        <input type="email" class="validate[required,custom[email]] form-control" name="emailAdress" placeholder="Entrez votre adresse email"  />
+                        <input type="email" class="validate[required,custom[email]] form-control" name="emailAdress" placeholder="Entrez votre adresse email" required />
                      <label>Grade</label>
                         <select class="form-control validate[required]" name="gradeName">
                      			<c:forEach items="${grades}" var="i">

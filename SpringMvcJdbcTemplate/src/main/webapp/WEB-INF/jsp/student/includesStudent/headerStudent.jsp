@@ -55,7 +55,14 @@
 								</ul>
 							</li>
 							<li><a class="page-scroll" href="${pageContext.request.contextPath}/contact">Contact</a></li>
-							<li><a href="${pageContext.request.contextPath}/logoutStudent">Se deconnecter</a></li>
+							<li class="dropdown gras">
+								<a class="page-scroll" data-toggle="dropdown" href="#about"><i class="fa fa-sign-in"></i>/<i class="fa fa-sign-out"></i><b class="caret"></b></a>
+								<ul class="dropdown-menu">
+<!-- 								   <li><a href="login"> <span class="d-none d-sm-inline-block">connexion</span><i class="fa fa-sign-in"></i></a></li> -->
+								  
+                                  <li><a href="logoutStudent"> <span class="d-none d-sm-inline-block">deconnexion</span><i class="fa fa-sign-out"></i></a></li>
+								</ul>
+							</li>
 						</ul>
 					</div>
 					<!-- navbar-collapse -->

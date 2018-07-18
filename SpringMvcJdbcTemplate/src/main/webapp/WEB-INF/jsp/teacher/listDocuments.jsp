@@ -75,7 +75,7 @@
 												<td><c:out value="${doc.documentType}" /></td>												
 												<td><c:out value="${doc.createDate}" /></td>
 												<td><a
-													href="documentsDescription?idDocument=${doc.idDocument}"
+													href="${pageContext.request.contextPath}/resources/userResources/img/${doc.documentName }"
 													class="btn btn-info">Consulter</a></td>
 											</tr>
 

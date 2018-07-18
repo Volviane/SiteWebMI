@@ -66,12 +66,12 @@
                     <label>nom de l'évènement</label>
                         <input type="text" class="form-control" name="eventTitle" required />
                      <label>debut de l'évènement</label>
-                        <input type="date" class="form-control" name="eventBeginDate" />
+                        <input type="date" class="form-control" name="eventBeginDate" required/>
                      <label>fin de l'évènement</label>
-                        <input type="date" class="form-control" name="eventEndDate"  />
+                        <input type="date" class="form-control" name="eventEndDate"  required/>
                     <label>description</label>
 
-                      <textarea rows="5" cols="5" class="form-control" name="eventDescription" required></textarea>
+                      <textarea rows="5" cols="5" class="form-control" name="eventDescription"></textarea>
 
 
                         <hr />
