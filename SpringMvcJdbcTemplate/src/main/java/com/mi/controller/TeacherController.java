@@ -43,6 +43,7 @@ import com.mi.model.Grade;
 import com.mi.model.Jury;
 import com.mi.model.ResearchDomain;
 import com.mi.model.Result;
+import com.mi.model.Student;
 import com.mi.model.Teacher;
 import com.mi.repositories.AcademicYearRepository;
 import com.mi.repositories.CommuniqueRepository;
@@ -739,8 +740,10 @@ public class TeacherController {
 			//Date createDate = sdf.parse(createYear);
 			
 			try {
-				
-				String resultFileName= resultTitle+"_"+sessions+".png";
+				HttpSession session = req.getSession();
+				Teacher teacher =  (Teacher) session.getAttribute( "teacher" );
+				if(teacher.getJury()!=null){
+				String resultFileName= resultTitle+"_"+sessions+".pdf";
 				
 				byte[] bytes = file.getBytes();
 				File dir = new File(SAVE_DIR);
@@ -756,13 +759,16 @@ public class TeacherController {
 				Result result= new Result();
 
 				//result.setAcademicYear(year);
-			result.setResultFileName(resultFileName);
+			   result.setResultFileName(resultFileName);
 				result.setResultTitle(resultTitle);
 				result.setSession(sessions);
 				
 
 				resultRepository.save(result);
 				model.addAttribute("resutls", "Résultat posté avec sucess");
+				}else{
+				model.addAttribute("error", "Vous n'etes pas president dans un jury.Seuls les presidents du jury peuvent poster les resultat");
+				}
 
 				
 				
