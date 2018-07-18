@@ -54,6 +54,9 @@ public class Teacher extends InternetSufer implements Serializable{
 	@JoinTable(name="ROLE_TEACHERS")
 	private Set<Role> roles=new HashSet<Role>();
 	
+	@OneToMany(mappedBy="author",fetch=FetchType.EAGER)
+	private Set<Document> document = new HashSet<Document>();
+	
 	
 	public Teacher() {
 		super();
@@ -114,6 +117,14 @@ public class Teacher extends InternetSufer implements Serializable{
 	 */
 	public String getMatricule() {
 		return matricule;
+	}
+
+	public Set<Document> getDocument() {
+		return document;
+	}
+
+	public void setDocument(Set<Document> document) {
+		this.document = document;
 	}
 
 	/**

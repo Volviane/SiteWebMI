@@ -219,7 +219,7 @@ public class AdministratorController/* implements UserDetailsService */{
 			try {
 				roleRepository.save(roles);
 				System.out.println("done");
-				model.addAttribute("roles", roles);
+				model.addAttribute("roles", roles.getRoleName() + "est ajoutee avec sucess");
 				req.setAttribute("role", roles);
 			} catch (Exception e) {
 				model.addAttribute("error", "Echec d'Enregistrement: Une érreur est survenue lors de l'ajout du role.");

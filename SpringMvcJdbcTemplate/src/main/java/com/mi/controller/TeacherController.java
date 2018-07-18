@@ -372,7 +372,7 @@ public class TeacherController {
 		try {
 			HttpSession session = req.getSession();
 			Teacher author =  (Teacher) session.getAttribute( "teacher" );
-			
+			System.out.println(author);
 			String documentName= documentTitle+"_"+createYear+".pdf";
 			System.out.println(author.getFirstName());
 			byte[] bytes = file.getBytes();
@@ -384,16 +384,22 @@ public class TeacherController {
 					new FileOutputStream(context.getRealPath("") + File.separator  +SAVE_DIR + File.separator + documentName));
 			stream.write(bytes);
 			stream.close();
+			System.out.println(author);
 		
 			//String documentNames=SAVE_DIR + File.separator + documentName;
 			Document document= new Document();
-
-				document.setDocumentDescription(documentDescription);
+			
+				//document.setDocumentDescription(documentDescription);
 				document.setDocumentTitle(documentTitle);
+			
 				document.setDocumentType(documentType);
-			document.setDocumentName(documentName);
+				
+				document.setDocumentName(documentName);
+			
 				document.setCreateDate(createDate);
+				
 				document.setAuthor(author);
+				
 
 				documentRepository.save(document);
 				model.addAttribute("documents", "Enregistrement réussi: document ajouté avec sucess");
