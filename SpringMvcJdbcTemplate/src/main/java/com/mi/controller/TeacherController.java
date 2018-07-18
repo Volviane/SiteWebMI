@@ -26,8 +26,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -374,7 +372,7 @@ public class TeacherController {
 		try {
 			HttpSession session = req.getSession();
 			Teacher author =  (Teacher) session.getAttribute( "teacher" );
-			
+			System.out.println(author);
 			String documentName= documentTitle+"_"+createYear+".pdf";
 			System.out.println(author.getFirstName());
 			byte[] bytes = file.getBytes();
@@ -386,16 +384,22 @@ public class TeacherController {
 					new FileOutputStream(context.getRealPath("") + File.separator  +SAVE_DIR + File.separator + documentName));
 			stream.write(bytes);
 			stream.close();
+			System.out.println(author);
 		
 			//String documentNames=SAVE_DIR + File.separator + documentName;
 			Document document= new Document();
-
-				document.setDocumentDescription(documentDescription);
+			
+				//document.setDocumentDescription(documentDescription);
 				document.setDocumentTitle(documentTitle);
+			
 				document.setDocumentType(documentType);
-			document.setDocumentName(documentName);
+				
+				document.setDocumentName(documentName);
+			
 				document.setCreateDate(createDate);
+				
 				document.setAuthor(author);
+				
 
 				documentRepository.save(document);
 				model.addAttribute("documents", "Enregistrement réussi: document ajouté avec sucess");
@@ -496,45 +500,60 @@ public class TeacherController {
 		String documentTitle= req.getParameter("documentTitle");
 		String documentDescription= req.getParameter("documentDescription");
 		String documentType= req.getParameter("documentType");
-		String documentName= req.getParameter("documentName");
+		//String documentName= req.getParameter("documentName");
+		//	String createDate= req.getParameter("createDate");
+		
 
-
-		//Calendar calendarCourante = Calendar.getInstance();
+		Calendar calendarCourante = Calendar.getInstance();
 		//int createYear = calendarCourante.get(Calendar.YEAR);
-		//int createMonth = calendarCourante.get(Calendar.DATE);
-		//String createYear= createMonth+"";
-			// recuperer la date courante dans le controlleur
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-		Date date = new Date();
-		String d=date+"";
-
-		Date createDate = sdf.parse(d);
+		int createMonth = calendarCourante.get(Calendar.YEAR);
+		String createYear= createMonth+"";
+	
+		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		Date createDate = new Date();
+		/*String d=date+"";
+		
+		Date createDate = sdf.parse(d);*/
 
 		System.out.println(createDate);
-
-		HttpSession session = req.getSession();
-		Teacher author =  (Teacher) session.getAttribute( "teacher" );
 		
-		System.out.println(author.getFirstName());
+		try {
+			HttpSession session = req.getSession();
+			Teacher author =  (Teacher) session.getAttribute( "teacher" );
+			
+			String documentName= documentTitle+"_"+createYear+".pdf";
+			System.out.println(author.getFirstName());
+			byte[] bytes = file.getBytes();
+			File dir = new File(SAVE_DIR);
+			if (!dir.exists())
+				dir.mkdirs();
+			
+			BufferedOutputStream stream = new BufferedOutputStream(
+					new FileOutputStream(context.getRealPath("") + File.separator  +SAVE_DIR + File.separator + documentName));
+			stream.write(bytes);
+			stream.close();
+		
+			//String documentNames=SAVE_DIR + File.separator + documentName;
+			Document document= new Document();
 
-		String ret=upload(file,documentName,author.getFirstName());
-		Document document= new Document();
+				document.setDocumentDescription(documentDescription);
+				document.setDocumentTitle(documentTitle);
+				document.setDocumentType(documentType);
+			document.setDocumentName(documentName);
+				document.setCreateDate(createDate);
+				document.setAuthor(author);
 
-		if(ret!=null){
-			document.setDocumentDescription(documentDescription);
-			document.setDocumentTitle(documentTitle);
-			document.setDocumentType(documentType);
-			document.setCreateDate(createDate);
-			document.setAuthor(author);
+				documentRepository.save(document);
+				model.addAttribute("documents", "Enregistrement réussi: document ajouté avec sucess");
 
-			documentRepository.save(document);
-			model.addAttribute("documents", "Enregistrement du document réussi");
-
-			return "updateDocument";
-		}else{
-			model.addAttribute("error", "Echec d'Enregistrement: Une érreur est survenue lors de l'ajout du document.");
-			return "teacher/updateDocument";
+			
+			
+		} catch (Exception e) {
+			
+			model.addAttribute("error", "Echec d'enregistrement: Une érreur est survenue lors de l'ajout du document.");
+			
 		}
+		return "teacher/updateDocument";
 	}
 
 	// editer le profil
@@ -631,8 +650,8 @@ public class TeacherController {
 		public String logoutPost(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 		model.addAttribute("error", " ");
 			  HttpSession session = request.getSession();
-			  session.invalidate();
-			 // session.setAttribute( "teacher", null );
+			  //session.invalidate();
+			  session.setAttribute( "teacher", null );
 			 // model.addAttribute("teachers", "La session a ete supprimme");
 
 			response.sendRedirect("index");
@@ -802,33 +821,6 @@ public class TeacherController {
 
 
 
-	//upload methode
-	@SuppressWarnings("finally")
-	String upload(MultipartFile file,String name,String option){
-		String ret=null;
-		try {
-			byte[] bytes = file.getBytes();
-
-			// Creating the directory to store file
-			//String rootPath = System.getProperty("catalina.home");
-			//			File dir = new File(rootPath + File.separator + SAVE_DIR+File.separator+option);
-			File dir = new File(SAVE_DIR);
-			if (!dir.exists())
-				dir.mkdirs();
-			// Create the file on server
-			File serverFile = new File(dir.getAbsolutePath());
-			BufferedOutputStream stream = new BufferedOutputStream(
-					new FileOutputStream(serverFile));
-			stream.write(bytes);
-			stream.close();
-			ret=serverFile.getAbsolutePath();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			return ret;
-		}
-	}
 	
 
 

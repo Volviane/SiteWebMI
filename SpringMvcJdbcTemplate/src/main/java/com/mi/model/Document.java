@@ -54,8 +54,11 @@ public class Document implements Serializable {
 	@Column(name="NOM_DOCUMENT")
 	private String documentName;
 
-	@ManyToOne(optional=false, fetch=FetchType.LAZY)
-	@JoinColumn(name="TEACHER_ID", unique=true)
+	/*@ManyToOne(optional=false, fetch=FetchType.LAZY)
+	//@JoinColumn(name="TEACHER_ID", unique=true)
+	private Teacher author;
+	*/
+	@ManyToOne
 	private Teacher author;
 	
 	@Temporal(TemporalType.DATE)
