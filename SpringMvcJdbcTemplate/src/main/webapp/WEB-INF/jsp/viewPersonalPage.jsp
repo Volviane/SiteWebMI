@@ -285,7 +285,7 @@
 										<tr class="info">
 											<th>#</th>
 											<th>Titre</th>
-											<th>Télécharger</th>
+											<th></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -294,12 +294,12 @@
 										<c:forEach items="${articles}" var="doc" varStatus="i">
 											<tr>
 												<th scope="row"><c:out value="${i.count}" /></th>
-												<td><c:out value="${doc.articleTitle}" /></td>
+												<td><c:out value="${doc.documentTitle}" /></td>
 																<td><a
 																	href="${pageContext.request.contextPath}/resources/userResources/img/${doc.documentName }">
 																		<button name="submit" type="submit"
 																			class="btn  btn-submit">
-																			Télécharger le Document <i class="fa fa-arrow-righ"></i>
+																			consulter <i class="fa fa-arrow-righ"></i>
 																		</button>
 																</a></td>
 															</tr>
@@ -332,7 +332,7 @@
 										<tr class="info">
 											<th>#</th>
 											<th>Titre</th>
-											<th>télécharger</th>
+											<th></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -341,8 +341,157 @@
 										<c:forEach items="${supportDeCours}" var="doc" varStatus="i">
 											<tr>
 												<th scope="row"><c:out value="${i.count}" /></th>
+												<td><c:out value="${doc.documentTitle}" /></td>
+																<td><a
+																	href="${pageContext.request.contextPath}/resources/userResources/img/${doc.documentName }">
+																		<button name="submit" type="submit"
+																			class="btn  btn-submit">
+																			consulter <i class="fa fa-arrow-righ"></i>
+																		</button>
+																</a></td>
 												
 											 </tr>
+
+										</c:forEach>
+					
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div></p>
+									
+							</c:if>
+							</div>
+								<div class="backgroundInfo paddings">
+								<div class="backgroundInfoTitle">Fiches de TD</div>
+								<c:if test="${fiches==null }">
+								<p>
+								 <i> pas d'épreuves</i>
+								</p>
+							</c:if>
+								<c:if test="${fiches!=null }">
+									<p><div class="panel">
+										<div class="panel-body"
+											style="min-height: 300px; padding: 0px;">
+							<div class="table-responsive">
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr class="info">
+											<th>#</th>
+											<th>Titre</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+
+
+										<c:forEach items="${fiches}" var="doc" varStatus="i">
+											<tr>
+												<th scope="row"><c:out value="${i.count}" /></th>
+												<td><c:out value="${doc.documentTitle}" /></td>
+																<td><a
+																	href="${pageContext.request.contextPath}/resources/userResources/img/${doc.documentName }">
+																		<button name="submit" type="submit"
+																			class="btn  btn-submit">
+																			consulter <i class="fa fa-arrow-righ"></i>
+																		</button>
+																</a></td>
+															</tr>
+
+										</c:forEach>
+					
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div></p>
+									
+							</c:if>
+							</div>
+							<div class="backgroundInfo paddings">
+								<div class="backgroundInfoTitle">Epeuves</div>
+								<c:if test="${epreuves==null }">
+								<p>
+								 <i> pas d'épreuves</i>
+								</p>
+							</c:if>
+								<c:if test="${epreuves!=null }">
+									<p><div class="panel">
+										<div class="panel-body"
+											style="min-height: 300px; padding: 0px;">
+							<div class="table-responsive">
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr class="info">
+											<th>#</th>
+											<th>Titre</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+
+
+										<c:forEach items="${epreuves}" var="doc" varStatus="i">
+											<tr>
+												<th scope="row"><c:out value="${i.count}" /></th>
+												<td><c:out value="${doc.documentTitle}" /></td>
+																<td><a
+																	href="${pageContext.request.contextPath}/resources/userResources/img/${doc.documentName }">
+																		<button name="submit" type="submit"
+																			class="btn  btn-submit">
+																			consulter <i class="fa fa-arrow-righ"></i>
+																		</button>
+																</a></td>
+															</tr>
+
+										</c:forEach>
+					
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div></p>
+									
+							</c:if>
+							</div>
+							<div class="backgroundInfo paddings">
+								<div class="backgroundInfoTitle">Corrections</div>
+								<c:if test="${corrections==null }">
+								<p>
+								 <i> pas d'épreuves</i>
+								</p>
+							</c:if>
+								<c:if test="${corrections!=null }">
+									<p><div class="panel">
+										<div class="panel-body"
+											style="min-height: 300px; padding: 0px;">
+							<div class="table-responsive">
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr class="info">
+											<th>#</th>
+											<th>Titre</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+
+
+										<c:forEach items="${corrections}" var="doc" varStatus="i">
+											<tr>
+												<th scope="row"><c:out value="${i.count}" /></th>
+												<td><c:out value="${doc.documentTitle}" /></td>
+																<td><a
+																	href="${pageContext.request.contextPath}/resources/userResources/img/${doc.documentName }">
+																		<button name="submit" type="submit"
+																			class="btn  btn-submit">
+																			consulter <i class="fa fa-arrow-righ"></i>
+																		</button>
+																</a></td>
+															</tr>
 
 										</c:forEach>
 					

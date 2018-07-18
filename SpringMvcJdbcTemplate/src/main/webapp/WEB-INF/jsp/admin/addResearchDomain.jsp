@@ -85,7 +85,7 @@
                         <input type="submit" value="Enregistrer" class="btn btn-info">
                         <hr />
                           <c:if test="${error!=null}">
-							<div class="alert alert-danger"> <font color="red">${error}</font></div>
+							<div class="alert "> <font color="red">${error}</font></div>
 			       		</c:if>
 			        	<c:if test="${researchDomains!=null}">
 							<div class="alert alert-success"> <font color="green">${researchDomains}</font></div>
