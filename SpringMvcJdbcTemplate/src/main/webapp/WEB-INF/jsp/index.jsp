@@ -146,8 +146,8 @@
 						l'université de Dschang</h2>
 					<div class="media">
 						<div class="media-left">
-							<a href="#"> <img class="media-object" src="${pageContext.request.contextPath}/resources/userResources/img/course05.jpg" alt="Département de Math-Info">
-							</a>
+<%-- 							<a href="#"> <img class="media-object" src="${pageContext.request.contextPath}/resources/userResources/img/course05.jpg" alt="Département de Math-Info"> --%>
+<!-- 							</a> -->
 						</div>
 						<div class="media-body">
 							<p>Le Département de mathématiques-informatique,est l'un des
