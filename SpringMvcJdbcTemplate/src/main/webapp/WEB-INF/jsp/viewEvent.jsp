@@ -93,6 +93,7 @@
 <style type="text/css">
 	.space{ padding-top: 100px;}
 	.spaces{ height: 3000px;}
+	.pad{ padding-left: 400px;}
 </style>
 
 </head>
@@ -112,8 +113,20 @@
   </c:if>
 	<!-- FIN DU HEADER--> --%>
 	<div class="container space">
-			<h4 class="page-head-line">LISTE DES EVENEMENTS</strong></h4>
+			<h4 class="page-head-line">LISTE DES EVENEMENTS
+			
+			</h4>
        <c:forEach items="${events}" var="i" varStatus="pos">
+       			  <div class="pullRight pad">
+       			   <a
+							href="${pageContext.request.contextPath}/registrationStudent?idEvent=<c:out value="${i.idEvent }"></c:out>">
+							<button name="submit" type="submit"
+								class="btn  btn-submit">
+								s'inscrire a un evenement <i class="fa"></i>
+							</button>
+						</a>
+					</div>
+					<hr>
 		<div class="media">
 		
 			<div class="media-left">
@@ -126,13 +139,6 @@
 					</h6>
 					<p><c:out value="${i.eventDescription }"></c:out></p>
 					<p>
-						<a
-							href="${pageContext.request.contextPath}/registrationStudent?idEvent=<c:out value="${i.idEvent }"></c:out>">
-							<button name="submit" type="submit"
-								class="btn  btn-submit">
-								s'inscrire <i class="fa"></i>
-							</button>
-						</a>
 					</p>
 				</div>
 

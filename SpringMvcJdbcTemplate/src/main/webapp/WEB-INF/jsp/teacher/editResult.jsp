@@ -43,7 +43,7 @@
 					<div class="form-inner">
 					<h3>Nouveau Resultat</h3>
 					<hr>
-						<p class="alert alert-warning"><span class="fa fa-warning"></span> Les champ portant la mention <span class="text-danger gras">*</span> Sont obligatoires</p>
+<!-- 						<p class="alert alert-warning"><span class="fa fa-warning"></span> Les champ portant la mention <span class="text-danger gras">*</span> Sont obligatoires</p> -->
 						<form action="<c:url value='editResult'/>" method="post"
 							class="" enctype="multipart/form-data">
 <!--                   <label>cycle</label> -->
@@ -68,23 +68,27 @@
 <!--                      	 </select> -->
                            <label>Session </label>
                     		<div class="form-group">
-                     			
-                      			  <input type="text"  name="session"  class="form-control" name="fileResult" />
+                      			  <select class="form-control" name="session"> 
+							
+										<option value='ses1'>normale</option>	
+										<option value='ses2'>rattrapage</option>
+						    
+						     </select>
                              </div>
-                             <label>Anné académique </label>
+                             <label>Anné académique </label><span class="text-danger gras">*</span>
                     		<div class="form-group">
                      			
-                      			  <input type="text"  name=" academicYear"  class="form-control"  />
+                      			  <input type="text"  name=" academicYear"  class="form-control" required />
                              </div>
-                             <label>Titre </label>
+                             <label>Titre </label><span class="text-danger gras">*</span>
                     		<div class="form-group">
                      			
-                      			  <input type="text"  name="resultTitle"  class="form-control" />
+                      			  <input type="text"  name="resultTitle"  class="form-control" required />
                              </div>
-                     		<label>fichier </label>
+                     		<label>fichier (fichier image) </label><span class="text-danger gras">*</span>
                     		<div class="form-group">
                      			
-                      			  <input type="file"  name="files"  class="form-control" />
+                      			  <input type="file"  name="files"  class="form-control"  required/>
                              </div>
                             
                     

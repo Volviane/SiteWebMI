@@ -69,7 +69,7 @@
 							</c:forEach>
 						</select> --%>
 								<label for="titre-document" class="">Type
-									du document <span class="text-danger gras">*</span></label> <select name="documentType" class="form-control"
+									du document </label> <span class="text-danger gras">*</span> <select name="documentType" class="form-control"
 									id="titre-document" required>
 									<option value='Support de cours' selected>Support de Cours</option>
 									<option value='fiche de TD'>Fiche de TD</option>
@@ -86,7 +86,7 @@
 							 <label
 									for="description-document" class="">Descripton
 									du document</label>
-								<textarea class="form-control" rows="5" cols="30"></textarea>
+								<textarea class="form-control" rows="5" cols="30" name="documentDescription" ></textarea>
 							</div>
 
 							<div class="form-group">

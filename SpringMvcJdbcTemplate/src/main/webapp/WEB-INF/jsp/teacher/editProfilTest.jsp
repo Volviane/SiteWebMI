@@ -202,7 +202,9 @@
 				</table>
 				
 			</form>
-                          <c:if test="${error!=null}">
+                          
+		</section>
+			<c:if test="${error!=null}">
 							<h6 class=""> <font color="red">${error}</font></h1>
 			       		</c:if>
 			        	<c:if test="${error==null}">
@@ -210,8 +212,6 @@
 					${teachers.pictureName}<img src="${teachers.pictureName}"
 						alt="" class="img-thumbnail img-circle media-object" />
 			       		</c:if>
-		</section>
-			
 			
 				
 		<!--/ Contenu-->

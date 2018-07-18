@@ -74,9 +74,9 @@
 												<td><c:out value="${doc.articleTitle}" /></td>
 												<td><c:out value="${doc.articleName}" /></td>
 												<td><c:out value="${doc.articleAbstract}" /></td>
-												<!-- 												<td><a -->
-												<%-- 													href="documentsDescription?idArticle=${doc.idArticle}" --%>
-												<!-- 													class="btn btn-info">Consulter</a></td> -->
+																								<td><a
+																									href="${pageContext.request.contextPath}/resources/userResources/img/${doc.articleName }"
+																									class="btn btn-info">Consulter</a></td>
 											</tr>
 
 										</c:forEach>

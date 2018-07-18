@@ -7,117 +7,191 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<c:if test="${teacher.login==null}">
-			<c:redirect  url="connectionAdministrator"></c:redirect>
-	     </c:if>
+
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>publier un résultat</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="all,follow">
-    <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/vendor/bootstrap/css/bootstrap.css"
+<html lang="fr">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Math-Info liste des enseignants</title>
+<meta name="description"
+	content="Free Bootstrap Theme by BootstrapMade.com">
+<meta name="keywords"
+	content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+	<!-- DEFINITION DES STYLES CSS -->
+ 	<link rel="stylesheet" type="text/css"
+	href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/userResources/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/userResources/css/bootstrap.min.css">
+
+
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/userResources/css/imagehover.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/userResources/css/style.css">
+
+<!-- Styles peso -->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/userResources/css/stylePerso.css">
+
+<!-- Libraries CSS Files -->
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/lib/nivo-slider/css/nivo-slider.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/lib/owlcarousel/owl.carousel.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/lib/owlcarousel/owl.transitions.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/lib/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/lib/animate/animate.min.css"
+	rel="stylesheet">
+<!--   <link href="${pageContext.request.contextPath}/resources/userResources/lib/venobox/venobox.css" rel="stylesheet"> -->
+<!-- Nivo Slider Theme -->
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/css/nivo-slider-theme.css"
+	rel="stylesheet">
+<!-- Main Stylesheet File -->
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/css/style1.css"
+	rel="stylesheet">
+
+<!-- Responsive Stylesheet File -->
+<link
+	href="${pageContext.request.contextPath}/resources/userResources/css/responsive.css"
+	rel="stylesheet">
+
+<!-- Custom stylesheet - for your changes-->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/assets/css/css/custom.css">
+<!-- Favicon-->
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/resources/css/assets/css/img/favicon.ico">
+<!-- CSS-->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/styleAdmin.css"
 	type="text/css" media="all">
-	<!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/vendor/font-awesome/css/font-awesome.min.css">
-    <!-- Fontastic Custom icon font-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/fontastic.css">
-    <!-- Google fonts - Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
-    <!-- jQuery Circle-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/grasp_mobile_progress_circle-1.0.0.min.css">
-    <!-- Custom Scrollbar-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
-    <!-- theme stylesheet-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/style.default.css" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/custom.css">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/css/assets/css/img/favicon.ico">
-     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/assets/css/css/style.blue.css" id="theme-stylesheet">
-    
-     <!-- CSS-->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styleAdmin.css" type="text/css" media="all">
-    
-    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-  </head>
-  <body>
-    <!-- Side Navbar -->
-   
-    
-    <div class="page">
-      <!-- navbar-->
-    
-      <!-- Counts Section -->
-      <section class="dashboard-counts padding">
-          <h4 class="page-head-line">Poster un résultat</strong></h4>
-      </section>
-      <!-- Header Section-->
-      <section class="dashboard-header padding">
-         <div class="row">
-              <div class="col-md-6">
-		       <form action="<c:url value='postResult'/>" method="post" enctype="multipart/form-data">
-                     <label>cycle</label>
-                    
-                    	 <select class="form-control" name="cycleName">
-                     			<c:forEach items="${cycles}" var="i">
-                     				<option value="${i.cycleName }"><c:out value="${i.cycleName }"></c:out></option>
-                     			</c:forEach>
-                     	 </select>
-                      <label>option</label>
-                         <select class="form-control" name="optionName">
-                     			<c:forEach items="${options}" var="i">
-                     				<option value="${i.optionName }"><c:out value="${i.optionName }"></c:out></option>
-                     			</c:forEach>
-                     	 </select>
-                     <label>niveau</label>
-                    
-                    	 <select class="form-control" name="levelName">
-                     			<c:forEach items="${level}" var="i">
-                     				<option value="${i.levelName }"><c:out value="${i.levelName }"></c:out></option>
-                     			</c:forEach>
-                     	 </select>
-                     
-                     		<label>fichier </label>
-                    		<div class="form-group">
-                     			
-                      			  <input type="text" class="form-control" name="fileResult" />
-                             </div>
-                            
-                    
-                        <hr />
-                  <input type="submit" value="poster" class="btn btn-info">
-                </form>
-                 <hr />
-                          <c:if test="${error!=null}">
-							<h6 class=""> <font color="red">${error}</font></h1>
-			       		</c:if>
-			        	<c:if test="${error==null}">
-							<h6 class=""> <font color="green">publication reussie</font></h1>
-			       		</c:if>
-                </div>
-           </div>
-      </section>
-      
-    
-    </div>
-    <!-- JavaScript files-->
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/style.css"
+	type="text/css" media="all">
+
+
+<style>
+	.gras{ font-weight: bolder;}
+	.vertical-align-middle{vertical-align: middle;}
+</style>
+
+ 	<!-- FIN DEFINITION DES STYLES -->
+ 	
+<style type="text/css">
+	.space{ padding-top: 100px;}
+	.spaces{ height: 3000px;}
+</style>
+
+</head>
+
+<body>
+	<div id="preloader"></div>
+	<!-- DEBUT DU HEADER -->
+	<c:import url="includes/headerUser.jsp"></c:import>
+	<!-- FIN DU HEADER-->
+	
+
+
+	<%-- <!-- DEBUT DU HEADER -->
+	<c:if test="${teacher==null  || student==null  }">
+			<c:import url="includes/headerUser.jsp"></c:import>
+  </c:if>
+  <c:if test="${teacher!=null  || student!=null  }">
+			<c:import url="teacher/includesTeacher/headerTeacher.jsp"></c:import>
+  </c:if>
+  
+	<!-- FIN DU HEADER--> --%>
+	<div class="container space">
+			<h4 class="page-head-line">LISTE DES ENSEIGNANTS</strong></h4>
+       <c:forEach items="${teachers}" var="i" varStatus="pos">
+		<div class="media">
+		
+			<div class="media-left">
+					<c:if test="${i.pictureName==null }">
+						<img src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
+							style="width:60px;" alt=""
+							class="img-thumbnail img-circle media-object" />
+					</c:if>
+					<c:if test="${i.pictureName!=null }">
+						<img
+							src="${pageContext.request.contextPath}/resources/userResources/img/${i.pictureName }"
+							style="width:60px;" alt=""
+							class="img-thumbnail img-circle media-object" />
+					</c:if>
+			</div>
+				<div class="media-body">
+					<h4 class="media-heading">
+						<c:out value="${i.firstName }"></c:out>
+					</h4>
+					<p><c:out value="${i.descriptionEnseignant }"></c:out></p>
+					<p>
+					  <div class="col-lg-4" >
+<!-- 						<a -->
+<%-- 							href="${pageContext.request.contextPath}/viewPersonalPage?idTeacher=<c:out value="${i.idTeacher }"></c:out>"> --%>
+<!-- 							<button name="submit" type="submit" -->
+<!-- 								class="btn btn-block btn-submit"> -->
+<!-- 								Voir page personnelle <i class="fa fa-arrow-right"></i> -->
+<!-- 							</button> -->
+<!-- 						</a> -->
+					 </div>	
+					</p>
+				</div>
+
+			</div>
+	  </c:forEach>
+	</div>
+	<!-- DEBUT DE L'ASIDE -->
+		<c:import url="includes/aside.jsp"></c:import>
+		<!-- FIN DE L'ASIDE -->
+<div class="spaces"></div>
+
+	<!--Footer-->
+	 <%@include file="includes/footer.jsp"%>
+	<!--/ Footer-->
+	
+	<!-- INCLUSION DES JS -->
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/js/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/js/jquery.easing.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/js/custom.js"></script>
+	
+	<!-- JavaScript Libraries-->
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/lib/venobox/venobox.min.js"></script>
+	 <script
+		src="${pageContext.request.contextPath}/resources/userResources/lib/knob/jquery.knob.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/lib/parallax/parallax.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/lib/isotope/isotope.pkgd.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/userResources/js/main.js"></script>
+		
+	    <!-- JavaScript files-->
     <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/popper.js/umd/popper.min.js"> </script>
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/chart.js/Chart.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery-validation/jquery.validate.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/charts-home.js"></script>
     <!-- Main File-->
     <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/front.js"></script>
-  </body>
+	<!-- FIN INCLUSION DES JS -->
+</body>
+
 </html>

@@ -45,14 +45,14 @@
 					<hr>
 						
 						<form action="<c:url value='updateDocument'/>" method="post"
-							class="well" enctype="multipart/form-data">
+							class="" enctype="multipart/form-data">
 
 							<div class="form-group">
 								<label for="title-document"
 									class="">ID du Document</label>
 								<input id="title-document" type="text" name="idDocument"
 									value="<c:out value='${document.idDocument }'/>"
-									class="form-control" readonly> 
+									class="form-control" > 
 							</div>
 							<div class="form-group">
 								<label for="title-document"

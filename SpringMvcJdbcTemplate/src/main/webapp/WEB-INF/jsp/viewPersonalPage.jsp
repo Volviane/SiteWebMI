@@ -285,8 +285,6 @@
 										<tr class="info">
 											<th>#</th>
 											<th>Titre</th>
-											<th>Nom</th>
-											<th>Resumé</th>
 											<th>Télécharger</th>
 										</tr>
 									</thead>
@@ -297,8 +295,6 @@
 											<tr>
 												<th scope="row"><c:out value="${i.count}" /></th>
 												<td><c:out value="${doc.articleTitle}" /></td>
-												<td><c:out value="${doc.articleName}" /></td>
-												<td><c:out value="${doc.articleAbstract}" /></td>
 																<td><a
 																	href="${pageContext.request.contextPath}/resources/userResources/img/${doc.documentName }">
 																		<button name="submit" type="submit"
@@ -336,8 +332,6 @@
 										<tr class="info">
 											<th>#</th>
 											<th>Titre</th>
-											<th>Nom</th>
-											<th>Resumé</th>
 											<th>télécharger</th>
 										</tr>
 									</thead>
