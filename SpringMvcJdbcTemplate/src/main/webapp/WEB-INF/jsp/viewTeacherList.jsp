@@ -114,6 +114,9 @@
   </c:if>
   
 	<!-- FIN DU HEADER--> --%>
+	<c:if test="${teacher!=null  || student!=null  }">
+			<c:import url="teacher/includesTeacher/teacherMenu.jsp"></c:import>
+  </c:if>
 	<div class="container space">
 			<h4 class="page-head-line">LISTE DES ENSEIGNANTS</strong></h4>
        <c:forEach items="${teachers}" var="i" varStatus="pos">

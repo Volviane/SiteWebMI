@@ -94,15 +94,25 @@
 	.space{ padding-top: 10px;}
 	.spaces{ height: 3000px;}
 	.backgroundInfo  {
-			    width: 400px;
+			    width: 300px;
 			    heigh: 400px;
 			    background-color:#f5f5f5;
-			    color:#fff;
 			    margin-bottom:10px;
 			     padding: 10px;
 				}
+ .backgroundInfoTitle {
+			    height: 30px;
+			    background-color:#c0c0c0;
+			     padding: 0px;
+			     text-align: center;
+			     font-weight:bold;
+				}
 	.padding {
 			   margin-left:10px;
+			  
+				}
+	.paddings {
+			   margin-left:126px;
 			  
 				}
 </style>
@@ -134,88 +144,232 @@
 
            </section>
 	<div class="container space">
-	
+
 		<div class="col-md-7" style="padding: 0px">
 			<!--Contenu-->
-			
+
 			<div class="media">
-				<div class="media-left">
-					
-				</div>
+				<div class="media-left"></div>
 				<div class="media-body">
 					<c:if test="${teachers.pictureName==null }">
-						<img src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
-					style="weight: 20px; height:200px" alt="" class="img-thumbnail img-circle media-object" />
+						<img
+							src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG"
+							style="weight: 20px; height: 200px" alt=""
+							class="img-thumbnail img-circle media-object" />
 					</c:if>
 					<c:if test="${teachers.pictureName!=null }">
-						<img src="${pageContext.request.contextPath}/resources/userResources/img/${teachers.pictureName }"
-					    style="weight: 20px; height:200px" alt="" class="img-thumbnail img-circle media-object" />
-					 </c:if>
-					 <h4 class="media-heading"><c:out value="${teachers.firstName }" />  <c:out value="${teachers.lastName }" /></h4>
-					  <div class="padding">
-					  <div class="backgroundInfo">
-					   	<c:if test="${teachers.grade.gradeName==null }">
-					    	<p><label> Grade:  </label>  <i> non renseigné</i> </p>
-					     </c:if>
-					     <c:if test="${teachers.grade.gradeName!=null }">
-					    	<p><label> Grade:  </label><h7>   <c:out value="${teachers.grade.gradeName }" /></h7> </p>
-					     </c:if>
-					     <c:if test="${researchDomains.domainLabel==null }">
-					    	<p><label> Domaines de Recherche:  </label> <i>  non renseigné</i> </p>
-					     </c:if>
-					     <c:if test="${researchDomains.domainLabel!=null }">
-					     <p><label>Domaines de Recherche:  </label><h7>   <c:out value="${researchDomains.domainLabel }" /></h7></p>
-					      </c:if>
-					      <c:if test="${teachers.cv==null }">
-					    	<p><label> cv:  </label> <i>  non renseigné</i> </p>
-					     </c:if>
-					     <c:if test="${teachers.cv!=null }">
-					      <p> <label>CV:  </label> <h7> <c:out value="${teachers.cv }" /> </h7> </p>
-					       </c:if>
-					   </div>
-					   <div class="backgroundInfo">
-					   <c:if test="${teachers.emailAdress==null }">
-					    	<p><label> Adresse email:  </label> <i>  non renseigné</i> </p>
-					     </c:if>
-					    <c:if test="${teachers.emailAdress!=null }">
-					     <p><label> Adresse email:  </label><h7>   <c:out value="${teachers.emailAdress }" /></h7> </p>
-					    </c:if>
-					     <c:if test="${teachers.phoneNumber==null }">
-					    	<p><label> télephone:  </label><i>non renseigné</i> </p>
-					     </c:if>
-					    <c:if test="${teachers.phoneNumber!=null }">
-					    <p> <label>télephone:  </label><h7>   <c:out value="${teachers.phoneNumber }" /></h7> </p>
-					    </c:if>
-					   </div> 
-					   <div class="backgroundInfo">
-					    <c:if test="${teachers.sexe==null }">
-					    	<p><label>sexe:  </label><h7>non renseigné</h7> </p>
-					     </c:if>
-					     <c:if test="${teachers.sexe!=null }">
-					      <p><label>sexe:  </label><h7>   <c:out value="${teachers.sexe }" /></h7> </p>
-					     </c:if>
-					     <c:if test="${teachers.birthDate==null }">
-					    	<p><label>Date de naissance:  </label><i>non renseigné</i> </p>
-					     </c:if>
-					     <c:if test="${teachers.birthDate!=null }">
-					      <p><label>Date de naissance:  </label><h7>   <c:out value="${teachers.birthDate }" /></h7></p>
-					      </c:if>
-					       <c:if test="${teachers.birthPlace==null }">
-					    	 <p><label>Lieu de naissance:  </label>  <i> non renseigné</i> </p>
-					       </c:if>
-					     <c:if test="${teachers.birthPlace!=null }">
-					      <p><label>Lieu de naissance:  </label><h7>   <c:out value="${teachers.birthPlace }" /></h7></p>
-					      </c:if>
-					   </div> 
-					    
-					   
-<%-- 					     <hr>  <label>Jury:  </label><h7> jury du niveau <c:out value="${jurys.juryLevel }" /></h7>  --%>
-					 </div> 
+						<img
+							src="${pageContext.request.contextPath}/resources/userResources/img/${teachers.pictureName }"
+							style="weight: 20px; height: 200px" alt=""
+							class="img-thumbnail img-circle media-object" />
+					</c:if>
+					<h4 class="media-heading">
+						<c:out value="${teachers.firstName }" />
+						<c:out value="${teachers.lastName }" />
+					</h4>
+				<div class="row">
+					<div class="col-lg-4">
+						<div class="backgroundInfo">
+							<c:if test="${teachers.grade.gradeName==null }">
+								<p>
+									<label> Grade: </label> <i> non renseigné</i>
+								</p>
+							</c:if>
+							<c:if test="${teachers.grade.gradeName!=null }">
+								<p>
+									<label> Grade: </label>
+									<h7> <c:out value="${teachers.grade.gradeName }" /></h7>
+								</p>
+							</c:if>
+							<c:if test="${researchDomains.domainLabel==null }">
+								<p>
+									<label> Domaines de Recherche: </label> <i> non renseigné</i>
+								</p>
+							</c:if>
+							<c:if test="${researchDomains.domainLabel!=null }">
+								<p>
+									<label>Domaines de Recherche: </label>
+									<h7> <c:out value="${researchDomains.domainLabel }" /></h7>
+								</p>
+							</c:if>
+							<c:if test="${teachers.cv==null }">
+								<p>
+									<label> cv: </label> <i> non renseigné</i>
+								</p>
+							</c:if>
+							<c:if test="${teachers.cv!=null }">
+								<p>
+									<label>CV: </label>
+									<h7> <c:out value="${teachers.cv }" /> </h7>
+								</p>
+							</c:if>
+						</div>
+						<div class="backgroundInfo">
+							<c:if test="${teachers.emailAdress==null }">
+								<p>
+									<label> Adresse email: </label> <i> non renseigné</i>
+								</p>
+							</c:if>
+							<c:if test="${teachers.emailAdress!=null }">
+								<p>
+									<label> Adresse email: </label>
+									<h7> <c:out value="${teachers.emailAdress }" /></h7>
+								</p>
+							</c:if>
+							<c:if test="${teachers.phoneNumber==null }">
+								<p>
+									<label> télephone: </label><i>non renseigné</i>
+								</p>
+							</c:if>
+							<c:if test="${teachers.phoneNumber!=null }">
+								<p>
+									<label>télephone: </label>
+									<h7> <c:out value="${teachers.phoneNumber }" /></h7>
+								</p>
+							</c:if>
+						</div>
+						<div class="backgroundInfo">
+							<c:if test="${teachers.sexe==null }">
+								<p>
+									<label>sexe: </label>
+									<h7>non renseigné</h7>
+								</p>
+							</c:if>
+							<c:if test="${teachers.sexe!=null }">
+								<p>
+									<label>sexe: </label>
+									<h7> <c:out value="${teachers.sexe }" /></h7>
+								</p>
+							</c:if>
+							<c:if test="${teachers.birthDate==null }">
+								<p>
+									<label>Date de naissance: </label><i>non renseigné</i>
+								</p>
+							</c:if>
+							<c:if test="${teachers.birthDate!=null }">
+								<p>
+									<label>Date de naissance: </label>
+									<h7> <c:out value="${teachers.birthDate }" /></h7>
+								</p>
+							</c:if>
+							<c:if test="${teachers.birthPlace==null }">
+								<p>
+									<label>Lieu de naissance: </label> <i> non renseigné</i>
+								</p>
+							</c:if>
+							<c:if test="${teachers.birthPlace!=null }">
+								<p>
+									<label>Lieu de naissance: </label>
+									<h7> <c:out value="${teachers.birthPlace }" /></h7>
+								</p>
+							</c:if>
+						</div>
+
+
+					</div>
+						<div class="col-lg-6 ">
+							<div class="backgroundInfo paddings">
+								<div class="backgroundInfoTitle">Articles</div>
+								<c:if test="${articles==null }">
+								<p>
+								 <i> pas d'articles</i>
+								</p>
+							</c:if>
+								<c:if test="${articles!=null }">
+									<p><div class="panel">
+										<div class="panel-body"
+											style="min-height: 300px; padding: 0px;">
+							<div class="table-responsive">
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr class="info">
+											<th>#</th>
+											<th>Titre</th>
+											<th>Nom</th>
+											<th>Resumé</th>
+											<th>Télécharger</th>
+										</tr>
+									</thead>
+									<tbody>
+
+
+										<c:forEach items="${articles}" var="doc" varStatus="i">
+											<tr>
+												<th scope="row"><c:out value="${i.count}" /></th>
+												<td><c:out value="${doc.articleTitle}" /></td>
+												<td><c:out value="${doc.articleName}" /></td>
+												<td><c:out value="${doc.articleAbstract}" /></td>
+																<td><a
+																	href="${pageContext.request.contextPath}/resources/userResources/img/${doc.documentName }">
+																		<button name="submit" type="submit"
+																			class="btn  btn-submit">
+																			Télécharger le Document <i class="fa fa-arrow-righ"></i>
+																		</button>
+																</a></td>
+															</tr>
+
+										</c:forEach>
+					
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div></p>
+									
+							</c:if>
+							</div>
+							<div class="backgroundInfo paddings">
+								<div class="backgroundInfoTitle">Support de cours</div>
+								<c:if test="${supportDeCours==null }">
+								<p>
+								 <i> pas de Support de cours</i>
+								</p>
+							</c:if>
+								<c:if test="${supportDeCours!=null }">
+									<p><div class="panel">
+										<div class="panel-body"
+											style="min-height: 300px; padding: 0px;">
+							<div class="table-responsive">
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr class="info">
+											<th>#</th>
+											<th>Titre</th>
+											<th>Nom</th>
+											<th>Resumé</th>
+											<th>télécharger</th>
+										</tr>
+									</thead>
+									<tbody>
+
+
+										<c:forEach items="${supportDeCours}" var="doc" varStatus="i">
+											<tr>
+												<th scope="row"><c:out value="${i.count}" /></th>
+												
+											 </tr>
+
+										</c:forEach>
+					
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div></p>
+									
+							</c:if>
+							</div>
+
+
+						</div>
+					</div>
 				</div>
 			</div>
 			<!--/ Contenu-->
 		</div>
-		
+
 	</div>
 	<!-- DEBUT DE L'ASIDE -->
 		<%@include file="includes/aside.jsp"%>

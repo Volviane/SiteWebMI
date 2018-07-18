@@ -49,13 +49,6 @@
 
 							<div class="form-group">
 								<label for="title-document"
-									class="">ID du Document</label>
-								<input id="title-document" type="text" name="idDocument"
-									value="<c:out value='${document.idDocument }'/>"
-									class="form-control" readonly> 
-							</div>
-							<div class="form-group">
-								<label for="title-document"
 									class="">Titre du document</label>
 								<input id="title-document" type="text" name="documentTitle"
 									value="<c:out value='${document.documentTitle }'/>"
@@ -71,7 +64,6 @@
 								<label for="type-document" class="">Type
 									du document</label> <select name="documentType" class="form-control"
 									id="type-document">
-									<option value='<c:out value='${document.documentType}'/>' selected><c:out value='${document.documentType }'/></option>
 									<option value='Support de cours'>Support de Cours</option>
 									<option value='fiche de TD'>Fiche de TD</option>
 									<option value='Epreuve'>Epreuve</option>
