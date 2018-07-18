@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -232,6 +233,29 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 				Long idTeacher=Long.parseLong(name);
 				
 				Teacher teach = teachersRepository.findByIdTeacher(idTeacher);
+				List<Document> listOfdocuments= documentRepository.findByAuthor(teach);
+				List<Document> article=new ArrayList<>();
+				List<Document> supportDeCours=new ArrayList<>();
+				List<Document> epreuve=new ArrayList<>();
+				List<Document> fiche=new ArrayList<>();
+				List<Document> correction=new ArrayList<>();
+				
+				for(Document doc:listOfdocuments){
+					if(doc.getDocumentType().equalsIgnoreCase("Article de Recherche")){
+						article.add(doc);
+					}else if(doc.getDocumentType().equalsIgnoreCase("Support de cours")){
+						supportDeCours.add(doc);
+					}else if(doc.getDocumentType().equalsIgnoreCase("fiche de TD")){
+						fiche.add(doc);
+					}else if(doc.getDocumentType().equalsIgnoreCase("Epreuve")){
+						epreuve.add(doc);
+					}else if(doc.getDocumentType().equalsIgnoreCase("Correction Epreuves")){
+						correction.add(doc);
+					}
+				}
+				
+				
+				
 				ResearchDomain recher= teach.getResearchDomain();
 				Grade grade =teach.getGrade();
 				Set<Jury> jury = teach.getJury();
@@ -239,6 +263,12 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 				model.addAttribute("researchDomains", recher);
 				model.addAttribute("grades", grade);
 				model.addAttribute("jurys", jury);
+				
+				model.addAttribute("articles", article);
+				model.addAttribute("supportDeCours", supportDeCours);
+				model.addAttribute("fiches", fiche);
+				model.addAttribute("corrections", correction);
+				model.addAttribute("epreuves", epreuve);
 				
 				return "viewPersonalPage";
 			}
