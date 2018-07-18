@@ -252,7 +252,7 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/registrationAdministrator" }, method = RequestMethod.GET)
 	public String createForm(Model model,HttpServletRequest req) {
 		System.out.println("inscription d'un admin");
-		//model.addAttribute("error", "");
+		model.addAttribute("error", "");
 		return "admin/registrationAdministrator";
 	}
 	//create administrator post method
@@ -864,7 +864,7 @@ public class AdministratorController/* implements UserDetailsService */{
 		String gradeName= req.getParameter("gradeName");
 		Grade grade = gradeRepository.findByGradeName(gradeName);
 		String login = "login"+firstName;
-		String password = emailAdress+"pass";
+		String password = "pass";
 		String passwordSec = /*emailAdress+*/"pass";
 		String subject1 = "Registration Information";
 		Teacher teacher = new Teacher();
