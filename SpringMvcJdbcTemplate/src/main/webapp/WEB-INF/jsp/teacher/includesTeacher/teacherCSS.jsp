@@ -60,6 +60,15 @@
 	<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/assets/assets/plugins/validationengine/css/validationEngine.jquery.css"
 	type="text/css" media="all">
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/assets/assets/plugins/Font-Awesome/css/font-awesome.css"
+	type="text/css" media="all">
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/assets/assets/css/main.css""
+	type="text/css" media="all">
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/assets/assets/css/theme.css"
+	type="text/css" media="all">
 
 
 <style>

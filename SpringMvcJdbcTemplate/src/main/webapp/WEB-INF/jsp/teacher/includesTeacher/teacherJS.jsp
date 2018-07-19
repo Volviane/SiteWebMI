@@ -4,9 +4,9 @@
 	
 	<!-- JavaScript Libraries-->
 	<script
-		src="${pageContext.request.contextPath}/resources/userResources/lib/jquery/jquery.min.js"></script>
+		src="${pageContext.request.contextPath}/resources/css/assets/assets/plugins/jquery-2.0.3.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/resources/userResources/lib/bootstrap/js/bootstrap.min.js"></script>
+		src="${pageContext.request.contextPath}/resources/css/assets/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/userResources/lib/venobox/venobox.min.js"></script>
 	 <script
@@ -40,3 +40,6 @@
     <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/charts-home.js"></script>
     <!-- Main File-->
     <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/front.js"></script>
+    <script>
+        $(function () { formValidation(); });
+        </script>

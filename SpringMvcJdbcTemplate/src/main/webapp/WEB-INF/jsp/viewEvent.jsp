@@ -108,10 +108,9 @@
 			<h4 class="page-head-line">LISTE DES EVENEMENTS
 			
 			</h4>
-       <c:forEach items="${events}" var="i" varStatus="pos">
-       			  <div class="pullRight pad">
-       			   <a
-							href="${pageContext.request.contextPath}/registrationStudent?idEvent=<c:out value="${i.idEvent }"></c:out>">
+			<div class="pullRight pad">
+			  <a
+							href="${pageContext.request.contextPath}/registrationStudent">
 							<button name="submit" type="submit"
 								class="btn  btn-submit">
 								s'inscrire a un evenement <i class="fa"></i>
@@ -119,6 +118,9 @@
 						</a>
 					</div>
 					<hr>
+       <c:forEach items="${events}" var="i" varStatus="pos">
+       			  
+       			 
 		<div class="media">
 		
 			<div class="media-left">
