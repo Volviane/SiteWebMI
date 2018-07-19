@@ -151,6 +151,7 @@
 				</div>
 
 			</div>
+			<hr>
 	  </c:forEach>
 	</div>
 	<!-- DEBUT DE L'ASIDE -->

@@ -14,7 +14,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Math-Info masterRSD</title>
+<title>Math-Info contact</title>
 <meta name="description"
 	content="Free Bootstrap Theme by BootstrapMade.com">
 <meta name="keywords"
@@ -112,38 +112,68 @@
   </c:if>
 	<!-- FIN DU HEADER--> --%>
 	<div class="container space">
-			<h4 class="page-head-line"> MASTER EN RESEAUX ET SERVICES DISTRIBUES (RSD)</strong></h4>
-			<div>
-				<div class="media">
-				<div class="media-left">
-					<img
-						src="${pageContext.request.contextPath}/resources/userResources/img/page1_img1.jpg"
-						alt="" class="img-thumbnail  media-object" />
-			
+		<h4 class="page-head-line">
+			NOUS CONTACTER</strong>
+		</h4>
+		<div class="panel col-lg-10">
+			<div class="panel-body" style="min-height: 300px; padding: 0px;">
+				<div class="table-responsive">
+					<table class="table table-striped table-hover">
+						<thead>
+							<tr class="info">
+								<th>Formation</th>
+								<th>Gestionnaire</th>
+								<th>Email</th>
+								<th>Télephone</th>
+							</tr>
+						</thead>
+						<tbody>
+								<tr>
+									<th scope="row"> licence MI</th>
+									<td>Foko Miguel</td>
+									<td>fokomiguel@gmail.com</td>
+									<td>+237 699688614</td>
+								</tr>
+								<tr>
+									<th scope="row">Master analyse</th>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<th scope="row">Master algèbre</th>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<th scope="row">Master RSD</th>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<th scope="row">Sécrétariat</th>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<th scope="row">Service de la scolarité</th>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+
+
+						</tbody>
+					</table>
 				</div>
-				<div class="media-body">
-					<div class="offset-3 col-lg-6"> 
-			<p style="text-align: justify;">	D’une durée de deux (2) ans ou quatre (4) semestres, couvre les 4e et 5e années des études
-universitaires. Il vise une formation approfondie portant sur les connaissances fondamentales
-théoriques et l’initiation à la recherche en <b> Reseaux et Services Distriués </b>.
-L’inscription au cycle de Master est subordonnée à l’obtention de la Licence
-fondamentale ou d’un diplôme reconnu équivalent correspondant à la filière d’étude
-envisagée.
-Les deux premiers semestres du cycle de Master of Science sont consacrés aux
-enseignements théoriques et pratiques. L’accès en 5e année est soumis à une sélection qui
-tient compte du cursus académique de l’étudiant (moyenne en Master I (au moins 12/20) et
-en Licence, nombre d’années passées en cycle de Licence) et du nombre de places disponibles
-dans l’unité de formation choisie ; étant entendu que les étudiants sont sélectionnés dans
-l’ordre de mérite. Le troisième semestre sert de transition entre les enseignements et la
-recherche. Le quatrième semestre est consacré exclusivement à la recherche scientifique dont
-les résultats, rédigés sous forme de thèse, seront présentés à la fin de l’année académique. </p>
 			</div>
-				</div>
-			</div>
-	</div>
+		</div>
 	</div>
 	<!-- DEBUT DE L'ASIDE -->
-		<c:import url="includes/aside.jsp"></c:import>
+	<c:import url="includes/aside.jsp"></c:import>
 		<!-- FIN DE L'ASIDE -->
 <div class="spaces"></div>
 

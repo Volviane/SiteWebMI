@@ -14,7 +14,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Math-Info masterRSD</title>
+<title>Math-Info departement</title>
 <meta name="description"
 	content="Free Bootstrap Theme by BootstrapMade.com">
 <meta name="keywords"
@@ -112,7 +112,7 @@
   </c:if>
 	<!-- FIN DU HEADER--> --%>
 	<div class="container space">
-			<h4 class="page-head-line"> MASTER EN RESEAUX ET SERVICES DISTRIBUES (RSD)</strong></h4>
+			<h4 class="page-head-line"> PRESENTATION DU DEPARTEMENT</strong></h4>
 			<div>
 				<div class="media">
 				<div class="media-left">
@@ -122,21 +122,22 @@
 			
 				</div>
 				<div class="media-body">
-					<div class="offset-3 col-lg-6"> 
-			<p style="text-align: justify;">	D’une durée de deux (2) ans ou quatre (4) semestres, couvre les 4e et 5e années des études
-universitaires. Il vise une formation approfondie portant sur les connaissances fondamentales
-théoriques et l’initiation à la recherche en <b> Reseaux et Services Distriués </b>.
-L’inscription au cycle de Master est subordonnée à l’obtention de la Licence
-fondamentale ou d’un diplôme reconnu équivalent correspondant à la filière d’étude
-envisagée.
-Les deux premiers semestres du cycle de Master of Science sont consacrés aux
-enseignements théoriques et pratiques. L’accès en 5e année est soumis à une sélection qui
-tient compte du cursus académique de l’étudiant (moyenne en Master I (au moins 12/20) et
-en Licence, nombre d’années passées en cycle de Licence) et du nombre de places disponibles
-dans l’unité de formation choisie ; étant entendu que les étudiants sont sélectionnés dans
-l’ordre de mérite. Le troisième semestre sert de transition entre les enseignements et la
-recherche. Le quatrième semestre est consacré exclusivement à la recherche scientifique dont
-les résultats, rédigés sous forme de thèse, seront présentés à la fin de l’année académique. </p>
+					<div class="offset-3 col-lg-6">
+					<p style="text-align: justify;">	
+							Le Département de mathématiques-informatique,est l'un des
+								départements de la faculté des sciences de l'université de
+								Dschang. Il offre diverses formations, notemment une licence en
+								mathématique-informatique, un master en réseau et services
+								distriués, un master en algèbre et un master en analyse.
+			     </p> 
+			<p style="text-align: justify;">	
+				L’admission au cycle de Doctorat/PhD est subordonnée d’une part à l’obtention d’un
+diplôme de Master of Science avec une moyenne supérieure ou égale à 12,0 sur 20 et d’autre
+part, au cursus universitaire antérieur et à la capacité d’encadrement de la structure ou unité
+de recherche sollicitée. Le cycle de Doctorat, d’une durée de 3 à 5 ans, est consacré
+principalement aux travaux de recherche scientifique dont les résultats présentés sous forme
+d’une thèse sont sanctionnés par le grade de Doctorat/Ph.D.
+			 </p>
 			</div>
 				</div>
 			</div>

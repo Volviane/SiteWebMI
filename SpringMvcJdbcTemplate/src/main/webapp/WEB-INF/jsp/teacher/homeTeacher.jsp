@@ -80,7 +80,7 @@
 		</div>
 
 		<!-- DEBUT DE L'ASIDE -->
-		<%@include file="../includes/aside.jsp"%>
+<%-- 		<%@include file="../includes/aside.jsp"%> --%>
 		<!-- FIN DE L'ASIDE -->
 	
 <div

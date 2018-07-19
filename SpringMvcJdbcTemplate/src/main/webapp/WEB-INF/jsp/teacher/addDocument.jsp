@@ -91,7 +91,7 @@
 
 							<div class="form-group">
 								<label for="file-document" class="">Choisir
-									le fichier <span class="text-danger gras">*</span></label> <input id="file-document" type="file"
+									le fichier </label><span class="text-danger gras">*</span> <input id="file-document" type="file"
 									
 									name="files" required
 									data-msg="veuillez entrer le titre du document"
@@ -119,9 +119,9 @@
 		<!--/ Contenu-->
 	</div>
  
-	<!-- DEBUT DE L'ASIDE -->
-	<c:import url="../includes/aside.jsp"></c:import>
-	<!-- FIN DE L'ASIDE -->
+<!-- 	<!-- DEBUT DE L'ASIDE --> 
+<%-- 	<c:import url="../includes/aside.jsp"></c:import> --%>
+<!-- 	<!-- FIN DE L'ASIDE -->
 
 
 <div

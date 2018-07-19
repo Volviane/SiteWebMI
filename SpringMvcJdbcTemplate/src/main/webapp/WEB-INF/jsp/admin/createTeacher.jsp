@@ -81,7 +81,7 @@
                </form>
                <hr />
                           <c:if test="${error!=null}">
-							<div class="alert alert-danger"> <font color="red">${error}</font></div>
+							<div class="alert"> <font color="red">${error}</font></div>
 			       		</c:if>
 			        	<c:if test="${teachers!=null}">
 							<div class="alert alert-success"> <font color="green">${teachers}</font></div>

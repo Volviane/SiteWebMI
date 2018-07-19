@@ -17,7 +17,7 @@
             <li><a href="#item2" aria-expanded="false" data-toggle="collapse"> <i class=""></i>GERER MES DOCUMENTS  </a><span class="caret"></span>
               <ul id="item2" class="collapse list-unstyled ">
                               <li><a href="addDocument"><span class="gyphicon glyphicon-plus"></span> Nouveau document</a></li>
-								<li><a href="updateDocument"><span class="gyphicon glyphicon-pencil"></span> Modifier Document</a></li>
+<!-- 								<li><a href="updateDocument"><span class="gyphicon glyphicon-pencil"></span> Modifier Document</a></li> -->
 								<li><a href="listDocuments">Mes Documents<span class="badge pull-right">${documentsNumber}</span></a></li>								
 								<li><a href="listDocumentsByType?documentType=Article%20de%20Recherche">Mes Articles <span class="badge pull-right">${articlesNumber}</span></a></li>
 								<li><a href="listDocumentsByType?documentType=Support%20de%20Cours">Mes Cours<span class="badge pull-right">${coursNumber }</span></a></li>

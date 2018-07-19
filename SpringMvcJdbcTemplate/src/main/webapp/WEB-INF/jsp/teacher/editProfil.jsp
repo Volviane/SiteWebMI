@@ -9,6 +9,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MIUDS- Editer Profil</title>
 <c:import url="includesTeacher/teacherCSS.jsp"></c:import>
+<style type="text/css">
+	.height{ height: 500px;}
+	
+</style>
 
 </head>
 <body>
@@ -35,7 +39,7 @@
 
 	<div class="col-md-7" style="padding-left: 100px">
 		<!--Contenu-->
-		<section>
+		<section class="height">
 			<h3>
 				<span class="fa fa-edit"></span> Edition du Profil
 			</h3>
@@ -105,8 +109,8 @@
 						<tr>
 							<td>
 							<div class="form-group">
-								<label for="birthDate" class="">Date de Naissance</label>
-								<input class="form-control" id="birthDate" name="birthDate" type="date" value="<c:out value="${teacher.birthDate}"/>">
+								<label for="birthDate" class="">Date de Naissance</label><span class="text-danger gras">*</span>
+								<input class="form-control" id="birthDate" name="birthDate" type="date" value="<c:out value="${teacher.birthDate}"/>" required>
 							</div>
 							</td>
 						</tr>
@@ -115,7 +119,7 @@
 							<td>
 							<div class="form-group">
 								<label for="birthPlace" class="">Lieu de Naissance</label>
-								<input class="form-control" id="birthDate" name="birthPlace" type="text" value="<c:out value="${teacher.birthPlace}"/>" required>
+								<input class="form-control" id="birthDate" name="birthPlace" type="text" value="<c:out value="${teacher.birthPlace}"/>" >
 							</div>
 							</td>
 						</tr>
@@ -154,8 +158,8 @@
 							<td>
 							<div class="form-group">
 								<label for="photo" class="">Choisir une photo</label>
-<%-- 								<input class="form-control" id="photo" name="files" type="file" value="<c:out value="${pageContext.request.contextPath}/resources/userResources/img/${teachers.pictureName }"/>"> --%>
-	     							<input class="form-control" id="photo" name="files" type="file" value="">
+								<input class="form-control" id="photo" name="files" type="file" value="<c:out value="${pageContext.request.contextPath}/resources/userResources/img/${teacher.pictureName }"/>">
+<!-- 	     							<input class="form-control" id="photo" name="files" type="file" value=""> -->
 							
 							</div>
 							</td>
@@ -183,7 +187,7 @@
 							<h6 class="alert"> <font color="red">${erro}</font></h1>
 			       		</c:if>
 			        	<c:if test="${error==null}">
-							<h6 class="alert alert-success"> <font color="green">profil édité avec success</font></h1>
+							<h6 class="alert alert-success "> <font color="green">profil édité avec success</font></h1>
 			       		</c:if>
 		</section>
 
@@ -192,9 +196,9 @@
 		<!--/ Contenu-->
 	</div>
 	</div>
-	<!-- DEBUT DE L'ASIDE -->
-	<c:import url="../includes/aside.jsp"></c:import>
-	<!-- FIN DE L'ASIDE -->
+<!-- 	<!-- DEBUT DE L'ASIDE -->
+<%-- 	<c:import url="../includes/aside.jsp"></c:import> --%>
+<!-- 	<!-- FIN DE L'ASIDE --> 
 
 	<div
 		style="clear: both; display: block; margin-top: 88px; height: 60px;"></div>

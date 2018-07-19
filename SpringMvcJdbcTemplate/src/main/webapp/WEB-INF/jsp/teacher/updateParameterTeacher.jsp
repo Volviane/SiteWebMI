@@ -42,13 +42,13 @@
 					<form action="updateParameterTeacher" method="post">
 						<div class="form-group">
 							<label for="exampleInputEmail1">Entrez l'Ancien login</label><span class="text-danger gras">*</span> <input
-								type="text" name="login" class="form-control"
+								type="text" name="login" class="form-control validate[required]"
 								id="exampleInputEmail1" aria-describedby="emailHelp"
 								placeholder="Ancien login" required> 
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Entrez le nouveau Login</label><span class="text-danger gras">*</span><input
-								type="text" name="newLogin" class="form-control"
+								type="text" name="newLogin" class="form-control validate[required,minSize[3]]"
 								id="exampleInputEmail1" aria-describedby="emailHelp"
 								placeholder="nouveau Login" required> 
 						</div>
@@ -59,12 +59,12 @@
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">Nouveau Mot de Passe</label> <span class="text-danger gras">*</span><input
-								type="password" name="newPassword" class="form-control"
-								id="exampleInputPassword1" placeholder="nouveau Mot de passe" required>
+								type="password" name="newPassword" id="newPassword" class="form-control validate[optional,minSize[5]]"
+								 placeholder="nouveau Mot de passe" required>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">Confirmer le Mot de Passe</label> <span class="text-danger gras">*</span><input
-								type="password"  class="form-control"
+								type="password"  class="form-control validate[required,equals[newPassword]]" 
 								id="exampleInputPassword1" placeholder="Confirmation de mot de passe" required>
 						</div>
 						<button type="submit" class="btn btn-primary">Submit</button>
@@ -83,7 +83,7 @@
 <!-- 	</div> -->
 
 <!-- DEBUT DE L'ASIDE -->
-		<c:import url="../includes/aside.jsp"></c:import>
+<%-- 		<c:import url="../includes/aside.jsp"></c:import> --%>
 		<!-- FIN DE L'ASIDE -->
 
 <div
