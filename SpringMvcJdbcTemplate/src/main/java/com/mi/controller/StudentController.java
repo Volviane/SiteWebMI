@@ -6,11 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-import java.util.Set;
 
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -30,7 +28,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,16 +36,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mi.model.Article;
 import com.mi.model.Cycle;
-import com.mi.model.Document;
 import com.mi.model.Event;
-import com.mi.model.Grade;
-import com.mi.model.Jury;
 import com.mi.model.Level;
 import com.mi.model.Option;
 import com.mi.model.Participation;
-import com.mi.model.ResearchDomain;
 import com.mi.model.Student;
-import com.mi.model.Teacher;
 import com.mi.repositories.AcademicYearRepository;
 import com.mi.repositories.AdministratorRepository;
 import com.mi.repositories.ArticleRepository;
@@ -243,7 +235,7 @@ public class StudentController {
 			String password ="pass";
 			
 			List<Option> listOfOption = optionRepository.findAll();
-			List<String> finalList = new ArrayList<String>();
+		//	List<String> finalList = new ArrayList<String>();
 			
 			model.addAttribute("options", listOfOption);
 			
@@ -434,10 +426,10 @@ public class StudentController {
 			String articleAbstract= req.getParameter("articleAbstract");
 			String eventName= req.getParameter("eventName");
 
-			Calendar calendarCourante = Calendar.getInstance();
+			/*Calendar calendarCourante = Calendar.getInstance();
 			//int createYear = calendarCourante.get(Calendar.YEAR);
 			int createMonth = calendarCourante.get(Calendar.YEAR);
-			String createYear= createMonth+"";
+			String createYear= createMonth+"";*/
 			
 			List<Event> listOfEvent = eventRepository.findAll();
 			model.addAttribute("events", listOfEvent);
