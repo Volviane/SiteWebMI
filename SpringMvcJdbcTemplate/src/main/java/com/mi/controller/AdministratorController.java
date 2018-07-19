@@ -1022,6 +1022,15 @@ public class AdministratorController/* implements UserDetailsService */{
 	@RequestMapping(value = { "/createJury" }, method = RequestMethod.POST)
 	public String createJuryPost(Model model, HttpServletRequest req) {
 		System.out.println("createJury Post");
+		
+		List<Level> listOfLevel = levelRepository.findAll();
+		List<Teacher> listOfTeacher = teachersRepository.findAll();
+
+		if (listOfLevel.isEmpty() || listOfTeacher.isEmpty()) {
+			model.addAttribute("error", "Aucun Enseignant ou niveau n'a été ajouté");
+		}
+		model.addAttribute("levels", listOfLevel);
+		model.addAttribute("teachers", listOfTeacher);
 
 		String academicYear= req.getParameter("academicYear");
 		String juryPresidentName= req.getParameter("juryPresidentName");
@@ -1191,6 +1200,14 @@ public class AdministratorController/* implements UserDetailsService */{
 	public String addReseachDomainPost(Model model, HttpServletRequest req) throws ParseException {
 		System.out.println("addReseachDomain Post");
 
+		List<Option> listOfOption = optionRepository.findAll();
+
+		if (listOfOption.isEmpty() ) {
+			model.addAttribute("error", "Aucune Option n'a été défini");
+		}
+		model.addAttribute("options", listOfOption);
+		
+		
 		String optionName= req.getParameter("cycleName");
 		String domainLabel= req.getParameter("domainLabel");
 		String domainDescription= req.getParameter("domainDescription");
