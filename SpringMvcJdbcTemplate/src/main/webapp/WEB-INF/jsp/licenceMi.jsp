@@ -102,21 +102,52 @@
 
 
 	<!-- DEBUT DU HEADER -->
-	<c:if test="${teacher==null  || student==null  }">
 			<c:import url="includes/headerUser.jsp"></c:import>
-  </c:if>
-  <c:if test="${teacher!=null  || student!=null  }">
-			<c:import url="teacher/includesTeacher/headerTeacher.jsp"></c:import>
-  </c:if>
+
+
 	<!-- FIN DU HEADER-->
 	<div class="container space">
 			<h4 class="page-head-line"> LICENCE MI</strong></h4>
-			<div>
-				<img
+			<div class="media">
+				<div class="media-left">
+					<img
 						src="${pageContext.request.contextPath}/resources/userResources/img/page1_img1.jpg"
 						alt="" class="img-thumbnail  media-object" />
 			
+				</div>
+				<div class="media-body">
+					<div class="offset-3 col-lg-6" style="text-align: justify;"> 
+				Les études dans le cycle de Licence dure trois (3) ans et sont réparties en six (6) semestres.
+Ces études visent à faire acquérir à l’étudiant, les connaissances fondamentales larges de la
+discipline à travers l’apprentissage des concepts et des méthodes de base. Le passage d’un
+niveau d’étude donné à un niveau supérieur est subordonné aux conditions cumulées
+suivantes:
+<p>
+- Valider individuellement 70% des Cours de l’ensemble des Unités d’Enseignement (UE) du
+niveau ou acquérir au moins 75% des crédits du niveau;
+- Ne pas avoir plus de deux (02) semestres consécutifs de retard dans le rythme de progression
+sur le parcours choisi.
+Les études dans ce cycle sont sanctionnées par le diplôme de Licence ou Bachelor of Science
+(BSc.)</p>
+ <h3> Objectifs de la formation</h3>
+L’objectif ici consiste à fournir aux étudiants les connaissances scientifiques fondamentales
+fortes dans le domaine des mathématiques et de l’informatique permettant à l’étudiant à
+l’issue de sa formation d‘intégrer des Ecoles d’Ingénieurs de haut niveau dans le domaine des
+sciences et technologie. C’est ainsi que les deux premières années sont constituées des cours
+en tronc commun et qui se poursuit par une spécialisation en informatique ou en
+mathématiques 3è année.
+<h3>Débouchés</h3>
+L’étudiant nanti d’un diplôme de Licence en Mathématiques et Informatique peut :
+<p> -  Entrer en 3ème année ou 4ème année selon les cas de certaines Grandes Ecoles (Normale
+Supérieur des Travaux Publics, ENSET, ENS, Ecole de Police, ENSPT, ISSEA, ENSAI filière
+Informatique industrielle, Ecole d’aviation Civile, etc.)</p>
+<p>-  faire carrière dans les entreprises
+comme Ingénieur d’étude pour gérer et exploiter les systèmes d’information,
+administrer les systèmes.</p>
 			</div>
+				</div>
+			</div>
+			
 	</div>
 	<!-- DEBUT DE L'ASIDE -->
 		<c:import url="includes/aside.jsp"></c:import>
@@ -127,45 +158,9 @@
 	 <%@include file="includes/footer.jsp"%>
 	<!--/ Footer-->
 	
-	<!-- INCLUSION DES JS -->
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/js/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/js/jquery.easing.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/js/custom.js"></script>
-	
-	<!-- JavaScript Libraries-->
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/lib/jquery/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/lib/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/lib/venobox/venobox.min.js"></script>
-	 <script
-		src="${pageContext.request.contextPath}/resources/userResources/lib/knob/jquery.knob.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/lib/parallax/parallax.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/lib/easing/easing.min.js"></script>
-	
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/lib/isotope/isotope.pkgd.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/userResources/js/main.js"></script>
-		
-	    <!-- JavaScript files-->
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/popper.js/umd/popper.min.js"> </script>
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/vendor/jquery-validation/jquery.validate.min.js"></script>
-    <!-- Main File-->
-    <script src="${pageContext.request.contextPath}/resources/css/assets/css/js/front.js"></script>
-	<!-- FIN INCLUSION DES JS -->
+	<!--js-->
+	 <%@include file="includes/jsFile.jsp"%>
+	<!--/ js-->
 </body>
 
 </html>

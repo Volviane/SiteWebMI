@@ -30,30 +30,30 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div
 						class="collapse navbar-collapse main-menu bs-example-navbar-collapse-1">
-						 <form class="navbar-form pull-right" action="<c:url value='research'/>" method="post">
-							<input type="text" style="width:150px" class="input-sm form-control"
-							placeholder="Recherche">
-							<input type="submit" class="btn btn-primary btn-sm glyphicon glyphicon-eye-open" value="chercher">
-						  </form>
+<%-- 						 <form class="navbar-form pull-right" action="<c:url value='research'/>" method="post"> --%>
+<!-- 							<input type="text" style="width:150px" class="input-sm form-control" -->
+<!-- 							placeholder="Recherche"> -->
+<!-- 							<input type="submit" class="btn btn-primary btn-sm glyphicon glyphicon-eye-open" value="chercher"> -->
+<!-- 						  </form> -->
 						<ul class="nav navbar-nav navbar-right">
 							<li class="active"><a class="page-scroll" href="${pageContext.request.contextPath}/index">Acceuil</a>
 							</li>
-							<li class="dropdown">
+							<%-- <li class="dropdown">
 								<a class="page-scroll" data-toggle="dropdown" href="#about">PRESENTATION<b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="${pageContext.request.contextPath}/viewTeacherList"> enseignants du département</a></li>
 									<li><a href="${pageContext.request.contextPath}/">organigramme</a></li>
 								</ul>
-							</li>
-							<li class="dropdown">
-								<a class="page-scroll" data-toggle="dropdown" href="#about">Formations<b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li><a href="${pageContext.request.contextPath}/licenceMi"> licence en maths-info</a></li>
-									<li><a href="${pageContext.request.contextPath}/masterAlgebra">master en algère</a></li>
-									<li><a href="${pageContext.request.contextPath}/masterAnalysis"> master en analyse</a></li>
-									<li><a href="${pageContext.request.contextPath}/masterRsd">master en RSD</a></li>
-								</ul>
-							</li>
+							</li> --%>
+<!-- 							<li class="dropdown"> -->
+<!-- 								<a class="page-scroll" data-toggle="dropdown" href="#about">Formations<b class="caret"></b></a> -->
+<!-- 								<ul class="dropdown-menu"> -->
+<%-- 									<li><a href="${pageContext.request.contextPath}/licenceMi"> licence en maths-info</a></li> --%>
+<%-- 									<li><a href="${pageContext.request.contextPath}/masterAlgebra">master en algère</a></li> --%>
+<%-- 									<li><a href="${pageContext.request.contextPath}/masterAnalysis"> master en analyse</a></li> --%>
+<%-- 									<li><a href="${pageContext.request.contextPath}/masterRsd">master en RSD</a></li> --%>
+<!-- 								</ul> -->
+<!-- 							</li> -->
 							<li><a class="page-scroll" href="${pageContext.request.contextPath}/contact">Contact</a></li>
 							<li class="dropdown gras">
 								<a class="page-scroll" data-toggle="dropdown" href="#about"><i class="fa fa-sign-in"></i>/<i class="fa fa-sign-out"></i><b class="caret"></b></a>

@@ -43,35 +43,15 @@
 					<div class="form-inner">
 					<h3>Nouveau Resultat</h3>
 					<hr>
-<!-- 						<p class="alert alert-warning"><span class="fa fa-warning"></span> Les champ portant la mention <span class="text-danger gras">*</span> Sont obligatoires</p> -->
-						<form action="<c:url value='editResult'/>" method="post"
+					<form action="<c:url value='editResult'/>" method="post"
 							class="" enctype="multipart/form-data">
-<!--                   <label>cycle</label> -->
-                    
-<!--                     	 <select class="form-control" name="cycleName"> -->
-<%--                      			<c:forEach items="${cycles}" var="i"> --%>
-<%--                      				<option value="${i.cycleName }"><c:out value="${i.cycleName }"></c:out></option> --%>
-<%--                      			</c:forEach> --%>
-<!--                      	 </select> -->
-<!--                       <label>option</label> -->
-<!--                          <select class="form-control" name="optionName"> -->
-<%--                      			<c:forEach items="${options}" var="i"> --%>
-<%--                      				<option value="${i.optionName }"><c:out value="${i.optionName }"></c:out></option> --%>
-<%--                      			</c:forEach> --%>
-<!--                      	 </select> -->
-<!--                      <label>niveau</label> -->
-                    
-<!--                     	 <select class="form-control" name="levelName"> -->
-<%--                      			<c:forEach items="${level}" var="i"> --%>
-<%--                      				<option value="${i.levelName }"><c:out value="${i.levelName }"></c:out></option> --%>
-<%--                      			</c:forEach> --%>
-<!--                      	 </select> -->
+					
                            <label>Session </label>
                     		<div class="form-group">
                       			  <select class="form-control" name="session"> 
 							
-										<option value='ses1'>normale</option>	
-										<option value='ses2'>rattrapage</option>
+										<option value='normale'>normale</option>	
+										<option value='rattrapage'>rattrapage</option>
 						    
 						     </select>
                              </div>
@@ -85,7 +65,7 @@
                      			
                       			  <input type="text"  name="resultTitle"  class="form-control" required />
                              </div>
-                     		<label>fichier (fichier image) </label><span class="text-danger gras">*</span>
+                     		<label>fichier </label><span class="text-danger gras">*</span>
                     		<div class="form-group">
                      			
                       			  <input type="file"  name="files"  class="form-control"  required/>
@@ -110,8 +90,8 @@
 	</div>
  
 	<!-- DEBUT DE L'ASIDE -->
-	<c:import url="../includes/aside.jsp"></c:import>
-	<!-- FIN DE L'ASIDE -->
+<%-- 	<c:import url="../includes/aside.jsp"></c:import>
+ --%>	<!-- FIN DE L'ASIDE -->
 
 
 <div

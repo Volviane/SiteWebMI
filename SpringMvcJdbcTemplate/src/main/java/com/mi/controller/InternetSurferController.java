@@ -413,6 +413,15 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 					return "masterRsd";
 
 				}
+				// departmentPresentation
+				@RequestMapping(value = "/departmentPresentation", method = RequestMethod.GET)
+				public String departmentPresentation(Model model) {
+					System.out.println("departmentPresentation get");
+					model.addAttribute("error", "");
+
+					return "departmentPresentation";
+
+				}
 				
 				// masterRsd
 				@RequestMapping(value = "/licenceMi", method = RequestMethod.GET)
@@ -421,6 +430,16 @@ public static final Logger logger = LoggerFactory.getLogger(AdministratorControl
 					model.addAttribute("error", "");
 
 					return "licenceMi";
+
+				}
+				
+				// contact
+				@RequestMapping(value = "/contact", method = RequestMethod.GET)
+				public String contact(Model model) {
+					System.out.println("contact get");
+					model.addAttribute("error", "");
+
+					return "contact";
 
 				}
 				// on donne le nom d'un enseignant ion retourne ses documents

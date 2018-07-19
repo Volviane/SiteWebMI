@@ -134,7 +134,7 @@
 		</section>
 	</div>
 	<!-- DEBUT DE L'ASIDE -->
-	<c:import url="../includes/aside.jsp"></c:import>
+<%-- 	<c:import url="../includes/aside.jsp"></c:import> --%>
 	<!-- FIN DE L'ASIDE -->
 
 	<div

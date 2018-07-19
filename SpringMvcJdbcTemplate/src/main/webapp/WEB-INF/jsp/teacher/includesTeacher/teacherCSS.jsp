@@ -57,6 +57,9 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/style.css"
 	type="text/css" media="all">
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/assets/assets/plugins/validationengine/css/validationEngine.jquery.css"
+	type="text/css" media="all">
 
 
 <style>

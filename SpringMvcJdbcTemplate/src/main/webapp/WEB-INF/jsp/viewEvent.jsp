@@ -104,14 +104,6 @@
     <!-- DEBUT DU HEADER -->
 	<c:import url="includes/headerUser.jsp"></c:import>
 	<!-- FIN DU HEADER-->
-	<%-- <!-- DEBUT DU HEADER -->
-	<c:if test="${teacher==null  || student==null  }">
-			<c:import url="includes/headerUser.jsp"></c:import>
-  </c:if>
-  <c:if test="${teacher!=null  || student!=null  }">
-			<c:import url="teacher/includesTeacher/headerTeacher.jsp"></c:import>
-  </c:if>
-	<!-- FIN DU HEADER--> --%>
 	<div class="container space">
 			<h4 class="page-head-line">LISTE DES EVENEMENTS
 			

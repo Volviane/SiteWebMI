@@ -155,13 +155,13 @@
 								Dschang. Il offre diverses formations, notemment une licence en
 								mathématique-informatique, un master en réseau et services
 								distriués, un master en algèbre et un master en analyse.</p>
-<!-- 							<p> -->
-<!-- 								<a -->
-<%-- 									href="${pageContext.request.contextPath}/departmentPresentation"> --%>
-<!-- 									<button name="submit" type="submit" class="btn btn-info"> -->
-<!-- 										Lire la suite</button> -->
-<!-- 								</a> -->
-<!-- 							</p> -->
+							<p>
+								<a
+									href="${pageContext.request.contextPath}/departmentPresentation">
+									<button name="submit" type="submit" class="btn btn-info">
+										Lire la suite</button>
+								</a>
+							</p>
 
 						</div>
 					</div>
@@ -361,7 +361,7 @@
 
 
 
-	<
+	
 	<!-- INCLUSION DES JS -->
 	<script
 		src="${pageContext.request.contextPath}/resources/userResources/js/custom.js"></script>
