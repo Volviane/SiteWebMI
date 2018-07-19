@@ -179,9 +179,9 @@ public class StudentController {
 			System.out.println("registrationStudent get");
 			model.addAttribute("error", "");
 			
-			String name = request.getParameter("idEvent");
+			/*String name = request.getParameter("idEvent");
 			Long idEvent=Long.parseLong(name);
-			Event event =eventRepository.findByIdEvent(idEvent);
+			Event event =eventRepository.findByIdEvent(idEvent);*/
 			
 			List<Option> listOfOption = optionRepository.findAll();
 			List<String> finalList = new ArrayList<String>();
@@ -200,7 +200,7 @@ public class StudentController {
 			
 			List<Cycle> cycles = cycleRepository.findAll();
 			
-			model.addAttribute("events", event);
+			//model.addAttribute("events", event);
 			model.addAttribute("levels", listOfLevel);
 			model.addAttribute("cycles", cycles);
 			model.addAttribute("options", listOfOption);
