@@ -17,8 +17,8 @@
               <ul id="item2" class="collapse list-unstyled ">
                               <li><a href="addArticle"><span class="gyphicon glyphicon-plus"></span> Nouveau document</a></li>
 <!-- 								<li><a href="updateDocument"><span class="gyphicon glyphicon-pencil"></span> Modifier Document</a></li> -->
-								<li><a href="listArticle?eventTitle=doctoriale">Mes Articles</a></li>
-								<li><a href="listArticle?eventTitle=soutenance">Mes Memoires</a></li>								
+								<li><a href="listArticle?eventTitle=Doctoriales">Mes Articles</a></li>
+								<li><a href="listArticle?eventTitle=Soutenances">Mes Memoires</a></li>								
 			 </ul>
             </li>
                        			

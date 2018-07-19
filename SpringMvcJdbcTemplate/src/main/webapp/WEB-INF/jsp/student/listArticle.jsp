@@ -49,7 +49,7 @@
 
 				</div>
 				<c:if test="${empty articles }">
-					<i class="gras">pas d'articles</i>
+					<i class="gras">pas de documents</i>
 				</c:if>
 				<c:if test="${!empty articles}">
                    <div class="panel">
