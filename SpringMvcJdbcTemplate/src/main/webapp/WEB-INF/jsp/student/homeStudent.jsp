@@ -56,17 +56,11 @@
 			
 			<section>
 				 <div class="media-left">
-<%-- 					<c:if test="${student.pictureName==null }"> --%>
-<%-- 						<img src="${pageContext.request.contextPath}/resources/userResources/img/defaultImage.PNG" --%>
-<!-- 							style="height:200px;" alt="" -->
-<!-- 							class="img-thumbnail img-circle media-object" /> -->
-<%-- 					</c:if> --%>
-<%-- 					<c:if test="${student.pictureName!=null }"> --%>
-<!-- 						<img -->
-<%-- 							src="${pageContext.request.contextPath}/resources/userResources/img/${student.pictureName }" --%>
-<!-- 							style="height:200px;" alt="" -->
-<!-- 							class="img-thumbnail img-circle media-object" /> -->
-<%-- 					</c:if> --%>
+					
+						<img src="${pageContext.request.contextPath}/resources/userResources/img/etudiant.JPG"
+							style="height:200px;" alt=""
+							class="img-thumbnail img-circle media-object" />
+					
 			</div>
 				<div class="media-body">
 					<h4 class="media-heading">
