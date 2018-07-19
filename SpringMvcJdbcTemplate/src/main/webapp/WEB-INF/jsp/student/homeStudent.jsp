@@ -57,7 +57,7 @@
 			<section>
 				 <div class="media-left">
 					
-						<img src="${pageContext.request.contextPath}/resources/userResources/img/etudiant.JPG"
+						<img src="${pageContext.request.contextPath}/resources/userResources/img/etudiant.jpg"
 							style="height:200px;" alt=""
 							class="img-thumbnail img-circle media-object" />
 					

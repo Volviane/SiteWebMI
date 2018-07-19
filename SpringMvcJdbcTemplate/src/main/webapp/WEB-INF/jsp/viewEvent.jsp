@@ -108,9 +108,8 @@
 			<h4 class="page-head-line">LISTE DES EVENEMENTS
 			
 			</h4>
-       <c:forEach items="${events}" var="i" varStatus="pos">
-       			  <div class="pullRight pad">
-       			   <a
+			<div class="pullRight pad">
+			  <a
 							href="${pageContext.request.contextPath}/registrationStudent">
 							<button name="submit" type="submit"
 								class="btn  btn-submit">
@@ -119,6 +118,9 @@
 						</a>
 					</div>
 					<hr>
+       <c:forEach items="${events}" var="i" varStatus="pos">
+       			  
+       			 
 		<div class="media">
 		
 			<div class="media-left">

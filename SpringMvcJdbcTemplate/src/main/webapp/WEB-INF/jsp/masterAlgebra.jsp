@@ -109,7 +109,7 @@
 			<div class="media">
 				<div class="media-left">
 					<img
-						src="${pageContext.request.contextPath}/resources/userResources/img/images.png"
+						src="${pageContext.request.contextPath}/resources/userResources/img/algebre.jpg"
 						alt="" class="img-thumbnail  media-object" />
 			
 				</div>

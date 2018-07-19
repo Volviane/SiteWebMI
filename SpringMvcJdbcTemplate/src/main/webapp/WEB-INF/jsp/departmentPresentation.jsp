@@ -117,9 +117,10 @@
 				<div class="media">
 				<div class="media-left">
 					<img
-						src="${pageContext.request.contextPath}/resources/userResources/img/page1_img1.jpg"
+						src="${pageContext.request.contextPath}/resources/userResources/img/prNkenlifack.jpg"
 						alt="" class="img-thumbnail  media-object" />
-			
+			        <p class="pm-staff-profile-name">Pr NKENLIFACK</p>
+			        <p class="pm-staff-profile-bio">chef de departement</p>
 				</div>
 				<div class="media-body">
 					<div class="offset-3 col-lg-6">
